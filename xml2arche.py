@@ -4,38 +4,93 @@ import os
 from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD, BNode
 from acdh_tei_pyutils.tei import TeiReader, ET
 
-
 # %%
 TOP_COL_URI = URIRef("https://id.acdh.oeaw.ac.at/ofm-graz")
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
 
 # %%
-# Takes a TEI element (respStmt or person) and returns a tuple to add to the RDF 
-def parse_person(person):
-    person_info = {}
-    if person.xpath(".//tei:persName/@role", namespaces=nsmap):
-      a = ACDH[person.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(":")[1]]
-      # The  following line is necessary as there are non-empty ref attribs as placeholders 
-      if person.xpath(".//tei:persName/@ref", namespaces=nsmap)[0] != "placeholder":
+# I know an element present in the node wanted (e.g. tei:persName), but it can be in different
+# types of nodes (e.g. tei:persStmt vs tei:person). So I get a list of those elements
+# and put the parent element into a list if it isn't already there.
+def get_parent_node(feat, file_path):
+   nodes = []
+   root = TeiReader(file_path)
+   siblings = root.any_xpath(f".//{feat}")
+   [nodes.append(sibling.getparent()) for sibling in siblings if sibling not in nodes]
+   return nodes
+
+# %%
+# Takes a TEI element (respStmt or person) and returns a tuple of triples to add to the RDF 
+def make_person(person):
+    output = []
+    if person.xpath(".//tei:persName/@ref", namespaces=nsmap) and person.xpath(".//tei:persName/@ref", namespaces=nsmap) == "placeholder":
+        return output
+    elif person.xpath(".//tei:persName/@ref", namespaces=nsmap):
         subject = URIRef(person.xpath(".//tei:persName/@ref", namespaces=nsmap)[0])
-      else:
-        subject = ACDH["hasNonLinkedContributor"]  ### <- Person  
+        output = [(subject, RDF.type, ACDH["Person"])]
     else:
-      a = ACDH["hasPublisher"] ### <- Person
-      try:
-         subject = person.xpath("./tei:idno[@subtype='GND']/text()", namespaces=nsmap)[0]
-      except Exception:
-         subject = person.xpath("./tei:idno[@type='URL']/text()", namespaces=nsmap)[0]
-      subject = URIRef(subject)
+        ids = person.xpath(".//tei:idno[@type='URL']", namespaces=nsmap)
+        for i in ids:
+            if output:
+                output.append((subject, ACDH["hasIdentifier"], URIRef(i.xpath("./text()"))))
+            else:
+                subject = URIRef(i.xpath("./text()"))
+                output = [(subject, RDF.type, ACDH["Person"])]
     first_name = person.xpath(".//tei:persName/tei:forename/text()", namespaces=nsmap)[0]
     last_name = person.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0]
-    return [(subject, RDF.type, a), (subject, ACDH["hasTitle"], Literal(f"{first_name} {last_name}"))]
+    return output + [(subject, ACDH["hasTitle"], Literal(f"{first_name} {last_name}"))]
+
+# %%
+# Takes a tei:place element and returns a tuple of triples to add to the RDF 
+def make_place(place):
+    if place.xpath(".//tei:placename[@xml:lang='de']", namespaces=nsmap):
+        placename = place.xpath(".//tei:placeName[@xml:lang='de']", namespaces=nsmap)[0]
+    else:
+        placename = place.xpath(".//tei:placeName", namespaces=nsmap)[0]
+    i = place.xpath(".//tei:idno[@subtype='GND']", namespaces=nsmap)
+    if i:
+        subject = URIRef(i[0].xpath("./text()"))
+        output = [(subject, RDF.type, ACDH["Place"])]
+    ids = place.xpath(".//tei:idno[@type='URL']", namespaces=nsmap)
+    for i in ids:
+        if output and i.xpath("./@subtype")[0] != "GND":
+            output.append((subject, ACDH["hasIdentifier"], URIRef(i.xpath("./text()"))))
+        else:
+            subject = URIRef(i.xpath("./text()"))
+            output = [(subject, RDF.type, ACDH["Place"])]
+    return output + [(subject, RDF.type, Literal(f"{placename}") )]
+
+# %%
+def get_persons(tei):
+    list_file = glob.glob(tei)[0]
+    persons = get_parent_node("tei:persName", list_file)
+    for person in persons:
+        [g.add(x) for x in make_person(person)]
+
+# %%
+def get_places(tei):
+    list_file = glob.glob(tei)[0]
+    places = TeiReader(tei).any_xpath(".//tei:place")
+    for place in places:
+        [g.add(x) for x in make_place(place)]
 
 # %%
 g = Graph()
 g.parse("arche_seed_files/arche_constants.ttl")
+
+# %%
+### Get Persons
+get_persons("data/indices/listperson.xml")
+
+### Get places
+get_places("data/indices/listplace.xml")
+
+
+# %%
+files = glob.glob("data/editions/*.xml")
 for xmlfile in files:
+    get_persons(xmlfile)
     basename = os.path.basename(xmlfile)
     doc = TeiReader(xmlfile)
     subj = URIRef(f"{TOP_COL_URI}/{basename}")
@@ -55,16 +110,15 @@ for xmlfile in files:
     g.add(
         (subj, ACDH["hasCreatedEndDateOriginal"], Literal('2024-02-27', datatype=XSD.date))
     )
-    persons = doc.any_xpath(".//tei:person") + doc.any_xpath(".//tei:respStmt")
-    for person in persons:
-        [g.add(x) for x in parse_person(person)]
+try:
     g.serialize("test.ttl")
+except Exception as e:
+    print(e)
+
+    
 
 # %%
 
-
-# %%
-files = glob.glob("data/editions/*.xml")
 
 # %%
 # .//titleStmt/title[main]/text(): "hasTitle",
