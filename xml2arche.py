@@ -45,21 +45,21 @@ def make_person(person):
 # Takes a tei:place element and returns a tuple of triples to add to the RDF 
 def make_place(place):
     if place.xpath(".//tei:placename[@xml:lang='de']", namespaces=nsmap):
-        placename = place.xpath(".//tei:placeName[@xml:lang='de']", namespaces=nsmap)[0]
+        placename = place.xpath(".//tei:placeName[@xml:lang='de']/text()", namespaces=nsmap)[0]
     else:
-        placename = place.xpath(".//tei:placeName", namespaces=nsmap)[0]
+        placename = place.xpath(".//tei:placeName/text()", namespaces=nsmap)[0]
     i = place.xpath(".//tei:idno[@subtype='GND']", namespaces=nsmap)
     if i:
-        subject = URIRef(i[0].xpath("./text()"))
+        subject = URIRef(i[0].xpath("./text()")[0])
         output = [(subject, RDF.type, ACDH["Place"])]
     ids = place.xpath(".//tei:idno[@type='URL']", namespaces=nsmap)
     for i in ids:
         if output and i.xpath("./@subtype")[0] != "GND":
-            output.append((subject, ACDH["hasIdentifier"], URIRef(i.xpath("./text()"))))
+            output.append((subject, ACDH["hasIdentifier"], URIRef(i.xpath("./text()")[0])))
         else:
-            subject = URIRef(i.xpath("./text()"))
+            subject = URIRef(i.xpath("./text()")[0])
             output = [(subject, RDF.type, ACDH["Place"])]
-    return output + [(subject, RDF.type, Literal(f"{placename}") )]
+    return output + [(subject, ACDH['hasTitle'], Literal(f"{placename}") )]
 
 # %%
 def get_persons(tei):
@@ -74,6 +74,24 @@ def get_places(tei):
     places = TeiReader(tei).any_xpath(".//tei:place")
     for place in places:
         [g.add(x) for x in make_place(place)]
+
+# %%
+def search_editor(tei):
+    ref = tei.any_xpath(".//tei:publisher/@ref")
+    if ref:
+        ref = ref[0].lstrip('#')
+        #editor = tei.any_xpath(f".//tei:person[@xml:id='{ref}']/tei:idno[@subtype='GND']/text()")
+        editor = URIRef(tei.any_xpath(f".//tei:person[@xml:id='{ref}']/tei:idno[@subtype='GND']/text()")[0])
+    else:
+        editor = False
+    return editor
+
+# %%
+def get_date(tei):
+    dates = tei.any_xpath(".//tei:bibl/tei:date")[0]
+    nb = dates.xpath("./@notBefore", namespaces=nsmap)
+    na = dates.xpath("./@notAfter", namespaces=nsmap)
+    return (nb, na)
 
 # %%
 g = Graph()
@@ -94,6 +112,9 @@ for xmlfile in files:
     basename = os.path.basename(xmlfile)
     doc = TeiReader(xmlfile)
     subj = URIRef(f"{TOP_COL_URI}/{basename}")
+    dates = get_date(doc)
+    if editor := search_editor(doc):
+        g.add((subj, ACDH['hasPublisher'], editor))
     g.add(
         (subj, RDF.type, ACDH["Resource"])
     )
@@ -105,17 +126,15 @@ for xmlfile in files:
         (subj, ACDH["hasTitle"], Literal(has_title, lang="la"))
     )
     g.add(
-        (subj, ACDH["hasCreatedStartDateOriginal"], Literal('2024-02-27', datatype=XSD.date))
+        (subj, ACDH["hasCreatedStartDateOriginal"], Literal(dates[0], datatype=XSD.date))
     )
     g.add(
-        (subj, ACDH["hasCreatedEndDateOriginal"], Literal('2024-02-27', datatype=XSD.date))
+        (subj, ACDH["hasCreatedEndDateOriginal"], Literal(dates[1], datatype=XSD.date))
     )
 try:
     g.serialize("test.ttl")
 except Exception as e:
     print(e)
-
-    
 
 # %%
 
