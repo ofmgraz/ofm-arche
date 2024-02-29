@@ -91,7 +91,18 @@ def get_date(tei):
     dates = tei.any_xpath(".//tei:bibl/tei:date")[0]
     nb = dates.xpath("./@notBefore", namespaces=nsmap)
     na = dates.xpath("./@notAfter", namespaces=nsmap)
-    return (nb, na)
+    return (Literal(nb, datatype=XSD.date), Literal(na, datatype=XSD.date))
+
+# %%
+def get_contributors(tei):
+    predobj = []
+    contributors = tei.any_xpath(".//tei:respStmt")
+    for contributor in contributors:
+        print(contributor.xpath(".//tei:persName/@role", namespaces=nsmap))
+        pred = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(':')[-1]
+        obj = contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0].lstrip('#')
+        predobj.append((ACDH[pred], URIRef(obj)))
+    return predobj
 
 # %%
 g = Graph()
@@ -113,11 +124,6 @@ for xmlfile in files:
     doc = TeiReader(xmlfile)
     subj = URIRef(f"{TOP_COL_URI}/{basename}")
     dates = get_date(doc)
-    if editor := search_editor(doc):
-        g.add((subj, ACDH['hasPublisher'], editor))
-    g.add(
-        (subj, RDF.type, ACDH["Resource"])
-    )
     try:
         has_title = doc.any_xpath('.//tei:title')[0].text   
     except AttributeError:
@@ -126,11 +132,22 @@ for xmlfile in files:
         (subj, ACDH["hasTitle"], Literal(has_title, lang="la"))
     )
     g.add(
-        (subj, ACDH["hasCreatedStartDateOriginal"], Literal(dates[0], datatype=XSD.date))
+        (subj, ACDH["hasCreatedStartDateOriginal"], dates[0])
     )
     g.add(
-        (subj, ACDH["hasCreatedEndDateOriginal"], Literal(dates[1], datatype=XSD.date))
+        (subj, ACDH["hasCreatedEndDateOriginal"], dates[1])
     )
+    g.add(
+        (subj, ACDH["hasLanguage"], Literal('la'))
+    )
+    [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
+
+    if editor := search_editor(doc):
+        g.add((subj, ACDH['hasPublisher'], editor))
+    g.add(
+        (subj, RDF.type, ACDH["Resource"])
+    )
+    
 try:
     g.serialize("test.ttl")
 except Exception as e:
