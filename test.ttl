@@ -1,0 +1,348 @@
+@prefix ns1: <https://vocabs.acdh.oeaw.ac.at/schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<['http://d-nb.info/gnd/1037524810']> a ns1:Person ;
+    ns1:hasIdentifier <['https://www.wikidata.org/entity/Q112399622']> ;
+    ns1:hasTitle "Paolo Baglioni" .
+
+<['http://d-nb.info/gnd/1102696757']> a ns1:Person ;
+    ns1:hasIdentifier <['https://www.wikidata.org/entity/Q105889193']> ;
+    ns1:hasTitle "Giovanni Antonio Pezzana" .
+
+<['http://d-nb.info/gnd/4021912-4']> a ns1:Place,
+        "<Element {http://www.tei-c.org/ns/1.0}placeName at 0x7f063b4d4040>" ;
+    ns1:hasIdentifier <['https://sws.geonames.org/2778058']>,
+        <['https://www.wikidata.org/entity/Q13298']> .
+
+<['http://d-nb.info/gnd/4051622-2']> a ns1:Place,
+        "<Element {http://www.tei-c.org/ns/1.0}placeName at 0x7f063b4d63c0>" ;
+    ns1:hasIdentifier <['https://sws.geonames.org/2766426']>,
+        <['https://www.wikidata.org/entity/Q82500']> .
+
+<['http://d-nb.info/gnd/4062501-1']> a ns1:Place,
+        "<Element {http://www.tei-c.org/ns/1.0}placeName at 0x7f063b4d50c0>" ;
+    ns1:hasIdentifier <['http://www.wikidata.org/entity/Q34713']>,
+        <['https://sws.geonames.org/2766818']> .
+
+<['http://d-nb.info/gnd/4062501-1/4062501-1']> a ns1:Place,
+        "<Element {http://www.tei-c.org/ns/1.0}placeName at 0x7f063b4d5580>" ;
+    ns1:hasIdentifier <['https://sws.geonames.org/3164603']>,
+        <['https://www.wikidata.org/entity/Q641']> .
+
+<['http://d-nb.info/gnd/4066009-6']> a ns1:Place,
+        "<Element {http://www.tei-c.org/ns/1.0}placeName at 0x7f063b4d4c00>" ;
+    ns1:hasIdentifier <['https://sws.geonames.org/2761369']>,
+        <['https://www.wikidata.org/entity/Q1741']> .
+
+<['http://d-nb.info/gnd/4073953-3']> a ns1:Place,
+        "<Element {http://www.tei-c.org/ns/1.0}placeName at 0x7f063b4d4740>" ;
+    ns1:hasIdentifier <['https://sws.geonames.org/3239318']>,
+        <['https://www.wikidata.org/entity/Q437']> .
+
+<['http://d-nb.info/gnd/4115047-8']> a ns1:Place,
+        "<Element {http://www.tei-c.org/ns/1.0}placeName at 0x7f063b4d6880>" ;
+    ns1:hasIdentifier <['https://sws.geonames.org/2771761']>,
+        <['https://www.wikidata.org/entity/Q258162']> .
+
+<['http://d-nb.info/gnd/4127793-4']> a ns1:Place,
+        "<Element {http://www.tei-c.org/ns/1.0}placeName at 0x7f063b4d5f00>" ;
+    ns1:hasIdentifier <['https://sws.geonames.org/6559171']>,
+        <['https://www.wikidata.org/entity/Q1726']> .
+
+<['http://d-nb.info/gnd/4400654-8']> a ns1:Place,
+        "<Element {http://www.tei-c.org/ns/1.0}placeName at 0x7f063b4d5a40>" ;
+    ns1:hasIdentifier <['https://sws.geonames.org/2771922']>,
+        <['https://www.wikidata.org/entity/Q699807']> .
+
+<['https://d-nb.info/gnd/1037512057']> a ns1:Person ;
+    ns1:hasIdentifier <['http://www.wikidata.org/entity/Q56118770']> ;
+    ns1:hasTitle "Leopold Voigt" .
+
+<['https://d-nb.info/gnd/1051039606']> a ns1:Person ;
+    ns1:hasTitle "Pietro Ciera" .
+
+<['https://d-nb.info/gnd/124751946']> a ns1:Person ;
+    ns1:hasTitle "Johann Baptist Mayr" .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A63_51.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 63/51"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A64_34.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 64/34"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A64_37.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 64/37"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A64_38.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 64/38"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A64_39.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 64/39"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A64_40.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 64/40"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A64_41.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 64/41"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A64_42.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 64/42"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A64_43.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 64/43"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A67_17.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 67/17"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A67_18.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 67/18"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A67_19.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 67/19"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A67_20.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 67/20"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A67_21.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 67/22"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A67_22.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 67/22"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A67_23.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 67/23"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A67_27.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Pro divino officio in choro"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A67_41.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Das 4. Respons Buch"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A67_42.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Das 4. Respons Buch"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A67_43.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 67/43"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A67_44.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 67/44"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A70_23.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Libellus Antiphonarum"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A70_41.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "A 70/41"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/A70_45.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Antiphonas Festorum Principaliorum"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_19.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Tota pulchra"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_22.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/22"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_23.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/23"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_24.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/24"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_25.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Antiphonarium de Tempore et Sanctis Pro Choro Graecensi"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_26.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/26"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_27.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/27"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_28.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/28"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_29.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/29"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_30.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/30"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_39.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/39"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_40.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/40"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_40a.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Cantus Ecclesiasticus"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_44.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/44"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_45.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/45"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_58.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/58"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_61.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Hymni Sacri Breviarii Romani Urbani Papae VIII Auctoritate recogniti"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_62.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Hymnarium Sacrum tam Romanum Urbani Papae VIII recognitum"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_63.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Hymni Sacri Breviarii Romani Urbani Papae VIII Auctoritate recogniti"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_64.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Psalterium Romanum dispositum per Hebdomadam"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_65.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/65"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_66.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/66"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_67.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Antiphonarium de Sanctis Ordinis Minorum"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_68.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/68"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_69.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Antiphonarium de Sanctis Trium Ordinum Sancti Patris Francisci"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_70.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Hymni Sacri Breviarii Romani Urbani Papae VIII Auctoritate recogniti"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_72.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "S 1/72"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_73.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "None"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_74.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Ordo agendorum et cantandorum in actibus processionalibus"@la .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz/S1_75.xml> a ns1:Resource ;
+    ns1:hasCreatedEndDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasCreatedStartDateOriginal "2024-02-27"^^xsd:date ;
+    ns1:hasTitle "Ordo agendorum et cantandorum in actibus processionalibus"@la .
+
+<https://orcid.org/0000-0002-0484-832X> a ns1:Person ;
+    ns1:hasTitle "Robert Klugseder" .
+
+<https://orcid.org/0000-0002-8815-6741> a ns1:Person ;
+    ns1:hasTitle "Fernando Sanz-Lázaro" .
+
+<https://orcid.org/0000-0002-9575-9372> a ns1:Person ;
+    ns1:hasTitle "Peter Andorfer" .
+
+<placeholder> a ns1:Person ;
+    ns1:hasTitle "J L" .
+
