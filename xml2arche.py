@@ -98,10 +98,17 @@ def get_contributors(tei):
     predobj = []
     contributors = tei.any_xpath(".//tei:respStmt")
     for contributor in contributors:
-        print(contributor.xpath(".//tei:persName/@role", namespaces=nsmap))
         pred = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(':')[-1]
         obj = contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0].lstrip('#')
-        predobj.append((ACDH[pred], URIRef(obj)))
+        if obj.startswith('http'):
+            obj = URIRef(obj)
+            pred = ACDH[pred]
+        else:
+            forename = contributor.xpath(".//tei:forename/text()", namespaces=nsmap)[0]
+            surname = contributor.xpath(".//tei:surname/text()", namespaces=nsmap)[0]
+            obj = Literal(f"{forename} {surname}")
+            pred = ACDH['hasNonLinkedContributor']
+        predobj.append((pred, obj))
     return predobj
 
 # %%
@@ -173,8 +180,6 @@ except Exception as e:
 #hasMetadataCreator
 # hasNonLinkedContributor JL
 
-# .//sourceDesc/bibl/date/@notBefore: "hasCreatedStartDateOriginal"
-# .//sourceDesc/bibl/date/@notAfter: "hasCreatedEndDateOriginal"
 
 # .//sourceDesc/bibl/pubPlace@ref
 # .//sourceDesc/bibl/publisher@ref
