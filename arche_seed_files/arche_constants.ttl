@@ -1,0 +1,15 @@
+@prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
+@prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://orcid.org/0000-0002-8815-6741> a acdh:Person ;
+    acdh:hasTitle "Fernando Sanz-Lázaro"@und;
+    acdh:hasIdentifier <https://d-nb.info/gnd/1297553608> .
+
+<https://orcid.org/0000-0002-0484-832X> a acdh:Person ;
+    acdh:hasTitle "Robert Klugseder"@und ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/134072170> .
+
+<https://id.acdh.oeaw.ac.at/ofm-graz> a acdh:TopCollection ;
+    acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ;
+    acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de .

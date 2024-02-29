@@ -1,0 +1,12 @@
+@prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
+
+<https://foo/bar> acdh:hasActor <http://d-nb.info/gnd/118532502> ;
+    acdh:hasPrincipalInvestigator <https://orcid.org/0000-0002-0484-832X> ;
+    acdh:hasContributor <https://orcid.org/0000-0002-8815-6741> ;
+    acdh:hasDepositor <https://orcid.org/0000-0002-0484-832X> ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-4-0> ;
+    acdh:hasLicensor <https://orcid.org/0000-0002-0484-832X> ;
+    acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
+    acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo> ;
+    acdh:hasOwner <https://id.acdh.oeaw.ac.at/oeaw> ;
+    acdh:hasRightsHolder <https://id.acdh.oeaw.ac.at/oeaw> .
