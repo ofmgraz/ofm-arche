@@ -44,10 +44,11 @@ def make_person(person):
 # %%
 # Takes a tei:place element and returns a tuple of triples to add to the RDF 
 def make_place(place):
-    if place.xpath(".//tei:placename[@xml:lang='de']", namespaces=nsmap):
+    if place.xpath(".//tei:placeName[@xml:lang='de']", namespaces=nsmap):
         placename = place.xpath(".//tei:placeName[@xml:lang='de']/text()", namespaces=nsmap)[0]
     else:
         placename = place.xpath(".//tei:placeName/text()", namespaces=nsmap)[0]
+    print(placename)
     i = place.xpath(".//tei:idno[@subtype='GND']", namespaces=nsmap)
     if i:
         subject = URIRef(i[0].xpath("./text()")[0])
@@ -59,6 +60,7 @@ def make_place(place):
         else:
             subject = URIRef(i.xpath("./text()")[0])
             output = [(subject, RDF.type, ACDH["Place"])]
+
     return output + [(subject, ACDH['hasTitle'], Literal(f"{placename}") )]
 
 # %%
@@ -71,7 +73,9 @@ def get_persons(tei):
 # %%
 def get_places(tei):
     list_file = glob.glob(tei)[0]
-    places = TeiReader(tei).any_xpath(".//tei:place")
+    places = TeiReader(tei).any_xpath(".//tei:place[@xml:lang='de']")
+    if not places:
+        places = TeiReader(tei).any_xpath(".//tei:place")
     for place in places:
         [g.add(x) for x in make_place(place)]
 
