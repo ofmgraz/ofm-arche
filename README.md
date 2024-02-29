@@ -13,7 +13,7 @@ Repository to provide ARCHE with data
 * hasTitle: `<title type="main">A 64/34</title>`
 * isPartOf: acdhi:ofm-graz
 * hasDescription: ~ Die Sammlung {hasTitle} beinhalte die {len(files)} Digitalisate des Chorbuches {hasTitle} sowie den nach XML/TEI annotierten Volltext.
-* hasCreatedOriginalStart / end:  <bibl><date notBefore="1625-01-01" notAfter="1650-12-31">16-2/4</date></bibl> 
+* hasCreatedOriginalStart / end:  ```<bibl><date notBefore="1625-01-01" notAfter="1650-12-31">16-2/4</date></bibl>```
 * hasDigitizingAgent: `<persName role="acdh:hasDigitisingAgent" ref="placeholder">`
 
 ### Resource TEI
