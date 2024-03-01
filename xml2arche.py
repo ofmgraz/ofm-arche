@@ -198,22 +198,17 @@ except Exception as e:
 
 # %%
 
+
+# TODO
 # .//sourceDesc/bibl/pubPlace@ref
 # .//sourceDesc/bibl/publisher@ref
-
 # .//sourceDesc/msDesc/msIdentifier/institution
 # .//sourceDesc/msDesc/msIdentifier/repository/placeName
 # .//sourceDesc/msDesc/msIdentifier/repository/idno/@subtype  # GND, Wikidata
-
 # .//sourceDesc/msDesc/msContents/@class
 # .//sourceDesc/msDesc/msContents/summary/text()
-
 #hasPublisher
-
-
 # .//sourceDesc/physDesc/objectDesc/@form
-
-
 # "hasUsedHardware"
 # "hasUsedSoftware"
 # .//sourceDesc/history/provenance/placeName/@ref
