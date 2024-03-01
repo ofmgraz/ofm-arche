@@ -158,6 +158,11 @@ for xmlfile in files:
     subj = URIRef(f"{TOP_COL_URI}/{basename}")
     dates = get_date(doc)
     extent = get_extent(doc)
+    if signature :=  doc.any_xpath(".//tei:idno[@type='shelfmark']"):
+        g.add(
+            (subj, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text))
+        )
+
     g.add(
         (subj, ACDH["hasCategory"], ACDH['HTML/TEI'])
     )
@@ -196,21 +201,12 @@ except Exception as e:
 
 
 # %%
-# .//titleStmt/title[main]/text(): "hasTitle",
 # .//sourceDesc/msDesc/msIdentifier/idno[type="shelfmark]: "hasNonLinkedIdentifier"
  
 #Document hasXXXX object
 
 # Subject xx Xxxx
 
-# "hasPrincipalInvestigator"
-# "hasDigitisingAgent"
-# respStmt
-# publicationStm
-# hasContributor
-# hasCategory XML/TEI
-#hasMetadataCreator
-# hasNonLinkedContributor JL
 
 
 # .//sourceDesc/bibl/pubPlace@ref
