@@ -33,9 +33,9 @@ def make_person(person):
         ids = person.xpath(".//tei:idno[@type='URL']", namespaces=nsmap)
         for i in ids:
             if output:
-                output.append((subject, ACDH["hasIdentifier"], URIRef(i.xpath("./text()"))))
+                output.append((subject, ACDH["hasIdentifier"], URIRef(i.xpath("./text()")[0])))
             else:
-                subject = URIRef(i.xpath("./text()"))
+                subject = URIRef(i.xpath("./text()")[0])
                 output = [(subject, RDF.type, ACDH["Person"])]
     first_name = person.xpath(".//tei:persName/tei:forename/text()", namespaces=nsmap)[0]
     last_name = person.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0]
@@ -201,13 +201,6 @@ except Exception as e:
 
 
 # %%
-# .//sourceDesc/msDesc/msIdentifier/idno[type="shelfmark]: "hasNonLinkedIdentifier"
- 
-#Document hasXXXX object
-
-# Subject xx Xxxx
-
-
 
 # .//sourceDesc/bibl/pubPlace@ref
 # .//sourceDesc/bibl/publisher@ref
@@ -224,28 +217,12 @@ except Exception as e:
 
 # .//sourceDesc/physDesc/objectDesc/@form
 
-# .//sourceDesc/physDesc/objectDesc/supportDes/support/dimensions/@unit   "hasExtent"
-# .//sourceDesc/physDesc/objectDesc/supportDes/support/dimensions/height
-# .//sourceDesc/physDesc/objectDesc/supportDes/support/dimensions/width
-
-# .//sourceDesc/physDesc/objectDesc/supportDes/support/extent/@measure unit     : "hasExtent"
-# .//sourceDesc/physDesc/objectDesc/supportDes/support/extent/@quantity
-# .//sourceDesc/physDesc/objectDesc/supportDes/support/extent.text()
-
-
 
 # "hasUsedHardware"
 # "hasUsedSoftware"
 # .//sourceDesc/history/provenance/placeName/@ref
 # .//sourceDesc/history/provenance/placeName/text()
 
-# encodingDesc/editorialDecl
-# profileDesc/langUsage/language/@ident : "lang"
-# profileDesc/langUsage/language/@ident : "hasLanguage"
-# hasPersonalTitle
-# hasFirstName
-# hasLastName
-# hasAddress
 
 # %%
 
