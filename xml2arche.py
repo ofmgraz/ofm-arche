@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # %%
 import glob
 import os
@@ -21,7 +22,7 @@ def get_parent_node(feat, file_path):
    return nodes
 
 # %%
-# Takes a TEI element (respStmt or person) and returns a tuple of triples to add to the RDF 
+# Takes a TEI element (respStmt or person) and returns a tuple of triples to add to the RDF
 def make_person(person):
     output = []
     if person.xpath(".//tei:persName/@ref", namespaces=nsmap) and person.xpath(".//tei:persName/@ref", namespaces=nsmap) == "placeholder":
@@ -42,14 +43,14 @@ def make_person(person):
     return output + [(subject, ACDH["hasTitle"], Literal(f"{first_name} {last_name}"))]
 
 # %%
-# Takes a tei:place element and returns a tuple of triples to add to the RDF 
+# Takes a tei:place element and returns a tuple of triples to add to the RDF
 def make_place(place):
     if place.xpath(".//tei:placeName[@xml:lang='de']", namespaces=nsmap):
         placename = place.xpath(".//tei:placeName[@xml:lang='de']/text()", namespaces=nsmap)[0]
     else:
         placename = place.xpath(".//tei:placeName/text()", namespaces=nsmap)[0]
-    i = place.xpath(".//tei:idno[@subtype='GND']", namespaces=nsmap)
-    if i:
+    # Tries first to get the GND PI
+    if i:= place.xpath(".//tei:idno[@subtype='GND']", namespaces=nsmap):
         subject = URIRef(i[0].xpath("./text()")[0])
         output = [(subject, RDF.type, ACDH["Place"])]
     ids = place.xpath(".//tei:idno[@type='URL']", namespaces=nsmap)
@@ -94,7 +95,7 @@ def get_date(tei):
         na = dates.xpath("./@notAfter", namespaces=nsmap)[0]
         nb = nb[0]
     else:
-        # If no date is available, we give a broad range 
+        # If no date is available, we give a broad range
         nb = "1300-01-01"
         na = "1800-01-01"
     return (Literal(nb, datatype=XSD.date), Literal(na, datatype=XSD.date))
@@ -168,7 +169,7 @@ for xmlfile in files:
         (subj, ACDH["hasCategory"], ACDH['HTML/TEI'])
     )
     try:
-        has_title = doc.any_xpath('.//tei:title')[0].text   
+        has_title = doc.any_xpath('.//tei:title')[0].text
     except AttributeError:
         has_title = 'No title provided'
     g.add(
