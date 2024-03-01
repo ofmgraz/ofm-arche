@@ -92,8 +92,12 @@ def search_editor(tei):
 # %%
 def get_date(tei):
     dates = tei.any_xpath(".//tei:bibl/tei:date")[0]
-    nb = dates.xpath("./@notBefore", namespaces=nsmap)
-    na = dates.xpath("./@notAfter", namespaces=nsmap)
+    if nb := dates.xpath("./@notBefore", namespaces=nsmap):
+        na = dates.xpath("./@notAfter", namespaces=nsmap)[0]
+        nb = nb[0]
+    else:
+        nb = "1300-01-01"
+        na = "1800-01-01"
     return (Literal(nb, datatype=XSD.date), Literal(na, datatype=XSD.date))
 
 # %%
@@ -115,6 +119,25 @@ def get_contributors(tei):
     return predobj
 
 # %%
+def get_extent(tei):
+    measures = []
+    description = tei.any_xpath(".//tei:supportDesc")[0]
+    if height := description.xpath(".//tei:height", namespaces=nsmap):
+        h = height[0].xpath("./text()", namespaces=nsmap)[0]
+        w = description.xpath(".//tei:width/text()", namespaces=nsmap)[0]
+        unit = description.xpath(".//tei:dimensions/@unit", namespaces=nsmap)[0]
+        measures.append(Literal(f"{h}x{w} {unit}"))
+    if extent := description.xpath(".//tei:measure/@quantity", namespaces=nsmap):
+        extent = extent[0]
+        pagination = description.xpath(".//tei:measure/@unit", namespaces=nsmap)[0]
+        if pagination == "leaf":
+            pagination = "Folien"
+        else:
+            pagination = "Seiten"
+        measures.append(Literal(f"{extent} {pagination}"))
+    return measures
+
+# %%
 g = Graph()
 g.parse("arche_seed_files/arche_constants.ttl")
 
@@ -134,6 +157,7 @@ for xmlfile in files:
     doc = TeiReader(xmlfile)
     subj = URIRef(f"{TOP_COL_URI}/{basename}")
     dates = get_date(doc)
+    extent = get_extent(doc)
     g.add(
         (subj, ACDH["hasCategory"], ACDH['HTML/TEI'])
     )
@@ -161,7 +185,8 @@ for xmlfile in files:
     g.add(
         (subj, RDF.type, ACDH["Resource"])
     )
-    
+    [g.add(
+            (subj, ACDH["hasExtent"], ext)) for ext in extent]
 try:
     g.serialize("test.ttl")
 except Exception as e:
