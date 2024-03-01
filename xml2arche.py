@@ -66,24 +66,22 @@ def make_place(place):
 def get_persons(tei):
     list_file = glob.glob(tei)[0]
     persons = get_parent_node("tei:persName", list_file)
-    for person in persons:
-        [g.add(x) for x in make_person(person)]
+    return [x for person in persons for x in make_person(person)]
 
 # %%
 def get_places(tei):
     list_file = glob.glob(tei)[0]
+    # Tries first to get the German name
     places = TeiReader(tei).any_xpath(".//tei:place[@xml:lang='de']")
     if not places:
         places = TeiReader(tei).any_xpath(".//tei:place")
-    for place in places:
-        [g.add(x) for x in make_place(place)]
+    return [x for place in places for x in make_place(place) ]
 
 # %%
 def search_editor(tei):
     ref = tei.any_xpath(".//tei:publisher/@ref")
     if ref:
         ref = ref[0].lstrip('#')
-        #editor = tei.any_xpath(f".//tei:person[@xml:id='{ref}']/tei:idno[@subtype='GND']/text()")
         editor = URIRef(tei.any_xpath(f".//tei:person[@xml:id='{ref}']/tei:idno[@subtype='GND']/text()")[0])
     else:
         editor = False
@@ -96,6 +94,7 @@ def get_date(tei):
         na = dates.xpath("./@notAfter", namespaces=nsmap)[0]
         nb = nb[0]
     else:
+        # If no date is available, we give a broad range 
         nb = "1300-01-01"
         na = "1800-01-01"
     return (Literal(nb, datatype=XSD.date), Literal(na, datatype=XSD.date))
@@ -107,9 +106,11 @@ def get_contributors(tei):
     for contributor in contributors:
         pred = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(':')[-1]
         obj = contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0].lstrip('#')
+        # The contributor has a PI
         if obj.startswith('http'):
             obj = URIRef(obj)
             pred = ACDH[pred]
+        # The contributor has no PI
         else:
             forename = contributor.xpath(".//tei:forename/text()", namespaces=nsmap)[0]
             surname = contributor.xpath(".//tei:surname/text()", namespaces=nsmap)[0]
@@ -142,14 +143,15 @@ g = Graph()
 g.parse("arche_seed_files/arche_constants.ttl")
 
 # %%
+### Get constant data
 ### Get Persons
-get_persons("data/indices/listperson.xml")
+[g.add(x) for x in get_persons("data/indices/listperson.xml")]
 
 ### Get places
-get_places("data/indices/listplace.xml")
-
+[g.add(x) for x in get_places("data/indices/listplace.xml")]
 
 # %%
+# Parsing the XML-TEI files
 files = glob.glob("data/editions/*.xml")
 for xmlfile in files:
     get_persons(xmlfile)
@@ -162,7 +164,6 @@ for xmlfile in files:
         g.add(
             (subj, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text))
         )
-
     g.add(
         (subj, ACDH["hasCategory"], ACDH['HTML/TEI'])
     )
@@ -182,9 +183,7 @@ for xmlfile in files:
     g.add(
         (subj, ACDH["hasLanguage"], URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat"))
     )
-
     [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
-
     if editor := search_editor(doc):
         g.add((subj, ACDH['hasPublisher'], editor))
     g.add(
@@ -196,9 +195,6 @@ try:
     g.serialize("test.ttl")
 except Exception as e:
     print(e)
-
-# %%
-
 
 # %%
 
@@ -222,12 +218,5 @@ except Exception as e:
 # "hasUsedSoftware"
 # .//sourceDesc/history/provenance/placeName/@ref
 # .//sourceDesc/history/provenance/placeName/text()
-
-
-# %%
-
-
-# %%
-
 
 
