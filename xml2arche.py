@@ -48,7 +48,6 @@ def make_place(place):
         placename = place.xpath(".//tei:placeName[@xml:lang='de']/text()", namespaces=nsmap)[0]
     else:
         placename = place.xpath(".//tei:placeName/text()", namespaces=nsmap)[0]
-    print(placename)
     i = place.xpath(".//tei:idno[@subtype='GND']", namespaces=nsmap)
     if i:
         subject = URIRef(i[0].xpath("./text()")[0])
@@ -135,6 +134,9 @@ for xmlfile in files:
     doc = TeiReader(xmlfile)
     subj = URIRef(f"{TOP_COL_URI}/{basename}")
     dates = get_date(doc)
+    g.add(
+        (subj, ACDH["hasCategory"], ACDH['HTML/TEI'])
+    )
     try:
         has_title = doc.any_xpath('.//tei:title')[0].text   
     except AttributeError:
@@ -149,8 +151,9 @@ for xmlfile in files:
         (subj, ACDH["hasCreatedEndDateOriginal"], dates[1])
     )
     g.add(
-        (subj, ACDH["hasLanguage"], Literal('la'))
+        (subj, ACDH["hasLanguage"], URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat"))
     )
+
     [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
 
     if editor := search_editor(doc):
