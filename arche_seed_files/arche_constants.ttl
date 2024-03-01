@@ -12,4 +12,9 @@
 
 <https://id.acdh.oeaw.ac.at/ofm-graz> a acdh:TopCollection ;
     acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ;
-    acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de .
+    acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ;
+    acdh:hasCoverage <https://d-nb.info/gnd/16174362-6> .
+    .
+    
+<https://d-nb.info/gnd/16174362-6> a acdh:Organisation ; 
+    acdh:hasTitle "Franziskanerkloster Graz"@und .
