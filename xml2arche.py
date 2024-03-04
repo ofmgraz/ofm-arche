@@ -201,13 +201,12 @@ for xmlfile in files:
         g.add((subj, ACDH['hasPublisher'], editor))
     [g.add((subj, ACDH["hasExtent"], ext)) for ext in extent]
     for tif in get_tifs(doc):
-        filename = f"{tif}.tiff"
-        resc = URIRef(f"{TOP_COL_URI}/{filename}")
+        resc = URIRef(f"{TOP_COL_URI}/{tif}")
         g.add((resc, RDF.type, ACDH["Resource"]))
         g.add((resc, ACDH["isPartOf"], subj))
-        g.add((resc, ACDH["hasTitle"], Literal(filename)))
+        g.add((resc, ACDH["hasTitle"], Literal(tif)))
         g.add((resc, ACDH["isSourceOf"], Literal(f"{basename}.xml")))
-        g.add((resc, ACDH["hasFilename"], Literal(f"{filename}.tiff")))
+        g.add((resc, ACDH["hasFilename"], Literal(f"{tif}.tiff)))
 
 
 try:
