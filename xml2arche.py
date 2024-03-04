@@ -1,6 +1,7 @@
 # %%
 import glob
 import os
+import re
 from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD, BNode
 from acdh_tei_pyutils.tei import TeiReader, ET
 
@@ -139,6 +140,15 @@ def get_extent(tei):
     return measures
 
 # %%
+def get_tifs(tei):
+    tifs  = []
+    for tif in tei.any_xpath(".//tei:graphic/@url"):
+        base =  re.search("files/images/(.*)/full/full", tif).group(1)
+        if base not in tifs:
+            tifs.append(base)
+    return tifs
+
+# %%
 g = Graph()
 g.parse("arche_seed_files/arche_constants.ttl")
 
@@ -155,15 +165,14 @@ g.parse("arche_seed_files/arche_constants.ttl")
 files = glob.glob("data/editions/*.xml")
 for xmlfile in files:
     get_persons(xmlfile)
-    basename = os.path.basename(xmlfile)
+    basename = os.path.basename(xmlfile).split(".")[0]
     doc = TeiReader(xmlfile)
     subj = URIRef(f"{TOP_COL_URI}/{basename}")
     dates = get_date(doc)
     extent = get_extent(doc)
-    g.add(
-        (subj, RDF.type, ACDH["Resource"])
-    )
+    g.add((subj, RDF.type, ACDH["Resource"]))
     g.add((subj, ACDH["isPartOf"], TOP_COL_URI))
+
     if signature :=  doc.any_xpath(".//tei:idno[@type='shelfmark']"):
         g.add(
             (subj, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text))
@@ -176,7 +185,7 @@ for xmlfile in files:
     except AttributeError:
         has_title = 'No title provided'
     g.add((subj, ACDH["hasTitle"], Literal(has_title, lang="la")))
-    g.add((subj, ACDH["hasFilename"], Literal(basename)))
+    g.add((subj, ACDH["hasFilename"], Literal(f"{basename}.xml")))
     g.add((subj, ACDH["hasFormat"], Literal("application/xml")))
     g.add((subj, ACDH["hasCreatedStartDateOriginal"], dates[0]))
     g.add((subj, ACDH["hasCreatedEndDateOriginal"], dates[1]))
@@ -190,8 +199,16 @@ for xmlfile in files:
     [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
     if editor := search_editor(doc):
         g.add((subj, ACDH['hasPublisher'], editor))
-    [g.add(
-            (subj, ACDH["hasExtent"], ext)) for ext in extent]
+    [g.add((subj, ACDH["hasExtent"], ext)) for ext in extent]
+    for tif in get_tifs(doc):
+        filename = f"{tif}.tiff"
+        resc = URIRef(f"{TOP_COL_URI}/{filename}")
+        g.add((resc, RDF.type, ACDH["Resource"]))
+        g.add((resc, ACDH["isPartOf"], subj))
+        g.add((resc, ACDH["hasTitle"], Literal(filename)))
+        g.add((resc, ACDH["isSourceOf"], Literal(f"{basename}.xml")))
+
+
 try:
     g.serialize("test.ttl")
 except Exception as e:
