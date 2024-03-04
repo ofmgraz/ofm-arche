@@ -206,7 +206,7 @@ for xmlfile in files:
         g.add((resc, ACDH["isPartOf"], subj))
         g.add((resc, ACDH["hasTitle"], Literal(tif)))
         g.add((resc, ACDH["isSourceOf"], Literal(f"{basename}.xml")))
-        g.add((resc, ACDH["hasFilename"], Literal(f"{tif}.tiff)))
+        g.add((resc, ACDH["hasFilename"], Literal(f"{tif}.tiff")))
 
 
 try:
