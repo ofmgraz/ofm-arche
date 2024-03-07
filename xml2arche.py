@@ -165,13 +165,19 @@ g.parse("arche_seed_files/arche_constants.ttl")
 files = glob.glob("data/editions/*.xml")
 for xmlfile in files:
     get_persons(xmlfile)
-    basename = os.path.basename(xmlfile).split(".")[0]
+    basename = os.path.basename(xmlfile)
     doc = TeiReader(xmlfile)
+    COL_URI = URIRef(f"{TOP_COL_URI}/{basename.split(".")[0]}")
     subj = URIRef(f"{TOP_COL_URI}/{basename}")
     dates = get_date(doc)
     extent = get_extent(doc)
+    ### Collection
+    g.add((COL_URI, RDF.type, ACDH["Collection"]))
+    g.add((COL_URI, ACDH["isPartOf"], TOP_COL_URI))
+
+    ### XML
     g.add((subj, RDF.type, ACDH["Resource"]))
-    g.add((subj, ACDH["isPartOf"], TOP_COL_URI))
+    g.add((subj, ACDH["isPartOf"], COL_URI))
 
     if signature :=  doc.any_xpath(".//tei:idno[@type='shelfmark']"):
         g.add(
