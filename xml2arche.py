@@ -161,21 +161,21 @@ g.parse("arche_seed_files/arche_constants.ttl")
 [g.add(x) for x in get_places("data/indices/listplace.xml")]
 
 # %%
-# Parsing the XML-TEI files
+# Parsing files to generate entitities
 files = glob.glob("data/editions/*.xml")
 for xmlfile in files:
     get_persons(xmlfile)
     basename = os.path.basename(xmlfile)
     doc = TeiReader(xmlfile)
-    COL_URI = URIRef(f"{TOP_COL_URI}/{basename.split(".")[0]}")
-    subj = URIRef(f"{TOP_COL_URI}/{basename}")
+    COL_URI = URIRef(f"{TOP_COL_URI}/{basename.split('.')[0]}")
+    subj = URIRef(f"{COL_URI}/{basename}")
     dates = get_date(doc)
     extent = get_extent(doc)
-    ### Collection
+    ### Creates collection
     g.add((COL_URI, RDF.type, ACDH["Collection"]))
     g.add((COL_URI, ACDH["isPartOf"], TOP_COL_URI))
 
-    ### XML
+    ### creates resource for the XML
     g.add((subj, RDF.type, ACDH["Resource"]))
     g.add((subj, ACDH["isPartOf"], COL_URI))
 
@@ -206,12 +206,13 @@ for xmlfile in files:
     if editor := search_editor(doc):
         g.add((subj, ACDH['hasPublisher'], editor))
     [g.add((subj, ACDH["hasExtent"], ext)) for ext in extent]
+    # Add TIFFs to collection
     for tif in get_tifs(doc):
-        resc = URIRef(f"{TOP_COL_URI}/{tif}")
+        resc = URIRef(f"{COL_URI}/{tif}")
         g.add((resc, RDF.type, ACDH["Resource"]))
-        g.add((resc, ACDH["isPartOf"], subj))
+        g.add((resc, ACDH["isPartOf"], COL_URI))
         g.add((resc, ACDH["hasTitle"], Literal(tif)))
-        g.add((resc, ACDH["isSourceOf"], Literal(f"{basename}.xml")))
+        g.add((resc, ACDH["isSourceOf"], subj))
         g.add((resc, ACDH["hasFilename"], Literal(f"{tif}.tiff")))
 
 
