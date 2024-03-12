@@ -6,7 +6,7 @@ BASEROW_DB_ID = os.environ.get("BASEROW_DB_ID")
 BASEROW_URL = "https://baserow.acdh-dev.oeaw.ac.at/api/"
 BASEROW_USER = os.environ.get("BASEROW_USER")
 BASEROW_PW = os.environ.get("BASEROW_PW")
-BASEROW_TOKEN = "AuKsGHivXtbXmcowt3eqk6S15TNTibUz"
+BASEROW_TOKEN = os.environ.get("BASEROW_TOKEN")
 PROJECT_NAME = os.environ.get("arche-2-baserow")
 # Arche schema url, namespaces and xpaths
 SCHEMA_PATH = "https://raw.githubusercontent.com/acdh-oeaw/arche-schema/master/acdh-schema.owl"
