@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-# %%
 import glob
 import os
 import re
 from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD, BNode
 from acdh_tei_pyutils.tei import TeiReader, ET
 
+# %%
 TOP_COL_URI = URIRef("https://id.acdh.oeaw.ac.at/ofm-graz")
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
@@ -195,6 +195,7 @@ for xmlfile in files:
     ### Creates collection
     g.add((COL_URI, RDF.type, ACDH["Collection"]))
     g.add((COL_URI, ACDH["isPartOf"], TOP_COL_URI))
+    g.add((COL_URI, ACDH["hasRightsHolder"], ACDH["ACDH"]))
 
     ### creates resource for the XML
     g.add((subj, RDF.type, ACDH["Resource"]))
@@ -227,6 +228,15 @@ for xmlfile in files:
     if editor := search_editor(doc):
         g.add((subj, ACDH['hasPublisher'], editor))
     [g.add((subj, ACDH["hasExtent"], ext)) for ext in extent]
+    g.add((subj, ACDH["hasRightsHolder"], ACDH["ACDH"]))
+    g.add((subj, ACDH["hasPublisher"], ACDH["ACDH"]))
+    print(subj,  ACDH["hasRightsHolder"], ACDH["ACDH"])
+    g.add((subj, ACDH["hasOwner"], ACDH["ACDH"]))
+    g.add((subj, ACDH["hasMetadataCreator"], URIRef("https://orcid.org/0000-0002-8815-6741")))
+    g.add((subj, ACDH["hasDepositor"], URIRef("https://orcid.org/0000-0002-0484-832X")))
+    g.add((subj, ACDH["hasCategory"], Literal("Text")))  # not sure
+    g.add((subj, ACDH["hasLicense"], Literal("CC BY-NC-ND 4.0")))  # PLACE HOLDER!!!
+    g.add((subj, ACDH["hasLicensor"], URIRef("https://orcid.org/0000-0002-0484-832X")))  # PLACE HOLDER!!!
     # Add TIFFs to collection
     for tif in get_tifs(doc):
         resc = URIRef(f"{COL_URI}/{tif}")
@@ -236,12 +246,12 @@ for xmlfile in files:
         g.add((resc, ACDH["isSourceOf"], subj))
         g.add((resc, ACDH["hasFilename"], Literal(f"{tif}.tiff")))
         # The object in the following ones needs to be adapted to meet the actual features 
-        g.add((resc, ACDH["hasRightsHolder"], ACDH["ACDH"]))  # PLACE HOLDER!!!
-        g.add((resc, ACDH["hasOwner"], ACDH["ACDH"]))  # PLACE HOLDER!!
+        g.add((resc, ACDH["hasRightsHolder"], ACDH["ACDH"]))
+        g.add((resc, ACDH["hasOwner"], ACDH["ACDH"]))
         g.add((resc, ACDH["hasMetadataCreator"], URIRef("https://orcid.org/0000-0002-8815-6741")))
-        g.add((resc, ACDH["hasDepositor"], URIRef("https://orcid.org/0000-0002-0484-832X")))  # PLACE HOLDER!!!
+        g.add((resc, ACDH["hasDepositor"], URIRef("https://orcid.org/0000-0002-0484-832X")))
         g.add((resc, ACDH["hasCategory"], Literal("Text")))  # not sure
-        g.add((resc, ACDH["hasLicense"], ACDH["CC BY-NC-ND 4.0"]))  # PLACE HOLDER!!!
+        g.add((resc, ACDH["hasLicense"], Literal("CC BY-NC-ND 4.0")))  # PLACE HOLDER!!!
         g.add((resc, ACDH["hasLicensor"], URIRef("https://orcid.org/0000-0002-0484-832X")))  # PLACE HOLDER!!!
 
 
