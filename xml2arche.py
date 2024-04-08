@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 # %%
 import glob
 import os
