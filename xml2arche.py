@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # %%
 import glob
 import os
@@ -5,7 +6,6 @@ import re
 from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD, BNode
 from acdh_tei_pyutils.tei import TeiReader, ET
 
-# %%
 TOP_COL_URI = URIRef("https://id.acdh.oeaw.ac.at/ofm-graz")
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
@@ -236,12 +236,13 @@ for xmlfile in files:
         g.add((resc, ACDH["isSourceOf"], subj))
         g.add((resc, ACDH["hasFilename"], Literal(f"{tif}.tiff")))
         # The object in the following ones needs to be adapted to meet the actual features 
-        g.add((resc, ACDH["hasRightsHolder"], ACDH["ACDH"]))
-        g.add((resc, ACDH["hasOwner"], ACDH["ACDH"]))
+        g.add((resc, ACDH["hasRightsHolder"], ACDH["ACDH"]))  # PLACE HOLDER!!!
+        g.add((resc, ACDH["hasOwner"], ACDH["ACDH"]))  # PLACE HOLDER!!
         g.add((resc, ACDH["hasMetadataCreator"], URIRef("https://orcid.org/0000-0002-8815-6741")))
-        g.add((resc, ACDH["hasDepositor"], URIRef("https://orcid.org/0000-0002-0484-832X")))
-        g.add((resc, ACDH["hasCategory"], Literal("Text")))
-        g.add((resc, ACDH["hasLicense"], ACDH["CC"]))
+        g.add((resc, ACDH["hasDepositor"], URIRef("https://orcid.org/0000-0002-0484-832X")))  # PLACE HOLDER!!!
+        g.add((resc, ACDH["hasCategory"], Literal("Text")))  # not sure
+        g.add((resc, ACDH["hasLicense"], ACDH["CC BY-NC-ND 4.0"]))  # PLACE HOLDER!!!
+        g.add((resc, ACDH["hasLicensor"], URIRef("https://orcid.org/0000-0002-0484-832X")))  # PLACE HOLDER!!!
 
 
 # %%
