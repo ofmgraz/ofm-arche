@@ -152,7 +152,7 @@ def get_extent(tei):
         h = height[0].xpath("./text()", namespaces=nsmap)[0]
         w = description.xpath(".//tei:width/text()", namespaces=nsmap)[0]
         unit = description.xpath(".//tei:dimensions/@unit", namespaces=nsmap)[0]
-        measures.append(Literal(f"{h}x{w} {unit}"))
+        measures.append(f"{h}x{w} {unit}")
     if extent := description.xpath(".//tei:measure/@quantity", namespaces=nsmap):
         extent = extent[0]
         pagination = description.xpath(".//tei:measure/@unit", namespaces=nsmap)[0]
@@ -160,8 +160,8 @@ def get_extent(tei):
             pagination = "Folien"
         else:
             pagination = "Seiten"
-        measures.append(Literal(f"{extent} {pagination}"))
-    return '; '.join(measures)
+        measures.append(f"{extent} {pagination}")
+    return Literal("; ".join(measures))
 
 # %%
 def get_tifs(tei):
@@ -229,9 +229,10 @@ for xmlfile in files:
     [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
     if editor := search_editor(doc):
         g.add((subj, ACDH['hasPublisher'], editor))
-    g.add((subj, ACDH["hasExtent"], ext))
+    else:
+        g.add((subj, ACDH['hasPublisher'], Literal("Manuscript")))
+    g.add((subj, ACDH["hasExtent"], extent))
     g.add((subj, ACDH["hasRightsHolder"], ACDH["ACDH"]))
-    g.add((subj, ACDH["hasPublisher"], ACDH["ACDH"]))
     g.add((subj, ACDH["hasOwner"], ACDH["ACDH"]))
     g.add((subj, ACDH["hasMetadataCreator"], URIRef("https://orcid.org/0000-0002-8815-6741")))
     g.add((subj, ACDH["hasDepositor"], URIRef("https://orcid.org/0000-0002-0484-832X")))
