@@ -213,6 +213,7 @@ for xmlfile in files:
     except AttributeError:
         has_title = 'No title provided'
     g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
+    g.add((COL_URI, ACDH["hasOwner"], ACDH["ACDH"]))
     g.add((subj, ACDH["hasTitle"], Literal(has_title, lang="la")))
     g.add((subj, ACDH["hasFilename"], Literal(f"{basename}.xml")))
     g.add((subj, ACDH["hasFormat"], Literal("application/xml")))
