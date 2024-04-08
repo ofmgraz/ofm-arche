@@ -230,7 +230,6 @@ for xmlfile in files:
     [g.add((subj, ACDH["hasExtent"], ext)) for ext in extent]
     g.add((subj, ACDH["hasRightsHolder"], ACDH["ACDH"]))
     g.add((subj, ACDH["hasPublisher"], ACDH["ACDH"]))
-    print(subj,  ACDH["hasRightsHolder"], ACDH["ACDH"])
     g.add((subj, ACDH["hasOwner"], ACDH["ACDH"]))
     g.add((subj, ACDH["hasMetadataCreator"], URIRef("https://orcid.org/0000-0002-8815-6741")))
     g.add((subj, ACDH["hasDepositor"], URIRef("https://orcid.org/0000-0002-0484-832X")))
