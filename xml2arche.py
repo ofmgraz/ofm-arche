@@ -214,7 +214,10 @@ for xmlfile in files:
         has_title = doc.any_xpath('.//tei:title')[0].text
     except AttributeError:
         has_title = 'No title provided'
-    g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
+    if has_title:
+        g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
+    else:
+        g.add((COL_URI, ACDH["hasTitle"], Literal('No title given')))
     g.add((COL_URI, ACDH["hasOwner"], ACDH["ACDH"]))
     g.add((subj, ACDH["hasTitle"], Literal(has_title, lang="la")))
     g.add((subj, ACDH["hasFilename"], Literal(f"{basename}.xml")))
