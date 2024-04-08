@@ -83,10 +83,11 @@ def search_editor(tei):
     ref = tei.any_xpath(".//tei:publisher/@ref")
     if ref:
         ref = ref[0].lstrip('#')
-        editor = URIRef(tei.any_xpath(f".//tei:person[@xml:id='{ref}']/tei:idno[@subtype='GND']/text()")[0])
+        editor = Literal(f'{tei.any_xpath(f".//tei:persName/tei:forename/text()")[0]}',
+                         f'{tei.any_xpath(f".//tei:persName/tei:surname/text()")[0]}')
     else:
-        editor = False
-    return editor
+        False
+    return Literal(editor)
 
 # %%
 def get_date(tei):
@@ -230,8 +231,6 @@ for xmlfile in files:
     [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
     if editor := search_editor(doc):
         g.add((subj, ACDH['hasPublisher'], editor))
-    else:
-        g.add((subj, ACDH['hasPublisher'], Literal("Manuscript")))
     g.add((subj, ACDH["hasExtent"], extent))
     g.add((subj, ACDH["hasRightsHolder"], ACDH["ACDH"]))
     g.add((subj, ACDH["hasOwner"], ACDH["ACDH"]))
