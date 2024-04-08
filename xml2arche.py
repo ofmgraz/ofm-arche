@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # %%
 import glob
 import os
@@ -13,7 +12,7 @@ nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
 
 # %%
 # I know an element present in the node wanted (e.g. tei:persName), but it can be in different
-# types of nodes (e.g. tei:persStmt vs tei:person). So I get a list of those elements
+# types of nodes (e.g. tei:perStmt vs tei:person). So I get a list of those elements
 # and put the parent element into a list if it isn't already there.
 def get_parent_node(feat, file_path):
    nodes = []
@@ -77,7 +76,7 @@ def get_places(tei):
     places = TeiReader(tei).any_xpath(".//tei:place[@xml:lang='de']")
     if not places:
         places = TeiReader(tei).any_xpath(".//tei:place")
-    return [x for place in places for x in make_place(place) ]
+    return [x for place in places for x in make_place(place)]
 
 # %%
 def search_editor(tei):
@@ -88,6 +87,30 @@ def search_editor(tei):
     else:
         editor = False
     return editor
+
+# %%
+def get_date(tei):
+    dates = tei.any_xpath(".//tei:bibl/tei:date")[0]
+    if nb := dates.xpath("./@notBefore", namespaces=nsmap):
+        na = dates.xpath("./@notAfter", namespaces=nsmap)[0]
+        nb = nb[0]
+    else:
+        # If no date is available, we give a broad range
+        nb = "1300-01-01"
+        na = "1800-01-01"
+    return (Literal(nb, datatype=XSD.date), Literal(na, datatype=XSD.date))
+
+# %%
+def get_date(tei):
+    dates = tei.any_xpath(".//tei:bibl/tei:date")[0]
+    if nb := dates.xpath("./@notBefore", namespaces=nsmap):
+        na = dates.xpath("./@notAfter", namespaces=nsmap)[0]
+        nb = nb[0]
+    else:
+        # If no date is available, we give a broad range
+        nb = "1300-01-01"
+        na = "1800-01-01"
+    return (Literal(nb, datatype=XSD.date), Literal(na, datatype=XSD.date))
 
 # %%
 def get_date(tei):
@@ -154,15 +177,12 @@ g = Graph()
 g.parse("arche_seed_files/arche_constants.ttl")
 
 # %%
-### Get constant data
-### Get Persons
 [g.add(x) for x in get_persons("data/indices/listperson.xml")]
 
-### Get places
+# %%
 [g.add(x) for x in get_places("data/indices/listplace.xml")]
 
 # %%
-# Parsing files to generate entitities
 files = glob.glob("data/editions/*.xml")
 for xmlfile in files:
     get_persons(xmlfile)
@@ -215,13 +235,22 @@ for xmlfile in files:
         g.add((resc, ACDH["hasTitle"], Literal(tif)))
         g.add((resc, ACDH["isSourceOf"], subj))
         g.add((resc, ACDH["hasFilename"], Literal(f"{tif}.tiff")))
+        # The object in the following ones needs to be adapted to meet the actual features 
+        g.add((resc, ACDH["hasRightsHolder"], ACDH["ACDH"]))
+        g.add((resc, ACDH["hasOwner"], ACDH["ACDH"]))
+        g.add((resc, ACDH["hasMetadataCreator"], URIRef("https://orcid.org/0000-0002-8815-6741")))
+        g.add((resc, ACDH["hasDepositor"], URIRef("https://orcid.org/0000-0002-0484-832X")))
+        g.add((resc, ACDH["hasCategory"], Literal("Text")))
+        g.add((resc, ACDH["hasLicense"], ACDH["CC"]))
 
 
+# %%
 try:
     g.serialize("test.ttl")
 except Exception as e:
     print(e)
 
+# %%
 # %%
 
 # .//sourceDesc/bibl/pubPlace@ref
@@ -244,8 +273,5 @@ except Exception as e:
 # "hasUsedSoftware"
 # .//sourceDesc/history/provenance/placeName/@ref
 # .//sourceDesc/history/provenance/placeName/text()
-
-# %%
-
 
 
