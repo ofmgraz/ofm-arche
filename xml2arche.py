@@ -87,7 +87,7 @@ def search_editor(tei):
                          f'{tei.any_xpath(f".//tei:persName/tei:surname/text()")[0]}')
     else:
         False
-    return Literal(editor)
+    return editor
 
 # %%
 def get_date(tei):
@@ -230,7 +230,7 @@ for xmlfile in files:
     g.add((subj, ACDH["hasLanguage"], URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")))
     [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
     if editor := search_editor(doc):
-        g.add((subj, ACDH['hasPublisher'], editor))
+        g.add((subj, ACDH['hasPublisher'], Literal(editor)))
     g.add((subj, ACDH["hasExtent"], extent))
     g.add((subj, ACDH["hasRightsHolder"], ACDH["ACDH"]))
     g.add((subj, ACDH["hasOwner"], ACDH["ACDH"]))
