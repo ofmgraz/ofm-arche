@@ -161,7 +161,7 @@ def get_extent(tei):
         else:
             pagination = "Seiten"
         measures.append(Literal(f"{extent} {pagination}"))
-    return measures
+    return '; '.join(measures)
 
 # %%
 def get_tifs(tei):
@@ -212,11 +212,13 @@ for xmlfile in files:
         has_title = doc.any_xpath('.//tei:title')[0].text
     except AttributeError:
         has_title = 'No title provided'
+    g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
     g.add((subj, ACDH["hasTitle"], Literal(has_title, lang="la")))
     g.add((subj, ACDH["hasFilename"], Literal(f"{basename}.xml")))
     g.add((subj, ACDH["hasFormat"], Literal("application/xml")))
     g.add((subj, ACDH["hasCreatedStartDateOriginal"], dates[0]))
     g.add((subj, ACDH["hasCreatedEndDateOriginal"], dates[1]))
+    g.add((subj, ACDH["hasTitle"], Literal(has_title)))
     [
         g.add((subj, ACDH["hasRelatedDiscipline"], related))
         for related in [URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007"),
@@ -227,7 +229,7 @@ for xmlfile in files:
     [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
     if editor := search_editor(doc):
         g.add((subj, ACDH['hasPublisher'], editor))
-    [g.add((subj, ACDH["hasExtent"], ext)) for ext in extent]
+    g.add((subj, ACDH["hasExtent"], ext))
     g.add((subj, ACDH["hasRightsHolder"], ACDH["ACDH"]))
     g.add((subj, ACDH["hasPublisher"], ACDH["ACDH"]))
     g.add((subj, ACDH["hasOwner"], ACDH["ACDH"]))
