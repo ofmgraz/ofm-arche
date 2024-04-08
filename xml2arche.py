@@ -197,6 +197,7 @@ for xmlfile in files:
     g.add((COL_URI, RDF.type, ACDH["Collection"]))
     g.add((COL_URI, ACDH["isPartOf"], TOP_COL_URI))
     g.add((COL_URI, ACDH["hasRightsHolder"], ACDH["ACDH"]))
+    g.add((COL_URI, ACDH["hasMetadataCreator"], URIRef("https://orcid.org/0000-0002-8815-6741")))
 
     ### creates resource for the XML
     g.add((subj, RDF.type, ACDH["Resource"]))
