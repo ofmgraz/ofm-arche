@@ -86,7 +86,7 @@ def search_editor(tei):
         editor = Literal(f'{tei.any_xpath(f".//tei:persName/tei:forename/text()")[0]}',
                          f'{tei.any_xpath(f".//tei:persName/tei:surname/text()")[0]}')
     else:
-        False
+        editor = False
     return editor
 
 # %%
