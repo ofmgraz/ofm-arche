@@ -96,8 +96,7 @@ def get_places(tei):
 
 # %%
 def search_editor(tei):
-    ref = tei.any_xpath(".//tei:publisher/@ref")
-    if ref:
+    if ref := tei.any_xpath(".//tei:publisher/@ref")
         ref = ref[0].lstrip('#')
         forename =  tei.any_xpath(f".//tei:person[@xml:id='{ref}']/tei:persName/tei:forename/text()")[0]
         surname = tei.any_xpath(f".//tei:person[@xml:id='{ref}']/tei:persName/tei:surname/text()")[0]
@@ -254,6 +253,7 @@ for xmlfile in files:
     g.add((subj, ACDH["hasLanguage"], URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")))
     [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
     if editor := search_editor(doc):
+        print("ED:\t",editor)
         g.add((subj, ACDH['hasPublisher'], Literal(editor)))
     g.add((subj, ACDH["hasExtent"], extent))
     g.add((subj, ACDH["hasRightsHolder"], RightsHolder))
