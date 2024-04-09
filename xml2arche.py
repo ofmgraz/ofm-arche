@@ -96,11 +96,8 @@ def get_places(tei):
 
 # %%
 def search_editor(tei):
-    if ref := tei.any_xpath(".//tei:publisher/@ref"):
-        ref = ref[0].lstrip('#')
-        forename =  tei.any_xpath(f".//tei:person[@xml:id='{ref}']/tei:persName/tei:forename/text()")[0]
-        surname = tei.any_xpath(f".//tei:person[@xml:id='{ref}']/tei:persName/tei:surname/text()")[0]
-        editor = f"{forename} {surname}"
+    if ref := tei.any_xpath(".//tei:publisher[@ref]"):
+        editor = ref[0].xpath('./text()')[0]
     else:
         editor = False
     return editor
