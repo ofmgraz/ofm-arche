@@ -219,6 +219,7 @@ for xmlfile in files:
     else:
         g.add((COL_URI, ACDH["hasTitle"], Literal('No title given')))
     g.add((COL_URI, ACDH["hasOwner"], ACDH["ACDH"]))
+    g.add((COL_URI, ACDH["hasDepositor"], URIRef("https://orcid.org/0000-0002-0484-832X")))
     g.add((subj, ACDH["hasTitle"], Literal(has_title, lang="la")))
     g.add((subj, ACDH["hasFilename"], Literal(f"{basename}.xml")))
     g.add((subj, ACDH["hasFormat"], Literal("application/xml")))
