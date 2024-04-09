@@ -215,6 +215,8 @@ for xmlfile in files:
     g.add((COL_URI, ACDH["hasRightsHolder"], RightsHolder))
     g.add((COL_URI, ACDH["hasMetadataCreator"], MetadataCreator))
     g.add((COL_URI, ACDH["hasLicensor"], Licensor))
+    g.add((COL_URI, ACDH["hasOwner"], Owner))
+    g.add((COL_URI, ACDH["hasDepositor"], Depositor))
 
     ### creates resource for the XML
     g.add((subj, RDF.type, ACDH["Resource"]))
@@ -235,8 +237,6 @@ for xmlfile in files:
         g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
     else:
         g.add((COL_URI, ACDH["hasTitle"], Literal('No title given')))
-    g.add((COL_URI, Owner))
-    g.add((COL_URI, ACDH["hasDepositor"], URIRef("https://orcid.org/0000-0002-0484-832X")))
     g.add((subj, ACDH["hasTitle"], Literal(has_title, lang="la")))
     g.add((subj, ACDH["hasFilename"], Literal(f"{basename}.xml")))
     g.add((subj, ACDH["hasFormat"], Literal("application/xml")))
