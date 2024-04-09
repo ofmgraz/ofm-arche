@@ -99,8 +99,9 @@ def search_editor(tei):
     ref = tei.any_xpath(".//tei:publisher/@ref")
     if ref:
         ref = ref[0].lstrip('#')
-        editor = Literal(f'{tei.any_xpath(f".//tei:persName/tei:forename/text()")[0]}',
-                         f'{tei.any_xpath(f".//tei:persName/tei:surname/text()")[0]}')
+        forename =  tei.any_xpath(f".//tei:person[@xml:id='{ref}']/tei:persName/tei:forename/text()")[0]
+        surname = tei.any_xpath(f".//tei:person[@xml:id='{ref}']/tei:persName/tei:surname/text()")[0]
+        editor = Literal(f"{forename} {surname}")
     else:
         editor = False
     return editor
@@ -199,7 +200,7 @@ g.parse("arche_seed_files/arche_constants.ttl")
 # %%
 [g.add(x) for x in get_places("data/indices/listplace.xml")]
 
-count = False
+count = 0
 # %%
 files = glob.glob("data/editions/*.xml")
 for xmlfile in files:
@@ -278,10 +279,10 @@ for xmlfile in files:
         g.add((resc, ACDH["hasCategory"], Literal("Text")))  # not sure
         g.add((resc, ACDH["hasLicense"], Licence)) 
         g.add((resc, ACDH["hasLicensor"], Licensor))
-    # if count:
-    #    break
-    #else:
-    #    count = True
+    if count > 3:
+        break
+    else:
+        count += 1
 
 
 # %%
