@@ -6,11 +6,12 @@ from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD, BNode
 from acdh_tei_pyutils.tei import TeiReader, ET
 
 # %%
+
+
 TOP_COL_URI = URIRef("https://id.acdh.oeaw.ac.at/ofm-graz")
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
-
-
+ARCHE = Namespace("https://vocabs.acdh.oeaw.ac.at/acdh#")
 
 ##################################################################################################
 #                                                                                                #
@@ -187,7 +188,8 @@ def get_tifs(tei):
     return tifs
 
 # %%
-g = Graph()
+g = Graph().parse("arche_seed_files/arche_constants.ttl")
+g_repo_objects = Graph().parse("arche_seed_files/repo_objects_constants.ttl")
 g.parse("arche_seed_files/arche_constants.ttl")
 
 # %%
@@ -235,6 +237,9 @@ for xmlfile in files:
         g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
     else:
         g.add((COL_URI, ACDH["hasTitle"], Literal('No title given')))
+    # if editor := search_editor(doc):
+    #    g.add((COL_URI, ARCHE["hasPublisher"], Literal(editor)))
+    #    print((COL_URI, ACDH["hasPublisher"], Literal(editor)))
     g.add((subj, ACDH["hasTitle"], Literal(has_title, lang="la")))
     g.add((subj, ACDH["hasFilename"], Literal(f"{basename}.xml")))
     g.add((subj, ACDH["hasFormat"], Literal("application/xml")))
@@ -249,9 +254,6 @@ for xmlfile in files:
     ]
     g.add((subj, ACDH["hasLanguage"], URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")))
     [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
-    if editor := search_editor(doc):
-        print("ED:\t",editor)
-        g.add((subj, ACDH['hasPublisher'], Literal(editor)))
     g.add((subj, ACDH["hasExtent"], extent))
     g.add((subj, ACDH["hasRightsHolder"], RightsHolder))
     g.add((subj, ACDH["hasOwner"], Owner))
