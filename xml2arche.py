@@ -157,7 +157,7 @@ def get_contributors(tei):
             forename = contributor.xpath(".//tei:forename/text()", namespaces=nsmap)[0]
             surname = contributor.xpath(".//tei:surname/text()", namespaces=nsmap)[0]
             obj = Literal(f"{forename} {surname}")
-            pred = ACDH['hasNonLinkedContributor']
+            pred = ACDH['hasNonLinkedIdentifier']
         predobj.append((pred, obj))
     return predobj
 
@@ -199,6 +199,7 @@ g.parse("arche_seed_files/arche_constants.ttl")
 # %%
 [g.add(x) for x in get_places("data/indices/listplace.xml")]
 
+count = False
 # %%
 files = glob.glob("data/editions/*.xml")
 for xmlfile in files:
@@ -277,6 +278,10 @@ for xmlfile in files:
         g.add((resc, ACDH["hasCategory"], Literal("Text")))  # not sure
         g.add((resc, ACDH["hasLicense"], Licence)) 
         g.add((resc, ACDH["hasLicensor"], Licensor))
+    # if count:
+    #    break
+    #else:
+    #    count = True
 
 
 # %%
