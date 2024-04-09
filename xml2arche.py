@@ -10,6 +10,22 @@ TOP_COL_URI = URIRef("https://id.acdh.oeaw.ac.at/ofm-graz")
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
 
+
+
+##################################################################################################
+#                                                                                                #
+#                                          CONFIG                                                #
+#                                                                                                #
+##################################################################################################
+
+RightsHolder = ACDH["ACDH"]
+Owner = ACDH["ACDH"]
+MetadataCreator = URIRef("https://orcid.org/0000-0002-8815-6741")
+Owner = ACDH["ACDH"]
+Licensor = URIRef("https://orcid.org/0000-0002-0484-832X")
+Depositor = URIRef("https://orcid.org/0000-0002-0484-832X")
+Licence = Literal("CC BY-NC-ND 4.0")
+##################################################################################################
 # %%
 # I know an element present in the node wanted (e.g. tei:persName), but it can be in different
 # types of nodes (e.g. tei:perStmt vs tei:person). So I get a list of those elements
@@ -196,8 +212,8 @@ for xmlfile in files:
     ### Creates collection
     g.add((COL_URI, RDF.type, ACDH["Collection"]))
     g.add((COL_URI, ACDH["isPartOf"], TOP_COL_URI))
-    g.add((COL_URI, ACDH["hasRightsHolder"], ACDH["ACDH"]))
-    g.add((COL_URI, ACDH["hasMetadataCreator"], URIRef("https://orcid.org/0000-0002-8815-6741")))
+    g.add((COL_URI, ACDH["hasRightsHolder"], RightsHolder))
+    g.add((COL_URI, ACDH["hasMetadataCreator"], MetadataCreator))
 
     ### creates resource for the XML
     g.add((subj, RDF.type, ACDH["Resource"]))
@@ -218,7 +234,7 @@ for xmlfile in files:
         g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
     else:
         g.add((COL_URI, ACDH["hasTitle"], Literal('No title given')))
-    g.add((COL_URI, ACDH["hasOwner"], ACDH["ACDH"]))
+    g.add((COL_URI, Owner))
     g.add((COL_URI, ACDH["hasDepositor"], URIRef("https://orcid.org/0000-0002-0484-832X")))
     g.add((subj, ACDH["hasTitle"], Literal(has_title, lang="la")))
     g.add((subj, ACDH["hasFilename"], Literal(f"{basename}.xml")))
@@ -237,13 +253,13 @@ for xmlfile in files:
     if editor := search_editor(doc):
         g.add((subj, ACDH['hasPublisher'], Literal(editor)))
     g.add((subj, ACDH["hasExtent"], extent))
-    g.add((subj, ACDH["hasRightsHolder"], ACDH["ACDH"]))
-    g.add((subj, ACDH["hasOwner"], ACDH["ACDH"]))
-    g.add((subj, ACDH["hasMetadataCreator"], URIRef("https://orcid.org/0000-0002-8815-6741")))
-    g.add((subj, ACDH["hasDepositor"], URIRef("https://orcid.org/0000-0002-0484-832X")))
+    g.add((subj, ACDH["hasRightsHolder"], RightsHolder))
+    g.add((subj, ACDH["hasOwner"], Owner))
+    g.add((subj, ACDH["hasMetadataCreator"], MetadataCreator))
+    g.add((subj, ACDH["hasDepositor"], Depositor))
     g.add((subj, ACDH["hasCategory"], Literal("Text")))  # not sure
-    g.add((subj, ACDH["hasLicense"], Literal("CC BY-NC-ND 4.0")))  # PLACE HOLDER!!!
-    g.add((subj, ACDH["hasLicensor"], URIRef("https://orcid.org/0000-0002-0484-832X")))  # PLACE HOLDER!!!
+    g.add((subj, ACDH["hasLicense"], Licence))
+    g.add((subj, ACDH["hasLicensor"], Licensor))
     # Add TIFFs to collection
     for tif in get_tifs(doc):
         resc = URIRef(f"{COL_URI}/{tif}")
@@ -253,13 +269,13 @@ for xmlfile in files:
         g.add((resc, ACDH["isSourceOf"], subj))
         g.add((resc, ACDH["hasFilename"], Literal(f"{tif}.tiff")))
         # The object in the following ones needs to be adapted to meet the actual features 
-        g.add((resc, ACDH["hasRightsHolder"], ACDH["ACDH"]))
-        g.add((resc, ACDH["hasOwner"], ACDH["ACDH"]))
-        g.add((resc, ACDH["hasMetadataCreator"], URIRef("https://orcid.org/0000-0002-8815-6741")))
-        g.add((resc, ACDH["hasDepositor"], URIRef("https://orcid.org/0000-0002-0484-832X")))
+        g.add((resc, ACDH["hasRightsHolder"], RightsHolder))
+        g.add((resc, ACDH["hasOwner"], Owner))
+        g.add((resc, ACDH["hasMetadataCreator"], MetadataCreator))
+        g.add((resc, ACDH["hasDepositor"], Depositor))
         g.add((resc, ACDH["hasCategory"], Literal("Text")))  # not sure
-        g.add((resc, ACDH["hasLicense"], Literal("CC BY-NC-ND 4.0")))  # PLACE HOLDER!!!
-        g.add((resc, ACDH["hasLicensor"], URIRef("https://orcid.org/0000-0002-0484-832X")))  # PLACE HOLDER!!!
+        g.add((resc, ACDH["hasLicense"], Licence)) 
+        g.add((resc, ACDH["hasLicensor"], Licensor))
 
 
 # %%
