@@ -101,7 +101,7 @@ def search_editor(tei):
         ref = ref[0].lstrip('#')
         forename =  tei.any_xpath(f".//tei:person[@xml:id='{ref}']/tei:persName/tei:forename/text()")[0]
         surname = tei.any_xpath(f".//tei:person[@xml:id='{ref}']/tei:persName/tei:surname/text()")[0]
-        editor = Literal(f"{forename} {surname}")
+        editor = f"{forename} {surname}"
     else:
         editor = False
     return editor
