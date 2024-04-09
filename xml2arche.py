@@ -229,14 +229,11 @@ for xmlfile in files:
     g.add(
         (subj, ACDH["hasCategory"], URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei"))
     )
-    try:
-        has_title = doc.any_xpath('.//tei:title')[0].text
-    except AttributeError:
-        has_title = 'No title provided'
-    if has_title:
-        g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
+    if doc.any_xpath(".//tei:title"):
+        has_title = doc.any_xpath(".//tei:title/text()")[0]
     else:
-        g.add((COL_URI, ACDH["hasTitle"], Literal('No title given')))
+        has_title = "No title given"
+    g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
     # if editor := search_editor(doc):
     #    g.add((COL_URI, ARCHE["hasPublisher"], Literal(editor)))
     #    print((COL_URI, ACDH["hasPublisher"], Literal(editor)))
