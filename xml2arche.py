@@ -278,10 +278,10 @@ for xmlfile in files:
         g.add((resc, ACDH["hasCategory"], Literal("Text")))  # not sure
         g.add((resc, ACDH["hasLicense"], Licence)) 
         g.add((resc, ACDH["hasLicensor"], Licensor))
-    if count > 3:
-        break
-    else:
-        count += 1
+    #if count > 3:
+    #    break
+    #else:
+    #    count += 1
 
 
 # %%
