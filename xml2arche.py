@@ -214,6 +214,7 @@ for xmlfile in files:
     g.add((COL_URI, ACDH["isPartOf"], TOP_COL_URI))
     g.add((COL_URI, ACDH["hasRightsHolder"], RightsHolder))
     g.add((COL_URI, ACDH["hasMetadataCreator"], MetadataCreator))
+    g.add((COL_URI, ACDH["hasLicensor"], Licensor))
 
     ### creates resource for the XML
     g.add((subj, RDF.type, ACDH["Resource"]))
