@@ -210,17 +210,16 @@ files = glob.glob("data/editions/*.xml")
 for xmlfile in files:
     if not any([x in xmlfile for x in fails]):
         continue
-    get_persons(xmlfile)
-    basename = os.path.basename(xmlfile)
+    persons = get_persons(xmlfile)
+    basename = os.path.basename(xmlfile).split('.')[0]
     doc = TeiReader(xmlfile)
-    COL_URI = URIRef(f"{TOP_COL_URI}/{basename.split('.')[0]}")
-    subj = URIRef(f"{COL_URI}/{basename}")
+    COL_URI = URIRef(f"{TOP_COL_URI}/{basename}")
     dates = get_date(doc)
     extent = get_extent(doc)
     ### Creates collection
 
     g.add((COL_URI, RDF.type, ACDH["Collection"]))
-    g.add((COL_URI, ACDH["hasTitle"], Literal(basename)))
+    # g.add((COL_URI, ACDH["hasTitle"], Literal(basename)))
     g.add((COL_URI, ACDH["isPartOf"], TOP_COL_URI))
     g.add((COL_URI, ACDH["hasRightsHolder"], RightsHolder))
     g.add((COL_URI, ACDH["hasMetadataCreator"], MetadataCreator))
@@ -235,9 +234,10 @@ for xmlfile in files:
     # g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
 
     ### creates resource for the XML
+    subj = URIRef(f"{COL_URI}/{basename}")
     g.add((subj, RDF.type, ACDH["Resource"]))
     g.add((subj, ACDH["isPartOf"], COL_URI))
-
+    print('SUB:', subj)
     if signature :=  doc.any_xpath(".//tei:idno[@type='shelfmark']"):
         g.add(
             (subj, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text))
@@ -272,7 +272,7 @@ for xmlfile in files:
             print (f'Duplicado\t{tif}')
 
         resc = URIRef(f"{COL_URI}/{tif}")
-        print(resc)
+        print('TIF:', resc)
         g.add((resc, RDF.type, ACDH["Resource"]))
         g.add((resc, ACDH["isPartOf"], COL_URI))
         g.add((resc, ACDH["hasTitle"], Literal(tif)))
