@@ -6,7 +6,7 @@ from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD, BNode
 from acdh_tei_pyutils.tei import TeiReader, ET
 
 # %%
-
+fails = ('A63_51', 'A64_34', 'A64_37', 'A64_38')
 
 TOP_COL_URI = URIRef("https://id.acdh.oeaw.ac.at/ofm-graz")
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
@@ -190,7 +190,7 @@ def get_tifs(tei):
 # %%
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
 g_repo_objects = Graph().parse("arche_seed_files/repo_objects_constants.ttl")
-g.parse("arche_seed_files/arche_constants.ttl")
+#g.parse("arche_seed_files/arche_constants.ttl")
 
 # %%
 [g.add(x) for x in get_persons("data/indices/listperson.xml")]
@@ -208,6 +208,8 @@ files = glob.glob("data/editions/*.xml")
                         URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024")]
     ]
 for xmlfile in files:
+    if not any([x in xmlfile for x in fails]):
+        continue
     get_persons(xmlfile)
     basename = os.path.basename(xmlfile)
     doc = TeiReader(xmlfile)
@@ -216,7 +218,9 @@ for xmlfile in files:
     dates = get_date(doc)
     extent = get_extent(doc)
     ### Creates collection
+
     g.add((COL_URI, RDF.type, ACDH["Collection"]))
+    g.add((COL_URI, ACDH["hasTitle"], Literal(basename)))
     g.add((COL_URI, ACDH["isPartOf"], TOP_COL_URI))
     g.add((COL_URI, ACDH["hasRightsHolder"], RightsHolder))
     g.add((COL_URI, ACDH["hasMetadataCreator"], MetadataCreator))
@@ -224,11 +228,11 @@ for xmlfile in files:
     g.add((COL_URI, ACDH["hasOwner"], Owner))
     g.add((COL_URI, ACDH["hasDepositor"], Depositor))
     if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
-        print(f'hastitle:\t"{has_title[0]}"')
         has_title = has_title[0]
     else:
         has_title = "No title provided"
-    g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
+    print(f'{COL_URI}\thasTitle:\t"{has_title}"')
+    # g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
 
     ### creates resource for the XML
     g.add((subj, RDF.type, ACDH["Resource"]))
@@ -244,12 +248,11 @@ for xmlfile in files:
     # if editor := search_editor(doc):
     #    g.add((COL_URI, ARCHE["hasPublisher"], Literal(editor)))
     #    print((COL_URI, ACDH["hasPublisher"], Literal(editor)))
-    g.add((subj, ACDH["hasTitle"], Literal(has_title, lang="la")))
+    g.add((subj, ACDH["hasTitle"], Literal(has_title)))
     g.add((subj, ACDH["hasFilename"], Literal(f"{basename}.xml")))
     g.add((subj, ACDH["hasFormat"], Literal("application/xml")))
     #### g.add((subj, ACDH["hasCreatedStartDateOriginal"], dates[0]))
     #### g.add((subj, ACDH["hasCreatedEndDateOriginal"], dates[1]))
-    g.add((subj, ACDH["hasTitle"], Literal(has_title)))
     g.add((subj, ACDH["hasLanguage"], URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")))
     [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
     g.add((subj, ACDH["hasExtent"], extent))
@@ -261,8 +264,15 @@ for xmlfile in files:
     g.add((subj, ACDH["hasLicense"], Licence))
     g.add((subj, ACDH["hasLicensor"], Licensor))
     # Add TIFFs to collection
+    test = []
     for tif in get_tifs(doc):
+        if tif not in test:
+            test.append(tif)
+        else:
+            print (f'Duplicado\t{tif}')
+
         resc = URIRef(f"{COL_URI}/{tif}")
+        print(resc)
         g.add((resc, RDF.type, ACDH["Resource"]))
         g.add((resc, ACDH["isPartOf"], COL_URI))
         g.add((resc, ACDH["hasTitle"], Literal(tif)))
