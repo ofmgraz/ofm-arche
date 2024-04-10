@@ -243,7 +243,7 @@ for xmlfile in files:
     # if editor := search_editor(doc):
     #    g.add((COL_URI, ARCHE["hasPublisher"], Literal(editor)))
     #    print((COL_URI, ACDH["hasPublisher"], Literal(editor)))
-    #### g.add((subj, ACDH["hasTitle"], Literal(has_title, lang="la")))
+    g.add((subj, ACDH["hasTitle"], Literal(has_title, lang="la")))
     g.add((subj, ACDH["hasFilename"], Literal(f"{basename}.xml")))
     g.add((subj, ACDH["hasFormat"], Literal("application/xml")))
     #### g.add((subj, ACDH["hasCreatedStartDateOriginal"], dates[0]))
