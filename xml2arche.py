@@ -235,8 +235,8 @@ for xmlfile in files:
     g.add(
         (subj, ACDH["hasCategory"], URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei"))
     )
-    if doc.any_xpath(".//tei:title"):
-        has_title = doc.any_xpath(".//tei:title/text()")[0]
+    if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
+        has_title = has_title[0]
     else:
         has_title = "No title given"
     g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
