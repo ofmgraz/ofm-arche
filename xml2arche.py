@@ -223,6 +223,12 @@ for xmlfile in files:
     g.add((COL_URI, ACDH["hasLicensor"], Licensor))
     g.add((COL_URI, ACDH["hasOwner"], Owner))
     g.add((COL_URI, ACDH["hasDepositor"], Depositor))
+    if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
+        print(f'hastitle:\t"{has_title[0]}"')
+        has_title = has_title[0]
+    else:
+        has_title = "No title provided"
+    g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
 
     ### creates resource for the XML
     g.add((subj, RDF.type, ACDH["Resource"]))
@@ -235,11 +241,6 @@ for xmlfile in files:
     g.add(
         (subj, ACDH["hasCategory"], URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei"))
     )
-    if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
-        has_title = has_title[0]
-    else:
-        has_title = "No title given"
-    g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
     # if editor := search_editor(doc):
     #    g.add((COL_URI, ARCHE["hasPublisher"], Literal(editor)))
     #    print((COL_URI, ACDH["hasPublisher"], Literal(editor)))
