@@ -201,6 +201,12 @@ g.parse("arche_seed_files/arche_constants.ttl")
 count = 0
 # %%
 files = glob.glob("data/editions/*.xml")
+[
+        g.add((TOP_COL_URI, ACDH["hasRelatedDiscipline"], related))
+        for related in [URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007"),
+                        URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008"),
+                        URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024")]
+    ]
 for xmlfile in files:
     get_persons(xmlfile)
     basename = os.path.basename(xmlfile)
@@ -237,18 +243,12 @@ for xmlfile in files:
     # if editor := search_editor(doc):
     #    g.add((COL_URI, ARCHE["hasPublisher"], Literal(editor)))
     #    print((COL_URI, ACDH["hasPublisher"], Literal(editor)))
-    g.add((subj, ACDH["hasTitle"], Literal(has_title, lang="la")))
+    #### g.add((subj, ACDH["hasTitle"], Literal(has_title, lang="la")))
     g.add((subj, ACDH["hasFilename"], Literal(f"{basename}.xml")))
     g.add((subj, ACDH["hasFormat"], Literal("application/xml")))
-    g.add((subj, ACDH["hasCreatedStartDateOriginal"], dates[0]))
-    g.add((subj, ACDH["hasCreatedEndDateOriginal"], dates[1]))
+    #### g.add((subj, ACDH["hasCreatedStartDateOriginal"], dates[0]))
+    #### g.add((subj, ACDH["hasCreatedEndDateOriginal"], dates[1]))
     g.add((subj, ACDH["hasTitle"], Literal(has_title)))
-    [
-        g.add((subj, ACDH["hasRelatedDiscipline"], related))
-        for related in [URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007"),
-                        URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008"),
-                        URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024")]
-    ]
     g.add((subj, ACDH["hasLanguage"], URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")))
     [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
     g.add((subj, ACDH["hasExtent"], extent))
