@@ -31,6 +31,6 @@
 <https://orcid.org/0000-0002-0484-832X> a acdh:Person ;
     acdh:hasTitle "Robert Klugseder"@und ;
     acdh:hasIdentifier <https://d-nb.info/gnd/134072170> .
-    
+
 <https://d-nb.info/gnd/16174362-6> a acdh:Organisation ; 
     acdh:hasTitle "Franziskanerkloster Graz"@und .
