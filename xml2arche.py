@@ -182,7 +182,10 @@ def get_extent(tei):
 def get_tifs(tei):
     tifs  = []
     for tif in tei.any_xpath(".//tei:graphic/@url"):
+        print(f"TIF:\t{tif}")
         base =  re.search("files/images/(.*)/full/full", tif).group(1)
+        print(base)
+        print('------------------------')
         if base not in tifs:
             tifs.append(base)
     return tifs
@@ -202,11 +205,11 @@ count = 0
 # %%
 files = glob.glob("data/editions/*.xml")
 [
-        g.add((TOP_COL_URI, ACDH["hasRelatedDiscipline"], related))
-        for related in [URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007"),
-                        URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008"),
-                        URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024")]
-    ]
+    g.add((TOP_COL_URI, ACDH["hasRelatedDiscipline"], related))
+    for related in [URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007"),
+                    URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008"),
+                    URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024")]
+]
 for xmlfile in files:
     if not any([x in xmlfile for x in fails]):
         continue
@@ -217,9 +220,10 @@ for xmlfile in files:
     dates = get_date(doc)
     extent = get_extent(doc)
     ### Creates collection
+    print(COL_URI)
 
     g.add((COL_URI, RDF.type, ACDH["Collection"]))
-    # g.add((COL_URI, ACDH["hasTitle"], Literal(basename)))
+    g.add((COL_URI, ACDH["hasTitle"], Literal(basename)))
     g.add((COL_URI, ACDH["isPartOf"], TOP_COL_URI))
     g.add((COL_URI, ACDH["hasRightsHolder"], RightsHolder))
     g.add((COL_URI, ACDH["hasMetadataCreator"], MetadataCreator))
@@ -230,8 +234,7 @@ for xmlfile in files:
         has_title = has_title[0]
     else:
         has_title = "No title provided"
-    print(f'{COL_URI}\thasTitle:\t"{has_title}"')
-    # g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
+    g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
 
     ### creates resource for the XML
     subj = URIRef(f"{COL_URI}/{basename}")
@@ -264,13 +267,10 @@ for xmlfile in files:
     g.add((subj, ACDH["hasLicense"], Licence))
     g.add((subj, ACDH["hasLicensor"], Licensor))
     # Add TIFFs to collection
-    test = []
     for tif in get_tifs(doc):
-        if tif not in test:
-            test.append(tif)
-        else:
-            print (f'Duplicado\t{tif}')
-
+        if not tif:
+            continue
+        print(tif)
         resc = URIRef(f"{COL_URI}/{tif}")
         print('TIF:', resc)
         g.add((resc, RDF.type, ACDH["Resource"]))
