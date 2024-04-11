@@ -223,7 +223,6 @@ for xmlfile in files:
     print(COL_URI)
 
     g.add((COL_URI, RDF.type, ACDH["Collection"]))
-    g.add((COL_URI, ACDH["hasTitle"], Literal(basename)))
     g.add((COL_URI, ACDH["isPartOf"], TOP_COL_URI))
     g.add((COL_URI, ACDH["hasRightsHolder"], RightsHolder))
     g.add((COL_URI, ACDH["hasMetadataCreator"], MetadataCreator))
@@ -232,10 +231,10 @@ for xmlfile in files:
     g.add((COL_URI, ACDH["hasDepositor"], Depositor))
     if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
         has_title = has_title[0]
+        g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
     else:
-        has_title = "No title provided"
-    g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
-
+        g.add((COL_URI, ACDH["hasTitle"], Literal(basename)))
+        has_title = 'No title provided'
     ### creates resource for the XML
     subj = URIRef(f"{COL_URI}/{basename}")
     g.add((subj, RDF.type, ACDH["Resource"]))
