@@ -1,5 +1,5 @@
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
-@prefix acdh: <https://id.acdh.oeaw.ac.at/> .
+@prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://id.acdh.oeaw.ac.at/ofm-graz> a acdh:TopCollection ;
