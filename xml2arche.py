@@ -193,7 +193,7 @@ def get_tifs(tei):
 # %%
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
 g_repo_objects = Graph().parse("arche_seed_files/repo_objects_constants.ttl")
-#g.parse("arche_seed_files/arche_constants.ttl")
+g.parse("arche_seed_files/arche_constants.ttl")
 
 # %%
 [g.add(x) for x in get_persons("data/indices/listperson.xml")]
@@ -204,12 +204,7 @@ g_repo_objects = Graph().parse("arche_seed_files/repo_objects_constants.ttl")
 count = 0
 # %%
 files = glob.glob("data/editions/*.xml")
-[
-    g.add((TOP_COL_URI, ACDH["hasRelatedDiscipline"], related))
-    for related in [URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007"),
-                    URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008"),
-                    URIRef("https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024")]
-]
+
 for xmlfile in files:
     if not any([x in xmlfile for x in fails]):
         continue
