@@ -11,7 +11,6 @@ fails = ('A63_51', 'A64_34', 'A64_37', 'A64_38')
 TOP_COL_URI = URIRef("https://id.acdh.oeaw.ac.at/ofm-graz")
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
-ARCHE = Namespace("https://vocabs.acdh.oeaw.ac.at/acdh#")
 
 ##################################################################################################
 #                                                                                                #
@@ -19,13 +18,13 @@ ARCHE = Namespace("https://vocabs.acdh.oeaw.ac.at/acdh#")
 #                                                                                                #
 ##################################################################################################
 
-RightsHolder = ACDH["ACDH"]
-Owner = ACDH["ACDH"]
+RightsHolder = URIRef("https://id.acdh.oeaw.ac.at/oeaw")
+Owner = URIRef("https://id.acdh.oeaw.ac.at/oeaw")
 MetadataCreator = URIRef("https://orcid.org/0000-0002-8815-6741")
-Owner = ACDH["ACDH"]
+Owner = URIRef("https://id.acdh.oeaw.ac.at/oeaw")
 Licensor = URIRef("https://orcid.org/0000-0002-0484-832X")
 Depositor = URIRef("https://orcid.org/0000-0002-0484-832X")
-Licence = Literal("CC BY-NC-ND 4.0")
+Licence = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-4-0")
 ##################################################################################################
 # %%
 # I know an element present in the node wanted (e.g. tei:persName), but it can be in different
@@ -208,7 +207,7 @@ files = glob.glob("data/editions/*.xml")
 for xmlfile in files:
     if not any([x in xmlfile for x in fails]):
         continue
-    persons = get_persons(xmlfile)
+    # persons = get_persons(xmlfile)
     basename = os.path.basename(xmlfile).split('.')[0]
     doc = TeiReader(xmlfile)
     COL_URI = URIRef(f"{TOP_COL_URI}/{basename}")
