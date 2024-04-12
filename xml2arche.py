@@ -191,8 +191,8 @@ def get_tifs(tei):
 
 # %%
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
-g_repo_objects = Graph().parse("arche_seed_files/repo_objects_constants.ttl")
-g.parse("arche_seed_files/arche_constants.ttl")
+#g.parse("arche_seed_files/arche_constants.ttl")
+#g_repo_objects = Graph().parse("arche_seed_files/repo_objects_constants.ttl")
 
 # %%
 [g.add(x) for x in get_persons("data/indices/listperson.xml")]
@@ -205,8 +205,8 @@ count = 0
 files = glob.glob("data/editions/*.xml")
 
 for xmlfile in files:
-    if not any([x in xmlfile for x in fails]):
-        continue
+    #if not any([x in xmlfile for x in fails]):
+    #    continue
     # persons = get_persons(xmlfile)
     basename = os.path.basename(xmlfile).split('.')[0]
     doc = TeiReader(xmlfile)
@@ -271,13 +271,13 @@ for xmlfile in files:
         g.add((resc, ACDH["hasTitle"], Literal(tif)))
         g.add((resc, ACDH["isSourceOf"], subj))
         g.add((resc, ACDH["hasFilename"], Literal(f"{tif}.tiff")))
-        # The object in the following ones needs to be adapted to meet the actual features 
+        # The object in the following ones needs to be adapted to meet the actual features
         g.add((resc, ACDH["hasRightsHolder"], RightsHolder))
         g.add((resc, ACDH["hasOwner"], Owner))
         g.add((resc, ACDH["hasMetadataCreator"], MetadataCreator))
         g.add((resc, ACDH["hasDepositor"], Depositor))
         g.add((resc, ACDH["hasCategory"], Literal("Text")))  # not sure
-        g.add((resc, ACDH["hasLicense"], Licence)) 
+        g.add((resc, ACDH["hasLicense"], Licence))
         g.add((resc, ACDH["hasLicensor"], Licensor))
     #if count > 3:
     #    break
