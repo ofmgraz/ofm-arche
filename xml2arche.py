@@ -144,10 +144,8 @@ def get_contributors(tei):
     contributors = tei.any_xpath(".//tei:respStmt")
     for contributor in contributors:
         pred = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(':')[-1]
-        obj = contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0].lstrip('#')
-        # The contributor has a PI
-        if obj.startswith('http'):
-            obj = URIRef(obj)
+        if obj := contributor.xpath(".//tei:persName/@ref", namespaces=nsmap):
+            obj = URIRef(obj[0])
             pred = ACDH[pred]
         # The contributor has no PI
         else:
