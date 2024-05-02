@@ -8,6 +8,10 @@ from acdh_tei_pyutils.tei import TeiReader
 fails = ("A63_51", "A64_34", "A64_37", "A64_38")
 
 TOP_COL_URI = URIRef("https://id.acdh.oeaw.ac.at/ofm-graz")
+MASTERS_URI = URIRef("https://id.acdh.oeaw.ac.at/masters")
+DERIVTV_URI = URIRef("https://id.acdh.oeaw.ac.at/drivatives")
+TEIDOCS_URI = URIRef("https://id.acdh.oeaw.ac.at/xmltei")
+
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
 
