@@ -262,6 +262,6 @@ for xmlfile in files:
         g.add((resc, ACDH["hasLicensor"], Licensor))
 
 try:
-    g.serialize("test.ttl")
+    g.serialize("ofmgraz.ttl")
 except Exception as e:
     print(e)
