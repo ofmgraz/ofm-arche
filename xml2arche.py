@@ -186,9 +186,9 @@ def get_tifs(tei):
 def get_nextitem(first_item, doc):
     if next_item := doc.any_xpath("/@next"):
         if first_item == next_item[0]:
-        next_item = False
-    else:
-        next_item = next_item[0]
+            next_item = False
+        else:
+            next_item = next_item[0]
     return next_item
 
 def get_dims(file_path):
@@ -233,7 +233,7 @@ for xmlfile in files:
     hasNextItem = get_nextitem(first_item, doc)
     if not first_item:
         first_item = get_nextitem(first_item, doc)
-    subj = URIRef(f"{TEIDOCS_URI}/{xmlfile}}")
+    subj = URIRef(doc.path.join(TEIDOCS_URI, xmlfile)
     g.add((subj, RDF.type, ACDH["Resource"]))
     # Creates collection
     # print(COL_URI)
