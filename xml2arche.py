@@ -174,10 +174,14 @@ def get_extent(tei):
 def get_tifs(tei):
     tifs = []
     for tif in tei.any_xpath(".//tei:graphic/@url"):
-        dims = get_dims(tif)
+        print("TIF_s", tif)
+        try:
+            dims = get_dims(tif)
+        except Exception:
+            dims = False
         print(f"TIF:\t{tif}")
         base = re.search("files/images/(.*)/full/full", tif).group(1)
-        print(base)
+        print("BASE", base)
         print("------------------------")
         if base not in tifs:
             tifs.append((base, dims))
@@ -192,6 +196,7 @@ def get_nextitem(first_item, doc):
     return next_item
 
 def get_dims(file_path):
+    print("DIMS_d", file_path)
     response = requests.get(file_path)
     img = Image.open(BytesIO(response.content))
     return  img.width, img.height
@@ -227,13 +232,12 @@ first_item = False
 for xmlfile in files:
     basename = os.path.basename(xmlfile).split(".")[0]
     doc = TeiReader(xmlfile)
-    # COL_URI = URIRef(f"{TOP_COL_URI}/{basename}")
     dates = get_date(doc)
     extent = get_extent(doc)
     hasNextItem = get_nextitem(first_item, doc)
     if not first_item:
         first_item = get_nextitem(first_item, doc)
-    subj = URIRef(doc.path.join(TEIDOCS_URI, xmlfile)
+    subj = URIRef(os.path.join(TEIDOCS_URI, xmlfile))
     g.add((subj, RDF.type, ACDH["Resource"]))
     # Creates collection
     # print(COL_URI)
@@ -278,9 +282,10 @@ for xmlfile in files:
     for picture in get_tifs(doc):
         if not picture:
             continue
-        print(picture)
+        print("PICTURE", picture)
         tif = (MASTERS_URI, f"{picture[0]}.tif")
         jpg = (DERIVTV_URI, f"{picture[0]}.jpg")
+        
         dims = picture[1]
         for path_file in (tif, jpg):
             resc = URIRef(os.path.join(path_file))
@@ -298,7 +303,8 @@ for xmlfile in files:
             g.add((resc, ACDH["hasCategory"], Literal("Text")))  # not sure
             g.add((resc, ACDH["hasLicense"], Licence))
             g.add((resc, ACDH["hasLicensor"], Licensor))
-            g.add((resc, ACDH["hasExtent"], f"{dims[0]}x{dims[1]}px"))
+            if dims := picture[1]:
+                g.add((resc, ACDH["hasExtent"], f"{dims[0]}x{dims[1]}px"))
 
 try:
     g.serialize("ofmgraz.ttl")
