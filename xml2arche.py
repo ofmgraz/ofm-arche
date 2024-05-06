@@ -212,12 +212,12 @@ for xmlfile in files:
         g.add((SUB_URI, ACDH["hasLicensor"], Licensor))
         g.add((SUB_URI, ACDH["hasOwner"], Owner))
         g.add((SUB_URI, ACDH["hasDepositor"], Depositor))
-        if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
-            has_title = has_title[0]
-            g.add((SUB_URI, ACDH["hasTitle"], Literal(has_title)))
-        else:
-            g.add((SUB_URI, ACDH["hasTitle"], Literal(basename)))
-            has_title = "No title provided"
+    if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
+        has_title = has_title[0]
+        g.add((TEIDOCS_URI, ACDH["hasTitle"], Literal(has_title)))
+    else:
+        g.add((TEIDOCS_URI, ACDH["hasTitle"], Literal(basename)))
+        has_title = "No title provided"
     # creates resource for the XML
     subj = URIRef(f"{TEIDOCS_URI}/{basename}")
     g.add((subj, RDF.type, ACDH["Resource"]))
@@ -256,15 +256,16 @@ for xmlfile in files:
         if not picture:
             continue
         print(picture)
-        tif = URIRef(f"{MASTERS_URI}/{picture}")
-        jpg = URIRef(f"{DERIVTV_URI}/{picture.replace('.tif', '.jpg')}")
-        for resc in (tif, jpg):
+        tif = (MASTERS_URI, f"{picture}.tif")
+        jpg = (DERIVTV_URI, f"{picture}.jpg")
+        for path_file in (tif, jpg):
+            resc = URIRef(os.path.join(path_file))
             print("pic:", resc)
             g.add((resc, RDF.type, ACDH["Resource"]))
-            g.add((resc, ACDH["isPartOf"], COL_URI))
-            g.add((resc, ACDH["hasTitle"], Literal(tif)))
+            g.add((resc, ACDH["isPartOf"], path_file[0]))
+            g.add((resc, ACDH["hasTitle"], Literal(picture)))
             g.add((resc, ACDH["isSourceOf"], subj))
-            g.add((resc, ACDH["hasFilename"], Literal(f"{tif}.tiff")))
+            g.add((resc, ACDH["hasFilename"], Literal(path_file[-1])))
             # The object in the following ones needs to be adapted to meet the actual features
             g.add((resc, ACDH["hasRightsHolder"], RightsHolder))
             g.add((resc, ACDH["hasOwner"], Owner))
