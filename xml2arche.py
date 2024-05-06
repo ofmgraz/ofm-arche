@@ -288,7 +288,7 @@ for xmlfile in files:
         
         dims = picture[1]
         for path_file in (tif, jpg):
-            resc = URIRef(os.path.join(path_file))
+            resc = URIRef(os.path.join(path_file[0], path_file[1]))
             print("pic:", resc)
             g.add((resc, RDF.type, ACDH["Resource"]))
             g.add((resc, ACDH["isPartOf"], path_file[0]))
