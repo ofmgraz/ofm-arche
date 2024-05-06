@@ -179,6 +179,13 @@ def get_tifs(tei):
             tifs.append(base)
     return tifs
 
+def get_nextitem(first_item, doc):
+    if next_item := doc.any_xpath("/@next"):
+        if first_item == next_item[0]:
+        next_item = False
+    else:
+        next_item = next_item[0]
+    return next_item
 
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
 
@@ -206,13 +213,17 @@ g.add((DERIVTV_URI, ACDH["hasTitle"], Literal("Derivatives")))
 g.add((TEIDOCS_URI, ACDH["hasTitle"], Literal("TEI Documents")))
 
 
-
+first_item = False
 for xmlfile in files:
     basename = os.path.basename(xmlfile).split(".")[0]
     doc = TeiReader(xmlfile)
     # COL_URI = URIRef(f"{TOP_COL_URI}/{basename}")
     dates = get_date(doc)
     extent = get_extent(doc)
+    hasNextItem = get_nextitem(first_item, doc)
+    if not first_item:
+        first_item = get_nextitem(first_item, doc)
+
     # Creates collection
     # print(COL_URI)
     if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
