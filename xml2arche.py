@@ -193,18 +193,7 @@ files = glob.glob("data/editions/*.xml")
 # MASTERS_URI
 # DERIVTV_URI
 # TEIDOCS_URI
-
-for xmlfile in files:
-    basename = os.path.basename(xmlfile).split(".")[0]
-    doc = TeiReader(xmlfile)
-    COL_URI = URIRef(f"{TOP_COL_URI}/{basename}")
-    dates = get_date(doc)
-    extent = get_extent(doc)
-    # Creates collection
-    print(COL_URI)
-
-
-    for SUB_URI in (TEIDOCS_URI, MASTERS_URI, DERIVTV_URI):
+for SUB_URI in (TEIDOCS_URI, MASTERS_URI, DERIVTV_URI):
         g.add((SUB_URI, RDF.type, ACDH["Collection"]))
         g.add((SUB_URI, ACDH["isPartOf"], TOP_COL_URI))
         g.add((SUB_URI, ACDH["hasRightsHolder"], RightsHolder))
@@ -212,6 +201,20 @@ for xmlfile in files:
         g.add((SUB_URI, ACDH["hasLicensor"], Licensor))
         g.add((SUB_URI, ACDH["hasOwner"], Owner))
         g.add((SUB_URI, ACDH["hasDepositor"], Depositor))
+g.add((MASTERS_URI, ACDH["hasTitle"], Literal("Master Scans")))
+g.add((DERIVTV_URI, ACDH["hasTitle"], Literal("Derivatives")))
+g.add((TEIDOCS_URI, ACDH["hasTitle"], Literal("TEI Documents")))
+
+
+
+for xmlfile in files:
+    basename = os.path.basename(xmlfile).split(".")[0]
+    doc = TeiReader(xmlfile)
+    # COL_URI = URIRef(f"{TOP_COL_URI}/{basename}")
+    dates = get_date(doc)
+    extent = get_extent(doc)
+    # Creates collection
+    # print(COL_URI)
     if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
         has_title = has_title[0]
         g.add((TEIDOCS_URI, ACDH["hasTitle"], Literal(has_title)))
@@ -219,7 +222,7 @@ for xmlfile in files:
         g.add((TEIDOCS_URI, ACDH["hasTitle"], Literal(basename)))
         has_title = "No title provided"
     # creates resource for the XML
-    subj = URIRef(f"{TEIDOCS_URI}/{basename}")
+    subj = URIRef(f"{TEIDOCS_URI}/{xmlfile}}")
     g.add((subj, RDF.type, ACDH["Resource"]))
     g.add((subj, ACDH["isPartOf"], TEIDOCS_URI))
     print("SUB:", subj)
