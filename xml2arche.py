@@ -4,7 +4,9 @@ import os
 import re
 from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD
 from acdh_tei_pyutils.tei import TeiReader
-from PIL import Image 
+from PIL import Image
+import requests
+from io import BytesIO
 
 fails = ("A63_51", "A64_34", "A64_37", "A64_38")
 
@@ -190,9 +192,9 @@ def get_nextitem(first_item, doc):
     return next_item
 
 def get_dims(file_path):
-    img = Image.open(file_path)
+    response = requests.get(file_path)
+    img = Image.open(BytesIO(response.content))
     return  img.width, img.height
-
 
 
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
