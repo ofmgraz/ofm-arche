@@ -4,6 +4,7 @@ import os
 import re
 from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD
 from acdh_tei_pyutils.tei import TeiReader
+from PIL import Image 
 
 fails = ("A63_51", "A64_34", "A64_37", "A64_38")
 
@@ -171,12 +172,13 @@ def get_extent(tei):
 def get_tifs(tei):
     tifs = []
     for tif in tei.any_xpath(".//tei:graphic/@url"):
+        dims = get_dims(tif)
         print(f"TIF:\t{tif}")
         base = re.search("files/images/(.*)/full/full", tif).group(1)
         print(base)
         print("------------------------")
         if base not in tifs:
-            tifs.append(base)
+            tifs.append((base, dims))
     return tifs
 
 def get_nextitem(first_item, doc):
@@ -186,6 +188,12 @@ def get_nextitem(first_item, doc):
     else:
         next_item = next_item[0]
     return next_item
+
+def get_dims(file_path):
+    img = Image.open(file_path)
+    return  img.width, img.height
+
+
 
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
 
@@ -223,18 +231,17 @@ for xmlfile in files:
     hasNextItem = get_nextitem(first_item, doc)
     if not first_item:
         first_item = get_nextitem(first_item, doc)
-
+    subj = URIRef(f"{TEIDOCS_URI}/{xmlfile}}")
+    g.add((subj, RDF.type, ACDH["Resource"]))
     # Creates collection
     # print(COL_URI)
     if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
         has_title = has_title[0]
-        g.add((TEIDOCS_URI, ACDH["hasTitle"], Literal(has_title)))
+        g.add((subj, ACDH["hasTitle"], Literal(has_title)))
     else:
-        g.add((TEIDOCS_URI, ACDH["hasTitle"], Literal(basename)))
+        g.add((subj, ACDH["hasTitle"], Literal(basename)))
         has_title = "No title provided"
     # creates resource for the XML
-    subj = URIRef(f"{TEIDOCS_URI}/{xmlfile}}")
-    g.add((subj, RDF.type, ACDH["Resource"]))
     g.add((subj, ACDH["isPartOf"], TEIDOCS_URI))
     print("SUB:", subj)
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
@@ -270,8 +277,9 @@ for xmlfile in files:
         if not picture:
             continue
         print(picture)
-        tif = (MASTERS_URI, f"{picture}.tif")
-        jpg = (DERIVTV_URI, f"{picture}.jpg")
+        tif = (MASTERS_URI, f"{picture[0]}.tif")
+        jpg = (DERIVTV_URI, f"{picture[0]}.jpg")
+        dims = picture[1]
         for path_file in (tif, jpg):
             resc = URIRef(os.path.join(path_file))
             print("pic:", resc)
@@ -288,6 +296,7 @@ for xmlfile in files:
             g.add((resc, ACDH["hasCategory"], Literal("Text")))  # not sure
             g.add((resc, ACDH["hasLicense"], Licence))
             g.add((resc, ACDH["hasLicensor"], Licensor))
+            g.add((resc, ACDH["hasExtent"], f"{dims[0]}x{dims[1]}px"))
 
 try:
     g.serialize("ofmgraz.ttl")
