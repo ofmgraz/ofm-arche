@@ -303,7 +303,8 @@ for xmlfile in files:
             g.add((resc, ACDH["hasCategory"], Literal("Text")))  # not sure
             g.add((resc, ACDH["hasLicense"], Licence))
             g.add((resc, ACDH["hasLicensor"], Licensor))
-            if dims := picture[1]:
+            if picture[1]:
+                dims = picture[1]
                 g.add((resc, ACDH["hasExtent"], f"{dims[0]}x{dims[1]}px"))
 
 try:
