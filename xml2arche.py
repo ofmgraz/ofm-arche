@@ -174,15 +174,15 @@ def get_extent(tei):
 def get_tifs(tei):
     tifs = []
     for tif in tei.any_xpath(".//tei:graphic/@url"):
-        print("TIF_s", tif)
+        # print("TIF_s", tif)
         try:
             dims = get_dims(tif)
         except Exception:
             dims = False
-        print(f"TIF:\t{tif}")
+        # print(f"TIF:\t{tif}")
         base = re.search("files/images/(.*)/full/full", tif).group(1)
-        print("BASE", base)
-        print("------------------------")
+        # print("BASE", base)
+        # print("------------------------")
         if base not in tifs:
             tifs.append((base, dims))
     return tifs
@@ -196,7 +196,7 @@ def get_nextitem(first_item, doc):
     return next_item
 
 def get_dims(file_path):
-    print("DIMS_d", file_path)
+    # print("DIMS_d", file_path)
     response = requests.get(file_path)
     img = Image.open(BytesIO(response.content))
     return  img.width, img.height
@@ -238,6 +238,7 @@ for xmlfile in files:
     if not first_item:
         first_item = get_nextitem(first_item, doc)
     subj = URIRef(os.path.join(TEIDOCS_URI, xmlfile))
+    print(subj)
     g.add((subj, RDF.type, ACDH["Resource"]))
     # Creates collection
     # print(COL_URI)
@@ -249,7 +250,7 @@ for xmlfile in files:
         has_title = "No title provided"
     # creates resource for the XML
     g.add((subj, ACDH["isPartOf"], TEIDOCS_URI))
-    print("SUB:", subj)
+    # print("SUB:", subj)
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
         g.add((subj, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text)))
     g.add(
@@ -275,21 +276,20 @@ for xmlfile in files:
     g.add((subj, ACDH["hasOwner"], Owner))
     g.add((subj, ACDH["hasMetadataCreator"], MetadataCreator))
     g.add((subj, ACDH["hasDepositor"], Depositor))
-    g.add((subj, ACDH["hasCategory"], Literal("Text")))  # not sure
     g.add((subj, ACDH["hasLicense"], Licence))
     g.add((subj, ACDH["hasLicensor"], Licensor))
     # Add TIFFs to collection
     for picture in get_tifs(doc):
         if not picture:
             continue
-        print("PICTURE", picture)
+        # print("PICTURE", picture)
         tif = (MASTERS_URI, f"{picture[0]}.tif")
         jpg = (DERIVTV_URI, f"{picture[0]}.jpg")
         
         dims = picture[1]
         for path_file in (tif, jpg):
             resc = URIRef(os.path.join(path_file[0], path_file[1]))
-            print("pic:", resc)
+            # print("pic:", resc)
             g.add((resc, RDF.type, ACDH["Resource"]))
             g.add((resc, ACDH["isPartOf"], path_file[0]))
             g.add((resc, ACDH["hasTitle"], Literal(picture)))
@@ -300,13 +300,12 @@ for xmlfile in files:
             g.add((resc, ACDH["hasOwner"], Owner))
             g.add((resc, ACDH["hasMetadataCreator"], MetadataCreator))
             g.add((resc, ACDH["hasDepositor"], Depositor))
-            g.add((resc, ACDH["hasCategory"], Literal("Text")))  # not sure
+            g.add((resc, ACDH["hasCategory"], URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/image")))
             g.add((resc, ACDH["hasLicense"], Licence))
             g.add((resc, ACDH["hasLicensor"], Licensor))
             if picture[1]:
                 dims = picture[1]
                 g.add((resc, ACDH["hasExtent"], Literal(f"{dims[0]}x{dims[1]}px")))
-
 try:
     g.serialize("ofmgraz.ttl")
 except Exception as e:
