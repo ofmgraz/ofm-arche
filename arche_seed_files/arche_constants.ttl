@@ -24,13 +24,13 @@
         "Digitale Edition"@de ,
         "Musikwissenschaft"@de .
 
-<https://orcid.org/0000-0002-8815-6741> a acdh:Person ;
+<https://d-nb.info/gnd/1297553608> a acdh:Person ;
     acdh:hasTitle "Fernando Sanz-Lázaro"@und;
-    acdh:hasIdentifier <https://d-nb.info/gnd/1297553608> .
+    acdh:hasIdentifier <https://orcid.org/0000-0002-8815-6741> .
 
-<https://orcid.org/0000-0002-0484-832X> a acdh:Person ;
+<https://d-nb.info/gnd/134072170> a acdh:Person ;
     acdh:hasTitle "Robert Klugseder"@und ;
-    acdh:hasIdentifier <https://d-nb.info/gnd/134072170> .
+    acdh:hasIdentifier  <https://orcid.org/0000-0002-0484-832X> .
 
 <https://d-nb.info/gnd/16174362-6> a acdh:Organisation ; 
     acdh:hasTitle "Franziskanerkloster Graz"@und .
