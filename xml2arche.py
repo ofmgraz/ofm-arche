@@ -4,12 +4,15 @@ import os
 import re
 from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD
 from acdh_tei_pyutils.tei import TeiReader
+from PIL import Image
+import requests
+from io import BytesIO
 
 fails = ("A63_51", "A64_34", "A64_37", "A64_38")
 
 TOP_COL_URI = URIRef("https://id.acdh.oeaw.ac.at/ofm-graz")
 MASTERS_URI = URIRef("https://id.acdh.oeaw.ac.at/masters")
-DERIVTV_URI = URIRef("https://id.acdh.oeaw.ac.at/drivatives")
+DERIVTV_URI = URIRef("https://id.acdh.oeaw.ac.at/derivatives")
 TEIDOCS_URI = URIRef("https://id.acdh.oeaw.ac.at/xmltei")
 
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
@@ -171,13 +174,32 @@ def get_extent(tei):
 def get_tifs(tei):
     tifs = []
     for tif in tei.any_xpath(".//tei:graphic/@url"):
-        print(f"TIF:\t{tif}")
+        # print("TIF_s", tif)
+        try:
+            dims = get_dims(tif)
+        except Exception:
+            dims = False
+        # print(f"TIF:\t{tif}")
         base = re.search("files/images/(.*)/full/full", tif).group(1)
-        print(base)
-        print("------------------------")
+        # print("BASE", base)
+        # print("------------------------")
         if base not in tifs:
-            tifs.append(base)
+            tifs.append((base, dims))
     return tifs
+
+def get_nextitem(first_item, doc):
+    if next_item := doc.any_xpath("/@next"):
+        if first_item == next_item[0]:
+            next_item = False
+        else:
+            next_item = next_item[0]
+    return next_item
+
+def get_dims(file_path):
+    # print("DIMS_d", file_path)
+    response = requests.get(file_path)
+    img = Image.open(BytesIO(response.content))
+    return  img.width, img.height
 
 
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
@@ -189,33 +211,46 @@ g = Graph().parse("arche_seed_files/arche_constants.ttl")
 count = 0
 files = glob.glob("data/editions/*.xml")
 
+
+# MASTERS_URI
+# DERIVTV_URI
+# TEIDOCS_URI
+for SUB_URI in (TEIDOCS_URI, MASTERS_URI, DERIVTV_URI):
+        g.add((SUB_URI, RDF.type, ACDH["Collection"]))
+        g.add((SUB_URI, ACDH["isPartOf"], TOP_COL_URI))
+        g.add((SUB_URI, ACDH["hasRightsHolder"], RightsHolder))
+        g.add((SUB_URI, ACDH["hasMetadataCreator"], MetadataCreator))
+        g.add((SUB_URI, ACDH["hasLicensor"], Licensor))
+        g.add((SUB_URI, ACDH["hasOwner"], Owner))
+        g.add((SUB_URI, ACDH["hasDepositor"], Depositor))
+g.add((MASTERS_URI, ACDH["hasTitle"], Literal("Master Scans")))
+g.add((DERIVTV_URI, ACDH["hasTitle"], Literal("Derivatives")))
+g.add((TEIDOCS_URI, ACDH["hasTitle"], Literal("TEI Documents")))
+
+
+first_item = False
 for xmlfile in files:
     basename = os.path.basename(xmlfile).split(".")[0]
     doc = TeiReader(xmlfile)
-    COL_URI = URIRef(f"{TOP_COL_URI}/{basename}")
     dates = get_date(doc)
     extent = get_extent(doc)
+    hasNextItem = get_nextitem(first_item, doc)
+    if not first_item:
+        first_item = get_nextitem(first_item, doc)
+    subj = URIRef(os.path.join(TEIDOCS_URI, xmlfile))
+    print(subj)
+    g.add((subj, RDF.type, ACDH["Resource"]))
     # Creates collection
-    print(COL_URI)
-
-    g.add((COL_URI, RDF.type, ACDH["Collection"]))
-    g.add((COL_URI, ACDH["isPartOf"], TOP_COL_URI))
-    g.add((COL_URI, ACDH["hasRightsHolder"], RightsHolder))
-    g.add((COL_URI, ACDH["hasMetadataCreator"], MetadataCreator))
-    g.add((COL_URI, ACDH["hasLicensor"], Licensor))
-    g.add((COL_URI, ACDH["hasOwner"], Owner))
-    g.add((COL_URI, ACDH["hasDepositor"], Depositor))
+    # print(COL_URI)
     if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
         has_title = has_title[0]
-        g.add((COL_URI, ACDH["hasTitle"], Literal(has_title)))
+        g.add((subj, ACDH["hasTitle"], Literal(has_title)))
     else:
-        g.add((COL_URI, ACDH["hasTitle"], Literal(basename)))
+        g.add((subj, ACDH["hasTitle"], Literal(basename)))
         has_title = "No title provided"
     # creates resource for the XML
-    subj = URIRef(f"{COL_URI}/{basename}")
-    g.add((subj, RDF.type, ACDH["Resource"]))
-    g.add((subj, ACDH["isPartOf"], COL_URI))
-    print("SUB:", subj)
+    g.add((subj, ACDH["isPartOf"], TEIDOCS_URI))
+    # print("SUB:", subj)
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
         g.add((subj, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text)))
     g.add(
@@ -241,30 +276,36 @@ for xmlfile in files:
     g.add((subj, ACDH["hasOwner"], Owner))
     g.add((subj, ACDH["hasMetadataCreator"], MetadataCreator))
     g.add((subj, ACDH["hasDepositor"], Depositor))
-    g.add((subj, ACDH["hasCategory"], Literal("Text")))  # not sure
     g.add((subj, ACDH["hasLicense"], Licence))
     g.add((subj, ACDH["hasLicensor"], Licensor))
     # Add TIFFs to collection
-    for tif in get_tifs(doc):
-        if not tif:
+    for picture in get_tifs(doc):
+        if not picture:
             continue
-        print(tif)
-        resc = URIRef(f"{COL_URI}/{tif}")
-        print("TIF:", resc)
-        g.add((resc, RDF.type, ACDH["Resource"]))
-        g.add((resc, ACDH["isPartOf"], COL_URI))
-        g.add((resc, ACDH["hasTitle"], Literal(tif)))
-        g.add((resc, ACDH["isSourceOf"], subj))
-        g.add((resc, ACDH["hasFilename"], Literal(f"{tif}.tiff")))
-        # The object in the following ones needs to be adapted to meet the actual features
-        g.add((resc, ACDH["hasRightsHolder"], RightsHolder))
-        g.add((resc, ACDH["hasOwner"], Owner))
-        g.add((resc, ACDH["hasMetadataCreator"], MetadataCreator))
-        g.add((resc, ACDH["hasDepositor"], Depositor))
-        g.add((resc, ACDH["hasCategory"], Literal("Text")))  # not sure
-        g.add((resc, ACDH["hasLicense"], Licence))
-        g.add((resc, ACDH["hasLicensor"], Licensor))
-
+        # print("PICTURE", picture)
+        tif = (MASTERS_URI, f"{picture[0]}.tif")
+        jpg = (DERIVTV_URI, f"{picture[0]}.jpg")
+        
+        dims = picture[1]
+        for path_file in (tif, jpg):
+            resc = URIRef(os.path.join(path_file[0], path_file[1]))
+            # print("pic:", resc)
+            g.add((resc, RDF.type, ACDH["Resource"]))
+            g.add((resc, ACDH["isPartOf"], path_file[0]))
+            g.add((resc, ACDH["hasTitle"], Literal(picture)))
+            g.add((resc, ACDH["isSourceOf"], subj))
+            g.add((resc, ACDH["hasFilename"], Literal(path_file[-1])))
+            # The object in the following ones needs to be adapted to meet the actual features
+            g.add((resc, ACDH["hasRightsHolder"], RightsHolder))
+            g.add((resc, ACDH["hasOwner"], Owner))
+            g.add((resc, ACDH["hasMetadataCreator"], MetadataCreator))
+            g.add((resc, ACDH["hasDepositor"], Depositor))
+            g.add((resc, ACDH["hasCategory"], URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/image")))
+            g.add((resc, ACDH["hasLicense"], Licence))
+            g.add((resc, ACDH["hasLicensor"], Licensor))
+            if picture[1]:
+                dims = picture[1]
+                g.add((resc, ACDH["hasExtent"], Literal(f"{dims[0]}x{dims[1]}px")))
 try:
     g.serialize("ofmgraz.ttl")
 except Exception as e:
