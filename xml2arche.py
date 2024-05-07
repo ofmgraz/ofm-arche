@@ -244,10 +244,10 @@ for xmlfile in files:
     # print(COL_URI)
     if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
         has_title = has_title[0]
-        g.add((subj, ACDH["hasTitle"], Literal(has_title)))
     else:
-        g.add((subj, ACDH["hasTitle"], Literal(basename)))
-        has_title = "No title provided"
+        has_title = basename
+    print(has_title)
+    g.add((subj, ACDH["hasTitle"], Literal(has_title)))
     # creates resource for the XML
     g.add((subj, ACDH["isPartOf"], TEIDOCS_URI))
     # print("SUB:", subj)
@@ -260,7 +260,6 @@ for xmlfile in files:
             URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei"),
         )
     )
-    g.add((subj, ACDH["hasTitle"], Literal(has_title)))
     g.add((subj, ACDH["hasFilename"], Literal(f"{basename}.xml")))
     g.add((subj, ACDH["hasFormat"], Literal("application/xml")))
     g.add(
