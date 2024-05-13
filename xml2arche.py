@@ -200,7 +200,7 @@ def get_dims(file_path):
     return 0, 0
 
 def get_coverage(doc):
-    places = doc.any_xpath('.//tei:standOff/tei:listPlace/tei:place/idno[@subtype="GND"]')
+    places = doc.any_xpath('.//tei:standOff/tei:listPlace/tei:place/tei:idno[@subtype="GND"]/text()')
     return [URIRef(place) for place in places]
 
 
@@ -267,7 +267,8 @@ for xmlfile in files:
             URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat"),
         )
     )
-    [g.add((subj, ACDH["hasSpatialCoverage"], scover)) for scover in get_coverage(doc)]
+    coverage = get_coverage(doc)
+    [g.add((subj, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
 
     [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
     g.add((subj, ACDH["hasExtent"], extent))
@@ -288,6 +289,7 @@ for xmlfile in files:
         for path_file in (tif, jpg):
             resc = URIRef(os.path.join(path_file[0], path_file[1]))
             g.add((resc, RDF.type, ACDH["Resource"]))
+            [g.add((resc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
             g.add((resc, ACDH["isPartOf"], path_file[0]))
             g.add((resc, ACDH["hasTitle"], Literal(picture)))
             g.add((resc, ACDH["isSourceOf"], subj))
