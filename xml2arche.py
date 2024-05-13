@@ -152,6 +152,12 @@ def get_contributors(tei):
         predobj.append((pred, obj))
     return predobj
 
+def get_used_device(tei):
+    device = tei.any_xpath(".//tei:notesStmt/tei:note/text()")
+    if device:
+        return Literal(re.match(r"Originals digitised with a (\w+) device", device[0]).group(1))
+    else:
+        return ""
 
 def get_extent(tei):
     measures = []
@@ -269,8 +275,9 @@ for xmlfile in files:
     )
     coverage = get_coverage(doc)
     [g.add((subj, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
-
-    [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
+    contributors = get_contributors(doc)
+    [g.add((subj, x[0], x[1])) for x in contributors]
+    g.add((subj, ACDH["hasUsedDevice"], get_used_device(doc)))
     g.add((subj, ACDH["hasExtent"], extent))
     g.add((subj, ACDH["hasRightsHolder"], RightsHolder))
     g.add((subj, ACDH["hasOwner"], Owner))
@@ -286,6 +293,8 @@ for xmlfile in files:
         jpg = (DERIVTV_URI, f"{picture[0]}.jpg")
         
         dims = picture[1]
+        digitiser = [dig for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
+        [g.add((URIRef(os.path.join(tif[0], tif[1])), ACDH['hasDigitisingAgent'], dig)) for dig in digitiser]
         for path_file in (tif, jpg):
             resc = URIRef(os.path.join(path_file[0], path_file[1]))
             g.add((resc, RDF.type, ACDH["Resource"]))
