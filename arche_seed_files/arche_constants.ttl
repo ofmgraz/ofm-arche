@@ -6,15 +6,15 @@
     acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ;
     acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ;
     acdh:hasSpatialCoverage <https://d-nb.info/gnd/16174362-6>,
-        <http://d-nb.info/gnd/4021912-4>,
-        <http://d-nb.info/gnd/4073953-3>,
-        <http://d-nb.info/gnd/4066009-6>,
+        <https://d-nb.info/gnd/4021912-4>,
+        <https://d-nb.info/gnd/4073953-3>,
+        <https://d-nb.info/gnd/4066009-6>,
         <https://d-nb.info/gnd/4076982-3>,
-        <http://d-nb.info/gnd/4076982-3>,
-        <http://d-nb.info/gnd/4400654-8>,
-        <http://d-nb.info/gnd/4127793-4>,
-        <http://d-nb.info/gnd/4051622-2>,
-        <http://d-nb.info/gnd/4115047-8>;
+        <https://d-nb.info/gnd/4076982-3>,
+        <https://d-nb.info/gnd/4400654-8>,
+        <https://d-nb.info/gnd/4127793-4>,
+        <https://d-nb.info/gnd/4051622-2>,
+        <https://d-nb.info/gnd/4115047-8>;
     acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024>,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008>;
@@ -29,7 +29,7 @@
     acdh:hasRightsHolder <https://id.acdh.oeaw.ac.at/oeaw> ; 
     acdh:hasContact  <https://orcid.org/0000-0002-0484-832X> ;
     acdh:hasCurator <https://orcid.org/0000-0002-0484-832X> ;
-    acdh:hasFunder: TopCollection <https://www.wikidata.org/wiki/Q47012226>;
+    acdh:hasFunder <https://www.wikidata.org/wiki/Q47012226>;
     acdh:hasSubject
         "Digitale Edition"@de ,
         "Musikwissenschaft"@de .

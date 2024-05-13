@@ -31,6 +31,7 @@ Owner = URIRef("https://id.acdh.oeaw.ac.at/oeaw")
 Licensor = URIRef("https://orcid.org/0000-0002-0484-832X")
 Depositor = URIRef("https://orcid.org/0000-0002-0484-832X")
 Licence = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-4-0")
+Franziskanerkloster = URIRef("https://d-nb.info/gnd/16174362-6")
 
 
 ##################################################################################################
@@ -193,9 +194,14 @@ def get_nextitem(first_item, doc):
     return next_item
 
 def get_dims(file_path):
-    response = requests.get(file_path)
-    img = Image.open(BytesIO(response.content))
-    return  img.width, img.height
+    #response = requests.get(file_path)
+    #img = Image.open(BytesIO(response.content))
+    #return  img.width, img.height
+    return 0, 0
+
+def get_coverage(doc):
+    places = doc.any_xpath('.//tei:standOff/tei:listPlace/tei:place/idno[@subtype="GND"]')
+    return [URIRef(place) for place in places]
 
 
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
@@ -216,9 +222,9 @@ for SUB_URI in (TEIDOCS_URI, MASTERS_URI, DERIVTV_URI):
         g.add((SUB_URI, ACDH["isPartOf"], TOP_COL_URI))
         g.add((SUB_URI, ACDH["hasRightsHolder"], RightsHolder))
         g.add((SUB_URI, ACDH["hasMetadataCreator"], MetadataCreator))
-        g.add((SUB_URI, ACDH["hasLicensor"], Licensor))
-        g.add((SUB_URI, ACDH["hasOwner"], Owner))
-        g.add((SUB_URI, ACDH["hasDepositor"], Depositor))
+        g.add((SUB_URI, ACDH["hasLicensor"], Franziskanerkloster))
+        g.add((SUB_URI, ACDH["hasOwner"], Franziskanerkloster))
+        g.add((SUB_URI, ACDH["hasDepositor"], Franziskanerkloster))
 g.add((MASTERS_URI, ACDH["hasTitle"], Literal("Master Scans")))
 g.add((DERIVTV_URI, ACDH["hasTitle"], Literal("Derivatives")))
 g.add((TEIDOCS_URI, ACDH["hasTitle"], Literal("TEI Documents")))
@@ -261,6 +267,8 @@ for xmlfile in files:
             URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat"),
         )
     )
+    [g.add((subj, ACDH["hasSpatialCoverage"], scover)) for scover in get_coverage(doc)]
+
     [g.add((subj, x[0], x[1])) for x in get_contributors(doc)]
     g.add((subj, ACDH["hasExtent"], extent))
     g.add((subj, ACDH["hasRightsHolder"], RightsHolder))
