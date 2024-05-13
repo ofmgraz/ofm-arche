@@ -10,10 +10,10 @@ from io import BytesIO
 
 fails = ("A63_51", "A64_34", "A64_37", "A64_38")
 
-TOP_COL_URI = URIRef("https://id.acdh.oeaw.ac.at/ofm-graz")
-MASTERS_URI = URIRef("https://id.acdh.oeaw.ac.at/masters")
-DERIVTV_URI = URIRef("https://id.acdh.oeaw.ac.at/derivatives")
-TEIDOCS_URI = URIRef("https://id.acdh.oeaw.ac.at/xmltei")
+TOP_COL_URI = URIRef("https://id.acdh.oeaw.ac.at/ofmgraz")
+MASTERS_URI = URIRef("https://id.acdh.oeaw.ac.at/ofmgraz/masters")
+DERIVTV_URI = URIRef("https://id.acdh.oeaw.ac.at/ofmgraz/derivatives")
+TEIDOCS_URI = URIRef("https://id.acdh.oeaw.ac.at/ofmgraz/xmltei")
 
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
@@ -174,15 +174,12 @@ def get_extent(tei):
 def get_tifs(tei):
     tifs = []
     for tif in tei.any_xpath(".//tei:graphic/@url"):
-        # print("TIF_s", tif)
         try:
             dims = get_dims(tif)
         except Exception:
             dims = False
-        # print(f"TIF:\t{tif}")
         base = re.search("files/images/(.*)/full/full", tif).group(1)
-        # print("BASE", base)
-        # print("------------------------")
+        # prin("------------------------")
         if base not in tifs:
             tifs.append((base, dims))
     return tifs
@@ -196,7 +193,6 @@ def get_nextitem(first_item, doc):
     return next_item
 
 def get_dims(file_path):
-    # print("DIMS_d", file_path)
     response = requests.get(file_path)
     img = Image.open(BytesIO(response.content))
     return  img.width, img.height
@@ -238,19 +234,15 @@ for xmlfile in files:
     if not first_item:
         first_item = get_nextitem(first_item, doc)
     subj = URIRef(os.path.join(TEIDOCS_URI, xmlfile))
-    print(subj)
     g.add((subj, RDF.type, ACDH["Resource"]))
     # Creates collection
-    # print(COL_URI)
     if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
         has_title = has_title[0]
     else:
         has_title = basename
-    print(has_title)
     g.add((subj, ACDH["hasTitle"], Literal(has_title)))
     # creates resource for the XML
     g.add((subj, ACDH["isPartOf"], TEIDOCS_URI))
-    # print("SUB:", subj)
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
         g.add((subj, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text)))
     g.add(
@@ -281,14 +273,12 @@ for xmlfile in files:
     for picture in get_tifs(doc):
         if not picture:
             continue
-        # print("PICTURE", picture)
         tif = (MASTERS_URI, f"{picture[0]}.tif")
         jpg = (DERIVTV_URI, f"{picture[0]}.jpg")
         
         dims = picture[1]
         for path_file in (tif, jpg):
             resc = URIRef(os.path.join(path_file[0], path_file[1]))
-            # print("pic:", resc)
             g.add((resc, RDF.type, ACDH["Resource"]))
             g.add((resc, ACDH["isPartOf"], path_file[0]))
             g.add((resc, ACDH["hasTitle"], Literal(picture)))
