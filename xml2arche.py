@@ -11,9 +11,9 @@ from io import BytesIO
 fails = ("A63_51", "A64_34", "A64_37", "A64_38")
 
 TOP_COL_URI = URIRef("https://id.acdh.oeaw.ac.at/ofmgraz")
-MASTERS_URI = URIRef("https://id.acdh.oeaw.ac.at/ofm-graz/masters")
-DERIVTV_URI = URIRef("https://id.acdh.oeaw.ac.at/ofm-graz/derivatives")
-TEIDOCS_URI = URIRef("https://id.acdh.oeaw.ac.at/ofm-graz/xmltei")
+MASTERS_URI = URIRef("https://id.acdh.oeaw.ac.at/ofmgraz/masters")
+DERIVTV_URI = URIRef("https://id.acdh.oeaw.ac.at/ofmgraz/derivatives")
+TEIDOCS_URI = URIRef("https://id.acdh.oeaw.ac.at/ofmgraz/xmltei")
 
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
