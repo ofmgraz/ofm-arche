@@ -204,6 +204,9 @@ def get_dims(file_path):
     img = Image.open(BytesIO(response.content))
     return  img.width, img.height
 
+def get_dims(file_path):
+    return 0, 0
+
 def get_coverage(doc):
     places = doc.any_xpath('.//tei:standOff/tei:listPlace/tei:place/tei:idno[@subtype="GND"]/text()')
     return [URIRef(place) for place in places]
@@ -294,6 +297,7 @@ for xmlfile in files:
 
         dims = picture[1]
         digitiser = [dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
+        g.add((URIRef(os.path.join(tif[0], tif[1])), ACDH['isSource'], URIRef(os.path.join(jpg[0], jpg[1]))))
         [g.add((URIRef(os.path.join(tif[0], tif[1])), ACDH['hasDigitisingAgent'], dig)) for dig in digitiser]
         for path_file in (tif, jpg):
             resc = URIRef(os.path.join(path_file[0], path_file[1]))
