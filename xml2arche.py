@@ -204,7 +204,7 @@ def get_dims(file_path):
     img = Image.open(BytesIO(response.content))
     return  img.width, img.height
 
-def get_dims(file_path):
+def get_dims2(file_path):
     return 0, 0
 
 def get_coverage(doc):
@@ -317,7 +317,8 @@ for xmlfile in files:
             g.add((resc, ACDH["hasLicensor"], Licensor))
             if picture[1]:
                 dims = picture[1]
-                g.add((resc, ACDH["hasExtent"], Literal(f"{dims[0]}x{dims[1]}px")))
+                g.add((resc, ACDH["hasPixelHeight"], Literal(f"{dims[0]}")))
+                g.add((resc, ACDH["hasPixelWidth"], Literal(f"{dims[1]}")))
 try:
     g.serialize("ofmgraz.ttl")
 except Exception as e:
