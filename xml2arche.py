@@ -157,7 +157,7 @@ def get_used_device(tei):
     if device:
         return Literal(re.match(r"Originals digitised with a (\w+) device", device[0]).group(1))
     else:
-        return ""
+        return Literal("")
 
 def get_extent(tei):
     measures = []
@@ -200,10 +200,9 @@ def get_nextitem(first_item, doc):
     return next_item
 
 def get_dims(file_path):
-    #response = requests.get(file_path)
-    #img = Image.open(BytesIO(response.content))
-    #return  img.width, img.height
-    return 0, 0
+    response = requests.get(file_path)
+    img = Image.open(BytesIO(response.content))
+    return  img.width, img.height
 
 def get_coverage(doc):
     places = doc.any_xpath('.//tei:standOff/tei:listPlace/tei:place/tei:idno[@subtype="GND"]/text()')
@@ -291,9 +290,9 @@ for xmlfile in files:
             continue
         tif = (MASTERS_URI, f"{picture[0]}.tif")
         jpg = (DERIVTV_URI, f"{picture[0]}.jpg")
-        
+
         dims = picture[1]
-        digitiser = [dig for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
+        digitiser = [dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
         [g.add((URIRef(os.path.join(tif[0], tif[1])), ACDH['hasDigitisingAgent'], dig)) for dig in digitiser]
         for path_file in (tif, jpg):
             resc = URIRef(os.path.join(path_file[0], path_file[1]))
