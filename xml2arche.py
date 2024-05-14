@@ -204,7 +204,7 @@ def get_dims(file_path):
     img = Image.open(BytesIO(response.content))
     return  img.width, img.height
 
-def get_dims(file_path):
+def get_dims2(file_path):
     return 0, 0
 
 def get_coverage(doc):
