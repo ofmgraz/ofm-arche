@@ -320,6 +320,7 @@ for xmlfilepath in files:
     [g.add((xmlresc, x[0], x[1])) for x in contributors]
     g.add((xmlresc, ACDH["hasExtent"], extent))
     add_temporal(xmlresc, dates[0], dates[1])
+    g.add((xmlresc, ACDH["hasUsedSoftware"], Literal("Transkribus")))
     
     # Add TIFFs to collection
 
