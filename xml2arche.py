@@ -320,7 +320,6 @@ for xmlfile in files:
             [g.add((resc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
             g.add((resc, ACDH["isPartOf"], path_file[0]))
             g.add((resc, ACDH["hasTitle"], Literal(picture)))
-            g.add((resc, ACDH["isSourceOf"], subj))
             g.add((resc, ACDH["isPartOf"], path_file[0]))
             g.add((resc, ACDH["hasFilename"], Literal(path_file[-1])))
             # The object in the following ones needs to be adapted to meet the actual features
