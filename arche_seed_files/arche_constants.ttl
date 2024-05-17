@@ -30,6 +30,8 @@
     acdh:hasContact  <https://orcid.org/0000-0002-0484-832X> ;
     acdh:hasCurator <https://orcid.org/0000-0002-0484-832X> ;
     acdh:hasFunder <https://www.wikidata.org/wiki/Q47012226>;
+    acdh:hasCoverageStartDate "1425-01-01";
+    acdh:hasCoverageEndDate "1779-12-31";
     acdh:hasSubject
         "Digitale Edition"@de ,
         "Musikwissenschaft"@de .
