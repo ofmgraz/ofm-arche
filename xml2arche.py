@@ -46,6 +46,15 @@ def get_parent_node(feat, file_path):
     return nodes
 
 
+
+def get_temporalcoverid(year):
+    ids = {"13": URIRef("https://www.wikidata.org/wiki/Q7034"),
+           "14": URIRef("https://www.wikidata.org/wiki/Q7018"),
+           "15": URIRef("https://www.wikidata.org/wiki/Q7017"),
+           "16": URIRef("https://www.wikidata.org/wiki/Q7016"),
+           "17": URIRef("https://www.wikidata.org/wiki/Q7015")}
+    return ids[year[0:2]]
+    
 # Takes a TEI element (respStmt or person) and returns a tuple of triples to add to the RDF
 def make_person(person):
     output = []
@@ -204,7 +213,7 @@ def get_dims(file_path):
     img = Image.open(BytesIO(response.content))
     return  img.width, img.height
 
-def get_dims2(file_path):
+def get_dims(file_path):
     return 0, 0
 
 def get_coverage(doc):
@@ -288,6 +297,10 @@ for xmlfile in files:
     g.add((subj, ACDH["hasDepositor"], Depositor))
     g.add((subj, ACDH["hasLicense"], Licence))
     g.add((subj, ACDH["hasLicensor"], Licensor))
+    g.add((subj, ACDH["hasCoverageStartDate"], dates[0]))
+    g.add((subj, ACDH["hasCoverageEndDate"], dates[1]))
+    dateid = get_temporalcoverid(dates[0])
+    g.add((subj, ACDH["hasTemporalCoverageIdentifier"], dateid))
     # Add TIFFs to collection
     for picture in get_tifs(doc):
         if not picture:
@@ -306,6 +319,7 @@ for xmlfile in files:
             g.add((resc, ACDH["isPartOf"], path_file[0]))
             g.add((resc, ACDH["hasTitle"], Literal(picture)))
             g.add((resc, ACDH["isSourceOf"], subj))
+            g.add((resc, ACDH["isPartOf"], path_file[0]))
             g.add((resc, ACDH["hasFilename"], Literal(path_file[-1])))
             # The object in the following ones needs to be adapted to meet the actual features
             g.add((resc, ACDH["hasRightsHolder"], RightsHolder))
