@@ -352,7 +352,7 @@ for xmlfilepath in files:
             resc = picresc[0]
             g.add((resc, RDF.type, ACDH["Resource"]))
             add_constants(resc)
-            g.add((resc, ACDH["isPartOf"], Literal(picresc[1])))
+            g.add((resc, ACDH["isPartOf"], URIRef(picresc[1])))
             g.add((resc, ACDH["hasTitle"], Literal(picture[0])))
             g.add((resc, ACDH["hasFilename"], Literal(picresc[2])))
             # The object in the following ones needs to be adapted to meet the actual features
