@@ -31,12 +31,12 @@ nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
 ##################################################################################################
 
 RightsHolder = URIRef("https://id.acdh.oeaw.ac.at/oeaw")
-Owner = URIRef("https://id.acdh.oeaw.ac.at/oeaw")
+Owner = URIRef("https://d-nb.info/gnd/16174362-6")
 MetadataCreator = URIRef("https://orcid.org/0000-0002-8815-6741")
 Owner = URIRef("https://id.acdh.oeaw.ac.at/oeaw")
-Licensor = URIRef("https://orcid.org/0000-0002-0484-832X")
-Depositor = URIRef("https://orcid.org/0000-0002-0484-832X")
-Licence = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-4-0")
+Licensor = URIRef("https://d-nb.info/gnd/16174362-6")
+Depositor = URIRef("https://d-nb.info/gnd/16174362-6")
+Licence = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0")
 Franziskanerkloster = URIRef("https://d-nb.info/gnd/16174362-6")
 
 
