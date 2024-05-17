@@ -196,14 +196,15 @@ def get_extent(tei):
 def get_tifs(tei):
     tifs = []
     for tif in tei.any_xpath(".//tei:graphic/@url"):
-        try:
-            dims = get_dims(tif)
-        except Exception:
-            dims = False
-        base = re.search("files/images/(.*)/full/full", tif).group(1)
-        # prin("------------------------")
-        if base not in tifs:
-            tifs.append((base, dims))
+        if tif.split(".")[0]:
+            try:
+                dims = get_dims(tif)
+            except Exception:
+                dims = False
+            base = re.search("files/images/(.*)/full/full", tif).group(1)
+            # prin("------------------------")
+            if base not in tifs:
+                tifs.append((base, dims))
     return tifs
 
 def get_nextitem(first_item, doc):
