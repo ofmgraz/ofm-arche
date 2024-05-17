@@ -32,6 +32,11 @@
     acdh:hasFunder <https://www.wikidata.org/wiki/Q47012226>;
     acdh:hasCoverageStartDate "1425-01-01";
     acdh:hasCoverageEndDate "1779-12-31";
+    acdh:hasTemporalCoverageIdentifier <https://www.wikidata.org/wiki/Q7034>,
+        <https://www.wikidata.org/wiki/Q7018>,
+        <https://www.wikidata.org/wiki/Q7017>,
+        <https://www.wikidata.org/wiki/Q7016>,
+        <https://www.wikidata.org/wiki/Q7015>;
     acdh:hasSubject
         "Digitale Edition"@de ,
         "Musikwissenschaft"@de .
