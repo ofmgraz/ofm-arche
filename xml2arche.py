@@ -196,7 +196,7 @@ def get_extent(tei):
 def get_tifs(tei):
     tifs = []
     for tif in tei.any_xpath(".//tei:graphic/@url"):
-        if tif.split(".")[0]:
+        if len(tif.split(".")[0]) > 0:
             try:
                 dims = get_dims(tif)
             except Exception:
@@ -274,7 +274,7 @@ files = glob.glob("data/editions/*.xml")
 
 xmlarrangement = "Each element represents a physical volume"
 
-for subcol in ((TEIDOCS, "TEI Documents"), (MASTERS, "Master Scans"), (DERIVTV, "Derivatives")):
+for subcol in (["teidocs", "TEI Documents"], ["masters", "Master Scans"], ["derivatives", "Derivative pictures"]):
     make_subcollection(subcol[0], TOP_COL, subcol[1], xmlarrangement)
 
 
@@ -348,8 +348,8 @@ for xmlfilepath in files:
             continue
         tiffile = f"{picture[0]}.tif"
         jpgfile = f"{picture[0]}.jpg"
-        tifresc = URIRef(os.path.join(MASTERS, picture[0]))
-        jpgresc = URIRef(os.path.join(DERIVTV, picture[0]))
+        tifresc = URIRef(os.path.join(MASTERS, tiffile))
+        jpgresc = URIRef(os.path.join(DERIVTV, jpgfile))
 
         g.add((tifresc, ACDH['isSourceOf'], jpgresc))
         g.add((jpgresc, ACDH['isSourceOf'], xmlresc))
