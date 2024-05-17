@@ -299,7 +299,7 @@ for xmlfilepath in files:
     # creates resource for the XML
     g.add((xmlresc, ACDH["isPartOf"], TEIDOCS_URI))
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
-        has_title = signature
+        has_title = signature[0].text
         g.add((xmlresc, ACDH["hasTitle"], Literal(signature[0].text)))
         g.add((xmlresc, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text)))
     if has_subtitle := doc.any_xpath(".//tei:title[@type='main']/text()"):
