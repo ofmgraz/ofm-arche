@@ -228,7 +228,7 @@ def get_coverage(doc):
     return [URIRef(place) for place in places]
 
 
-def make_subcollection(name, parent, title, arrangement=False):
+def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
     subject = URIRef(os.path.join(parent, name))
     g.add((subject, RDF.type, ACDH["Collection"]))
     g.add((subject, ACDH["isPartOf"], URIRef(parent)))
@@ -240,6 +240,8 @@ def make_subcollection(name, parent, title, arrangement=False):
     g.add((subject, ACDH["hasTitle"], Literal(title)))
     if arrangement:
         g.add((subject, ACDH["hasArrangement"], Literal(arrangement)))
+    if subtitle:
+        g.add((subject, ACDH["hasAlternativeTitle"], Literal(subtitle)))
     return subject
 
 def add_constants(subj):
@@ -291,11 +293,6 @@ for xmlfilepath in files:
     add_constants(xmlresc)
     # Creates collection
     
-    if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
-        has_title = has_title[0]
-    else:
-        has_title = basename
-    g.add((xmlresc, ACDH["hasAlternativeTitle"], Literal(has_title)))
     # creates resource for the XML
     g.add((xmlresc, ACDH["isPartOf"], TEIDOCS_URI))
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
@@ -303,10 +300,11 @@ for xmlfilepath in files:
         g.add((xmlresc, ACDH["hasTitle"], Literal(signature[0].text)))
         g.add((xmlresc, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text)))
     if has_subtitle := doc.any_xpath(".//tei:title[@type='main']/text()"):
-        has_subtitle = has_subtitle[0]
-    else:
-        has_subtitle = basename
-    g.add((xmlresc, ACDH["hasAlternativeTitle"], Literal(has_title)))
+        has_subtitle = has_subtitle[0].strip('"')
+        if has_subtitle != has_title:
+            g.add((xmlresc, ACDH["hasAlternativeTitle"], Literal(has_subtitle)))
+        else:
+            subtitle = False
     
     g.add(
         (
@@ -337,7 +335,7 @@ for xmlfilepath in files:
     ## Make subcollections for each book
     device = get_used_device(doc)
     digitiser = [dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
-    subcollections = [make_subcollection(basename, parent, has_title, picarrangement) for parent in (MASTERS, DERIVTV)]
+    subcollections = [make_subcollection(basename, parent, has_title, picarrangement, has_subtitle) for parent in (MASTERS, DERIVTV)]
     for subcollection in subcollections:
         [g.add((subcollection, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
         [g.add((subcollection, ACDH['hasUsedDevice'], dig)) for dig in digitiser]
