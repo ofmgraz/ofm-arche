@@ -270,7 +270,7 @@ files = glob.glob("data/editions/*.xml")
 # DERIVTV_URI
 # TEIDOCS_URI
 
-xmlarrangement = "Each element represents a physical volume""
+xmlarrangement = "Each element represents a physical volume"
 
 for subcol in ((TEIDOCS, "TEI Documents"), (MASTERS, "Master Scans"), (DERIVTV, "Derivatives")):
     make_subcollection(subcol[0], TOP_COL, subcol[1], xmlarrangement)
@@ -290,6 +290,7 @@ for xmlfilepath in files:
     g.add((xmlresc, RDF.type, ACDH["Resource"]))
     add_constants(xmlresc)
     # Creates collection
+    
     if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
         has_title = has_title[0]
     else:
@@ -298,8 +299,15 @@ for xmlfilepath in files:
     # creates resource for the XML
     g.add((xmlresc, ACDH["isPartOf"], TEIDOCS_URI))
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
+        has_title = signature
         g.add((xmlresc, ACDH["hasTitle"], Literal(signature[0].text)))
         g.add((xmlresc, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text)))
+    if has_subtitle := doc.any_xpath(".//tei:title[@type='main']/text()"):
+        has_subtitle = has_subtitle[0]
+    else:
+        has_subtitle = basename
+    g.add((xmlresc, ACDH["hasAlternativeTitle"], Literal(has_title)))
+    
     g.add(
         (
             xmlresc,
