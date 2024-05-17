@@ -47,6 +47,7 @@
     the signature of the physical object, like 'A64_41'. The resources' name is completed with the pagination. For instance ,
     'A-Gf_64_41-003r.tiff' is folio 3 recto of the manuscript with signature A 64/41. Likewise, the folder derivatives contains
     collections JPEG encoded files derivated from the TIFF files."""@en;
+    acdh:hasFunder <https://www.wikidata.org/wiki/Q47012226>;
     acdh:hasUrl <https://ofmgraz.github.io/ofm-static/ >. 
     
 <https://d-nb.info/gnd/1297553608> a acdh:Person ;
