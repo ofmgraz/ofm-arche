@@ -311,7 +311,9 @@ for xmlfile in files:
         dims = picture[1]
         digitiser = [dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
         g.add((URIRef(os.path.join(tif[0], tif[1])), ACDH['isSource'], URIRef(os.path.join(jpg[0], jpg[1]))))
+        g.add((URIRef(os.path.join(jpg[0], jpg[1])), ACDH['isSource'], subj))
         [g.add((URIRef(os.path.join(tif[0], tif[1])), ACDH['hasDigitisingAgent'], dig)) for dig in digitiser]
+
         for path_file in (tif, jpg):
             resc = URIRef(os.path.join(path_file[0], path_file[1]))
             g.add((resc, RDF.type, ACDH["Resource"]))
