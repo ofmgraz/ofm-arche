@@ -351,8 +351,8 @@ for xmlfilepath in files:
         tifresc = URIRef(os.path.join(MASTERS, picture[0]))
         jpgresc = URIRef(os.path.join(DERIVTV, picture[0]))
 
-        g.add((tifresc, ACDH['isSource'], jpgresc))
-        g.add((jpgresc, ACDH['isSource'], xmlresc))
+        g.add((tifresc, ACDH['isSourceOf'], jpgresc))
+        g.add((jpgresc, ACDH['isSourceOf'], xmlresc))
         dims = picture[1]
 
         tif = (tifresc, subcollections[0], tiffile)
@@ -367,7 +367,7 @@ for xmlfilepath in files:
             g.add((resc, ACDH["hasFilename"], Literal(picresc[2])))
             # The object in the following ones needs to be adapted to meet the actual features
             g.add((resc, ACDH["hasCategory"], URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/image")))
-            if picture[1]:
+            if False: # picture[1]:
                 dims = picture[1]
                 g.add((resc, ACDH["hasPixelHeight"], Literal(f"{dims[0]}")))
                 g.add((resc, ACDH["hasPixelWidth"], Literal(f"{dims[1]}")))
