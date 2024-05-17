@@ -228,7 +228,7 @@ def get_coverage(doc):
     return [URIRef(place) for place in places]
 
 
-def make_subcollection(name, parent, title):
+def make_subcollection(name, parent, title, arrangement=False):
     subject = URIRef(os.path.join(parent, name))
     g.add((subject, RDF.type, ACDH["Collection"]))
     g.add((subject, ACDH["isPartOf"], URIRef(parent)))
@@ -238,6 +238,8 @@ def make_subcollection(name, parent, title):
     g.add((subject, ACDH["hasOwner"], Franziskanerkloster))
     g.add((subject, ACDH["hasDepositor"], Franziskanerkloster))
     g.add((subject, ACDH["hasTitle"], Literal(title)))
+    if arrangement:
+        g.add((subject, ACDH["hasArrangement"], Literal(arrangement)))
     return subject
 
 def add_constants(subj):
@@ -268,10 +270,10 @@ files = glob.glob("data/editions/*.xml")
 # DERIVTV_URI
 # TEIDOCS_URI
 
-
+xmlarrangement = "Each element represents a physical volume""
 
 for subcol in ((TEIDOCS, "TEI Documents"), (MASTERS, "Master Scans"), (DERIVTV, "Derivatives")):
-    make_subcollection(subcol[0], TOP_COL, subcol[1])
+    make_subcollection(subcol[0], TOP_COL, subcol[1], xmlarrangement)
 
 
 first_item = False
@@ -323,11 +325,11 @@ for xmlfilepath in files:
     g.add((xmlresc, ACDH["hasUsedSoftware"], Literal("Transkribus")))
     
     # Add TIFFs to collection
-
+    picarrangement = "Each element is a page or a side of folio"
     ## Make subcollections for each book
     device = get_used_device(doc)
     digitiser = [dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
-    subcollections = [make_subcollection(basename, parent, has_title) for parent in (MASTERS, DERIVTV)]
+    subcollections = [make_subcollection(basename, parent, has_title, picarrangement) for parent in (MASTERS, DERIVTV)]
     for subcollection in subcollections:
         [g.add((subcollection, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
         [g.add((subcollection, ACDH['hasUsedDevice'], dig)) for dig in digitiser]
