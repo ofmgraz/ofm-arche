@@ -48,11 +48,11 @@ def get_parent_node(feat, file_path):
 
 
 def get_temporalcoverid(year):
-    ids = {13: URIRef("https://www.wikidata.org/wiki/Q7034"),
-           14: URIRef("https://www.wikidata.org/wiki/Q7018"),
-           15: URIRef("https://www.wikidata.org/wiki/Q7017"),
-           16: URIRef("https://www.wikidata.org/wiki/Q7016"),
-           17: URIRef("https://www.wikidata.org/wiki/Q7015")}
+    ids = {"13": URIRef("https://www.wikidata.org/wiki/Q7034"),
+           "14": URIRef("https://www.wikidata.org/wiki/Q7018"),
+           "15": URIRef("https://www.wikidata.org/wiki/Q7017"),
+           "16": URIRef("https://www.wikidata.org/wiki/Q7016"),
+           "17": URIRef("https://www.wikidata.org/wiki/Q7015")}
     return ids[year[0:2]]
     
 # Takes a TEI element (respStmt or person) and returns a tuple of triples to add to the RDF
