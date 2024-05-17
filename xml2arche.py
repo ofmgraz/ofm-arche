@@ -10,10 +10,16 @@ from io import BytesIO
 
 fails = ("A63_51", "A64_34", "A64_37", "A64_38")
 
-TOP_COL_URI = URIRef("https://id.acdh.oeaw.ac.at/ofmgraz")
-MASTERS_URI = URIRef("https://id.acdh.oeaw.ac.at/ofmgraz/masters")
-DERIVTV_URI = URIRef("https://id.acdh.oeaw.ac.at/ofmgraz/derivatives")
-TEIDOCS_URI = URIRef("https://id.acdh.oeaw.ac.at/ofmgraz/xmltei")
+TOP_COL = "https://id.acdh.oeaw.ac.at/ofmgraz"
+MASTERS = "https://id.acdh.oeaw.ac.at/ofmgraz/masters"
+DERIVTV = "https://id.acdh.oeaw.ac.at/ofmgraz/derivatives"
+TEIDOCS = "https://id.acdh.oeaw.ac.at/ofmgraz/xmltei"
+
+TOP_COL_URI = URIRef(TOP_COL) 
+MASTERS_URI = URIRef(MASTERS)
+DERIVTV_URI =-URIRef(DERIVTV)
+TEIDOCS_URI = URIRef(TEIDOCS) 
+
 
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
@@ -221,6 +227,19 @@ def get_coverage(doc):
     return [URIRef(place) for place in places]
 
 
+def make_subcollection(name, parent, title):
+    subject = URIRef(os.path.join(parent, name))
+    g.add((subject, RDF.type, ACDH["Collection"]))
+    g.add((subject, ACDH["isPartOf"], URIRef(parent)))
+    g.add((subject, ACDH["hasRightsHolder"], RightsHolder))
+    g.add((subject, ACDH["hasMetadataCreator"], MetadataCreator))
+    g.add((subject, ACDH["hasLicensor"], Franziskanerkloster))
+    g.add((subject, ACDH["hasOwner"], Franziskanerkloster))
+    g.add((subject, ACDH["hasDepositor"], Franziskanerkloster))
+    g.add((subject, ACDH["hasTitle"], Literal(title)))
+    return subject
+
+
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
 
 [g.add(x) for x in get_persons("data/indices/listperson.xml")]
@@ -234,17 +253,11 @@ files = glob.glob("data/editions/*.xml")
 # MASTERS_URI
 # DERIVTV_URI
 # TEIDOCS_URI
-for SUB_URI in (TEIDOCS_URI, MASTERS_URI, DERIVTV_URI):
-        g.add((SUB_URI, RDF.type, ACDH["Collection"]))
-        g.add((SUB_URI, ACDH["isPartOf"], TOP_COL_URI))
-        g.add((SUB_URI, ACDH["hasRightsHolder"], RightsHolder))
-        g.add((SUB_URI, ACDH["hasMetadataCreator"], MetadataCreator))
-        g.add((SUB_URI, ACDH["hasLicensor"], Franziskanerkloster))
-        g.add((SUB_URI, ACDH["hasOwner"], Franziskanerkloster))
-        g.add((SUB_URI, ACDH["hasDepositor"], Franziskanerkloster))
-g.add((MASTERS_URI, ACDH["hasTitle"], Literal("Master Scans")))
-g.add((DERIVTV_URI, ACDH["hasTitle"], Literal("Derivatives")))
-g.add((TEIDOCS_URI, ACDH["hasTitle"], Literal("TEI Documents")))
+
+
+
+for subcol in ((TEIDOCS, "TEI Documents"), (MASTERS, "Master Scans"), (DERIVTV, "Derivatives")):
+    make_subcollection(subcol[0], TOP_COL, subcol[1])
 
 
 first_item = False
@@ -257,72 +270,84 @@ for xmlfilepath in files:
     hasNextItem = get_nextitem(first_item, doc)
     if not first_item:
         first_item = get_nextitem(first_item, doc)
-    subj = URIRef(os.path.join(TEIDOCS_URI, xmlfile))
-    g.add((subj, RDF.type, ACDH["Resource"]))
+    xmlresc = URIRef(os.path.join(TEIDOCS, xmlfile))
+    g.add((xmlresc, RDF.type, ACDH["Resource"]))
     # Creates collection
     if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
         has_title = has_title[0]
     else:
         has_title = basename
-    g.add((subj, ACDH["hasAlternativeTitle"], Literal(has_title)))
+    g.add((xmlresc, ACDH["hasAlternativeTitle"], Literal(has_title)))
     # creates resource for the XML
-    g.add((subj, ACDH["isPartOf"], TEIDOCS_URI))
+    g.add((xmlresc, ACDH["isPartOf"], TEIDOCS_URI))
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
-        g.add((subj, ACDH["hasTitle"], Literal(signature[0].text)))
-        g.add((subj, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text)))
+        g.add((xmlresc, ACDH["hasTitle"], Literal(signature[0].text)))
+        g.add((xmlresc, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text)))
     g.add(
         (
-            subj,
+            xmlresc,
             ACDH["hasCategory"],
             URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei"),
         )
     )
-    g.add((subj, ACDH["hasFilename"], Literal(f"{basename}.xml")))
-    g.add((subj, ACDH["hasFormat"], Literal("application/xml")))
+    g.add((xmlresc, ACDH["hasFilename"], Literal(f"{basename}.xml")))
+    g.add((xmlresc, ACDH["hasFormat"], Literal("application/xml")))
     g.add(
         (
-            subj,
+            xmlresc,
             ACDH["hasLanguage"],
             URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat"),
         )
     )
     coverage = get_coverage(doc)
-    [g.add((subj, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
+    [g.add((xmlresc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
     contributors = get_contributors(doc)
-    [g.add((subj, x[0], x[1])) for x in contributors]
-    g.add((subj, ACDH["hasUsedDevice"], get_used_device(doc)))
-    g.add((subj, ACDH["hasExtent"], extent))
-    g.add((subj, ACDH["hasRightsHolder"], RightsHolder))
-    g.add((subj, ACDH["hasOwner"], Owner))
-    g.add((subj, ACDH["hasMetadataCreator"], MetadataCreator))
-    g.add((subj, ACDH["hasDepositor"], Depositor))
-    g.add((subj, ACDH["hasLicense"], Licence))
-    g.add((subj, ACDH["hasLicensor"], Licensor))
-    g.add((subj, ACDH["hasCoverageStartDate"], dates[0]))
-    g.add((subj, ACDH["hasCoverageEndDate"], dates[1]))
+    [g.add((xmlresc, x[0], x[1])) for x in contributors]
+    g.add((xmlresc, ACDH["hasExtent"], extent))
+    g.add((xmlresc, ACDH["hasRightsHolder"], RightsHolder))
+    g.add((xmlresc, ACDH["hasOwner"], Owner))
+    g.add((xmlresc, ACDH["hasMetadataCreator"], MetadataCreator))
+    g.add((xmlresc, ACDH["hasDepositor"], Depositor))
+    g.add((xmlresc, ACDH["hasLicense"], Licence))
+    g.add((xmlresc, ACDH["hasLicensor"], Licensor))
+    g.add((xmlresc, ACDH["hasCoverageStartDate"], dates[0]))
+    g.add((xmlresc, ACDH["hasCoverageEndDate"], dates[1]))
     dateid = get_temporalcoverid(dates[0])
-    g.add((subj, ACDH["hasTemporalCoverageIdentifier"], dateid))
+    g.add((xmlresc, ACDH["hasTemporalCoverageIdentifier"], dateid))
     # Add TIFFs to collection
+
+    ## Make subcollections for each book
+    device = get_used_device(doc)
+    digitiser = [dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
+    subcollections = [make_subcollection(basename, parent, has_title) for parent in (MASTERS, DERIVTV)]
+    for subcollection in subcollections:
+        [g.add((subcollection, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
+        [g.add((subcollection, ACDH['hasUsedDevice'], dig)) for dig in digitiser]
+        [g.add((subcollection, ACDH['hasDigitisingAgent'], dig)) for dig in digitiser]
+        [g.add((subcollection, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
+    
+
     for picture in get_tifs(doc):
         if not picture:
             continue
-        tif = (MASTERS_URI, f"{picture[0]}.tif")
-        jpg = (DERIVTV_URI, f"{picture[0]}.jpg")
+        tiffile = f"{picture[0]}.tif"
+        jpgfile = f"{picture[0]}.jpg"
+        tifresc = URIRef(os.path.join(MASTERS, picture[0]))
+        jpgresc = URIRef(os.path.join(DERIVTV, picture[0]))
 
+        g.add((tifresc, ACDH['isSource'], jpgresc))
+        g.add((jpgresc, ACDH['isSource'], xmlresc))
         dims = picture[1]
-        digitiser = [dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
-        g.add((URIRef(os.path.join(tif[0], tif[1])), ACDH['isSource'], URIRef(os.path.join(jpg[0], jpg[1]))))
-        g.add((URIRef(os.path.join(jpg[0], jpg[1])), ACDH['isSource'], subj))
-        [g.add((URIRef(os.path.join(tif[0], tif[1])), ACDH['hasDigitisingAgent'], dig)) for dig in digitiser]
 
-        for path_file in (tif, jpg):
-            resc = URIRef(os.path.join(path_file[0], path_file[1]))
+        tif = (tifresc, subcollections[0], tiffile)
+        jpg = (jpgresc, subcollections[1], jpgfile)
+        
+        for picresc in (tif, jpg):
+            resc = picresc[0]
             g.add((resc, RDF.type, ACDH["Resource"]))
-            [g.add((resc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
-            g.add((resc, ACDH["isPartOf"], path_file[0]))
-            g.add((resc, ACDH["hasTitle"], Literal(picture)))
-            g.add((resc, ACDH["isPartOf"], path_file[0]))
-            g.add((resc, ACDH["hasFilename"], Literal(path_file[-1])))
+            g.add((resc, ACDH["isPartOf"], Literal(picresc[1])))
+            g.add((resc, ACDH["hasTitle"], Literal(picture[0])))
+            g.add((resc, ACDH["hasFilename"], Literal(picresc[2])))
             # The object in the following ones needs to be adapted to meet the actual features
             g.add((resc, ACDH["hasRightsHolder"], RightsHolder))
             g.add((resc, ACDH["hasOwner"], Owner))
