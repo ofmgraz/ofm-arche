@@ -163,7 +163,7 @@ def get_contributors(tei):
             forename = contributor.xpath(".//tei:forename/text()", namespaces=nsmap)[0]
             surname = contributor.xpath(".//tei:surname/text()", namespaces=nsmap)[0]
             obj = Literal(f"{forename} {surname}")
-            pred = ACDH["hasNonLinkedIdentifier"]
+            pred = ACDH["hasDigitisingAgent"]
         predobj.append((pred, obj))
     return predobj
 
@@ -338,7 +338,7 @@ for xmlfilepath in files:
     subcollections = [make_subcollection(basename, parent, has_title, picarrangement, has_subtitle) for parent in (MASTERS, DERIVTV)]
     for subcollection in subcollections:
         [g.add((subcollection, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
-        [g.add((subcollection, ACDH['hasUsedDevice'], dig)) for dig in digitiser]
+        [g.add((subcollection, ACDH['hasUsedDevice'], d)) for d in device]
         [g.add((subcollection, ACDH['hasDigitisingAgent'], dig)) for dig in digitiser]
         add_temporal(subcollection, dates[0], dates[1])
     
