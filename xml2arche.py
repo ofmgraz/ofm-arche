@@ -248,10 +248,10 @@ g.add((TEIDOCS_URI, ACDH["hasTitle"], Literal("TEI Documents")))
 
 
 first_item = False
-for xmlfile in files:
-    basename = os.path.basename(xmlfile).split(".")[0]
-    xmlfile = xmlfile).split("/")[-1]
-    doc = TeiReader(xmlfile)
+for xmlfilepath in files:
+    xmlfile = os.path.basename(xmlfilepath)
+    basename = xmlfile.split(".")[0]
+    doc = TeiReader(xmlfilepath)
     dates = get_date(doc)
     extent = get_extent(doc)
     hasNextItem = get_nextitem(first_item, doc)
