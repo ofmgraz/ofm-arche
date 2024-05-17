@@ -288,6 +288,8 @@ for xmlfile in files:
     g.add((subj, ACDH["hasDepositor"], Depositor))
     g.add((subj, ACDH["hasLicense"], Licence))
     g.add((subj, ACDH["hasLicensor"], Licensor))
+    g.add((subj, ACDH["hasCoverageStartDate"], dates[0]))
+    g.add((subj, ACDH["hasCoverageEndDate"], dates[1]))
     # Add TIFFs to collection
     for picture in get_tifs(doc):
         if not picture:
@@ -306,6 +308,7 @@ for xmlfile in files:
             g.add((resc, ACDH["isPartOf"], path_file[0]))
             g.add((resc, ACDH["hasTitle"], Literal(picture)))
             g.add((resc, ACDH["isSourceOf"], subj))
+            g.add((resc, ACDH["isPartOf"], path_file[0]))
             g.add((resc, ACDH["hasFilename"], Literal(path_file[-1])))
             # The object in the following ones needs to be adapted to meet the actual features
             g.add((resc, ACDH["hasRightsHolder"], RightsHolder))
