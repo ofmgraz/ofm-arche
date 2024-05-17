@@ -239,6 +239,19 @@ def make_subcollection(name, parent, title):
     g.add((subject, ACDH["hasTitle"], Literal(title)))
     return subject
 
+def add_constants(subj):
+    g.add((subj, ACDH["hasRightsHolder"], RightsHolder))
+    g.add((subj, ACDH["hasOwner"], Owner))
+    g.add((subj, ACDH["hasMetadataCreator"], MetadataCreator))
+    g.add((subj, ACDH["hasDepositor"], Depositor))
+    g.add((subj, ACDH["hasLicense"], Licence))
+    g.add((subj, ACDH["hasLicensor"], Licensor))
+
+def add_temporal(resc, start, end):
+    g.add((resc, ACDH["hasCoverageStartDate"], start))
+    g.add((resc, ACDH["hasCoverageEndDate"], end))
+    dateid = get_temporalcoverid(start)
+    g.add((resc, ACDH["hasTemporalCoverageIdentifier"], dateid))
 
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
 
@@ -272,6 +285,7 @@ for xmlfilepath in files:
         first_item = get_nextitem(first_item, doc)
     xmlresc = URIRef(os.path.join(TEIDOCS, xmlfile))
     g.add((xmlresc, RDF.type, ACDH["Resource"]))
+    add_constants(xmlresc)
     # Creates collection
     if has_title := doc.any_xpath(".//tei:title[@type='main']/text()"):
         has_title = has_title[0]
@@ -304,16 +318,8 @@ for xmlfilepath in files:
     contributors = get_contributors(doc)
     [g.add((xmlresc, x[0], x[1])) for x in contributors]
     g.add((xmlresc, ACDH["hasExtent"], extent))
-    g.add((xmlresc, ACDH["hasRightsHolder"], RightsHolder))
-    g.add((xmlresc, ACDH["hasOwner"], Owner))
-    g.add((xmlresc, ACDH["hasMetadataCreator"], MetadataCreator))
-    g.add((xmlresc, ACDH["hasDepositor"], Depositor))
-    g.add((xmlresc, ACDH["hasLicense"], Licence))
-    g.add((xmlresc, ACDH["hasLicensor"], Licensor))
-    g.add((xmlresc, ACDH["hasCoverageStartDate"], dates[0]))
-    g.add((xmlresc, ACDH["hasCoverageEndDate"], dates[1]))
-    dateid = get_temporalcoverid(dates[0])
-    g.add((xmlresc, ACDH["hasTemporalCoverageIdentifier"], dateid))
+    add_temporal(xmlresc, dates[0], dates[1])
+    
     # Add TIFFs to collection
 
     ## Make subcollections for each book
@@ -324,7 +330,7 @@ for xmlfilepath in files:
         [g.add((subcollection, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
         [g.add((subcollection, ACDH['hasUsedDevice'], dig)) for dig in digitiser]
         [g.add((subcollection, ACDH['hasDigitisingAgent'], dig)) for dig in digitiser]
-        [g.add((subcollection, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
+        add_temporal(subcollection, dates[0], dates[1])
     
 
     for picture in get_tifs(doc):
@@ -345,17 +351,12 @@ for xmlfilepath in files:
         for picresc in (tif, jpg):
             resc = picresc[0]
             g.add((resc, RDF.type, ACDH["Resource"]))
+            add_constants(resc)
             g.add((resc, ACDH["isPartOf"], Literal(picresc[1])))
             g.add((resc, ACDH["hasTitle"], Literal(picture[0])))
             g.add((resc, ACDH["hasFilename"], Literal(picresc[2])))
             # The object in the following ones needs to be adapted to meet the actual features
-            g.add((resc, ACDH["hasRightsHolder"], RightsHolder))
-            g.add((resc, ACDH["hasOwner"], Owner))
-            g.add((resc, ACDH["hasMetadataCreator"], MetadataCreator))
-            g.add((resc, ACDH["hasDepositor"], Depositor))
             g.add((resc, ACDH["hasCategory"], URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/image")))
-            g.add((resc, ACDH["hasLicense"], Licence))
-            g.add((resc, ACDH["hasLicensor"], Licensor))
             if picture[1]:
                 dims = picture[1]
                 g.add((resc, ACDH["hasPixelHeight"], Literal(f"{dims[0]}")))
