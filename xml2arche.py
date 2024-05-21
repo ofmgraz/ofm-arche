@@ -24,6 +24,7 @@ TEIDOCS_URI = URIRef(TEIDOCS)
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
 PERIODO = Namespace("http://n2t.net/ark:/99152/p0v#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
+xs = Namespace("http://www.w3.org/2001/XMLSchema")
 
 ##################################################################################################
 #                                                                                                #
@@ -53,14 +54,16 @@ def get_parent_node(feat, file_path):
     return nodes
 
 
+def uriark (uri):
+    return  Literal(uri, datatype=xs.anyURI)
 
 def get_temporalcoverid(year):
-    ids = {"13": PERIODO[    "http://n2t.net/ark:/99152/p09hq4n"],
-           "14": PERIODO["http://n2t.net/ark:/99152/p09hq4n"],
-           "15": PERIODO["http://n2t.net/ark:/99152/p09hq4nhvcb"],
-           "16": PERIODO["http://n2t.net/ark:/99152/p09hq4nnx95"],
-           "17": PERIODO["http://n2t.net/ark:/99152/p09hq4nfgdb"],
-           "18": PERIODO["http://n2t.net/ark:/99152/p09hq4n58mr"]}
+    ids = {"13": uriark("http://n2t.net/ark:/99152/p09hq4n"),
+           "14": uriark("http://n2t.net/ark:/99152/p09hq4n"),
+           "15": uriark("http://n2t.net/ark:/99152/p09hq4nhvcb"),
+           "16": uriark("http://n2t.net/ark:/99152/p09hq4nnx95"),
+           "17": uriark("http://n2t.net/ark:/99152/p09hq4nfgdb"),
+           "18": uriark("http://n2t.net/ark:/99152/p09hq4n58mr")}
     return ids[year[0:2]]
 
 # Takes a TEI element (respStmt or person) and returns a tuple of triples to add to the RDF
@@ -258,7 +261,7 @@ def add_temporal(resc, start, end):
     g.add((resc, ACDH["hasCoverageStartDate"], start))
     g.add((resc, ACDH["hasCoverageEndDate"], end))
     dateid = get_temporalcoverid(start)
-    # g.add((resc, ACDH["hasTemporalCoverageIdentifier"], dateid))
+    g.add((resc, ACDH["hasTemporalCoverageIdentifier"], dateid))
 
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
 
