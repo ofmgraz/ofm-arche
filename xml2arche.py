@@ -13,9 +13,9 @@ fails = ("A63_51", "A64_34", "A64_37", "A64_38")
 TOP_COL = "https://id.acdh.oeaw.ac.at/ofmgraz"
 MASTERS = "https://id.acdh.oeaw.ac.at/ofmgraz/masters"
 DERIVTV = "https://id.acdh.oeaw.ac.at/ofmgraz/derivatives"
-TEIDOCS = "https://id.acdh.oeaw.ac.at/ofmgraz/xmltei"
+TEIDOCS = "https://id.acdh.oeaw.ac.at/ofmgraz/teidocs"
 
-TOP_COL_URI = URIRef(TOP_COL) 
+TOP_COL_URI = URIRef(TOP_COL)
 MASTERS_URI = URIRef(MASTERS)
 DERIVTV_URI =-URIRef(DERIVTV)
 TEIDOCS_URI = URIRef(TEIDOCS)
@@ -60,9 +60,9 @@ def get_temporalcoverid(year):
            "15": PERIODO["http://n2t.net/ark:/99152/p09hq4nhvcb"],
            "16": PERIODO["http://n2t.net/ark:/99152/p09hq4nnx95"],
            "17": PERIODO["http://n2t.net/ark:/99152/p09hq4nfgdb"],
-           "18": PERIODO["http://n2t.net/ark:/99152/p09hq4n58mr"]}   
+           "18": PERIODO["http://n2t.net/ark:/99152/p09hq4n58mr"]}
     return ids[year[0:2]]
-    
+
 # Takes a TEI element (respStmt or person) and returns a tuple of triples to add to the RDF
 def make_person(person):
     output = []
@@ -203,10 +203,10 @@ def get_tifs(tei):
                 dims = get_dims(tif)
             except Exception:
                 dims = False
-            base = re.search("files/images/(.*)/full/full", tif).group(1)
-            # prin("------------------------")
-            if base not in tifs:
-                tifs.append((base, dims))
+        base = re.search("files/images/(.*)/full/full", tif).group(1)
+        # prin("------------------------")
+        if base not in tifs:
+            tifs.append((base, dims))
     return tifs
 
 def get_nextitem(first_item, doc):
@@ -262,9 +262,9 @@ def add_temporal(resc, start, end):
 
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
 
-[g.add(x) for x in get_persons("data/indices/listperson.xml")]
+#[g.add(x) for x in get_persons("data/indices/listperson.xml")]
 
-[g.add(x) for x in get_places("data/indices/listplace.xml")]
+#[g.add(x) for x in get_places("data/indices/listplace.xml")]
 
 count = 0
 files = glob.glob("data/editions/*.xml")
@@ -294,7 +294,7 @@ for xmlfilepath in files:
     g.add((xmlresc, RDF.type, ACDH["Resource"]))
     add_constants(xmlresc)
     # Creates collection
-    
+
     # creates resource for the XML
     g.add((xmlresc, ACDH["isPartOf"], TEIDOCS_URI))
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
@@ -307,7 +307,7 @@ for xmlfilepath in files:
             g.add((xmlresc, ACDH["hasAlternativeTitle"], Literal(has_subtitle)))
         else:
             subtitle = False
-    
+
     g.add(
         (
             xmlresc,
@@ -331,7 +331,7 @@ for xmlfilepath in files:
     g.add((xmlresc, ACDH["hasExtent"], extent))
     add_temporal(xmlresc, dates[0], dates[1])
     g.add((xmlresc, ACDH["hasUsedSoftware"], Literal("Transkribus")))
-    
+
     # Add TIFFs to collection
     picarrangement = "Each element is a page or a side of folio"
     ## Make subcollections for each book
@@ -343,9 +343,10 @@ for xmlfilepath in files:
         g.add((subcollection, ACDH['hasUsedHardware'], device))
         [g.add((subcollection, ACDH['hasDigitisingAgent'], dig)) for dig in digitiser]
         add_temporal(subcollection, dates[0], dates[1])
-    
+
 
     for picture in get_tifs(doc):
+        print(picture[0])
         if not picture:
             continue
         tiffile = f"{picture[0]}.tif"
@@ -359,7 +360,7 @@ for xmlfilepath in files:
 
         tif = (tifresc, subcollections[0], tiffile)
         jpg = (jpgresc, subcollections[1], jpgfile)
-        
+
         for picresc in (tif, jpg):
             resc = picresc[0]
             g.add((resc, RDF.type, ACDH["Resource"]))
