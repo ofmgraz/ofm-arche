@@ -18,10 +18,11 @@ TEIDOCS = "https://id.acdh.oeaw.ac.at/ofmgraz/xmltei"
 TOP_COL_URI = URIRef(TOP_COL) 
 MASTERS_URI = URIRef(MASTERS)
 DERIVTV_URI =-URIRef(DERIVTV)
-TEIDOCS_URI = URIRef(TEIDOCS) 
+TEIDOCS_URI = URIRef(TEIDOCS)
 
 
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
+PERIODO = Namespace("http://n2t.net/ark:/99152/p0v#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
 
 ##################################################################################################
@@ -54,11 +55,12 @@ def get_parent_node(feat, file_path):
 
 
 def get_temporalcoverid(year):
-    ids = {"13": URIRef("https://www.wikidata.org/wiki/Q7034"),
-           "14": URIRef("https://www.wikidata.org/wiki/Q7018"),
-           "15": URIRef("https://www.wikidata.org/wiki/Q7017"),
-           "16": URIRef("https://www.wikidata.org/wiki/Q7016"),
-           "17": URIRef("https://www.wikidata.org/wiki/Q7015")}
+    ids = {"13": PERIODO[    "http://n2t.net/ark:/99152/p09hq4n"],
+           "14": PERIODO["http://n2t.net/ark:/99152/p09hq4n"],
+           "15": PERIODO["http://n2t.net/ark:/99152/p09hq4nhvcb"],
+           "16": PERIODO["http://n2t.net/ark:/99152/p09hq4nnx95"],
+           "17": PERIODO["http://n2t.net/ark:/99152/p09hq4nfgdb"],
+           "18": PERIODO["http://n2t.net/ark:/99152/p09hq4n58mr"]}   
     return ids[year[0:2]]
     
 # Takes a TEI element (respStmt or person) and returns a tuple of triples to add to the RDF
@@ -256,7 +258,7 @@ def add_temporal(resc, start, end):
     g.add((resc, ACDH["hasCoverageStartDate"], start))
     g.add((resc, ACDH["hasCoverageEndDate"], end))
     dateid = get_temporalcoverid(start)
-    g.add((resc, ACDH["hasTemporalCoverageIdentifier"], dateid))
+    # g.add((resc, ACDH["hasTemporalCoverageIdentifier"], dateid))
 
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
 
@@ -351,8 +353,8 @@ for xmlfilepath in files:
         tifresc = URIRef(os.path.join(MASTERS, tiffile))
         jpgresc = URIRef(os.path.join(DERIVTV, jpgfile))
 
-        g.add((tifresc, ACDH['isSourceOf'], jpgresc))
-        g.add((jpgresc, ACDH['isSourceOf'], xmlresc))
+        g.add((tifresc, ACDH['isSourceOf'], MASTERS_URI))
+        g.add((jpgresc, ACDH['isSourceOf'], TEIDOCS_URI))
         dims = picture[1]
 
         tif = (tifresc, subcollections[0], tiffile)

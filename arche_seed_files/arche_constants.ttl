@@ -32,11 +32,13 @@
     acdh:hasFunder <https://www.wikidata.org/wiki/Q47012226>;
     acdh:hasCoverageStartDate "1425-01-01";
     acdh:hasCoverageEndDate "1779-12-31";
-    acdh:hasTemporalCoverageIdentifier <http://n2t.net/ark:/99152/p0xxt6tjgn6>,
-        <http://n2t.net/ark:/99152/p09hq4nhvcb>,
-        <http://n2t.net/ark:/99152/p09hq4nnx95>,
-        <http://n2t.net/ark:/99152/p09hq4nfgdb>,
-        <http://n2t.net/ark:/99152/p09hq4n58mr>;
+    acdh:hasTemporalCoverageIdentifier
+        "http://n2t.net/ark:/99152/p09hq4n",
+        "http://n2t.net/ark:/99152/p09hq4n",
+        "http://n2t.net/ark:/99152/p09hq4nhvcb" ,
+        "http://n2t.net/ark:/99152/p09hq4nnx95" ,
+        "http://n2t.net/ark:/99152/p09hq4nfgdb" ,
+        "http://n2t.net/ark:/99152/p09hq4n58mr" ;
     acdh:hasSubject
         "Digitale Edition"@de ,
         "Musikwissenschaft"@de;
@@ -48,7 +50,7 @@
     'A-Gf_64_41-003r.tiff' is folio 3 recto of the manuscript with signature A 64/41. Likewise, the folder derivatives contains
     collections JPEG encoded files derivated from the TIFF files."""@en;
     acdh:hasFunder <https://www.wikidata.org/wiki/Q47012226>;
-    acdh:hasUrl <https://ofmgraz.github.io/ofm-static>. 
+    acdh:hasUrl "https://ofmgraz.github.io/ofm-static". 
     
 <https://d-nb.info/gnd/1297553608> a acdh:Person ;
     acdh:hasTitle "Fernando Sanz-Lázaro"@und;
