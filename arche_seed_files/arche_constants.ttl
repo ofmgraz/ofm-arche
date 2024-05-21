@@ -33,12 +33,12 @@
     acdh:hasCoverageStartDate "1425-01-01";
     acdh:hasCoverageEndDate "1779-12-31";
     acdh:hasTemporalCoverageIdentifier
-        "http://n2t.net/ark:/99152/p09hq4n",
-        "http://n2t.net/ark:/99152/p09hq4n",
-        "http://n2t.net/ark:/99152/p09hq4nhvcb" ,
-        "http://n2t.net/ark:/99152/p09hq4nnx95" ,
-        "http://n2t.net/ark:/99152/p09hq4nfgdb" ,
-        "http://n2t.net/ark:/99152/p09hq4n58mr" ;
+        "http://n2t.net/ark:/99152/p09hq4n"^^xsd:anyURI ,
+        "http://n2t.net/ark:/99152/p09hq4n"^^xsd:anyURI ,
+        "http://n2t.net/ark:/99152/p09hq4nhvcb"^^xsd:anyURI ,
+        "http://n2t.net/ark:/99152/p09hq4nnx95"^^xsd:anyURI ,
+        "http://n2t.net/ark:/99152/p09hq4nfgdb"^^xsd:anyURI ,
+        "http://n2t.net/ark:/99152/p09hq4n58mr"^^xsd:anyURI ;
     acdh:hasSubject
         "Digitale Edition"@de ,
         "Musikwissenschaft"@de;

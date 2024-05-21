@@ -24,7 +24,7 @@ TEIDOCS_URI = URIRef(TEIDOCS)
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
 PERIODO = Namespace("http://n2t.net/ark:/99152/p0v#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
-xs = Namespace("http://www.w3.org/2001/XMLSchema")
+
 
 ##################################################################################################
 #                                                                                                #
