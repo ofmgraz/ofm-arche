@@ -338,7 +338,7 @@ for xmlfilepath in files:
     subcollections = [make_subcollection(basename, parent, has_title, picarrangement, has_subtitle) for parent in (MASTERS, DERIVTV)]
     for subcollection in subcollections:
         [g.add((subcollection, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
-        g.add((subcollection, ACDH['hasUsedDevice'], device))
+        g.add((subcollection, ACDH['hasUsedHardware'], device))
         [g.add((subcollection, ACDH['hasDigitisingAgent'], dig)) for dig in digitiser]
         add_temporal(subcollection, dates[0], dates[1])
     
