@@ -55,7 +55,7 @@ def get_parent_node(feat, file_path):
 
 
 def uriark (uri):
-    return  Literal(uri, datatype=xs.anyURI)
+    return  Literal(uri, datatype="http://www.w3.org/2001/XMLSchema#anyURI")
 
 def get_temporalcoverid(year):
     ids = {"13": uriark("http://n2t.net/ark:/99152/p09hq4n"),
@@ -349,7 +349,6 @@ for xmlfilepath in files:
 
 
     for picture in get_tifs(doc):
-        print(picture[0])
         if not picture:
             continue
         tiffile = f"{picture[0]}.tif"
