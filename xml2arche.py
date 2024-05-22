@@ -266,6 +266,8 @@ def add_temporal(resc, start, end):
     dateid = get_temporalcoverid(start)
     g.add((resc, ACDH["hasTemporalCoverageIdentifier"], dateid))
 
+
+# Load the predefined constants: TopCollection, Collections, Persons, Places, and Organisations
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
 
 #[g.add(x) for x in get_persons("data/indices/listperson.xml")]
@@ -385,7 +387,6 @@ for xmlfilepath in files:
             g.add((jpgresc, ACDH['hasNextItem'], prevjpgresc))
         prevtifresc = tifresc
         prevjpgresc = jpgresc
-
 
 try:
     g.serialize("ofmgraz.ttl")
