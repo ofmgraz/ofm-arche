@@ -1,7 +1,6 @@
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 @prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix wiki: <https://www.wikidata.org/wiki/> .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz> a acdh:TopCollection ;
     acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ;
@@ -30,7 +29,7 @@
     acdh:hasRightsHolder <https://id.acdh.oeaw.ac.at/oeaw> ; 
     acdh:hasContact <https://id.acdh.oeaw.ac.at/ofmgraz> ;
     acdh:hasCurator <https://orcid.org/0000-0002-0484-832X> ;
-    acdh:hasFunder <https://www.wikidata.org/wiki/Q47012226> ;
+    acdh:hasFunder <https://d-nb.info/gnd/1216831270> ;
     acdh:hasCoverageStartDate "1425-01-01";
     acdh:hasCoverageEndDate "1779-12-31";
     acdh:hasTemporalCoverageIdentifier
@@ -51,7 +50,6 @@
     the signature of the physical object, like 'A64_41'. The resources' name is completed with the pagination. For instance ,
     'A-Gf_64_41-003r.tiff' is folio 3 recto of the manuscript with signature A 64/41. Likewise, the folder derivatives contains
     collections JPEG encoded files derivated from the TIFF files."""@en;
-    acdh:hasFunder <https://www.wikidata.org/wiki/Q47012226> ;
     acdh:hasUrl "https://ofmgraz.github.io/ofm-static".
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives> a acdh:Collection ;
@@ -85,8 +83,10 @@
     acdh:hasTitle "TEI Documents"@en ;
     acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
 
-<https://www.wikidata.org/wiki/Q47012226> a acdh:Organisation ;
-    acdh:hasCountry "Österreich"@de ;
+<https://d-nb.info/gnd/1216831270> a acdh:Organisation ;
+    acdh:hasCountry "Österreich"@de ,
+        "Austria"@en ;
+    acdh:hasDescription  "Austrian federal ministry"@en ;
     acdh:hasTitle "Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport"@de .
 
 <https://orcid.org/0000-0002-0484-832X> a acdh:Person ;

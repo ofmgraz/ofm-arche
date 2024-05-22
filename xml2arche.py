@@ -378,13 +378,13 @@ for xmlfilepath in files:
         jpgresc = URIRef(os.path.join(DERIVTV, jpgfile))
         # if idx < len(list(enumerate(get_tifs(doc)))) - 1:
         #    g.add((tifresc, ACDH['hasNextItem'], prevtifresc))
-        #    g.add((jpgresc, ACDH['hasNextItem'], prevjpgresc)) 
+        #    g.add((jpgresc, ACDH['hasNextItem'], prevjpgresc))
         prevtiffile = f"{picture[0]}.tif"
         prevjpgfile = f"{picture[0]}.jpg"
         prevtifresc = URIRef(os.path.join(MASTERS, prevtiffile))
         prevjpgresc = URIRef(os.path.join(DERIVTV, prevjpgfile))
 
-    
+
 try:
     g.serialize("ofmgraz.ttl")
 except Exception as e:
