@@ -1,33 +1,32 @@
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 @prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix gnd: <https://d-nb.info/gnd/> .
 @prefix wiki: <https://www.wikidata.org/wiki/> .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz> a acdh:TopCollection ;
     acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ;
     acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ;
-    acdh:hasSpatialCoverage gnd:16174362-6,
-        gnd:4021912-4,
-        gnd:4073953-3,
-        gnd:4066009-6,
-        gnd:4076982-3,
-        gnd:4076982-3,
-        gnd:4400654-8,
-        gnd:4127793-4,
-        gnd:4051622-2,
-        gnd:4115047-8;
+    acdh:hasSpatialCoverage <https://d-nb.info/gnd/16174362-6>,
+        <https://d-nb.info/gnd/4021912-4>,
+        <https://d-nb.info/gnd/4073953-3>,
+        <https://d-nb.info/gnd/4066009-6>,
+        <https://d-nb.info/gnd/4076982-3>,
+        <https://d-nb.info/gnd/4076982-3>,
+        <https://d-nb.info/gnd/4400654-8>,
+        <https://d-nb.info/gnd/4127793-4>,
+        <https://d-nb.info/gnd/4051622-2>,
+        <https://d-nb.info/gnd/4115047-8>;
     acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024>,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008>;
     acdh:hasPrincipalInvestigator <https://orcid.org/0000-0002-0484-832X> ;
     acdh:hasContributor <https://orcid.org/0000-0002-8815-6741> ;
-    acdh:hasDepositor gnd:16174362-6 ;
+    acdh:hasDepositor <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0> ;
-    acdh:hasLicensor gnd:16174362-6 ;
+    acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
     acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo> ;
-    acdh:hasOwner gnd:16174362-6 ;
+    acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasRightsHolder <https://id.acdh.oeaw.ac.at/oeaw> ; 
     acdh:hasContact <https://id.acdh.oeaw.ac.at/ofmgraz> ;
     acdh:hasCurator <https://orcid.org/0000-0002-0484-832X> ;
@@ -35,12 +34,12 @@
     acdh:hasCoverageStartDate "1425-01-01";
     acdh:hasCoverageEndDate "1779-12-31";
     acdh:hasTemporalCoverageIdentifier
-        "http://n2t.net/ark:/99152/p09hq4n"^^xsd:anyURI ,
-        "http://n2t.net/ark:/99152/p09hq4n"^^xsd:anyURI ,
-        "http://n2t.net/ark:/99152/p09hq4nhvcb"^^xsd:anyURI ,
-        "http://n2t.net/ark:/99152/p09hq4nnx95"^^xsd:anyURI ,
-        "http://n2t.net/ark:/99152/p09hq4nfgdb"^^xsd:anyURI ,
-        "http://n2t.net/ark:/99152/p09hq4n58mr"^^xsd:anyURI ;
+        "https://n2t.net/ark:/99152/p09hq4n"^^xsd:anyURI ,
+        "https://n2t.net/ark:/99152/p09hq4n"^^xsd:anyURI ,
+        "https://n2t.net/ark:/99152/p09hq4nhvcb"^^xsd:anyURI ,
+        "https://n2t.net/ark:/99152/p09hq4nnx95"^^xsd:anyURI ,
+        "https://n2t.net/ark:/99152/p09hq4nfgdb"^^xsd:anyURI ,
+        "https://n2t.net/ark:/99152/p09hq4n58mr"^^xsd:anyURI ;
     acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/deu>;
     acdh:hasSubject
         "Digitale Edition"@de ,
@@ -57,20 +56,20 @@
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives> a acdh:Collection ;
     acdh:hasArrangement "Each element represents a physical volume"@en ;
-    acdh:hasDepositor gnd:16174362-6 ;
-    acdh:hasLicensor gnd:16174362-6 ;
+    acdh:hasDepositor <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
-    acdh:hasOwner gnd:16174362-6 ;
+    acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "Derivative pictures"@en ;
     acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/masters> a acdh:Collection ;
     acdh:hasArrangement "Each element represents a physical volume"@en ;
-    acdh:hasDepositor gnd:16174362-6 ;
-    acdh:hasLicensor gnd:16174362-6 ;
+    acdh:hasDepositor <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
-    acdh:hasOwner gnd:16174362-6 ;
+    acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasAppliedMethod "Scanning";
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "Master Scans"@en ;
@@ -78,15 +77,16 @@
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/teidocs> a acdh:Collection ;
     acdh:hasArrangement "Each element represents a physical volume"@en ;
-    acdh:hasDepositor gnd:16174362-6 ;
-    acdh:hasLicensor gnd:16174362-6 ;
+    acdh:hasDepositor <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
-    acdh:hasOwner gnd:16174362-6 ;
+    acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "TEI Documents"@en ;
     acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
 
 <https://www.wikidata.org/wiki/Q47012226> a acdh:Organisation ;
+    acdh:hasCountry "Österreich"@de ;
     acdh:hasTitle "Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport"@de .
 
 <https://orcid.org/0000-0002-0484-832X> a acdh:Person ;
@@ -100,35 +100,33 @@
 <https://orcid.org/0000-0001-6195-2935> a acdh:Person ;
     acdh:hasTitle "Jakob Leitner"@de .
 
-gnd:16174362-6 a acdh:Place ;
+<https://d-nb.info/gnd/16174362-6> a acdh:Place ;
     acdh:hasTitle "Franziskanerkloster Graz"@de.
 
-gnd:4021912-4 a acdh:Place ;
+<https://d-nb.info/gnd/4021912-4> a acdh:Place ;
     acdh:hasTitle "Graz"@de .
 
-gnd:4051622-2 a acdh:Place ;
+<https://d-nb.info/gnd/4051622-2> a acdh:Place ;
     acdh:hasTitle "Sankt Pölten"@de .
 
- gnd:4066009-6 a acdh:Place ;
+ <https://d-nb.info/gnd/4066009-6> a acdh:Place ;
     acdh:hasTitle "Wien"@de .
 
- gnd:4073953-3 a acdh:Place ;
+ <https://d-nb.info/gnd/4073953-3> a acdh:Place ;
     acdh:hasTitle "Ljubljana"@de .
 
- gnd:4076982-3 a acdh:Place ;
+ <https://d-nb.info/gnd/4076982-3> a acdh:Place ;
     acdh:hasTitle "Salzburg"@de .
 
-gnd:4400654-8 a acdh:Place ;
+<https://d-nb.info/gnd/4400654-8> a acdh:Place ;
     acdh:hasTitle "Maria Lankowitz"@de .
     
- gnd:4115047-8 a acdh:Place ;
+ <https://d-nb.info/gnd/4115047-8> a acdh:Place ;
     acdh:hasTitle "Mautern in Steiermark"@de .
 
- gnd:4127793-4 a acdh:Place ;
+ <https://d-nb.info/gnd/4127793-4> a acdh:Place ;
     acdh:hasTitle "München"@de .
 
- gnd:4400654-8 a acdh:Place ;
-    acdh:hasTitle "Maria Lankowitz"@de .
-
-gnd:4062501-1 a acdh:Place ;
+<https://d-nb.info/gnd/4062501-1> a acdh:Place ;
+    acdh:hasCountry "Italien"@de ;
     acdh:hasTitle "Venedig"@de .
