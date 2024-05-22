@@ -371,18 +371,18 @@ for xmlfilepath in files:
                 dims = picture[1]
                 g.add((resc, ACDH["hasPixelHeight"], Literal(f"{dims[0]}")))
                 g.add((resc, ACDH["hasPixelWidth"], Literal(f"{dims[1]}")))
-        for idx, picture in reversed(list(enumerate(get_tifs(doc)))):
-            tiffile = f"{picture[0]}.tif"
-            jpgfile = f"{picture[0]}.jpg"
-            tifresc = URIRef(os.path.join(MASTERS, tiffile))
-            jpgresc = URIRef(os.path.join(DERIVTV, jpgfile))
-            if idx < len(list(enumerate(get_tifs(doc)))) - 1:
-                g.add((tifresc, ACDH['hasNextItem'], prevtifresc))
-                g.add((jpgresc, ACDH['hasNextItem'], prevjpgresc)) 
-            prevtiffile = f"{picture[0]}.tif"
-            prevjpgfile = f"{picture[0]}.jpg"
-            prevtifresc = URIRef(os.path.join(MASTERS, prevtiffile))
-            prevjpgresc = URIRef(os.path.join(DERIVTV, prevjpgfile))
+    for idx, picture in reversed(list(enumerate(get_tifs(doc)))):
+        tiffile = f"{picture[0]}.tif"
+        jpgfile = f"{picture[0]}.jpg"
+        tifresc = URIRef(os.path.join(MASTERS, tiffile))
+        jpgresc = URIRef(os.path.join(DERIVTV, jpgfile))
+        # if idx < len(list(enumerate(get_tifs(doc)))) - 1:
+        #    g.add((tifresc, ACDH['hasNextItem'], prevtifresc))
+        #    g.add((jpgresc, ACDH['hasNextItem'], prevjpgresc)) 
+        prevtiffile = f"{picture[0]}.tif"
+        prevjpgfile = f"{picture[0]}.jpg"
+        prevtifresc = URIRef(os.path.join(MASTERS, prevtiffile))
+        prevjpgresc = URIRef(os.path.join(DERIVTV, prevjpgfile))
 
     
 try:
