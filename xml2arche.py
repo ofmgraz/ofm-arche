@@ -272,11 +272,6 @@ g = Graph().parse("arche_seed_files/arche_constants.ttl")
 count = 0
 files = glob.glob("data/editions/*.xml")
 
-
-# MASTERS_URI
-# DERIVTV_URI
-# TEIDOCS_URI
-
 xmlarrangement = "Each element represents a physical volume"
 
 # for subcol in (["teidocs", "TEI Documents"], ["masters", "Master Scans"], ["derivatives", "Derivative pictures"]):
