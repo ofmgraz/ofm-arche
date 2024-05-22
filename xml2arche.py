@@ -220,11 +220,13 @@ def get_nextitem(first_item, doc):
             next_item = next_item[0]
     return next_item
 
+# It does not get ingested if dimensions are provided
 def get_dims(file_path):
     response = requests.get(file_path)
     img = Image.open(BytesIO(response.content))
     return  img.width, img.height
 
+# To test, so it does not have to fetch the file and calculate them
 def get_dims(file_path):
     return 0, 0
 
@@ -232,7 +234,7 @@ def get_coverage(doc):
     places = doc.any_xpath('.//tei:standOff/tei:listPlace/tei:place/tei:idno[@subtype="GND"]/text()')
     return [URIRef(place) for place in places]
 
-
+# This creates subcollections. In this case, for each set of tiffs and of jpgs
 def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
     subject = URIRef(os.path.join(parent, name))
     g.add((subject, RDF.type, ACDH["Collection"]))
@@ -249,6 +251,7 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
         g.add((subject, ACDH["hasAlternativeTitle"], Literal(subtitle)))
     return subject
 
+# Add constant properties to resource
 def add_constants(subj):
     g.add((subj, ACDH["hasRightsHolder"], RightsHolder))
     g.add((subj, ACDH["hasOwner"], Owner))
@@ -279,6 +282,7 @@ xmlarrangement = "Each element represents a physical volume"
 
 
 first_item = False
+# Loops over the xml files to get the names and the pictures referred in them
 for xmlfilepath in files:
     xmlfile = os.path.basename(xmlfilepath)
     basename = xmlfile.split(".")[0]
@@ -289,11 +293,11 @@ for xmlfilepath in files:
     if not first_item:
         first_item = get_nextitem(first_item, doc)
     xmlresc = URIRef(os.path.join(TEIDOCS, xmlfile))
+    # creates resource for the XML file
     g.add((xmlresc, RDF.type, ACDH["Resource"]))
     add_constants(xmlresc)
-    # Creates collection
 
-    # creates resource for the XML
+    # Looks for next XML file. They are here attributes of the top structure
     if hasNextItem:
         g.add((xmlresc, ACDH["hasNextItem"], URIRef(os.path.join(TEIDOCS, hasNextItem))))
     g.add((xmlresc, ACDH["isPartOf"], TEIDOCS_URI))
@@ -332,11 +336,12 @@ for xmlfilepath in files:
     add_temporal(xmlresc, dates[0], dates[1])
     g.add((xmlresc, ACDH["hasUsedSoftware"], Literal("Transkribus")))
 
-    # Add TIFFs to collection
     picarrangement = "Each element is a page or a side of folio"
-    ## Make subcollections for each book
+
     device = get_used_device(doc)
     digitiser = [dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
+
+    ## Make subcollections for each book
     subcollections = [make_subcollection(basename, parent, has_title, picarrangement, has_subtitle) for parent in (MASTERS, DERIVTV)]
     for subcollection in subcollections:
         [g.add((subcollection, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
@@ -344,9 +349,10 @@ for xmlfilepath in files:
         [g.add((subcollection, ACDH['hasDigitisingAgent'], dig)) for dig in digitiser]
         add_temporal(subcollection, dates[0], dates[1])
 
+    # Creates a list of pictures in the file, excluding empty refs
     pictures = [picture for picture in get_tifs(doc) if picture[0]]
 
-
+    # Loops over the pics in reverse order so we know which one is the next one
     for idx, picture in enumerate(reversed(pictures)):
         tiffile = f"{picture[0]}.tif"
         jpgfile = f"{picture[0]}.jpg"
@@ -373,6 +379,7 @@ for xmlfilepath in files:
                 dims = picture[1]
                 g.add((resc, ACDH["hasPixelHeight"], Literal(f"{dims[0]}")))
                 g.add((resc, ACDH["hasPixelWidth"], Literal(f"{dims[1]}")))
+        # If we are not in the last picture....
         if idx > 0 :
             g.add((tifresc, ACDH['hasNextItem'], prevtifresc))
             g.add((jpgresc, ACDH['hasNextItem'], prevjpgresc))
