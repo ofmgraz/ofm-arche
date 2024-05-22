@@ -351,8 +351,8 @@ for xmlfilepath in files:
         tifresc = URIRef(os.path.join(MASTERS, tiffile))
         jpgresc = URIRef(os.path.join(DERIVTV, jpgfile))
 
-        g.add((tifresc, ACDH['isSourceOf'], MASTERS_URI))
-        g.add((jpgresc, ACDH['isSourceOf'], TEIDOCS_URI))
+        g.add((tifresc, ACDH['isSourceOf'], jpgresc))
+        g.add((jpgresc, ACDH['isSourceOf'], xmlresc))
         dims = picture[1]
 
         tif = (tifresc, subcollections[0], tiffile)
