@@ -92,7 +92,7 @@
     acdh:hasTitle "Robert Klugseder"@de .
 <https://orcid.org/0000-0002-8815-6741> a acdh:Person ;
     acdh:hasTitle "Fernando Sanz-Lázaro"@es.
-< https://orcid.org/0000-0001-6195-2935> a acdh:Person ;
+<https://orcid.org/0000-0001-6195-2935> a acdh:Person ;
     acdh:hasTitle "Jakob Leitner"@de .
 
 <https://d-nb.info/gnd/16174362-6> a acdh:Place ;
