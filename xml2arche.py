@@ -294,6 +294,8 @@ for xmlfilepath in files:
     # Creates collection
 
     # creates resource for the XML
+    if hasNextItem:
+        g.add((xmlresc, ACDH["hasNextItem"], URIRef(os.path.join(TEIDOCS, hasNextItem))))
     g.add((xmlresc, ACDH["isPartOf"], TEIDOCS_URI))
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
         has_title = signature[0].text
@@ -376,9 +378,9 @@ for xmlfilepath in files:
         jpgfile = f"{picture[0]}.jpg"
         tifresc = URIRef(os.path.join(MASTERS, tiffile))
         jpgresc = URIRef(os.path.join(DERIVTV, jpgfile))
-        # if idx < len(list(enumerate(get_tifs(doc)))) - 1:
-        #    g.add((tifresc, ACDH['hasNextItem'], prevtifresc))
-        #    g.add((jpgresc, ACDH['hasNextItem'], prevjpgresc))
+        if idx < len(list(enumerate(get_tifs(doc)))) - 1:
+            g.add((tifresc, ACDH['hasNextItem'], prevtifresc))
+            g.add((jpgresc, ACDH['hasNextItem'], prevjpgresc))
         prevtiffile = f"{picture[0]}.tif"
         prevjpgfile = f"{picture[0]}.jpg"
         prevtifresc = URIRef(os.path.join(MASTERS, prevtiffile))
