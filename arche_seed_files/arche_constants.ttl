@@ -27,7 +27,7 @@
     acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo> ;
     acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasRightsHolder <https://id.acdh.oeaw.ac.at/oeaw> ; 
-    acdh:hasContact  <https://orcid.org/0000-0002-0484-832X> ;
+    acdh:hasContact <https://orcid.org/0000-0002-0484-832X> ;
     acdh:hasCurator <https://orcid.org/0000-0002-0484-832X> ;
     acdh:hasFunder <https://www.wikidata.org/wiki/Q47012226>;
     acdh:hasCoverageStartDate "1425-01-01";
@@ -50,4 +50,34 @@
     'A-Gf_64_41-003r.tiff' is folio 3 recto of the manuscript with signature A 64/41. Likewise, the folder derivatives contains
     collections JPEG encoded files derivated from the TIFF files."""@en;
     acdh:hasFunder <https://www.wikidata.org/wiki/Q47012226>;
-    acdh:hasUrl "https://ofmgraz.github.io/ofm-static". 
+    acdh:hasUrl "https://ofmgraz.github.io/ofm-static".
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/derivatives> a acdh:Collection ;
+    acdh:hasArrangement "Each element represents a physical volume" ;
+    acdh:hasDepositor <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
+    acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasRightsHolder acdhi:oeaw ;
+    acdh:hasTitle "Derivative pictures" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters> a acdh:Collection ;
+    acdh:hasArrangement "Each element represents a physical volume" ;
+    acdh:hasDepositor <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
+    acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasRightsHolder acdhi:oeaw ;
+    acdh:hasTitle "Master Scans" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/teidocs> a acdh:Collection ;
+    acdh:hasArrangement "Each element represents a physical volume" ;
+    acdh:hasDepositor <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
+    acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasRightsHolder acdhi:oeaw ;
+    acdh:hasTitle "TEI Documents" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
