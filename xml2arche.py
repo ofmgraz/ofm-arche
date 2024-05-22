@@ -279,8 +279,8 @@ files = glob.glob("data/editions/*.xml")
 
 xmlarrangement = "Each element represents a physical volume"
 
-for subcol in (["teidocs", "TEI Documents"], ["masters", "Master Scans"], ["derivatives", "Derivative pictures"]):
-    make_subcollection(subcol[0], TOP_COL, subcol[1], xmlarrangement)
+# for subcol in (["teidocs", "TEI Documents"], ["masters", "Master Scans"], ["derivatives", "Derivative pictures"]):
+#    make_subcollection(subcol[0], TOP_COL, subcol[1], xmlarrangement)
 
 
 first_item = False
