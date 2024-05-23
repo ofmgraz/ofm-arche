@@ -95,7 +95,7 @@ def make_person(person):
         0
     ]
     last_name = person.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0]
-    return output + [(subject, ACDH["hasTitle"], Literal(f"{first_name} {last_name}"))]
+    return output + [(subject, ACDH["hasTitle"], Literal(f"{first_name} {last_name}", lang="und", datatype=RDF.langString))]
 
 
 # Takes a tei:place element and returns a tuple of triples to add to the RDF
@@ -120,7 +120,7 @@ def make_place(place):
             subject = URIRef(i.xpath("./text()")[0])
             output = [(subject, RDF.type, ACDH["Place"])]
 
-    return output + [(subject, ACDH["hasTitle"], Literal(f"{placename}"))]
+    return output + [(subject, ACDH["hasTitle"], Literal(f"{placename}", lang="de", datatype=RDF.langString))]
 
 
 def get_persons(tei):
@@ -203,7 +203,7 @@ def get_extent(tei):
         else:
             pagination = "Seiten"
         measures.append(f"{extent} {pagination}")
-    return Literal("; ".join(measures))
+    return Literal("; ".join(measures), lang="de")
 
 
 def get_tifs(tei):
@@ -259,11 +259,11 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
     g.add((subject, ACDH["hasLicensor"], Franziskanerkloster))
     g.add((subject, ACDH["hasOwner"], Franziskanerkloster))
     g.add((subject, ACDH["hasDepositor"], Franziskanerkloster))
-    g.add((subject, ACDH["hasTitle"], Literal(title)))
+    g.add((subject, ACDH["hasTitle"], Literal(title, lang="de")))
     if arrangement:
         g.add((subject, ACDH["hasArrangement"], Literal(arrangement)))
     if subtitle:
-        g.add((subject, ACDH["hasAlternativeTitle"], Literal(subtitle)))
+        g.add((subject, ACDH["hasAlternativeTitle"], Literal(subtitle, lang="la")))
     return subject
 
 
@@ -324,12 +324,12 @@ for xmlfilepath in files:
     g.add((xmlresc, ACDH["isPartOf"], TEIDOCS_URI))
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
         has_title = signature[0].text
-        g.add((xmlresc, ACDH["hasTitle"], Literal(signature[0].text)))
+        g.add((xmlresc, ACDH["hasTitle"], Literal(signature[0].text, lang="und")))
         g.add((xmlresc, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text)))
     if has_subtitle := doc.any_xpath(".//tei:title[@type='main']/text()"):
         has_subtitle = has_subtitle[0].strip('"')
         if has_subtitle != has_title:
-            g.add((xmlresc, ACDH["hasAlternativeTitle"], Literal(has_subtitle)))
+            g.add((xmlresc, ACDH["hasAlternativeTitle"], Literal(has_subtitle, lang="la")))
         else:
             subtitle = False
 
@@ -398,7 +398,7 @@ for xmlfilepath in files:
             g.add((resc, RDF.type, ACDH["Resource"]))
             add_constants(resc)
             g.add((resc, ACDH["isPartOf"], URIRef(picresc[1])))
-            g.add((resc, ACDH["hasTitle"], Literal(picture[0])))
+            g.add((resc, ACDH["hasTitle"], Literal(picture[0], lang="und")))
             g.add((resc, ACDH["hasFilename"], Literal(picresc[2])))
             # The object in the following ones needs to be adapted to meet the actual features
             g.add(

@@ -1,10 +1,11 @@
 @prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
 @prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz> a acdh:TopCollection ;
-    acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ;
-    acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ;
+    acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de^^rdf:langString ;
+    acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de^^rdf:langString ;
     acdh:hasSpatialCoverage <https://d-nb.info/gnd/16174362-6>,
         <https://d-nb.info/gnd/4021912-4>,
         <https://d-nb.info/gnd/4073953-3>,
@@ -41,92 +42,92 @@
         "https://n2t.net/ark:/99152/p09hq4n58mr"^^xsd:anyURI ;
     acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/deu>;
     acdh:hasSubject
-        "Digitale Edition"@de ,
-        "Musikwissenschaft"@de;
+        "Digitale Edition"@de^^rdf:langString ,
+        "Musikwissenschaft"@de^^rdf:langString ;
     acdh:hasNamingScheme """Top collection contains three subcollections: 'xmltei',
     'masters', and 'derivatives'. The subcollection 'xmltei' contains XML-TEI encoded
     files named after the physical objects' signatures with .xml extension, such as 'A64_41.xml' for A 64/41. 
     The folder masters contains third-level collections of TIFF files. Each of these third-level collections is named after
     the signature of the physical object, like 'A64_41'. The resources' name is completed with the pagination. For instance ,
     'A-Gf_64_41-003r.tiff' is folio 3 recto of the manuscript with signature A 64/41. Likewise, the folder derivatives contains
-    collections JPEG encoded files derivated from the TIFF files."""@en;
-    acdh:hasUrl "https://ofmgraz.github.io/ofm-static".
+    collections JPEG encoded files derivated from the TIFF files."""@en^^rdf:langString ;
+    acdh:hasUrl "https://ofmgraz.github.io/ofm-static" .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives> a acdh:Collection ;
-    acdh:hasArrangement "Each element represents a physical volume"@en ;
+    acdh:hasArrangement "Each element represents a physical volume"@en^^rdf:langString ;
     acdh:hasDepositor <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
     acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasRightsHolder acdhi:oeaw ;
-    acdh:hasTitle "Derivative pictures"@en ;
+    acdh:hasTitle "Derivative pictures"@en^^rdf:langString ;
     acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/masters> a acdh:Collection ;
-    acdh:hasArrangement "Each element represents a physical volume"@en ;
+    acdh:hasArrangement "Each element represents a physical volume"@en^^rdf:langString ;
     acdh:hasDepositor <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
     acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
-    acdh:hasAppliedMethod "Scanning";
+    acdh:hasAppliedMethod "Scanning"@en^^rdf:langString ;
     acdh:hasRightsHolder acdhi:oeaw ;
-    acdh:hasTitle "Master Scans"@en ;
+    acdh:hasTitle "Master Scans"@en^^rdf:langString ;
     acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/teidocs> a acdh:Collection ;
-    acdh:hasArrangement "Each element represents a physical volume"@en ;
+    acdh:hasArrangement "Each element represents a physical volume"@en^^rdf:langString ;
     acdh:hasDepositor <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
     acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasRightsHolder acdhi:oeaw ;
-    acdh:hasTitle "TEI Documents"@en ;
+    acdh:hasTitle "TEI Documents"@en^^rdf:langString ;
     acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
 
 <https://d-nb.info/gnd/1216831270> a acdh:Organisation ;
-    acdh:hasCountry "Österreich"@de ,
+    acdh:hasCountry "Österreich"@de^^rdf:langString ,
         "Austria"@en ;
-    acdh:hasDescription  "Austrian federal ministry"@en ;
-    acdh:hasTitle "Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport"@de .
+    acdh:hasDescription  "Austrian federal ministry"@en^^rdf:langString ;
+    acdh:hasTitle "Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport"@de^^rdf:langString .
 
 <https://orcid.org/0000-0002-0484-832X> a acdh:Person ;
-    acdh:hasTitle "Robert Klugseder"@de ;
+    acdh:hasTitle "Robert Klugseder"@de^^rdf:langString ;
     acdh:hasIdentifier <https://d-nb.info/gnd/134072170> .
 
 <https://orcid.org/0000-0002-8815-6741> a acdh:Person ;
-    acdh:hasTitle "Fernando Sanz-Lázaro"@es ;
+    acdh:hasTitle "Fernando Sanz-Lázaro"@es^^rdf:langString ;
     acdh:hasIdentifier <https://d-nb.info/gnd/1297553608> .
 
 <https://orcid.org/0000-0001-6195-2935> a acdh:Person ;
-    acdh:hasTitle "Jakob Leitner"@de .
+    acdh:hasTitle "Jakob Leitner"@de^^rdf:langString .
 
 <https://d-nb.info/gnd/16174362-6> a acdh:Place ;
-    acdh:hasTitle "Franziskanerkloster Graz"@de.
+    acdh:hasTitle "Franziskanerkloster Graz"@de^^rdf:langString .
 
 <https://d-nb.info/gnd/4021912-4> a acdh:Place ;
-    acdh:hasTitle "Graz"@de .
+    acdh:hasTitle "Graz"@de^^rdf:langString .
 
 <https://d-nb.info/gnd/4051622-2> a acdh:Place ;
-    acdh:hasTitle "Sankt Pölten"@de .
+    acdh:hasTitle "Sankt Pölten"@de^^rdf:langString .
 
  <https://d-nb.info/gnd/4066009-6> a acdh:Place ;
-    acdh:hasTitle "Wien"@de .
+    acdh:hasTitle "Wien"@de^^rdf:langString .
 
  <https://d-nb.info/gnd/4073953-3> a acdh:Place ;
-    acdh:hasTitle "Ljubljana"@de .
+    acdh:hasTitle "Ljubljana"@de^^rdf:langString .
 
  <https://d-nb.info/gnd/4076982-3> a acdh:Place ;
-    acdh:hasTitle "Salzburg"@de .
+    acdh:hasTitle "Salzburg"@de^^rdf:langString .
 
 <https://d-nb.info/gnd/4400654-8> a acdh:Place ;
-    acdh:hasTitle "Maria Lankowitz"@de .
+    acdh:hasTitle "Maria Lankowitz"@de^^rdf:langString .
     
  <https://d-nb.info/gnd/4115047-8> a acdh:Place ;
-    acdh:hasTitle "Mautern in Steiermark"@de .
+    acdh:hasTitle "Mautern in Steiermark"@de^^rdf:langString .
 
  <https://d-nb.info/gnd/4127793-4> a acdh:Place ;
-    acdh:hasTitle "München"@de .
+    acdh:hasTitle "München"@de^^rdf:langString .
 
 <https://d-nb.info/gnd/4062501-1> a acdh:Place ;
-    acdh:hasCountry "Italien"@de ;
-    acdh:hasTitle "Venedig"@de .
+    acdh:hasCountry "Italien"@de^^rdf:langString ;
+    acdh:hasTitle "Venedig"@de^^rdf:langString .
