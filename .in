@@ -1,0 +1,18 @@
+venv=venv
+currentvenv=""
+
+if [[ $VIRTUAL_ENV != "" ]]
+then
+  # Strip out the path and just leave the env name
+  currentvenv="${VIRTUAL_ENV##*/}"
+fi
+
+if [[ "$currentvenv" != "$venv" ]]
+then
+  #workon $venv
+  source ~/Projects/ofmgraz/ofm-arche/.venv/bin/activate
+#else
+#  echo "Already on environment $venv"
+fi
+
+# source .venv/bin/activate             

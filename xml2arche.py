@@ -17,7 +17,7 @@ TEIDOCS = "https://id.acdh.oeaw.ac.at/ofmgraz/teidocs"
 
 TOP_COL_URI = URIRef(TOP_COL)
 MASTERS_URI = URIRef(MASTERS)
-DERIVTV_URI =-URIRef(DERIVTV)
+DERIVTV_URI = -URIRef(DERIVTV)
 TEIDOCS_URI = URIRef(TEIDOCS)
 
 
@@ -54,17 +54,21 @@ def get_parent_node(feat, file_path):
     return nodes
 
 
-def uriark (uri):
-    return  Literal(uri, datatype="http://www.w3.org/2001/XMLSchema#anyURI")
+def uriark(uri):
+    return Literal(uri, datatype="http://www.w3.org/2001/XMLSchema#anyURI")
+
 
 def get_temporalcoverid(year):
-    ids = {"13": uriark("http://n2t.net/ark:/99152/p09hq4n"),
-           "14": uriark("http://n2t.net/ark:/99152/p09hq4n"),
-           "15": uriark("http://n2t.net/ark:/99152/p09hq4nhvcb"),
-           "16": uriark("http://n2t.net/ark:/99152/p09hq4nnx95"),
-           "17": uriark("http://n2t.net/ark:/99152/p09hq4nfgdb"),
-           "18": uriark("http://n2t.net/ark:/99152/p09hq4n58mr")}
+    ids = {
+        "13": uriark("http://n2t.net/ark:/99152/p09hq4n"),
+        "14": uriark("http://n2t.net/ark:/99152/p09hq4n"),
+        "15": uriark("http://n2t.net/ark:/99152/p09hq4nhvcb"),
+        "16": uriark("http://n2t.net/ark:/99152/p09hq4nnx95"),
+        "17": uriark("http://n2t.net/ark:/99152/p09hq4nfgdb"),
+        "18": uriark("http://n2t.net/ark:/99152/p09hq4n58mr"),
+    }
     return ids[year[0:2]]
+
 
 # Takes a TEI element (respStmt or person) and returns a tuple of triples to add to the RDF
 def make_person(person):
@@ -172,12 +176,16 @@ def get_contributors(tei):
         predobj.append((pred, obj))
     return predobj
 
+
 def get_used_device(tei):
     device = tei.any_xpath(".//tei:notesStmt/tei:note/text()")
     if device:
-        return Literal(re.match(r"Originals digitised with a (\w+) device", device[0]).group(1))
+        return Literal(
+            re.match(r"Originals digitised with a (\w+) device", device[0]).group(1)
+        )
     else:
         return Literal("")
+
 
 def get_extent(tei):
     measures = []
@@ -212,6 +220,7 @@ def get_tifs(tei):
             tifs.append((base, dims))
     return tifs
 
+
 def get_nextitem(first_item, doc):
     if next_item := doc.any_xpath("//@next"):
         if first_item == next_item[0]:
@@ -220,19 +229,25 @@ def get_nextitem(first_item, doc):
             next_item = next_item[0]
     return next_item
 
+
 # It does not get ingested if dimensions are provided
 def get_dims(file_path):
     response = requests.get(file_path)
     img = Image.open(BytesIO(response.content))
-    return  img.width, img.height
+    return img.width, img.height
+
 
 # To test, so it does not have to fetch the file and calculate them
 def get_dims(file_path):
     return 0, 0
 
+
 def get_coverage(doc):
-    places = doc.any_xpath('.//tei:standOff/tei:listPlace/tei:place/tei:idno[@subtype="GND"]/text()')
+    places = doc.any_xpath(
+        './/tei:standOff/tei:listPlace/tei:place/tei:idno[@subtype="GND"]/text()'
+    )
     return [URIRef(place) for place in places]
+
 
 # This creates subcollections. In this case, for each set of tiffs and of jpgs
 def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
@@ -251,6 +266,7 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
         g.add((subject, ACDH["hasAlternativeTitle"], Literal(subtitle)))
     return subject
 
+
 # Add constant properties to resource
 def add_constants(subj):
     g.add((subj, ACDH["hasRightsHolder"], RightsHolder))
@@ -259,6 +275,7 @@ def add_constants(subj):
     g.add((subj, ACDH["hasDepositor"], Depositor))
     g.add((subj, ACDH["hasLicense"], Licence))
     g.add((subj, ACDH["hasLicensor"], Licensor))
+
 
 def add_temporal(resc, start, end):
     g.add((resc, ACDH["hasCoverageStartDate"], start))
@@ -270,9 +287,9 @@ def add_temporal(resc, start, end):
 # Load the predefined constants: TopCollection, Collections, Persons, Places, and Organisations
 g = Graph().parse("arche_seed_files/arche_constants.ttl")
 
-#[g.add(x) for x in get_persons("data/indices/listperson.xml")]
+# [g.add(x) for x in get_persons("data/indices/listperson.xml")]
 
-#[g.add(x) for x in get_places("data/indices/listplace.xml")]
+# [g.add(x) for x in get_places("data/indices/listplace.xml")]
 
 count = 0
 files = glob.glob("data/editions/*.xml")
@@ -301,7 +318,9 @@ for xmlfilepath in files:
 
     # Looks for next XML file. They are here attributes of the top structure
     if hasNextItem:
-        g.add((xmlresc, ACDH["hasNextItem"], URIRef(os.path.join(TEIDOCS, hasNextItem))))
+        g.add(
+            (xmlresc, ACDH["hasNextItem"], URIRef(os.path.join(TEIDOCS, hasNextItem)))
+        )
     g.add((xmlresc, ACDH["isPartOf"], TEIDOCS_URI))
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
         has_title = signature[0].text
@@ -344,11 +363,17 @@ for xmlfilepath in files:
     digitiser = [dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
 
     ## Make subcollections for each book
-    subcollections = [make_subcollection(basename, parent, has_title, picarrangement, has_subtitle) for parent in (MASTERS, DERIVTV)]
+    subcollections = [
+        make_subcollection(basename, parent, has_title, picarrangement, has_subtitle)
+        for parent in (MASTERS, DERIVTV)
+    ]
     for subcollection in subcollections:
-        [g.add((subcollection, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
-        g.add((subcollection, ACDH['hasUsedHardware'], device))
-        [g.add((subcollection, ACDH['hasDigitisingAgent'], dig)) for dig in digitiser]
+        [
+            g.add((subcollection, ACDH["hasSpatialCoverage"], scover))
+            for scover in coverage
+        ]
+        g.add((subcollection, ACDH["hasUsedHardware"], device))
+        [g.add((subcollection, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
         add_temporal(subcollection, dates[0], dates[1])
 
     # Creates a list of pictures in the file, excluding empty refs
@@ -361,8 +386,8 @@ for xmlfilepath in files:
         tifresc = URIRef(os.path.join(MASTERS, tiffile))
         jpgresc = URIRef(os.path.join(DERIVTV, jpgfile))
 
-        g.add((tifresc, ACDH['isSourceOf'], jpgresc))
-        g.add((jpgresc, ACDH['isSourceOf'], xmlresc))
+        g.add((tifresc, ACDH["isSourceOf"], jpgresc))
+        g.add((jpgresc, ACDH["isSourceOf"], xmlresc))
         dims = picture[1]
 
         tif = (tifresc, subcollections[0], tiffile)
@@ -376,15 +401,21 @@ for xmlfilepath in files:
             g.add((resc, ACDH["hasTitle"], Literal(picture[0])))
             g.add((resc, ACDH["hasFilename"], Literal(picresc[2])))
             # The object in the following ones needs to be adapted to meet the actual features
-            g.add((resc, ACDH["hasCategory"], URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/image")))
-            if False: # picture[1]:
+            g.add(
+                (
+                    resc,
+                    ACDH["hasCategory"],
+                    URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/image"),
+                )
+            )
+            if False:  # picture[1]:
                 dims = picture[1]
                 g.add((resc, ACDH["hasPixelHeight"], Literal(f"{dims[0]}")))
                 g.add((resc, ACDH["hasPixelWidth"], Literal(f"{dims[1]}")))
         # If we are not in the last picture....
-        if idx > 0 :
-            g.add((tifresc, ACDH['hasNextItem'], prevtifresc))
-            g.add((jpgresc, ACDH['hasNextItem'], prevjpgresc))
+        if idx > 0:
+            g.add((tifresc, ACDH["hasNextItem"], prevtifresc))
+            g.add((jpgresc, ACDH["hasNextItem"], prevjpgresc))
         prevtifresc = tifresc
         prevjpgresc = jpgresc
 
