@@ -2,7 +2,7 @@
 import glob
 import os
 import re
-from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD
+from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD, query
 from acdh_tei_pyutils.tei import TeiReader
 from PIL import Image
 import requests
@@ -95,7 +95,8 @@ def make_person(person):
         0
     ]
     last_name = person.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0]
-    return output + [(subject, ACDH["hasTitle"], Literal(f"{first_name} {last_name}", lang="und", datatype=RDF.langString))]
+    return output + [(subject, ACDH["hasTitle"], Literal(f"{first_name} {last_name}", lang="und",
+                                                         datatype=RDF.langString))]
 
 
 # Takes a tei:place element and returns a tuple of triples to add to the RDF
@@ -261,7 +262,7 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
     g.add((subject, ACDH["hasDepositor"], Franziskanerkloster))
     g.add((subject, ACDH["hasTitle"], Literal(title, lang="de")))
     if arrangement:
-        g.add((subject, ACDH["hasArrangement"], Literal(arrangement, lang="en")))
+        g.add((subject, ACDH["hasArrangement"], Literal(arrangement)))
     if subtitle:
         g.add((subject, ACDH["hasAlternativeTitle"], Literal(subtitle, lang="la")))
     return subject
@@ -285,7 +286,8 @@ def add_temporal(resc, start, end):
 
 
 # Load the predefined constants: TopCollection, Collections, Persons, Places, and Organisations
-g = Graph().parse("arche_seed_files/arche_constants.ttl")
+g = Graph().parse("arche_seed_files/arche_constants.ttl", format("turtle"))
+
 
 # [g.add(x) for x in get_persons("data/indices/listperson.xml")]
 
@@ -420,6 +422,6 @@ for xmlfilepath in files:
         prevjpgresc = jpgresc
 
 try:
-    g.serialize("ofmgraz.ttl")
+    g.serialize("ofmgraz.ttl", format="ttl")
 except Exception as e:
     print(e)
