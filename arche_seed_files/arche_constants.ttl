@@ -2,7 +2,6 @@
 @prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-
 <https://id.acdh.oeaw.ac.at/ofmgraz> a acdh:TopCollection ;
     acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de^^rdf:langString ;
     acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de^^rdf:langString ;
@@ -69,7 +68,7 @@
     acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
     acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
-    acdh:hasAppliedMethod "Scanning"@en^^rdf:langString ;
+    acdh:hasAppliedMethod "Scanning" ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "Master Scans"@en^^rdf:langString ;
     acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
@@ -86,7 +85,7 @@
 
 <https://d-nb.info/gnd/1216831270> a acdh:Organisation ;
     acdh:hasCountry "Österreich"@de^^rdf:langString ,
-        "Austria"@en ;
+        "Austria"@en^^rdf:langString ;
     acdh:hasDescription  "Austrian federal ministry"@en^^rdf:langString ;
     acdh:hasTitle "Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport"@de^^rdf:langString .
 
@@ -95,7 +94,7 @@
     acdh:hasIdentifier <https://d-nb.info/gnd/134072170> .
 
 <https://orcid.org/0000-0002-8815-6741> a acdh:Person ;
-    acdh:hasTitle "Fernando Sanz-Lázaro"@es^^rdf:langString ;
+    acdh:hasTitle "Fernando Sanz-Lázaro"@und ;
     acdh:hasIdentifier <https://d-nb.info/gnd/1297553608> .
 
 <https://orcid.org/0000-0001-6195-2935> a acdh:Person ;
@@ -126,7 +125,7 @@
     acdh:hasTitle "Mautern in Steiermark"@de^^rdf:langString .
 
  <https://d-nb.info/gnd/4127793-4> a acdh:Place ;
-    acdh:hasTitle "München"@de^^rdf:langString .
+    acdh:hasTitle "München"@und^^rdf:langString .
 
 <https://d-nb.info/gnd/4062501-1> a acdh:Place ;
     acdh:hasCountry "Italien"@de^^rdf:langString ;
