@@ -5,31 +5,31 @@
 <https://id.acdh.oeaw.ac.at/ofmgraz> a acdh:TopCollection ;
     acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ;
     acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ;
-    acdh:hasSpatialCoverage <https://d-nb.info/gnd/16174362-6>,
-        <https://d-nb.info/gnd/4021912-4>,
-        <https://d-nb.info/gnd/4073953-3>,
-        <https://d-nb.info/gnd/4066009-6>,
-        <https://d-nb.info/gnd/4076982-3>,
-        <https://d-nb.info/gnd/4076982-3>,
-        <https://d-nb.info/gnd/4400654-8>,
-        <https://d-nb.info/gnd/4127793-4>,
-        <https://d-nb.info/gnd/4051622-2>,
-        <https://d-nb.info/gnd/4115047-8>;
+    acdh:hasSpatialCoverage acdhi:ofm-franziskanerkloster,
+        acdhi:ofm-graz ,
+        acdhi:sankt-polten ,
+        acdhi:ofm-wien ,
+        acdhi:ofm-ljubljana ,
+        acdhi:ofm-salzburg ,
+        acdhi:ofm-maria-lankowitz ,
+        acdhi:oft-mautern ,
+        acdhi:ofm-muenchen ,
+        acdhi:ofm-venedig ;
     acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024>,
-        <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007>,
-        <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008>;
-    acdh:hasPrincipalInvestigator <https://orcid.org/0000-0002-0484-832X> ;
-    acdh:hasContributor <https://orcid.org/0000-0002-8815-6741> ;
-    acdh:hasDepositor <https://d-nb.info/gnd/16174362-6> ;
+        <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007> ,
+        <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008> ;
+    acdh:hasPrincipalInvestigator acdhi:ofm-rklugseder ;
+    acdh:hasContributor acdhi:ofm-fsanzlazaro ;
+    acdh:hasDepositor acdhi:ofm-franziskanerkloster ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0> ;
-    acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
-    acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
+    acdh:hasLicensor acdhi:ofm-franziskanerkloster ;
+    acdh:hasMetadataCreator acdhi:ofm-fsanzlazaro ;
     acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo> ;
-    acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasOwner acdhi:ofm-franziskanerkloster ;
     acdh:hasRightsHolder <https://id.acdh.oeaw.ac.at/oeaw> ; 
     acdh:hasContact <https://id.acdh.oeaw.ac.at/ofmgraz> ;
-    acdh:hasCurator <https://orcid.org/0000-0002-0484-832X> ;
-    acdh:hasFunder <https://d-nb.info/gnd/1216831270> ;
+    acdh:hasCurator acdhi:ofm-rklugseder ;
+    acdh:hasFunder acdhi:ofm-bmkkoeds ;
     acdh:hasCoverageStartDate "1425-01-01";
     acdh:hasCoverageEndDate "1779-12-31";
     acdh:hasTemporalCoverageIdentifier
@@ -54,20 +54,20 @@
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives> a acdh:Collection ;
     acdh:hasArrangement "Each element represents a physical volume"@en ;
-    acdh:hasDepositor <https://d-nb.info/gnd/16174362-6> ;
-    acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
-    acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
-    acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasDepositor acdhi:ofm-franziskanerkloster ;
+    acdh:hasLicensor acdhi:ofm-franziskanerkloster ;
+    acdh:hasMetadataCreator acdhi:ofm-fsanzlazaro ;
+    acdh:hasOwner acdhi:ofm-franziskanerkloster ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "Derivative pictures"@en ;
     acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/masters> a acdh:Collection ;
     acdh:hasArrangement "Each element represents a physical volume"@en ;
-    acdh:hasDepositor <https://d-nb.info/gnd/16174362-6> ;
-    acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
-    acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
-    acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasDepositor acdhi:ofm-franziskanerkloster ;
+    acdh:hasLicensor acdhi:ofm-franziskanerkloster ;
+    acdh:hasMetadataCreator acdhi:ofm-fsanzlazaro ;
+    acdh:hasOwner acdhi:ofm-franziskanerkloster ;
     acdh:hasAppliedMethod "Scanning" ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "Master Scans"@en ;
@@ -75,54 +75,80 @@
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/teidocs> a acdh:Collection ;
     acdh:hasArrangement "Each element represents a physical volume"@en ;
-    acdh:hasDepositor <https://d-nb.info/gnd/16174362-6> ;
-    acdh:hasLicensor <https://d-nb.info/gnd/16174362-6> ;
-    acdh:hasMetadataCreator <https://orcid.org/0000-0002-8815-6741> ;
-    acdh:hasOwner <https://d-nb.info/gnd/16174362-6> ;
+    acdh:hasDepositor acdhi:ofm-franziskanerkloster ;
+    acdh:hasLicensor acdhi:ofm-franziskanerkloster ;
+    acdh:hasMetadataCreator acdhi:ofm-fsanzlazaro ;
+    acdh:hasOwner acdhi:ofm-franziskanerkloster ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "TEI Documents"@en ;
     acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
 
-<https://d-nb.info/gnd/1216831270> a acdh:Organisation ;
+
+acdhi:ofm-bmkkoeds a acdh:Organisation ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/1216831270> ;
     acdh:hasTitle "Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport"@de .
 
-<https://orcid.org/0000-0002-0484-832X> a acdh:Person ;
+acdhi:ofm-rklugseder a acdhi:Person ;
     acdh:hasTitle "Robert Klugseder"@de ;
-    acdh:hasIdentifier <https://d-nb.info/gnd/134072170> .
+    acdh:hasIdentifier <https://orcid.org/0000-0002-0484-832X> ,
+        <https://d-nb.info/gnd/134072170> .
 
-<https://orcid.org/0000-0002-8815-6741> a acdh:Person ;
-    acdh:hasTitle "Fernando Sanz-Lázaro"@und ;
-    acdh:hasIdentifier <https://d-nb.info/gnd/1297553608> .
+acdhi:ofm-fsanzlazaro a acdh:Person ;
+    acdh:hasIdentifier <https://orcid.org/0000-0002-8815-6741> ,
+        <https://d-nb.info/gnd/1297553608> ;
+    acdh:hasTitle "Fernando Sanz-Lázaro"@und .
 
-<https://orcid.org/0000-0001-6195-2935> a acdh:Person ;
+acdhi:ofm-jleitner a acdh:Person ;
+    acdh:hasIdentifier <https://orcid.org/0000-0001-6195-2935> ;
     acdh:hasTitle "Jakob Leitner"@de .
 
-<https://d-nb.info/gnd/16174362-6> a acdh:Place ;
+acdhi:ofm-franziskanerkloster a acdh:Organisation ;  
+    acdh:hasIdentifier <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasTitle "Franziskanerkloster Graz"@de .
 
-<https://d-nb.info/gnd/4021912-4> a acdh:Place ;
+acdhi:ofm-graz a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4021912-4> ;
+    acdh:hasCountry "Österreich"@de ;
     acdh:hasTitle "Graz"@de .
 
-<https://d-nb.info/gnd/4051622-2> a acdh:Place ;
+acdhi:sankt-polten a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4051622-2> ;
+    acdh:hasCountry "Österreich"@de ;  
     acdh:hasTitle "Sankt Pölten"@de .
 
- <https://d-nb.info/gnd/4066009-6> a acdh:Place ;
+acdhi:ofm-wien a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4066009-6> ;
+    acdh:hasCountry "Österreich"@de ;
     acdh:hasTitle "Wien"@de .
 
- <https://d-nb.info/gnd/4073953-3> a acdh:Place ;
+acdhi:ofm-ljubljana a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4073953-3> ;
+    acdh:hasCountry "Slowenien"@de ;
     acdh:hasTitle "Ljubljana"@de .
 
- <https://d-nb.info/gnd/4076982-3> a acdh:Place ;
+acdhi:ofm-salzburg a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4076982-3> ;
+    acdh:hasCountry "Österreich"@de ;
     acdh:hasTitle "Salzburg"@de .
 
-<https://d-nb.info/gnd/4400654-8> a acdh:Place ;
+acdhi:ofm-maria-lankowitz a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4400654-8> ;
+    acdh:hasCountry "Österreich"@de ;
     acdh:hasTitle "Maria Lankowitz"@de .
     
- <https://d-nb.info/gnd/4115047-8> a acdh:Place ;
+acdhi:oft-mautern a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4115047-8> ;
+    acdh:hasCountry "Österreich"@de ;
     acdh:hasTitle "Mautern in Steiermark"@de .
 
- <https://d-nb.info/gnd/4127793-4> a acdh:Place ;
-    acdh:hasTitle "München"@und .
+acdhi:ofm-muenchen a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4127793-4> ;
+    acdh:hasCountry "Deutschland"@de ;
+    acdh:hasTitle "München"@de .
 
-<https://d-nb.info/gnd/4062501-1> a acdh:Place ;
+acdhi:ofm-venedig a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4062501-1> ;
+    acdh:hasCountry "Italien"@de ;
     acdh:hasTitle "Venedig"@de .
+
+

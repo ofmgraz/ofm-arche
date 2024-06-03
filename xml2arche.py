@@ -261,7 +261,7 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
     g.add((subject, ACDH["hasDepositor"], Franziskanerkloster))
     g.add((subject, ACDH["hasTitle"], Literal(title, lang="de")))
     if arrangement:
-        g.add((subject, ACDH["hasArrangement"], Literal(arrangement)))
+        g.add((subject, ACDH["hasArrangement"], Literal(arrangement, lang="en")))
     if subtitle:
         g.add((subject, ACDH["hasAlternativeTitle"], Literal(subtitle, lang="la")))
     return subject
