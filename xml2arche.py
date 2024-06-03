@@ -95,8 +95,7 @@ def make_person(person):
         0
     ]
     last_name = person.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0]
-    return output + [(subject, ACDH["hasTitle"], Literal(f"{first_name} {last_name}", lang="und",
-                                                         datatype=RDF.langString))]
+    return output + [(subject, ACDH["hasTitle"], Literal(f"{first_name} {last_name}", lang="und"))]
 
 
 # Takes a tei:place element and returns a tuple of triples to add to the RDF
@@ -121,7 +120,7 @@ def make_place(place):
             subject = URIRef(i.xpath("./text()")[0])
             output = [(subject, RDF.type, ACDH["Place"])]
 
-    return output + [(subject, ACDH["hasTitle"], Literal(f"{placename}", lang="de", datatype=RDF.langString))]
+    return output + [(subject, ACDH["hasTitle"], Literal(f"{placename}", lang="de"))]
 
 
 def get_persons(tei):
