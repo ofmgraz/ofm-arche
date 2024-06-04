@@ -17,7 +17,7 @@
     acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024>,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007> ,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008> ;
-    acdh:hasPrincipalInvestigator acdh:rklugseder ;
+    acdh:hasPrincipalInvestigator acdhi:rklugseder ;
     acdh:hasContributor acdhi:fsanzlazaro ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0> ;
@@ -25,7 +25,7 @@
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo> ;
     acdh:hasOwner acdhi:oeaw ;
-    acdh:hasRightsHolder acdhi:ofmi:oeaw ; 
+    acdh:hasRightsHolder acdhi:oeaw ; 
     acdh:hasCurator acdhi:rklugseder ;
     acdh:hasFunder acdhi:bmkkoeds ;    
     acdh:hasContact acdhi:rklugseder ;
