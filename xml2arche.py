@@ -32,15 +32,14 @@ rdfconstants = "arche_seed_files/arche_constants.ttl"
 #                                          CONFIG                                                #
 #                                                                                                #
 ##################################################################################################
+Franziskanerkloster = URIRef("https://d-nb.info/gnd/16174362-6")
 
 RightsHolder = URIRef("https://id.acdh.oeaw.ac.at/oeaw")
-Owner = URIRef("https://d-nb.info/gnd/16174362-6")
-MetadataCreator = URIRef("https://id.acdh.oeaw.ac.at/")
-Owner = URIRef("https://id.acdh.oeaw.ac.at/oeaw")
-Licensor = URIRef("https://d-nb.info/gnd/16174362-6")
-Depositor = URIRef("https://d-nb.info/gnd/16174362-6")
+Owner = URIRef("https://id.acdh.oeaw.ac.at/oeaw/franziskanerklostergraz")
+MetadataCreator = URIRef("https://id.acdh.oeaw.ac.at/fsanzlazaro")
+Licensor = URIRef("https://id.acdh.oeaw.ac.at/oeaw/franziskanerklostergraz")
+Depositor = URIRef("URIRhttps://id.acdh.oeaw.ac.at/oeaw/franziskanerklostergraz")
 Licence = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0")
-Franziskanerkloster = URIRef("https://d-nb.info/gnd/16174362-6")
 
 
 ##################################################################################################

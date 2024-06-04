@@ -2,7 +2,7 @@
 @prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-acdhi:ofmgraz a acdh:TopCollection ;
+<https://id.acdh.oeaw.ac.at/ofmgraz> a acdh:TopCollection ;
     acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ;
     acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ;
     acdh:hasSpatialCoverage acdhi:ofm-graz ,
@@ -123,7 +123,7 @@ acdhi:ofm-graz a acdh:Place ;
     acdh:hasCountry "Österreich"@de ;
     acdh:hasTitle "Graz"@de .
 
-acdhi:sankt-polten a acdh:Place ;
+acdhi:ofm-sankt-polten a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4051622-2> ;
     acdh:hasCountry "Österreich"@de ;  
     acdh:hasTitle "Sankt Pölten"@de .
