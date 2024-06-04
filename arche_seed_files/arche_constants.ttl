@@ -90,7 +90,7 @@ acdhi:bmkkoeds a acdh:Organisation ;
 acdhi:rklugseder a acdh:Person ;
     acdh:hasLastName "Klugseder"@de ;
     acdh:hasFirstName "Robert"@de ;
-    acdh:hasTitle "Robert Klugseder"@de ;
+    acdh:hasTitle "Robert Klugseder"@und ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-0484-832X> ,
         <https://d-nb.info/gnd/134072170> .
 
@@ -99,13 +99,20 @@ acdhi:fsanzlazaro a acdh:Person ;
         <https://d-nb.info/gnd/1297553608> ;
     acdh:hasLastName "Sanz-Lázaro"@es ;
     acdh:hasFirstName "Fernando"@es ;
-    acdh:hasTitle "Fernando Sanz-Lázaro"@es .
+    acdh:hasTitle "Fernando Sanz-Lázaro"@und .
+
+acdhi:pandorfer a acdh:Person ;
+    acdh:hasIdentifier <https://orcid.org/0000-0002-9575-9372>,
+        <https://d-nb.info/gnd/1043833846> ;
+    acdh:hasLastName "Andorfer"@de ;
+    acdh:hasFirstName "Peter"@de ;
+    acdh:hasTitle "Peter Andorfer"@und .
 
 acdhi:jleitner a acdh:Person ;
     acdh:hasLastName "Leitner"@de ;
     acdh:hasFirstName "Jakob"@de ;
     acdh:hasIdentifier <https://orcid.org/0000-0001-6195-2935> ;
-    acdh:hasTitle "Jakob Leitner"@de .
+    acdh:hasTitle "Jakob Leitner"@und .
 
 acdhi:franziskanerklostergraz a acdh:Organisation ;  
     acdh:hasIdentifier <https://d-nb.info/gnd/16174362-6> ;

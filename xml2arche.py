@@ -25,6 +25,7 @@ ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
 PERIODO = Namespace("http://n2t.net/ark:/99152/p0v#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
 
+rdfconstants = "arche_seed_files/arche_constants.ttl"
 
 ##################################################################################################
 #                                                                                                #
@@ -34,7 +35,7 @@ nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
 
 RightsHolder = URIRef("https://id.acdh.oeaw.ac.at/oeaw")
 Owner = URIRef("https://d-nb.info/gnd/16174362-6")
-MetadataCreator = URIRef("https://orcid.org/0000-0002-8815-6741")
+MetadataCreator = URIRef("https://id.acdh.oeaw.ac.at/")
 Owner = URIRef("https://id.acdh.oeaw.ac.at/oeaw")
 Licensor = URIRef("https://d-nb.info/gnd/16174362-6")
 Depositor = URIRef("https://d-nb.info/gnd/16174362-6")
@@ -123,11 +124,22 @@ def make_place(place):
     return output + [(subject, ACDH["hasTitle"], Literal(f"{placename}", lang="de"))]
 
 
-def get_persons(tei):
-    list_file = glob.glob(tei)[0]
-    persons = get_parent_node("tei:persName", list_file)
-    return [x for person in persons for x in make_person(person)]
+def get_persons(rdfconstants):
+    persons = {}
+    q = """
+    PREFIX acdh: <https://vocabs.acdh.oeaw.ac.at/schema#>
 
+    SELECT ?subject ?identifier
+    WHERE {
+        ?subject rdf:type acdh:Person .
+        ?subject acdh:hasIdentifier ?identifier .
+    }
+    """
+    for r in g.query(q):
+        persons[
+                str(r["identifier"])
+                ] = r["subject"]
+    return persons
 
 def get_places(tei):
     # Tries first to get the German name
@@ -165,7 +177,7 @@ def get_contributors(tei):
             ":"
         )[-1]
         if obj := contributor.xpath(".//tei:persName/@ref", namespaces=nsmap):
-            obj = URIRef(obj[0])
+            obj = persons[obj[0]]
             pred = ACDH[pred]
         # The contributor has no PI
         else:
@@ -285,7 +297,9 @@ def add_temporal(resc, start, end):
 
 
 # Load the predefined constants: TopCollection, Collections, Persons, Places, and Organisations
-g = Graph().parse("arche_seed_files/arche_constants.ttl", format("turtle"))
+g = Graph().parse(rdfconstants, format("turtle"))
+
+persons = get_persons(g)
 
 
 # [g.add(x) for x in get_persons("data/indices/listperson.xml")]
