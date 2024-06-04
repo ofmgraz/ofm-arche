@@ -5,8 +5,7 @@
 acdhi:ofmgraz a acdh:TopCollection ;
     acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ;
     acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ;
-    acdh:hasSpatialCoverage acdhi:ofm-franziskanerkloster,
-        acdhi:ofm-graz ,
+    acdh:hasSpatialCoverage acdhi:ofm-graz ,
         acdhi:sankt-polten ,
         acdhi:ofm-wien ,
         acdhi:ofm-ljubljana ,
@@ -18,18 +17,18 @@ acdhi:ofmgraz a acdh:TopCollection ;
     acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024>,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007> ,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008> ;
-    acdh:hasPrincipalInvestigator acdhi:ofm-rklugseder ;
-    acdh:hasContributor acdhi:ofm-fsanzlazaro ;
-    acdh:hasDepositor acdhi:ofm-franziskanerkloster ;
+    acdh:hasPrincipalInvestigator acdh:rklugseder ;
+    acdh:hasContributor acdh:fsanzlazaro ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0> ;
-    acdh:hasLicensor acdhi:ofm-franziskanerkloster ;
-    acdh:hasMetadataCreator acdhi:ofm-fsanzlazaro ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdh:fsanzlazaro ;
     acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo> ;
-    acdh:hasOwner acdhi:ofm-franziskanerkloster ;
-    acdh:hasRightsHolder acdhi:ofm-franziskanerkloster ; 
-    acdh:hasContact acdhi:ofm-rklugseder ;
-    acdh:hasCurator acdhi:ofm-rklugseder ;
-    acdh:hasFunder acdhi:ofm-bmkkoeds ;
+    acdh:hasOwner acdhi:oeaw ;
+    acdh:hasRightsHolder acdhi:ofmi:oeaw ; 
+    acdh:hasCurator acdhi:rklugseder ;
+    acdh:hasFunder acdhi:bmkkoeds ;    
+    acdh:hasContact acdhi:rklugseder ;
     acdh:hasCoverageStartDate "1425-01-01";
     acdh:hasCoverageEndDate "1779-12-31";
     acdh:hasTemporalCoverageIdentifier
@@ -54,20 +53,20 @@ acdhi:ofmgraz a acdh:TopCollection ;
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives> a acdh:Collection ;
     acdh:hasArrangement "Each element represents a physical volume"@en ;
-    acdh:hasDepositor acdhi:ofm-franziskanerkloster ;
-    acdh:hasLicensor acdhi:ofm-franziskanerkloster ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:ofm-fsanzlazaro ;
-    acdh:hasOwner acdhi:ofm-franziskanerkloster ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "Derivative pictures"@en ;
     acdh:isPartOf acdhi:ofmgraz .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/masters> a acdh:Collection ;
     acdh:hasArrangement "Each element represents a physical volume"@en ;
-    acdh:hasDepositor acdhi:ofm-franziskanerkloster ;
-    acdh:hasLicensor acdhi:ofm-franziskanerkloster ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:ofm-fsanzlazaro ;
-    acdh:hasOwner acdhi:ofm-franziskanerkloster ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
     acdh:hasAppliedMethod "Scanning" ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "Master Scans"@en ;
@@ -75,34 +74,40 @@ acdhi:ofmgraz a acdh:TopCollection ;
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/teidocs> a acdh:Collection ;
     acdh:hasArrangement "Each element represents a physical volume"@en ;
-    acdh:hasDepositor acdhi:ofm-franziskanerkloster ;
-    acdh:hasLicensor acdhi:ofm-franziskanerkloster ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:ofm-fsanzlazaro ;
-    acdh:hasOwner acdhi:ofm-franziskanerkloster ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "TEI Documents"@en ;
     acdh:isPartOf acdhi:ofmgraz .
 
 
-acdhi:ofm-bmkkoeds a acdh:Organisation ;
+acdhi:bmkkoeds a acdh:Organisation ;
     acdh:hasIdentifier <https://d-nb.info/gnd/1216831270> ;
     acdh:hasTitle "Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport"@de .
 
-acdhi:ofm-rklugseder a acdh:Person ;
+acdhi:rklugseder a acdh:Person ;
+    acdh:hasLastName "Klugseder"@de ;
+    acdh:hasFirstName "Robert"@de ;
     acdh:hasTitle "Robert Klugseder"@de ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-0484-832X> ,
         <https://d-nb.info/gnd/134072170> .
 
-acdhi:ofm-fsanzlazaro a acdh:Person ;
+acdhi:fsanzlazaro a acdh:Person ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-8815-6741> ,
         <https://d-nb.info/gnd/1297553608> ;
-    acdh:hasTitle "Fernando Sanz-Lázaro"@und .
+    acdh:hasLastName "Sanz-Lázaro"@es ;
+    acdh:hasFirstName "Fernando"@es ;
+    acdh:hasTitle "Fernando Sanz-Lázaro"@es .
 
-acdhi:ofm-jleitner a acdh:Person ;
+acdhi:jleitner a acdh:Person ;
+    acdh:hasLastName "Leitner"@de ;
+    acdh:hasFirstName "Jakob"@de ;
     acdh:hasIdentifier <https://orcid.org/0000-0001-6195-2935> ;
     acdh:hasTitle "Jakob Leitner"@de .
 
-acdhi:ofm-franziskanerkloster a acdh:Organisation ;  
+acdhi:franziskanerklostergraz a acdh:Organisation ;  
     acdh:hasIdentifier <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasTitle "Franziskanerkloster Graz"@de .
 
@@ -150,5 +155,3 @@ acdhi:ofm-venedig a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4062501-1> ;
     acdh:hasCountry "Italien"@de ;
     acdh:hasTitle "Venedig"@de .
-
-
