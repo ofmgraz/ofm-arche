@@ -142,11 +142,22 @@ def get_persons(rdfconstants):
     return persons
 
 def get_places(tei):
+    places = {}
+    q = """
+    PREFIX acdh: <https://vocabs.acdh.oeaw.ac.at/schema#>
+
+    SELECT ?subject ?identifier
+    WHERE {
+        ?subject rdf:type acdh:Place .
+        ?subject acdh:hasIdentifier ?identifier .
+    }
+    """
+    for r in g.query(q):
+        places[
+                str(r["identifier"])
+                ] = r["subject"]
+    return places
     # Tries first to get the German name
-    places = TeiReader(tei).any_xpath(".//tei:place[@xml:lang='de']")
-    if not places:
-        places = TeiReader(tei).any_xpath(".//tei:place")
-    return [x for place in places for x in make_place(place)]
 
 
 def search_editor(tei):
@@ -258,7 +269,7 @@ def get_coverage(doc):
     places = doc.any_xpath(
         './/tei:standOff/tei:listPlace/tei:place/tei:idno[@subtype="GND"]/text()'
     )
-    return [URIRef(place) for place in places]
+    return [places[place] for place in places]
 
 
 # This creates subcollections. In this case, for each set of tiffs and of jpgs
@@ -300,7 +311,7 @@ def add_temporal(resc, start, end):
 g = Graph().parse(rdfconstants, format("turtle"))
 
 persons = get_persons(g)
-
+places = get_places(g)
 
 # [g.add(x) for x in get_persons("data/indices/listperson.xml")]
 
