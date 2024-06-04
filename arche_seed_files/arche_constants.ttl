@@ -2,7 +2,7 @@
 @prefix acdhi: <https://id.acdh.oeaw.ac.at/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-<https://id.acdh.oeaw.ac.at/ofmgraz> a acdh:TopCollection ;
+acdhi:ofmgraz a acdh:TopCollection ;
     acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ;
     acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ;
     acdh:hasSpatialCoverage acdhi:ofm-franziskanerkloster,
@@ -26,8 +26,8 @@
     acdh:hasMetadataCreator acdhi:ofm-fsanzlazaro ;
     acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo> ;
     acdh:hasOwner acdhi:ofm-franziskanerkloster ;
-    acdh:hasRightsHolder <https://id.acdh.oeaw.ac.at/oeaw> ; 
-    acdh:hasContact <https://id.acdh.oeaw.ac.at/ofmgraz> ;
+    acdh:hasRightsHolder acdhi:ofm-franziskanerkloster ; 
+    acdh:hasContact acdhi:ofm-rklugseder ;
     acdh:hasCurator acdhi:ofm-rklugseder ;
     acdh:hasFunder acdhi:ofm-bmkkoeds ;
     acdh:hasCoverageStartDate "1425-01-01";
@@ -60,7 +60,7 @@
     acdh:hasOwner acdhi:ofm-franziskanerkloster ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "Derivative pictures"@en ;
-    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
+    acdh:isPartOf acdhi:ofmgraz .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/masters> a acdh:Collection ;
     acdh:hasArrangement "Each element represents a physical volume"@en ;
@@ -71,7 +71,7 @@
     acdh:hasAppliedMethod "Scanning" ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "Master Scans"@en ;
-    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
+    acdh:isPartOf acdhi:ofmgraz .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/teidocs> a acdh:Collection ;
     acdh:hasArrangement "Each element represents a physical volume"@en ;
@@ -81,14 +81,14 @@
     acdh:hasOwner acdhi:ofm-franziskanerkloster ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "TEI Documents"@en ;
-    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz> .
+    acdh:isPartOf acdhi:ofmgraz .
 
 
 acdhi:ofm-bmkkoeds a acdh:Organisation ;
     acdh:hasIdentifier <https://d-nb.info/gnd/1216831270> ;
     acdh:hasTitle "Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport"@de .
 
-acdhi:ofm-rklugseder a acdhi:Person ;
+acdhi:ofm-rklugseder a acdh:Person ;
     acdh:hasTitle "Robert Klugseder"@de ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-0484-832X> ,
         <https://d-nb.info/gnd/134072170> .
