@@ -22,6 +22,7 @@ TEIDOCS_URI = URIRef(TEIDOCS)
 
 
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
+ACDHI = Namespace("https://id.acdh.oeaw.ac.at/")
 PERIODO = Namespace("http://n2t.net/ark:/99152/p0v#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
 
@@ -32,13 +33,13 @@ rdfconstants = "arche_seed_files/arche_constants.ttl"
 #                                          CONFIG                                                #
 #                                                                                                #
 ##################################################################################################
-Franziskanerkloster = URIRef("https://d-nb.info/gnd/16174362-6")
+Franziskanerkloster = URIRef("https://id.acdh.oeaw.ac.at/franziskanerklostergraz")
 
-RightsHolder = URIRef("https://id.acdh.oeaw.ac.at/oeaw")
-Owner = URIRef("https://id.acdh.oeaw.ac.at/oeaw/franziskanerklostergraz")
-MetadataCreator = URIRef("https://id.acdh.oeaw.ac.at/fsanzlazaro")
-Licensor = URIRef("https://id.acdh.oeaw.ac.at/oeaw/franziskanerklostergraz")
-Depositor = URIRef("URIRhttps://id.acdh.oeaw.ac.at/oeaw/franziskanerklostergraz")
+RightsHolder = ACDHI["oeaw"]
+Owner = ACDHI["franziskanerklostergraz"]
+MetadataCreator = ACDHI["fsanzlazaro"]
+Licensor = ACDHI["franziskanerklostergraz"]
+Depositor = ACDHI["rklugseder"]
 Licence = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0")
 
 
@@ -265,10 +266,11 @@ def get_dims(file_path):
 
 
 def get_coverage(doc):
-    places = doc.any_xpath(
+    locations = doc.any_xpath(
         './/tei:standOff/tei:listPlace/tei:place/tei:idno[@subtype="GND"]/text()'
     )
-    return [places[place] for place in places]
+    print(locations)
+    return [places[locations[place]] for place in locations]
 
 
 # This creates subcollections. In this case, for each set of tiffs and of jpgs
@@ -375,6 +377,7 @@ for xmlfilepath in files:
         )
     )
     coverage = get_coverage(doc)
+    print(coverage)
     [g.add((xmlresc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
     contributors = get_contributors(doc)
     [g.add((xmlresc, x[0], x[1])) for x in contributors]

@@ -11,18 +11,18 @@
         acdhi:ofm-ljubljana ,
         acdhi:ofm-salzburg ,
         acdhi:ofm-maria-lankowitz ,
-        acdhi:oft-mautern ,
+        acdhi:ofm-mautern ,
         acdhi:ofm-muenchen ,
         acdhi:ofm-venedig ;
     acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024>,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007> ,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008> ;
     acdh:hasPrincipalInvestigator acdh:rklugseder ;
-    acdh:hasContributor acdh:fsanzlazaro ;
+    acdh:hasContributor acdhi:fsanzlazaro ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0> ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
-    acdh:hasMetadataCreator acdh:fsanzlazaro ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo> ;
     acdh:hasOwner acdhi:oeaw ;
     acdh:hasRightsHolder acdhi:ofmi:oeaw ; 
@@ -55,7 +55,7 @@
     acdh:hasArrangement "Each element represents a physical volume"@en ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
-    acdh:hasMetadataCreator acdhi:ofm-fsanzlazaro ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasOwner acdhi:franziskanerklostergraz ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "Derivative pictures"@en ;
@@ -65,7 +65,7 @@
     acdh:hasArrangement "Each element represents a physical volume"@en ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
-    acdh:hasMetadataCreator acdhi:ofm-fsanzlazaro ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasOwner acdhi:franziskanerklostergraz ;
     acdh:hasAppliedMethod "Scanning" ;
     acdh:hasRightsHolder acdhi:oeaw ;
@@ -76,7 +76,7 @@
     acdh:hasArrangement "Each element represents a physical volume"@en ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
-    acdh:hasMetadataCreator acdhi:ofm-fsanzlazaro ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasOwner acdhi:franziskanerklostergraz ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "TEI Documents"@en ;
@@ -148,7 +148,7 @@ acdhi:ofm-maria-lankowitz a acdh:Place ;
     acdh:hasCountry "Österreich"@de ;
     acdh:hasTitle "Maria Lankowitz"@de .
     
-acdhi:oft-mautern a acdh:Place ;
+acdhi:ofm-mautern a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4115047-8> ;
     acdh:hasCountry "Österreich"@de ;
     acdh:hasTitle "Mautern in Steiermark"@de .
