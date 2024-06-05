@@ -6,7 +6,7 @@
     acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ;
     acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ;
     acdh:hasSpatialCoverage acdhi:ofm-graz ,
-        acdhi:sankt-polten ,
+        acdhi:ofm-sankt-polten ,
         acdhi:ofm-wien ,
         acdhi:ofm-ljubljana ,
         acdhi:ofm-salzburg ,
