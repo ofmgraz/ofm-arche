@@ -20,7 +20,10 @@
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008> ;
     acdh:hasPrincipalInvestigator acdhi:rklugseder ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
-    acdh:hasContributor acdhi:pandorfer ;
+    acdh:hasContributor acdhi:pandorfer ,
+        acdhi:rklugseder ,
+        acdhi:fsanzlazaro ,
+        acdhi:dschopper ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0> ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
@@ -139,37 +142,21 @@ acdhi:fsanzlazaro a acdh:Person ;
     acdh:isMemberOf acdhi:acdh-oeaw ;
     acdh:hasTitle "Fernando Sanz-Lázaro"@und .
 
-# Already on ARCHE
-acdhi:pandorfer a acdh:Person ;
-    acdh:hasIdentifier <https://orcid.org/0000-0002-9575-9372>,
-        <https://d-nb.info/gnd/1043833846> ;
-    acdh:hasLastName "Andorfer"@de ;
-    acdh:hasFirstName "Peter"@de ;
-    acdh:hasTitle "Peter Andorfer"@und .
-
 acdhi:jleitner a acdh:Person ;
     acdh:hasLastName "Leitner"@de ;
     acdh:hasFirstName "Jakob"@de ;
     acdh:hasIdentifier <https://orcid.org/0000-0001-6195-2935> ;
     acdh:hasTitle "Jakob Leitner"@und .
 
+# Already on ARCHE
+acdhi:pandorfer a acdh:Person ;
+    acdh:hasIdentifier <https://orcid.org/0000-0002-9575-9372> ;
+    acdh:hasTitle "Peter Andorfer"@und .
+
+acdhi:dschopper a acdh:Person ;
+    acdh:hasIdentifier <https://orcid.org/0000-0003-2436-0361> ;
+    acdh:hasTitle "Daniel Schopper"@und .
+
 acdhi:franziskanerklostergraz a acdh:Organisation ;  
     acdh:hasIdentifier <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasTitle "Franziskanerkloster Graz"@de .
-
-
-
-
-
-    <https://id.acdh.oeaw.ac.at/ofmgraz/teidocs/A67_41.xml>  a acdh:Resource ;
-    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei> ;
-    acdh:hasDepositor acdhi:rklugseder ;
-    acdh:hasFormat "application/xml" ;
-    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0> ;
-    acdh:hasLicensor acdhi:franziskanerklostergraz ;
-    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
-    acdh:hasOwner acdhi:franziskanerklostergraz ;
-    acdh:hasRightsHolder acdhi:oeaw ;
-    acdh:hasSpatialCoverage <https://sws.geonames.org/2761369/> ;
-    acdh:hasTitle "A 67/41"@und ;
-    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/teidocs> .
