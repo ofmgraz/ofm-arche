@@ -88,20 +88,49 @@ acdhi:bmkkoeds a acdh:Organisation ;
     acdh:hasTitle "Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport"@de .
 
 acdhi:rklugseder a acdh:Person ;
+    acdh:hasPersonalTitle "PD Dr.habil." ;
     acdh:hasLastName "Klugseder"@de ;
     acdh:hasFirstName "Robert"@de ;
     acdh:hasTitle "Robert Klugseder"@und ;
+    acdh:hasAddressLine1 "Bäckerstraße 13" ;
+    acdh:hasAddressLine2 "c/o ACDH-CH" ;
+    acdh:hasPostcode "1100" ;
+    acdh:hasEmail "robert.klugseder@oeaw.ac.at" ;
+    acdh:hasCity
+        "Vienna"@en ,
+        "Wien"@de ;
+    acdh:hasRegion
+        "Vienna"@en ,
+        "Wien"@de ;
+    acdh:hasUrl <https://www.oeaw.ac.at/acdh/team/current-team/robert-klugseder> ;
+    acdh:isMemberOf acdhi:acdh-oeaw ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-0484-832X> ,
         <https://d-nb.info/gnd/134072170> .
 
 acdhi:fsanzlazaro a acdh:Person ;
+    acdh:hasPersonalTitle "Lic. Mag. Dr." ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-8815-6741> ,
         <https://d-nb.info/gnd/1297553608> ;
-    acdh:hasLastName "Sanz-Lázaro"@es ;
-    acdh:hasFirstName "Fernando"@es ;
+    acdh:hasLastName "Sanz-Lázaro"@es ,
+        "Sanz-Lázaro"@und;
+    acdh:hasFirstName "Fernando"@es ,
+        "Fernando"@und ;
+    acdh:hasAddressLine1 "Bäckerstraße 13" ;
+    acdh:hasAddressLine2 "c/o ACDH-CH" ;
+    acdh:hasPostcode "1100" ;
+    acdh:hasEmail "fernando.sanz-lazaro@oeaw.ac.at" ;
+    acdh:hasCity
+        "Vienna"@en ,
+        "Wien"@de ;
+    acdh:hasRegion
+        "Vienna"@en ,
+        "Wien"@de ;
+    acdh:hasUrl <https://www.oeaw.ac.at/acdh/team/current-team/fernando-sanz-lazaro> ;
+    acdh:isMemberOf acdhi:acdh-oeaw ;
     acdh:hasTitle "Fernando Sanz-Lázaro"@und .
 
 acdhi:pandorfer a acdh:Person ;
+    acdh:hasPersonalTitle "Mag. Dr."
     acdh:hasIdentifier <https://orcid.org/0000-0002-9575-9372>,
         <https://d-nb.info/gnd/1043833846> ;
     acdh:hasLastName "Andorfer"@de ;
