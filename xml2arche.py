@@ -106,13 +106,13 @@ def make_place(place):
         )[0]
     else:
         placename = place.xpath(".//tei:placeName/text()", namespaces=nsmap)[0]
-    i = place.xpath(".//tei:idno[@subtype='GND']", namespaces=nsmap)
+    i = place.xpath(".//tei:idno[@subtype='GEONAMES']", namespaces=nsmap)
     if i:
         subject = URIRef(i[0].xpath("./text()")[0])
         output = [(subject, RDF.type, ACDH["Place"])]
     ids = place.xpath(".//tei:idno[@type='URL']", namespaces=nsmap)
     for i in ids:
-        if output and i.xpath("./@subtype")[0] != "GND":
+        if output and i.xpath("./@subtype")[0] != "GEONAMES":
             output.append(
                 (subject, ACDH["hasIdentifier"], URIRef(i.xpath("./text()")[0]))
             )
@@ -266,7 +266,7 @@ def get_dims(file_path):
 
 def get_coverage(doc):
     locations = doc.any_xpath(
-        './/tei:standOff/tei:listPlace/tei:place/tei:idno[@subtype="GND"]/text()'
+        './/tei:standOff/tei:listPlace/tei:place/tei:idno[@subtype="GEONAMES"]/text()'
     )
     # return [places[place] for place in locations]
     return [URIRef(place)  for place in locations]
