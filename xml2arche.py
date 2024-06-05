@@ -268,7 +268,8 @@ def get_coverage(doc):
     locations = doc.any_xpath(
         './/tei:standOff/tei:listPlace/tei:place/tei:idno[@subtype="GND"]/text()'
     )
-    return [places[place] for place in locations]
+    # return [places[place] for place in locations]
+    return [URIRef(place)  for place in locations]
 
 
 # This creates subcollections. In this case, for each set of tiffs and of jpgs
@@ -294,7 +295,7 @@ def add_constants(subj):
     g.add((subj, ACDH["hasRightsHolder"], OeAW))
     g.add((subj, ACDH["hasOwner"], Franziskanerkloster))
     g.add((subj, ACDH["hasMetadataCreator"], Sanz))
-    g.add((subj, ACDH["hasDepositor"], Klugseder))
+    g.add((subj, ACDH["hasDepositor"], Franziskanerkloster))
     g.add((subj, ACDH["hasLicense"], Licence))
     g.add((subj, ACDH["hasLicensor"], Franziskanerkloster))
 
@@ -412,7 +413,7 @@ for xmlfilepath in files:
         jpgresc = URIRef(os.path.join(DERIVTV, jpgfile))
 
         g.add((tifresc, ACDH["isSourceOf"], jpgresc))
-        g.add((tifresc, ACDH["hasCreator"], ))
+        g.add((jpgresc, ACDH["hasCreator"], Klugseder))
         [g.add((tifresc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
         [g.add((tifresc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
         
