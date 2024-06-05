@@ -56,6 +56,7 @@
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasCreator acdhi:rklugseder ;
     acdh:hasOwner acdhi:franziskanerklostergraz ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "Derivative pictures"@en ;
@@ -63,6 +64,8 @@
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/masters> a acdh:Collection ;
     acdh:hasArrangement "Each element represents a physical volume"@en ;
+    acdh:hasDigitisingAgent acdhi:rklugseder,
+        acdhi:jleitner ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
@@ -77,6 +80,11 @@
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasContributor 
+        acdhi:pandorfer ;
+        acdhi:rklugseder,
+        acdhi:fsanzlazaro ;
+        acdhi:dschopper ; 
     acdh:hasOwner acdhi:franziskanerklostergraz ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle "TEI Documents"@en ;
@@ -105,12 +113,14 @@ acdhi:rklugseder a acdh:Person ;
     acdh:hasUrl <https://www.oeaw.ac.at/acdh/team/current-team/robert-klugseder> ;
     acdh:isMemberOf acdhi:acdh-oeaw ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-0484-832X> ,
-        <https://d-nb.info/gnd/134072170> .
+        <https://d-nb.info/gnd/134072170> ,
+        <http://viaf.org/viaf/5254585> .
 
 acdhi:fsanzlazaro a acdh:Person ;
     acdh:hasPersonalTitle "Lic. Mag. Dr." ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-8815-6741> ,
-        <https://d-nb.info/gnd/1297553608> ;
+        <https://d-nb.info/gnd/1297553608> ,
+        <http://viaf.org/viaf/2085169084888890310003> ;
     acdh:hasLastName "Sanz-Lázaro"@es ,
         "Sanz-Lázaro"@und ;
     acdh:hasFirstName "Fernando"@es ,
