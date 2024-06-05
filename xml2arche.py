@@ -183,19 +183,11 @@ def get_contributors(tei):
     predobj = []
     contributors = tei.any_xpath(".//tei:respStmt")
     for contributor in contributors:
-        pred = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(
-            ":"
-        )[-1]
-        if obj := contributor.xpath(".//tei:persName/@ref", namespaces=nsmap):
-            obj = persons[obj[0]]
-            pred = ACDH[pred]
-        # The contributor has no PI
-        else:
-            forename = contributor.xpath(".//tei:forename/text()", namespaces=nsmap)[0]
-            surname = contributor.xpath(".//tei:surname/text()", namespaces=nsmap)[0]
-            obj = Literal(f"{forename} {surname}")
-            pred = ACDH["hasDigitisingAgent"]
-        predobj.append((pred, obj))
+        preds = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(" ")
+        obj = persons[contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0]]
+        for pred in preds:
+            print((ACDH[f"has{pred}"], obj))
+            predobj.append((ACDH[f"has{pred}"], obj))
     return predobj
 
 
