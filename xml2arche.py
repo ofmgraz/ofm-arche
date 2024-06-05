@@ -186,7 +186,6 @@ def get_contributors(tei):
         preds = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(" ")
         obj = persons[contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0]]
         for pred in preds:
-            print((ACDH[f"has{pred}"], obj))
             predobj.append((ACDH[f"has{pred}"], obj))
     return predobj
 
