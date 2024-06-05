@@ -112,7 +112,7 @@ acdhi:fsanzlazaro a acdh:Person ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-8815-6741> ,
         <https://d-nb.info/gnd/1297553608> ;
     acdh:hasLastName "Sanz-Lázaro"@es ,
-        "Sanz-Lázaro"@und;
+        "Sanz-Lázaro"@und ;
     acdh:hasFirstName "Fernando"@es ,
         "Fernando"@und ;
     acdh:hasAddressLine1 "Bäckerstraße 13" ;
@@ -129,8 +129,8 @@ acdhi:fsanzlazaro a acdh:Person ;
     acdh:isMemberOf acdhi:acdh-oeaw ;
     acdh:hasTitle "Fernando Sanz-Lázaro"@und .
 
+# Already on ARCHE
 acdhi:pandorfer a acdh:Person ;
-    acdh:hasPersonalTitle "Mag. Dr."
     acdh:hasIdentifier <https://orcid.org/0000-0002-9575-9372>,
         <https://d-nb.info/gnd/1043833846> ;
     acdh:hasLastName "Andorfer"@de ;
