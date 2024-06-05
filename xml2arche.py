@@ -35,11 +35,10 @@ rdfconstants = "arche_seed_files/arche_constants.ttl"
 ##################################################################################################
 Franziskanerkloster = URIRef("https://id.acdh.oeaw.ac.at/franziskanerklostergraz")
 
-RightsHolder = ACDHI["oeaw"]
-Owner = ACDHI["franziskanerklostergraz"]
-MetadataCreator = ACDHI["fsanzlazaro"]
-Licensor = ACDHI["franziskanerklostergraz"]
-Depositor = ACDHI["rklugseder"]
+OeAW = ACDHI["oeaw"]
+Sanz = ACDHI["fsanzlazaro"]
+Klugseder = ACDHI["rklugseder"]
+Andorfer = ACDHI["pandorfer"]
 Licence = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0")
 
 
@@ -269,8 +268,7 @@ def get_coverage(doc):
     locations = doc.any_xpath(
         './/tei:standOff/tei:listPlace/tei:place/tei:idno[@subtype="GND"]/text()'
     )
-    print(locations)
-    return [places[locations[place]] for place in locations]
+    return [places[place] for place in locations]
 
 
 # This creates subcollections. In this case, for each set of tiffs and of jpgs
@@ -278,8 +276,8 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
     subject = URIRef(os.path.join(parent, name))
     g.add((subject, RDF.type, ACDH["Collection"]))
     g.add((subject, ACDH["isPartOf"], URIRef(parent)))
-    g.add((subject, ACDH["hasRightsHolder"], RightsHolder))
-    g.add((subject, ACDH["hasMetadataCreator"], MetadataCreator))
+    g.add((subject, ACDH["hasRightsHolder"], OeAW))
+    g.add((subject, ACDH["hasMetadataCreator"], Sanz))
     g.add((subject, ACDH["hasLicensor"], Franziskanerkloster))
     g.add((subject, ACDH["hasOwner"], Franziskanerkloster))
     g.add((subject, ACDH["hasDepositor"], Franziskanerkloster))
@@ -293,12 +291,12 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
 
 # Add constant properties to resource
 def add_constants(subj):
-    g.add((subj, ACDH["hasRightsHolder"], RightsHolder))
-    g.add((subj, ACDH["hasOwner"], Owner))
-    g.add((subj, ACDH["hasMetadataCreator"], MetadataCreator))
-    g.add((subj, ACDH["hasDepositor"], Depositor))
+    g.add((subj, ACDH["hasRightsHolder"], OeAW))
+    g.add((subj, ACDH["hasOwner"], Franziskanerkloster))
+    g.add((subj, ACDH["hasMetadataCreator"], Sanz))
+    g.add((subj, ACDH["hasDepositor"], Klugseder))
     g.add((subj, ACDH["hasLicense"], Licence))
-    g.add((subj, ACDH["hasLicensor"], Licensor))
+    g.add((subj, ACDH["hasLicensor"], Franziskanerkloster))
 
 
 def add_temporal(resc, start, end):
@@ -377,7 +375,6 @@ for xmlfilepath in files:
         )
     )
     coverage = get_coverage(doc)
-    print(coverage)
     [g.add((xmlresc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
     contributors = get_contributors(doc)
     [g.add((xmlresc, x[0], x[1])) for x in contributors]
@@ -415,6 +412,10 @@ for xmlfilepath in files:
         jpgresc = URIRef(os.path.join(DERIVTV, jpgfile))
 
         g.add((tifresc, ACDH["isSourceOf"], jpgresc))
+        g.add((tifresc, ACDH["hasCreator"], ))
+        [g.add((tifresc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
+        [g.add((tifresc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
+        
         g.add((jpgresc, ACDH["isSourceOf"], xmlresc))
         dims = picture[1]
 
