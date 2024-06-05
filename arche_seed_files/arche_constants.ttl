@@ -6,15 +6,16 @@
     acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ;
     acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ;
     acdh:hasSpatialCoverage
-        <https://d-nb.info/gnd/4021912-4> ,
-        <https://d-nb.info/gnd/4051622-2> ,
-        <https://d-nb.info/gnd/4066009-6> ,
-        <https://d-nb.info/gnd/4073953-3> ,
-        <https://d-nb.info/gnd/4076982-3> ,
-        <https://d-nb.info/gnd/4400654-8> ,
-        <https://d-nb.info/gnd/4115047-8> ,
-        <https://d-nb.info/gnd/4127793-4> ,
-        <https://d-nb.info/gnd/4062501-1> ;
+        "Graz"@de ,
+        "Sankt Pölten"@de ,
+        "Venedig"@de ,
+        "Wien"@de ,
+        "Salzburg"@de ,
+        "München"@de ,
+        "Mautern in Steiermark"@de ,
+        "Maria Lankowitz"@de ,
+        "Ljubljana"@de ,
+        "Graz"@de ;
     acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024>,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007> ,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008> ;
@@ -156,39 +157,3 @@ acdhi:jleitner a acdh:Person ;
 acdhi:franziskanerklostergraz a acdh:Organisation ;  
     acdh:hasIdentifier <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasTitle "Franziskanerkloster Graz"@de .
-
-<https://d-nb.info/gnd/4021912-4> a acdh:Place ;
-    acdh:hasCountry "Österreich"@de ;
-    acdh:hasTitle "Graz"@de .
-
-<https://d-nb.info/gnd/4051622-2> a acdh:Place ;
-    acdh:hasCountry "Österreich"@de ;  
-    acdh:hasTitle "Sankt Pölten"@de .
-
-<https://d-nb.info/gnd/4066009-6> a acdh:Place ;
-    acdh:hasCountry "Österreich"@de ;
-    acdh:hasTitle "Wien"@de .
-
-<https://d-nb.info/gnd/4073953-3> a acdh:Place ;
-    acdh:hasCountry "Slowenien"@de ;
-    acdh:hasTitle "Ljubljana"@de .
-
-<https://d-nb.info/gnd/4076982-3> a acdh:Place ;
-    acdh:hasCountry "Österreich"@de ;
-    acdh:hasTitle "Salzburg"@de .
-
-<https://d-nb.info/gnd/4400654-8> a acdh:Place ;
-    acdh:hasCountry "Österreich"@de ;
-    acdh:hasTitle "Maria Lankowitz"@de .
-    
-<https://d-nb.info/gnd/4115047-8> a acdh:Place ;
-    acdh:hasCountry "Österreich"@de ;
-    acdh:hasTitle "Mautern in Steiermark"@de .
-
-<https://d-nb.info/gnd/4127793-4> a acdh:Place ;
-    acdh:hasCountry "Deutschland"@de ;
-    acdh:hasTitle "München"@de .
-
-<https://d-nb.info/gnd/4062501-1> a acdh:Place ;
-    acdh:hasCountry "Italien"@de ;
-    acdh:hasTitle "Venedig"@de .
