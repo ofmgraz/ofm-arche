@@ -2,11 +2,11 @@
 import glob
 import os
 import re
-from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD, query
+from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD
 from acdh_tei_pyutils.tei import TeiReader
-from PIL import Image
-import requests
-from io import BytesIO
+# from PIL import Image
+# import requests
+# from io import BytesIO
 
 fails = ("A63_51", "A64_34", "A64_37", "A64_38")
 
@@ -136,9 +136,10 @@ def get_persons(rdfconstants):
     """
     for r in g.query(q):
         persons[
-                str(r["identifier"])
-                ] = r["subject"]
-    return persons
+            str(r["identifier"])
+        ] = r["subject"]
+        return persons
+
 
 def get_places(tei):
     places = {}
@@ -153,8 +154,8 @@ def get_places(tei):
     """
     for r in g.query(q):
         places[
-                str(r["identifier"])
-                ] = r["subject"]
+            str(r["identifier"])
+        ] = r["subject"]
     return places
     # Tries first to get the German name
 
@@ -212,7 +213,7 @@ def get_extent(tei):
         extent = extent[0]
         pagination = description.xpath(".//tei:measure/@unit", namespaces=nsmap)[0]
         if pagination == "leaf":
-            pagination = "Folien"
+            pagination = "Folia"
         else:
             pagination = "Seiten"
         measures.append(f"{extent} {pagination}")
@@ -244,10 +245,10 @@ def get_nextitem(first_item, doc):
 
 
 # It does not get ingested if dimensions are provided
-def get_dims(file_path):
-    response = requests.get(file_path)
-    img = Image.open(BytesIO(response.content))
-    return img.width, img.height
+# def get_dims(file_path):
+#    response = requests.get(file_path)
+#    img = Image.open(BytesIO(response.content))
+#    return img.width, img.height
 
 
 # To test, so it does not have to fetch the file and calculate them
@@ -260,7 +261,7 @@ def get_coverage(doc):
         './/tei:standOff/tei:listPlace/tei:place/tei:idno[@subtype="GEONAMES"]/text()'
     )
     # return [places[place] for place in locations]
-    return [URIRef(place)  for place in locations]
+    return [URIRef(place) for place in locations]
 
 
 # This creates subcollections. In this case, for each set of tiffs and of jpgs
@@ -268,16 +269,12 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
     subject = URIRef(os.path.join(parent, name))
     g.add((subject, RDF.type, ACDH["Collection"]))
     g.add((subject, ACDH["isPartOf"], URIRef(parent)))
-    g.add((subject, ACDH["hasRightsHolder"], OeAW))
-    g.add((subject, ACDH["hasMetadataCreator"], Sanz))
-    g.add((subject, ACDH["hasLicensor"], Franziskanerkloster))
-    g.add((subject, ACDH["hasOwner"], Franziskanerkloster))
-    g.add((subject, ACDH["hasDepositor"], Franziskanerkloster))
     g.add((subject, ACDH["hasTitle"], Literal(title, lang="de")))
     if arrangement:
         g.add((subject, ACDH["hasArrangement"], Literal(arrangement, lang="en")))
     if subtitle:
         g.add((subject, ACDH["hasAlternativeTitle"], Literal(subtitle, lang="la")))
+    add_constants(subject)
     return subject
 
 
@@ -369,6 +366,7 @@ for xmlfilepath in files:
     coverage = get_coverage(doc)
     [g.add((xmlresc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
     contributors = get_contributors(doc)
+    print(contributors)
     [g.add((xmlresc, x[0], x[1])) for x in contributors]
     g.add((xmlresc, ACDH["hasExtent"], extent))
     add_temporal(xmlresc, dates[0], dates[1])
@@ -398,6 +396,8 @@ for xmlfilepath in files:
 
     # Loops over the pics in reverse order so we know which one is the next one
     for idx, picture in enumerate(reversed(pictures)):
+        prevtifresc = ''
+        prevjpgresc = ''
         tiffile = f"{picture[0]}.tif"
         jpgfile = f"{picture[0]}.jpg"
         tifresc = URIRef(os.path.join(MASTERS, tiffile))
@@ -407,7 +407,7 @@ for xmlfilepath in files:
         g.add((jpgresc, ACDH["hasCreator"], Klugseder))
         [g.add((tifresc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
         [g.add((tifresc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
-        
+
         g.add((jpgresc, ACDH["isSourceOf"], xmlresc))
         dims = picture[1]
 
