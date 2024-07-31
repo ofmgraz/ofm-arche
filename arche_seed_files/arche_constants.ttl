@@ -18,7 +18,8 @@
     acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024>,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007> ,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008> ;
-    acdh:hasPrincipalInvestigator acdhi:rklugseder ;
+    acdh:hasPrincipalInvestigator acdhi:rklugseder , 
+        acdhi:jhoeller ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasContributor acdhi:pandorfer ,
         acdhi:rklugseder ,
@@ -118,6 +119,14 @@ acdhi:rklugseder a acdh:Person ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-0484-832X> ,
         <https://d-nb.info/gnd/134072170> ,
         <http://viaf.org/viaf/5254585> .
+
+acdhi:jhoeller a acdh:Person ;
+    acdh:hasPersonalTitle "P. Mag., OFM" ;
+    acdh:hasLastName "Höller"@de ,
+    acdh:hasFirstName "Josef"@de ,
+    acdh:hasEmail "josef.hoeller@graz-seckau.at" ;
+    acdh:isMemberOf  acdhi:franziskanerklostergraz ;
+    acdh:hasTitle "Josef Höller"@und .
 
 acdhi:fsanzlazaro a acdh:Person ;
     acdh:hasPersonalTitle "Lic. Mag. Dr." ;
