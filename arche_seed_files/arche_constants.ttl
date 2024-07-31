@@ -122,8 +122,8 @@ acdhi:rklugseder a acdh:Person ;
 
 acdhi:jhoeller a acdh:Person ;
     acdh:hasPersonalTitle "P. Mag., OFM" ;
-    acdh:hasLastName "Höller"@de ,
-    acdh:hasFirstName "Josef"@de ,
+    acdh:hasLastName "Höller"@de ;
+    acdh:hasFirstName "Josef"@de ;
     acdh:hasEmail "josef.hoeller@graz-seckau.at" ;
     acdh:isMemberOf  acdhi:franziskanerklostergraz ;
     acdh:hasTitle "Josef Höller"@und .
