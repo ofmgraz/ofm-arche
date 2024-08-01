@@ -414,12 +414,14 @@ for xmlfilepath in files:
         jpg = (jpgresc, subcollections[1], jpgfile)
 
         for picresc in (tif, jpg):
+            filetype = tif[2][-3:].upper()
             resc = picresc[0]
             g.add((resc, RDF.type, ACDH["Resource"]))
             add_constants(resc)
             g.add((resc, ACDH["isPartOf"], URIRef(picresc[1])))
+
             g.add((resc, ACDH["hasTitle"], Literal(picture[0], lang="und")))
-            g.add((resc, ACDH["hasFilename"], Literal(picresc[2])))
+            g.add((resc, ACDH["hasFilename"], Literal(f"{picresc[2]} ({filetype}-Datei)")))
             # The object in the following ones needs to be adapted to meet the actual features
             g.add(
                 (
