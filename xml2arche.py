@@ -3,7 +3,7 @@ import glob
 import os
 import re
 from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD
-from acdh_tei_pyutils.tei import TeiReader
+from acdh_tei_pyutils.tei import TeiReader, ET
 # from PIL import Image
 # import requests
 # from io import BytesIO
@@ -138,7 +138,7 @@ def get_persons(rdfconstants):
         persons[
             str(r["identifier"])
         ] = r["subject"]
-        return persons
+    return persons
 
 
 def get_places(tei):
@@ -185,6 +185,7 @@ def get_contributors(tei):
     contributors = tei.any_xpath(".//tei:respStmt")
     for contributor in contributors:
         preds = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(" ")
+
         obj = persons[contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0]]
         for pred in preds:
             predobj.append((ACDH[f"has{pred}"], obj))
@@ -366,7 +367,6 @@ for xmlfilepath in files:
     coverage = get_coverage(doc)
     [g.add((xmlresc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
     contributors = get_contributors(doc)
-    print(contributors)
     [g.add((xmlresc, x[0], x[1])) for x in contributors]
     g.add((xmlresc, ACDH["hasExtent"], extent))
     add_temporal(xmlresc, dates[0], dates[1])
@@ -396,19 +396,18 @@ for xmlfilepath in files:
 
     # Loops over the pics in reverse order so we know which one is the next one
     for idx, picture in enumerate(reversed(pictures)):
-        prevtifresc = ''
-        prevjpgresc = ''
         tiffile = f"{picture[0]}.tif"
         jpgfile = f"{picture[0]}.jpg"
         tifresc = URIRef(os.path.join(MASTERS, tiffile))
         jpgresc = URIRef(os.path.join(DERIVTV, jpgfile))
 
-        g.add((tifresc, ACDH["isSourceOf"], jpgresc))
+        g.add((tifresc, ACDH["f"], jpgresc))
         g.add((jpgresc, ACDH["hasCreator"], Klugseder))
         [g.add((tifresc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
         [g.add((tifresc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
 
         g.add((jpgresc, ACDH["isSourceOf"], xmlresc))
+        g.add((jpgresc, ACDH["isSourceOf"], tifresc))
         dims = picture[1]
 
         tif = (tifresc, subcollections[0], tiffile)
