@@ -9,22 +9,16 @@ from acdh_tei_pyutils.tei import TeiReader, ET
 # from io import BytesIO
 
 fails = ("A63_51", "A64_34", "A64_37", "A64_38")
-
-TOP_COL = "https://id.acdh.oeaw.ac.at/ofmgraz"
-MASTERS = "https://id.acdh.oeaw.ac.at/ofmgraz/masters"
-DERIVTV = "https://id.acdh.oeaw.ac.at/ofmgraz/derivatives"
-TEIDOCS = "https://id.acdh.oeaw.ac.at/ofmgraz/teidocs"
-
-TOP_COL_URI = URIRef(TOP_COL)
-MASTERS_URI = URIRef(MASTERS)
-DERIVTV_URI = -URIRef(DERIVTV)
-TEIDOCS_URI = URIRef(TEIDOCS)
-
-
 ACDH = Namespace("https://vocabs.acdh.oeaw.ac.at/schema#")
 ACDHI = Namespace("https://id.acdh.oeaw.ac.at/")
 PERIODO = Namespace("http://n2t.net/ark:/99152/p0v#")
 nsmap = {"tei": "http://www.tei-c.org/ns/1.0"}
+
+
+TOP_COL = ACDHI["ofmgraz"]
+MASTERS = ACDHI["ofmgraz/masters"]
+DERIVTV = ACDHI["ofmgraz/derivatives"]
+TEIDOCS = ACDHI["ofmgraz/teidocs"]
 
 rdfconstants = "arche_seed_files/arche_constants.ttl"
 
@@ -33,13 +27,15 @@ rdfconstants = "arche_seed_files/arche_constants.ttl"
 #                                          CONFIG                                                #
 #                                                                                                #
 ##################################################################################################
-Franziskanerkloster = URIRef("https://id.acdh.oeaw.ac.at/franziskanerklostergraz")
-
+Franziskanerkloster = ACDHI["franziskanerklostergraz"]
 OeAW = ACDHI["oeaw"]
 Sanz = ACDHI["fsanzlazaro"]
 Klugseder = ACDHI["rklugseder"]
 Andorfer = ACDHI["pandorfer"]
 Licence = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0")
+categories = {"tei": URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei"),
+              "image": URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/image")}
+language = URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")
 
 
 ##################################################################################################
@@ -326,17 +322,16 @@ for xmlfilepath in files:
     hasNextItem = get_nextitem(first_item, doc)
     if not first_item:
         first_item = get_nextitem(first_item, doc)
-    xmlresc = URIRef(os.path.join(TEIDOCS, xmlfile))
+    xmlresc = ACDHI[f"ofmgraz/teidocs/{xmlfile}"]
     # creates resource for the XML file
     g.add((xmlresc, RDF.type, ACDH["Resource"]))
     add_constants(xmlresc)
-
     # Looks for next XML file. They are here attributes of the top structure
     if hasNextItem:
         g.add(
-            (xmlresc, ACDH["hasNextItem"], URIRef(os.path.join(TEIDOCS, hasNextItem)))
+            (xmlresc, ACDH["hasNextItem"], ACDHI[f"ofmgraz/teidocs/{hasNextItem}"])
         )
-    g.add((xmlresc, ACDH["isPartOf"], TEIDOCS_URI))
+    g.add((xmlresc, ACDH["isPartOf"], ACDHI["ofmgraz/teidocs"]))
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
         has_title = signature[0].text
         g.add((xmlresc, ACDH["hasTitle"], Literal(signature[0].text, lang="und")))
@@ -352,7 +347,7 @@ for xmlfilepath in files:
         (
             xmlresc,
             ACDH["hasCategory"],
-            URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei"),
+            categories["tei"],
         )
     )
     g.add((xmlresc, ACDH["hasFilename"], Literal(f"{basename}.xml")))
@@ -361,7 +356,7 @@ for xmlfilepath in files:
         (
             xmlresc,
             ACDH["hasLanguage"],
-            URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat"),
+            language,
         )
     )
     coverage = get_coverage(doc)
@@ -398,8 +393,8 @@ for xmlfilepath in files:
     for idx, picture in enumerate(reversed(pictures)):
         tiffile = f"{picture[0]}.tif"
         jpgfile = f"{picture[0]}.jpg"
-        tifresc = URIRef(os.path.join(MASTERS, tiffile))
-        jpgresc = URIRef(os.path.join(DERIVTV, jpgfile))
+        tifresc = ACDHI[f"ofmgraz/masters/{basename}/{tiffile}"]
+        jpgresc = ACDHI[f"ofmgraz/derivatives/{basename}/{jpgfile}"]
 
         g.add((tifresc, ACDH["f"], jpgresc))
         g.add((jpgresc, ACDH["hasCreator"], Klugseder))
@@ -427,7 +422,7 @@ for xmlfilepath in files:
                 (
                     resc,
                     ACDH["hasCategory"],
-                    URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/image"),
+                    categories["image"],
                 )
             )
             if False:  # picture[1]:
