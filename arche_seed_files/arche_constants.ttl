@@ -5,8 +5,12 @@
 @prefix acdhi-ofm: <https://id.acdh.oeaw.ac.at/ofmgraz/> .
 
 acdhi:ofmgraz a acdh:TopCollection ;
-    acdh:hasDescription """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ;
-    acdh:hasTitle "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ;
+    acdh:hasDescription
+        """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ,
+        """"""@en  ;
+    acdh:hasTitle
+        "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ,
+        ""@en ;
     acdh:hasSpatialCoverage
         <https://sws.geonames.org/2761369/> , # Wien
         <https://sws.geonames.org/2778067/> , #Graz
@@ -17,6 +21,7 @@ acdhi:ofmgraz a acdh:TopCollection ;
         <https://sws.geonames.org/2771761/> , # Mautern
         <https://sws.geonames.org/2867714/> , # München
         <https://sws.geonames.org/3164603/> ; # Venedig
+    acdh:hasCreator acdhi:rklugseder ; 
     acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024> ,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007> ,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008> ;
@@ -47,30 +52,48 @@ acdhi:ofmgraz a acdh:TopCollection ;
         "https://n2t.net/ark:/99152/p09hq4n58mr"^^xsd:anyURI ;
     acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/deu> ;
     acdh:hasSubject
-        "Digitale Edition" ,
-        "Musikwissenschaft" ;
-    acdh:hasNamingScheme """Top collection contains three subcollections: 'xmltei',
-    'masters', and 'derivatives'. The subcollection 'xmltei' contains XML-TEI encoded
-    files named after the physical objects' signatures with .xml extension, such as 'A64_41.xml' for A 64/41. 
-    The folder masters contains third-level collections of TIFF files. Each of these third-level collections is named after
-    the signature of the physical object, like 'A64_41'. The resources' name is completed with the pagination. For instance ,
-    'A-Gf_64_41-003r.tiff' is folio 3 recto of the manuscript with signature A 64/41. Likewise, the folder derivatives contains
-    collections JPEG encoded files derivated from the TIFF files."""@en ;
+        "Digitale Edition" ;
+    acdh:has Arrangement
+        """Die Top collection enthält drei Untersammlungen: „TEI-Dokumente“, „Originalbilder“ und „Bearbeitete Bilder“.
+           Die Untersammlung „TEI-Dokumente“ enthält eine TEI-codierte Datei für jedes physisches Buch.
+           Die Sammlungen „Originalbilder“ und „Bearbeitete Bilder“ enthalten je eine Untersammlung für jedes Buch.
+           Jede dieser Untersammlungen der dritten Ebene enthält eine TIFF- bzw. JPEG-Bilddatei für jede Seite des physischen Objekts."""@de ,
+        """The Top collection contains three sub-collections: TEI Documents, Master Images and Derivative Images.
+           The XML-TEI Documents sub-collection contains an XML-TEI-encoded file for each physical book.
+           The Master Images and Derivative Images collections each contain a sub-collection for each book.
+           Each of these third-level sub-collections contains a TIFF or JPEG image file for each page of the physical object."""@en ;
+    acdh:hasNamigScheme
+        """Die Resourcen sind nach der Signatur des entsprechenden physischen Objekts benannt.
+           Die XML-TEI-Resourcen haben die Endung .xml, z.B. „A64_41.xml“ für das physische Objekt mit Signatur A 64/41.
+           Jede Sammlung der dritten Ebene unter 'Originalbilder' und 'Bearbeitete Bilder'  ist nach der Signatur des physischen Objekts benannt,
+           z. B. „A64_41“ für die Sammlung, die die Bilder der Seiten des physischen Objekts mit Signatur A64_41 enthält.
+           Der Name der beinhaltenen Ressource wird durch die Paginierung ergänzt. Zum Beispiel ist „A-Gf_64_41-003r.tif“ ein Bild von Folio 3 recto des Manuskripts mit der Signatur A 64/41."""@de ,
+        """The resources are named after the signature of the corresponding physical object.
+           The XML-TEI resources have the extension .xml, e.g. 'A64_41.xml' for the physical object with signature A 64/41.
+           Each third-level collection under Master Images and Derivative Images is named after the signature of the physical object, e.g.
+           "A64_41" for the collection containing the images of the pages of the physical object with signature A64_41.
+           The name of the contained resource is supplemented by the pagination. For example, 'A-Gf_64_41-003r.tif' is an image of folio 3 recto of the manuscript with the shelfmark A 64/41."""@en ;
     acdh:hasUrl "https://ofmgraz.github.io/ofm-static" .
 
 acdhi-ofm:derivatives a acdh:Collection ;
-    acdh:hasArrangement "Each element represents a physical volume"@en ;
-    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasArrangement
+        "Each element represents a physical volume"@en ,
+        ""@de ;
+    acdh:ha sDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasCreator acdhi:rklugseder ;
     acdh:hasOwner acdhi:franziskanerklostergraz ;
     acdh:hasRightsHolder acdhi:oeaw ;
-    acdh:hasTitle "Derivative pictures"@en ;
+    acdh:hasTitle
+        "Derivative Images"@en ,
+        "Bearbeitete Bilder"@de ;
     acdh:isPartOf acdhi:ofmgraz .
 
 acdhi-ofm:masters a acdh:Collection ;
-    acdh:hasArrangement "Each element represents a physical volume"@en ;
+    acdh:hasArrangement
+        "Each element represents a physical volume"@en ,
+        ""@de  ;
     acdh:hasDigitisingAgent acdhi:rklugseder,
         acdhi:jleitner ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
@@ -79,11 +102,15 @@ acdhi-ofm:masters a acdh:Collection ;
     acdh:hasOwner acdhi:franziskanerklostergraz ;
     acdh:hasAppliedMethod "Scanning" ;
     acdh:hasRightsHolder acdhi:oeaw ;
-    acdh:hasTitle "Master Scans"@en ;
+    acdh:hasTitle
+        "Master Images"@en ,
+        "Originalbilder"@de ;
     acdh:isPartOf acdhi:ofmgraz .
 
 acdhi-ofm:teidocs a acdh:Collection ;
-    acdh:hasArrangement "Each element represents a physical volume"@en ;
+    acdh:hasArrangement
+        "Each element represents a physical volume"@en ,
+        ""@de ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
@@ -94,7 +121,8 @@ acdhi-ofm:teidocs a acdh:Collection ;
         acdhi:dschopper ; 
     acdh:hasOwner acdhi:franziskanerklostergraz ;
     acdh:hasRightsHolder acdhi:oeaw ;
-    acdh:hasTitle "TEI Documents"@en ;
+    acdh:hasTitle "TEI Documents"@en ,
+    acdh:hasTitle "TEI-Dokumente"@de ;
     acdh:isPartOf acdhi:ofmgraz .
 
 acdhi:bmkkoeds a acdh:Organisation ;
