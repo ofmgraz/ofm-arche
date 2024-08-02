@@ -29,6 +29,7 @@ rdfconstants = "arche_seed_files/arche_constants.ttl"
 ##################################################################################################
 Franziskanerkloster = ACDHI["franziskanerklostergraz"]
 OeAW = ACDHI["oeaw"]
+ACDHCH = ACDHI["acdh-ch"]
 Sanz = ACDHI["fsanzlazaro"]
 Klugseder = ACDHI["rklugseder"]
 Andorfer = ACDHI["pandorfer"]
@@ -276,13 +277,14 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
 
 
 # Add constant properties to resource
-def add_constants(subj):
-    g.add((subj, ACDH["hasRightsHolder"], OeAW))
-    g.add((subj, ACDH["hasOwner"], Franziskanerkloster))
+def add_constants(subj, rights=OeAW, owner=Franziskanerkloster, depositor=Franziskanerkloster, licence=Licence, creator=Klugseder):
+    g.add((subj, ACDH["hasRightsHolder"], rights))
+    g.add((subj, ACDH["hasOwner"], owner))
     g.add((subj, ACDH["hasMetadataCreator"], Sanz))
-    g.add((subj, ACDH["hasDepositor"], Franziskanerkloster))
-    g.add((subj, ACDH["hasLicense"], Licence))
-    g.add((subj, ACDH["hasLicensor"], Franziskanerkloster))
+    g.add((subj, ACDH["hasDepositor"], depositor))
+    g.add((subj, ACDH["hasLicense"], licence))
+    g.add((subj, ACDH["hasLicensor"], owner))
+    g.add((subj, ACDH["Creator"], creator))
 
 
 def add_temporal(resc, start, end):
@@ -325,7 +327,7 @@ for xmlfilepath in files:
     xmlresc = ACDHI[f"ofmgraz/teidocs/{xmlfile}"]
     # creates resource for the XML file
     g.add((xmlresc, RDF.type, ACDH["Resource"]))
-    add_constants(xmlresc)
+    add_constants(xmlresc, creator=Sanz, owner=ACDHCH, rights=OeAW)
     # Looks for next XML file. They are here attributes of the top structure
     if hasNextItem:
         g.add(
