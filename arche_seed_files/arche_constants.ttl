@@ -82,7 +82,6 @@ acdhi-ofm:derivatives a acdh:Collection ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
-    acdh:hasCreator acdhi:rklugseder ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle
         "Derivative Images"@en ,
