@@ -7,7 +7,7 @@
 acdhi:ofmgraz a acdh:TopCollection ;
     acdh:hasDescription
         """Digitalisierung von 53 mittelalterlichen und frühneuzeitlichen Choralhandschriften und neuzeitlichen Choraldrucken der Franziskaner in Graz"""@de ,
-        """"""@en  ;
+        """Digitisation of 53 medieval and early modern choral manuscripts and modern choral prints of the Franciscans in Graz"""@en  ;
     acdh:hasTitle
         "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ,
         ""@en ;
@@ -36,7 +36,6 @@ acdhi:ofmgraz a acdh:TopCollection ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0> ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo> ;
-    acdh:hasOwner acdhi:oeaw ;
     acdh:hasRightsHolder acdhi:oeaw ; 
     acdh:hasCurator acdhi:rklugseder ;
     acdh:hasFunder acdhi:bmkkoeds ;    
@@ -76,14 +75,14 @@ acdhi:ofmgraz a acdh:TopCollection ;
     acdh:hasUrl "https://ofmgraz.github.io/ofm-static" .
 
 acdhi-ofm:derivatives a acdh:Collection ;
+    acdh:hasCreator acdhi:rklugseder ; 
     acdh:hasArrangement
-        "Each element represents a physical volume"@en ,
-        ""@de ;
-    acdh:ha sDepositor acdhi:franziskanerklostergraz ;
+        "Jede JPEG-Bilddatei stellt ein physisches Volumen dar"@de ,
+        "Each JPEG file represents a page of the physical volume"@en ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasCreator acdhi:rklugseder ;
-    acdh:hasOwner acdhi:franziskanerklostergraz ;
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasTitle
         "Derivative Images"@en ,
@@ -91,9 +90,10 @@ acdhi-ofm:derivatives a acdh:Collection ;
     acdh:isPartOf acdhi:ofmgraz .
 
 acdhi-ofm:masters a acdh:Collection ;
+    acdh:hasCreator acdhi:rklugseder ; 
     acdh:hasArrangement
-        "Each element represents a physical volume"@en ,
-        ""@de  ;
+        "Each TIFF file represents a page of the physical volume"@en ,
+        "Jede TIFF-Bilddatei stellt eine Seite des physischen Bandes dar"@de  ;
     acdh:hasDigitisingAgent acdhi:rklugseder,
         acdhi:jleitner ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
@@ -108,9 +108,10 @@ acdhi-ofm:masters a acdh:Collection ;
     acdh:isPartOf acdhi:ofmgraz .
 
 acdhi-ofm:teidocs a acdh:Collection ;
+    acdh:hasCreator acdhi:rklugseder ; 
     acdh:hasArrangement
-        "Each element represents a physical volume"@en ,
-        ""@de ;
+        "Each XML file represents a physical volume"@en ,
+        "Jede XML-Datei stellt ein physisches Volumen dar"@de ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
