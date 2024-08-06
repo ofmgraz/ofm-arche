@@ -21,8 +21,7 @@ acdhi:ofmgraz a acdh:TopCollection ;
         <https://sws.geonames.org/2771761/> , # Mautern
         <https://sws.geonames.org/2867714/> , # München
         <https://sws.geonames.org/3164603/> ; # Venedig
-    acdh:hasCreator acdhi:rklugseder ,
-        acdhi:jhoeller ;
+    acdh:hasCreator acdhi:rklugseder ;
     acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024> ,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007> ,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008> ;
@@ -55,7 +54,7 @@ acdhi:ofmgraz a acdh:TopCollection ;
         "Digitale Edition" ;
     acdh:hasArrangement
         """Die Top collection enthält drei Untersammlungen: „TEI-Dokumente“, „Originalbilder“ und „Bearbeitete Bilder“.
-           Die Untersammlung „TEI-Dokumente“ enthält 53 TEI-codierte Dateieien, eine Datei für jedes physisches Buch.
+           Die Untersammlung „TEI-Dokumente“ enthält 53 TEI-codierte Dateien, eine Datei für jedes physisches Buch.
            Die Sammlungen „Originalbilder“ und „Bearbeitete Bilder“ enthalten je 53 Utersammlungen, eine Untersammlung für jedes Buch.
            Jede dieser 106 Untersammlungen der dritten Ebene enthält eine TIFF- bzw. JPEG-Bilddatei für jede Seite des physischen Objekts."""@de ,
         """The Top collection contains three sub-collections: 'TEI Documents', 'Master Images' and 'Derivative Images'.
@@ -113,7 +112,7 @@ acdhi-ofm:teidocs a acdh:Collection ;
     acdh:hasCreator acdhi:rklugseder ; 
     acdh:hasArrangement
         "The collection contains 53 XML-TEI files. Each file represents a physical volume"@en ,
-        "Die Sammlung enthaltet 53 XML-TEI-Dateiein. Jede Datei stellt ein physisches Volumen dar"@de ;
+        "Die Sammlung enthaltet 53 XML-TEI-Dateien. Jede Datei stellt ein physisches Volumen dar"@de ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
