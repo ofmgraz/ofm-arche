@@ -22,6 +22,7 @@ TEIDOCS = ACDHI["ofmgraz/teidocs"]
 
 rdfconstants = "arche_seed_files/arche_constants.ttl"
 
+
 ##################################################################################################
 #                                                                                                #
 #                                          CONFIG                                                #
@@ -33,11 +34,11 @@ ACDHCH = ACDHI["acdh-ch"]
 Sanz = ACDHI["fsanzlazaro"]
 Klugseder = ACDHI["rklugseder"]
 Andorfer = ACDHI["pandorfer"]
+Schopper = ACDH["dschopper"]
 Licence = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0")
 categories = {"tei": URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei"),
               "image": URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/image")}
 language = URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")
-
 
 ##################################################################################################
 # I know an element present in the node wanted (e.g. tei:persName), but it can be in different
@@ -182,10 +183,15 @@ def get_contributors(tei):
     contributors = tei.any_xpath(".//tei:respStmt")
     for contributor in contributors:
         preds = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(" ")
-
-        obj = persons[contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0]]
+        if preds[0] != "Transcriptor":
+            obj = persons[contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0]]
+        else:
+            obj = "".join(x[0] for x in
+                          contributor.xpath(".//tei:persName/tei:forename/text()", namespaces=nsmap)[0].split("-")) + contributor.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0][0]
+            obj = ACDHI[obj]
         for pred in preds:
-            predobj.append((ACDH[f"has{pred}"], obj))
+            # pred = pred[5:]
+            predobj.append((ACDH[pred], obj))
     return predobj
 
 
@@ -277,14 +283,16 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
 
 
 # Add constant properties to resource
-def add_constants(subj, rights=OeAW, owner=Franziskanerkloster, depositor=Franziskanerkloster, licence=Licence, creator=Klugseder):
+def add_constants(subj, rights=OeAW, owner=Franziskanerkloster, depositor=Franziskanerkloster, licence=Licence, creator=[Klugseder]):
     g.add((subj, ACDH["hasRightsHolder"], rights))
     g.add((subj, ACDH["hasOwner"], owner))
+    for crt in creator:
+        g.add((subj, ACDH["Creator"], crt))
     g.add((subj, ACDH["hasMetadataCreator"], Sanz))
     g.add((subj, ACDH["hasDepositor"], depositor))
     g.add((subj, ACDH["hasLicense"], licence))
     g.add((subj, ACDH["hasLicensor"], owner))
-    g.add((subj, ACDH["Creator"], creator))
+    
 
 
 def add_temporal(resc, start, end):
@@ -327,7 +335,7 @@ for xmlfilepath in files:
     xmlresc = ACDHI[f"ofmgraz/teidocs/{xmlfile}"]
     # creates resource for the XML file
     g.add((xmlresc, RDF.type, ACDH["Resource"]))
-    add_constants(xmlresc, creator=Sanz, owner=ACDHCH, rights=OeAW)
+    add_constants(xmlresc, creator=[Sanz, Klugseder], owner=ACDHCH, rights=OeAW)
     # Looks for next XML file. They are here attributes of the top structure
     if hasNextItem:
         g.add(
@@ -364,7 +372,7 @@ for xmlfilepath in files:
     coverage = get_coverage(doc)
     [g.add((xmlresc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
     contributors = get_contributors(doc)
-    [g.add((xmlresc, x[0], x[1])) for x in contributors]
+    [g.add((xmlresc, ACDH["hasContributor"], contributor)) for contributor in (Andorfer, Schopper)]
     g.add((xmlresc, ACDH["hasExtent"], extent))
     add_temporal(xmlresc, dates[0], dates[1])
     g.add((xmlresc, ACDH["hasUsedSoftware"], Literal("Transkribus")))
@@ -373,6 +381,10 @@ for xmlfilepath in files:
 
     device = get_used_device(doc)
     digitiser = [dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
+
+  
+    # Creates a list of pictures in the file, excluding empty refs
+    pictures = [picture for picture in get_tifs(doc) if picture[0]]
 
     # Make subcollections for each book
     subcollections = [
@@ -384,29 +396,24 @@ for xmlfilepath in files:
             g.add((subcollection, ACDH["hasSpatialCoverage"], scover))
             for scover in coverage
         ]
-        g.add((subcollection, ACDH["hasUsedHardware"], device))
-        [g.add((subcollection, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
         add_temporal(subcollection, dates[0], dates[1])
+        g.add((subcollection, ACDH["hasArrangement"], Literal(f"The colllection contains {len(pictures)} image files.", lang="en")))
+        g.add((subcollection, ACDH["hasArrangement"], Literal(f"Die Sammlung enthaltet {len(pictures)} Bilddateien.", lang="de")))
 
-    # Creates a list of pictures in the file, excluding empty refs
-    pictures = [picture for picture in get_tifs(doc) if picture[0]]
 
-    # Loops over the pics in reverse order so we know which one is the next one
+
+    # Loops over the pics in inverted order so we know beforehand which picture is the next
+
     for idx, picture in enumerate(reversed(pictures)):
         tiffile = f"{picture[0]}.tif"
         jpgfile = f"{picture[0]}.jpg"
         tifresc = ACDHI[f"ofmgraz/masters/{basename}/{tiffile}"]
         jpgresc = ACDHI[f"ofmgraz/derivatives/{basename}/{jpgfile}"]
 
-        g.add((tifresc, ACDH["f"], jpgresc))
         g.add((jpgresc, ACDH["hasCreator"], Klugseder))
         [g.add((tifresc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
-        [g.add((tifresc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
-
-        g.add((jpgresc, ACDH["isSourceOf"], xmlresc))
-        g.add((jpgresc, ACDH["isSourceOf"], tifresc))
+        g.add((tifresc, ACDH["isSourceOf"], jpgresc))
         dims = picture[1]
-
         tif = (tifresc, subcollections[0], tiffile)
         jpg = (jpgresc, subcollections[1], jpgfile)
 
@@ -414,9 +421,9 @@ for xmlfilepath in files:
             filetype = tif[2][-3:].upper()
             resc = picresc[0]
             g.add((resc, RDF.type, ACDH["Resource"]))
+            g.add((resc, ACDH["hasUsedHardware"], device))
             add_constants(resc)
             g.add((resc, ACDH["isPartOf"], URIRef(picresc[1])))
-
             g.add((resc, ACDH["hasTitle"], Literal(picture[0], lang="und")))
             g.add((resc, ACDH["hasFilename"], Literal(f"{picresc[2]} ({filetype}-Datei)")))
             # The object in the following ones needs to be adapted to meet the actual features
