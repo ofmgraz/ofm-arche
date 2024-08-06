@@ -3,7 +3,7 @@ import glob
 import os
 import re
 from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD
-from acdh_tei_pyutils.tei import TeiReader, ET
+from acdh_tei_pyutils.tei import TeiReader
 # from PIL import Image
 # import requests
 # from io import BytesIO
@@ -39,6 +39,7 @@ Licence = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0")
 categories = {"tei": URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei"),
               "image": URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/image")}
 language = URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")
+
 
 ##################################################################################################
 # I know an element present in the node wanted (e.g. tei:persName), but it can be in different
@@ -186,8 +187,9 @@ def get_contributors(tei):
         if preds[0] != "Transcriptor":
             obj = persons[contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0]]
         else:
-            obj = "".join(x[0] for x in
-                          contributor.xpath(".//tei:persName/tei:forename/text()", namespaces=nsmap)[0].split("-")) + contributor.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0][0]
+            obj = "".join(x[0] for x in contributor.xpath(
+                ".//tei:persName/tei:forename/text()", namespaces=nsmap
+            )[0].split("-")) + contributor.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0][0]
             obj = ACDHI[obj]
         for pred in preds:
             # pred = pred[5:]
@@ -283,7 +285,8 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
 
 
 # Add constant properties to resource
-def add_constants(subj, rights=OeAW, owner=Franziskanerkloster, depositor=Franziskanerkloster, licence=Licence, creator=[Klugseder]):
+def add_constants(subj, rights=OeAW, owner=Franziskanerkloster, depositor=Franziskanerkloster, licence=Licence,
+                  creator=[Klugseder]):
     g.add((subj, ACDH["hasRightsHolder"], rights))
     g.add((subj, ACDH["hasOwner"], owner))
     for crt in creator:
@@ -292,7 +295,6 @@ def add_constants(subj, rights=OeAW, owner=Franziskanerkloster, depositor=Franzi
     g.add((subj, ACDH["hasDepositor"], depositor))
     g.add((subj, ACDH["hasLicense"], licence))
     g.add((subj, ACDH["hasLicensor"], owner))
-    
 
 
 def add_temporal(resc, start, end):
@@ -325,6 +327,7 @@ first_item = False
 # Loops over the xml files to get the names and the pictures referred in them
 for xmlfilepath in files:
     xmlfile = os.path.basename(xmlfilepath)
+    print(xmlfile)
     basename = xmlfile.split(".")[0]
     doc = TeiReader(xmlfilepath)
     dates = get_date(doc)
@@ -344,7 +347,7 @@ for xmlfilepath in files:
     g.add((xmlresc, ACDH["isPartOf"], ACDHI["ofmgraz/teidocs"]))
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
         has_title = signature[0].text
-        g.add((xmlresc, ACDH["hasTitle"], Literal(signature[0].text, lang="und")))
+        g.add((xmlresc, ACDH["hasTitle"], Literal(f"{signature[0].text} (XML-TEI)", lang="und")))
         g.add((xmlresc, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text)))
     if has_subtitle := doc.any_xpath(".//tei:title[@type='main']/text()"):
         has_subtitle = has_subtitle[0].strip('"')
@@ -382,7 +385,6 @@ for xmlfilepath in files:
     device = get_used_device(doc)
     digitiser = [dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
 
-  
     # Creates a list of pictures in the file, excluding empty refs
     pictures = [picture for picture in get_tifs(doc) if picture[0]]
 
@@ -397,16 +399,16 @@ for xmlfilepath in files:
             for scover in coverage
         ]
         add_temporal(subcollection, dates[0], dates[1])
-        g.add((subcollection, ACDH["hasArrangement"], Literal(f"The colllection contains {len(pictures)} image files.", lang="en")))
-        g.add((subcollection, ACDH["hasArrangement"], Literal(f"Die Sammlung enthaltet {len(pictures)} Bilddateien.", lang="de")))
-
-
+        g.add((subcollection, ACDH["hasArrangement"], Literal(f"The colllection contains {len(pictures)} image files.",
+                                                              lang="en")))
+        g.add((subcollection, ACDH["hasArrangement"], Literal(f"Die Sammlung enthaltet {len(pictures)} Bilddateien.",
+                                                              lang="de")))
 
     # Loops over the pics in inverted order so we know beforehand which picture is the next
 
     for idx, picture in enumerate(reversed(pictures)):
-        tiffile = f"{picture[0]}.tif"
-        jpgfile = f"{picture[0]}.jpg"
+        tiffile = f"{picture[0].strip()}.tif"
+        jpgfile = f"{picture[0].strip()}.jpg"
         tifresc = ACDHI[f"ofmgraz/masters/{basename}/{tiffile}"]
         jpgresc = ACDHI[f"ofmgraz/derivatives/{basename}/{jpgfile}"]
 
@@ -418,14 +420,18 @@ for xmlfilepath in files:
         jpg = (jpgresc, subcollections[1], jpgfile)
 
         for picresc in (tif, jpg):
-            filetype = tif[2][-3:].upper()
+            filetype = picresc[2][-3:]
+            if filetype == "jpg":
+                filetype = "JPEG"
+            else:
+                filetype = "TIFF"
             resc = picresc[0]
             g.add((resc, RDF.type, ACDH["Resource"]))
             g.add((resc, ACDH["hasUsedHardware"], device))
             add_constants(resc)
             g.add((resc, ACDH["isPartOf"], URIRef(picresc[1])))
-            g.add((resc, ACDH["hasTitle"], Literal(picture[0], lang="und")))
-            g.add((resc, ACDH["hasFilename"], Literal(f"{picresc[2]} ({filetype}-Datei)")))
+            g.add((resc, ACDH["hasTitle"], Literal(f"{picture[0]} ({filetype})", lang="und")))
+            g.add((resc, ACDH["hasFilename"], Literal(f"{picresc[2]}")))
             # The object in the following ones needs to be adapted to meet the actual features
             g.add(
                 (
