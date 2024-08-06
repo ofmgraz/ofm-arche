@@ -189,6 +189,16 @@ acdhi:jleitner a acdh:Person ;
     acdh:hasIdentifier <https://orcid.org/0000-0001-6195-2935> ;
     acdh:hasTitle "Jakob Leitner"@und .
 
+acdhi:alhuber a acdh:Person ;
+    acdh:hasLastName "Huber"@de ;
+    acdh:hasFirstName "Anna-Lena"@de ;
+    acdh:hasTitle "Anna-Lena Huber"@und .
+
+acdhi:mschmoetten a acdh:Person ;
+    acdh:hasLastName "Schmoetten"@de ;
+    acdh:hasFirstName "Moritz"@de ;
+    acdh:hasTitle "Moritz Schmoetten"@und .
+
 # Already on ARCHE
 acdhi:pandorfer a acdh:Person ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-9575-9372> ;
