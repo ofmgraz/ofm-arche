@@ -35,7 +35,9 @@ Sanz = ACDHI["fsanzlazaro"]
 Klugseder = ACDHI["rklugseder"]
 Andorfer = ACDHI["pandorfer"]
 Schopper = ACDH["dschopper"]
-Licence = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-nc-sa-4-0")
+ccbyna = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-sa-4-0")
+publicdomain = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0")
+
 categories = {"tei": URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei"),
               "image": URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/image")}
 language = URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")
@@ -183,17 +185,21 @@ def get_contributors(tei):
     predobj = []
     contributors = tei.any_xpath(".//tei:respStmt")
     for contributor in contributors:
-        preds = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(" ")
+        if contributor.xpath(".//tei:persName/forename/text()", namespaces=nsmap)[0] not in ('Robert', 'Fernando'):
+            preds = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(" ")
+
         if preds[0] != "Transcriptor":
             obj = persons[contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0]]
         else:
             obj = "".join(x[0] for x in contributor.xpath(
                 ".//tei:persName/tei:forename/text()", namespaces=nsmap
-            )[0].split("-")) + contributor.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0][0]
-            obj = ACDHI[obj]
+            )[0].split("-")) + contributor.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0]
+            obj = ACDHI[obj.lower()]
+            preds[0] = "hasContributor"
         for pred in preds:
             # pred = pred[5:]
             predobj.append((ACDH[pred], obj))
+    print(predobj)
     return predobj
 
 
@@ -285,7 +291,7 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
 
 
 # Add constant properties to resource
-def add_constants(subj, rights=OeAW, owner=Franziskanerkloster, depositor=Franziskanerkloster, licence=Licence,
+def add_constants(subj, rights=OeAW, owner=ACDHCH, depositor=Franziskanerkloster, licence=False,
                   creator=[Klugseder]):
     g.add((subj, ACDH["hasRightsHolder"], rights))
     g.add((subj, ACDH["hasOwner"], owner))
@@ -293,7 +299,8 @@ def add_constants(subj, rights=OeAW, owner=Franziskanerkloster, depositor=Franzi
         g.add((subj, ACDH["Creator"], crt))
     g.add((subj, ACDH["hasMetadataCreator"], Sanz))
     g.add((subj, ACDH["hasDepositor"], depositor))
-    g.add((subj, ACDH["hasLicense"], licence))
+    if licence:
+        g.add((subj, ACDH["hasLicense"], licence))
     g.add((subj, ACDH["hasLicensor"], owner))
 
 
@@ -338,12 +345,14 @@ for xmlfilepath in files:
     xmlresc = ACDHI[f"ofmgraz/teidocs/{xmlfile}"]
     # creates resource for the XML file
     g.add((xmlresc, RDF.type, ACDH["Resource"]))
-    add_constants(xmlresc, creator=[Sanz, Klugseder], owner=ACDHCH, rights=OeAW)
+    add_constants(xmlresc, creator=[Sanz, Klugseder], owner=ACDHCH, rights=OeAW, licence=ccbyna)
     # Looks for next XML file. They are here attributes of the top structure
     if hasNextItem:
         g.add(
             (xmlresc, ACDH["hasNextItem"], ACDHI[f"ofmgraz/teidocs/{hasNextItem}"])
         )
+    else:
+        g.add(ACDHI["ofmgraz/teidocs"], ACDH["hasNextItem", xmlresc])
     g.add((xmlresc, ACDH["isPartOf"], ACDHI["ofmgraz/teidocs"]))
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
         has_title = signature[0].text
@@ -375,7 +384,7 @@ for xmlfilepath in files:
     coverage = get_coverage(doc)
     [g.add((xmlresc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
     contributors = get_contributors(doc)
-    [g.add((xmlresc, ACDH["hasContributor"], contributor)) for contributor in (Andorfer, Schopper)]
+    [g.add((xmlresc, contributor[0], contributor[1])) for contributor in contributors]
     g.add((xmlresc, ACDH["hasExtent"], extent))
     add_temporal(xmlresc, dates[0], dates[1])
     g.add((xmlresc, ACDH["hasUsedSoftware"], Literal("Transkribus")))
@@ -415,6 +424,7 @@ for xmlfilepath in files:
         g.add((jpgresc, ACDH["hasCreator"], Klugseder))
         [g.add((tifresc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
         g.add((tifresc, ACDH["isSourceOf"], jpgresc))
+        g.add((jpgresc, ACDH["hasOaiSet"], URIRef("https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool")))
         dims = picture[1]
         tif = (tifresc, subcollections[0], tiffile)
         jpg = (jpgresc, subcollections[1], jpgfile)
@@ -428,7 +438,9 @@ for xmlfilepath in files:
             resc = picresc[0]
             g.add((resc, RDF.type, ACDH["Resource"]))
             g.add((resc, ACDH["hasUsedHardware"], device))
-            add_constants(resc)
+            add_constants(resc, licence=publicdomain)
+            g.add((resc, ACDH["hasRightsInformation"], Literal("", lang="en")))
+            g.add((resc, ACDH["hasRightsInformation"], Literal("", lang="de")))
             g.add((resc, ACDH["isPartOf"], URIRef(picresc[1])))
             g.add((resc, ACDH["hasTitle"], Literal(f"{picture[0]} ({filetype})", lang="und")))
             g.add((resc, ACDH["hasFilename"], Literal(f"{picresc[2]}")))
