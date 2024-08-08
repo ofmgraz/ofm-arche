@@ -185,7 +185,7 @@ def get_contributors(tei):
     predobj = []
     contributors = tei.any_xpath(".//tei:respStmt")
     for contributor in contributors:
-        if contributor.xpath(".//tei:persName/forename/text()", namespaces=nsmap)[0] not in ('Robert', 'Fernando'):
+        if contributor.xpath(".//tei:persName/tei:forename/text()", namespaces=nsmap)[0] not in ('Robert', 'Fernando'):
             preds = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(" ")
 
         if preds[0] != "Transcriptor":
@@ -199,7 +199,6 @@ def get_contributors(tei):
         for pred in preds:
             # pred = pred[5:]
             predobj.append((ACDH[pred], obj))
-    print(predobj)
     return predobj
 
 
@@ -277,7 +276,7 @@ def get_coverage(doc):
 
 
 # This creates subcollections. In this case, for each set of tiffs and of jpgs
-def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
+def make_subcollection(name, parent, title, arrangement=False, subtitle=False, issource=False):
     subject = URIRef(os.path.join(parent, name))
     g.add((subject, RDF.type, ACDH["Collection"]))
     g.add((subject, ACDH["isPartOf"], URIRef(parent)))
@@ -287,6 +286,8 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False):
     if subtitle:
         g.add((subject, ACDH["hasAlternativeTitle"], Literal(subtitle, lang="la")))
     add_constants(subject)
+    if issource:
+        g.add((subject, ACDH["isSourceOf"], issource))
     return subject
 
 
@@ -301,14 +302,14 @@ def add_constants(subj, rights=OeAW, owner=ACDHCH, depositor=Franziskanerkloster
     g.add((subj, ACDH["hasDepositor"], depositor))
     if licence:
         g.add((subj, ACDH["hasLicense"], licence))
-    g.add((subj, ACDH["hasLicensor"], owner))
+    g.add((subj, ACDH["hasLicensor"], rights))
 
 
 def add_temporal(resc, start, end):
     g.add((resc, ACDH["hasCoverageStartDate"], start))
     g.add((resc, ACDH["hasCoverageEndDate"], end))
-    dateid = get_temporalcoverid(start)
-    g.add((resc, ACDH["hasTemporalCoverageIdentifier"], dateid))
+    #dateid = get_temporalcoverid(start)
+    #g.add((resc, ACDH["hasTemporalCoverageIdentifier"], dateid))
 
 
 # Load the predefined constants: TopCollection, Collections, Persons, Places, and Organisations
@@ -352,7 +353,7 @@ for xmlfilepath in files:
             (xmlresc, ACDH["hasNextItem"], ACDHI[f"ofmgraz/teidocs/{hasNextItem}"])
         )
     else:
-        g.add(ACDHI["ofmgraz/teidocs"], ACDH["hasNextItem", xmlresc])
+        g.add((ACDHI["ofmgraz/teidocs"], ACDH["hasNextItem", xmlresc], xmlresc))
     g.add((xmlresc, ACDH["isPartOf"], ACDHI["ofmgraz/teidocs"]))
     if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
         has_title = signature[0].text
@@ -398,15 +399,12 @@ for xmlfilepath in files:
     pictures = [picture for picture in get_tifs(doc) if picture[0]]
 
     # Make subcollections for each book
-    subcollections = [
-        make_subcollection(basename, parent, has_title, picarrangement, has_subtitle)
-        for parent in (MASTERS, DERIVTV)
-    ]
+    subcollections = [make_subcollection(basename, MASTERS, has_title, picarrangement, has_subtitle, xmlresc)]
+    subcollections.append(make_subcollection(basename, DERIVTV, has_title, picarrangement, has_subtitle))
     for subcollection in subcollections:
-        [
+        for scover in coverage:
+            print('CC:', scover)
             g.add((subcollection, ACDH["hasSpatialCoverage"], scover))
-            for scover in coverage
-        ]
         add_temporal(subcollection, dates[0], dates[1])
         g.add((subcollection, ACDH["hasArrangement"], Literal(f"The colllection contains {len(pictures)} image files.",
                                                               lang="en")))
@@ -424,10 +422,15 @@ for xmlfilepath in files:
         g.add((jpgresc, ACDH["hasCreator"], Klugseder))
         [g.add((tifresc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
         g.add((tifresc, ACDH["isSourceOf"], jpgresc))
+        g.add((tifresc, ACDH["isSourceOf"], tifresc))
         g.add((jpgresc, ACDH["hasOaiSet"], URIRef("https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool")))
         dims = picture[1]
         tif = (tifresc, subcollections[0], tiffile)
         jpg = (jpgresc, subcollections[1], jpgfile)
+        g.add((jpgresc, ACDH["hasRightsInformation"], Literal("Related rights: ÖAW und Franziskanerkloster Graz", lang="en")))
+        g.add((jpgresc, ACDH["hasRightsInformation"], Literal("Verwandte Schutzrechte der bearbeiteteten Dateien: ÖAW und Franziskanerkloster Graz", lang="de")))
+
+
 
         for picresc in (tif, jpg):
             filetype = picresc[2][-3:]
@@ -439,8 +442,6 @@ for xmlfilepath in files:
             g.add((resc, RDF.type, ACDH["Resource"]))
             g.add((resc, ACDH["hasUsedHardware"], device))
             add_constants(resc, licence=publicdomain)
-            g.add((resc, ACDH["hasRightsInformation"], Literal("", lang="en")))
-            g.add((resc, ACDH["hasRightsInformation"], Literal("", lang="de")))
             g.add((resc, ACDH["isPartOf"], URIRef(picresc[1])))
             g.add((resc, ACDH["hasTitle"], Literal(f"{picture[0]} ({filetype})", lang="und")))
             g.add((resc, ACDH["hasFilename"], Literal(f"{picresc[2]}")))
