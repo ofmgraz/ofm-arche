@@ -185,10 +185,12 @@ def get_contributors(tei):
     predobj = []
     contributors = tei.any_xpath(".//tei:respStmt")
     for contributor in contributors:
-        if contributor.xpath(".//tei:persName/tei:forename/text()", namespaces=nsmap)[0] not in ('Robert', 'Fernando'):
+        preds = []
+        # if contributor.xpath(".//tei:persName/tei:forename/text()", namespaces=nsmap)[0] not in ('Robert', 'Fernando'):
+        if contributor.xpath(".//tei:persName/@role", namespaces=nsmap):
             preds = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(" ")
 
-        if preds[0] != "Transcriptor":
+        if len(preds) == 0 or preds[0] != "Transcriptor":
             obj = persons[contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0]]
         else:
             obj = "".join(x[0] for x in contributor.xpath(
@@ -403,7 +405,6 @@ for xmlfilepath in files:
     subcollections.append(make_subcollection(basename, DERIVTV, has_title, picarrangement, has_subtitle))
     for subcollection in subcollections:
         for scover in coverage:
-            print('CC:', scover)
             g.add((subcollection, ACDH["hasSpatialCoverage"], scover))
         add_temporal(subcollection, dates[0], dates[1])
         g.add((subcollection, ACDH["hasArrangement"], Literal(f"The colllection contains {len(pictures)} image files.",
@@ -429,8 +430,7 @@ for xmlfilepath in files:
         jpg = (jpgresc, subcollections[1], jpgfile)
         g.add((jpgresc, ACDH["hasRightsInformation"], Literal("Related rights: ÖAW und Franziskanerkloster Graz", lang="en")))
         g.add((jpgresc, ACDH["hasRightsInformation"], Literal("Verwandte Schutzrechte der bearbeiteteten Dateien: ÖAW und Franziskanerkloster Graz", lang="de")))
-
-
+        g.add((tifresc, ACDH["hasUsedHardware"], device))
 
         for picresc in (tif, jpg):
             filetype = picresc[2][-3:]
@@ -440,7 +440,6 @@ for xmlfilepath in files:
                 filetype = "TIFF"
             resc = picresc[0]
             g.add((resc, RDF.type, ACDH["Resource"]))
-            g.add((resc, ACDH["hasUsedHardware"], device))
             add_constants(resc, licence=publicdomain)
             g.add((resc, ACDH["isPartOf"], URIRef(picresc[1])))
             g.add((resc, ACDH["hasTitle"], Literal(f"{picture[0]} ({filetype})", lang="und")))
