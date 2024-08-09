@@ -35,13 +35,13 @@ acdhi:ofmgraz a acdh:TopCollection ;
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007> ,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605008> ;
     acdh:hasPrincipalInvestigator acdhi:rklugseder , 
-        acdhi:jhoeller ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasContributor acdhi:pandorfer ,
         acdhi:rklugseder ,
+        acdhi:jhoeller ,
         acdhi:fsanzlazaro ,
         acdhi:dschopper ;
-    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasDepositor acdhi:rklugseder ;
     acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo> ;
     acdh:hasCurator acdhi:fsanzlazaro ;
     acdh:hasFunder acdhi:bmkkoeds ;
@@ -79,7 +79,7 @@ acdhi-ofm:derivatives a acdh:Collection ;
     acdh:hasArrangement
         "56 Untersammlungen. Jede Untersammlung stellt ein physisches Volumen dar und enthaltet bearbeitete Versionen der TIFF-Dateien von der Untersammlungen von „Originalbilder“"@de ,
         "56 Subcollections. Each subcollection represents a physical volume and contains derivative versions from the pictures of the Subcollections of 'Master Images' "@en ;
-    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasDepositor acdhi:rklugseder ;
     acdh:hasSubject "Choralschriften" ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasCoverageStartDate "1425-01-01";
@@ -99,7 +99,7 @@ acdhi-ofm:masters a acdh:Collection ;
         "56 Untersammlungen. Jede Untersammlung stellt ein physisches Volumen dar und enthaltet TIFF Dateien"@de  ;
     acdh:hasSubject "Choralschriften" ;
     acdh:hasTag "TEXT"@und ;
-    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasDepositor acdhi:rklugseder ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasOwner acdhi:acdh ;
     acdh:hasAppliedMethod "Scanning" ;
@@ -117,7 +117,7 @@ acdhi-ofm:teidocs a acdh:Collection ;
         "The collection contains 56 XML-TEI files. Each file represents a physical volume"@en ,
         "Die Sammlung enthaltet 56 XML-TEI-Dateien. Jede Datei stellt ein physisches Volumen dar"@de ;
     acdh:hasSubject "Choralschriften" ;
-    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasDepositor acdhi:rklugseder ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasContributor 
         acdhi:pandorfer ,
