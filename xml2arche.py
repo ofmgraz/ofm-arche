@@ -188,6 +188,7 @@ def get_contributors(tei):
         pred = []
         # if contributor.xpath(".//tei:persName/tei:forename/text()", namespaces=nsmap)[0] not in ('Robert', 'Fernando'):
         pred = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0]
+        print(persons)
         if pred != "Transcriptor":
             obj = persons[contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0]]
         else:
