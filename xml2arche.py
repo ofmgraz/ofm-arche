@@ -3,7 +3,7 @@ import glob
 import os
 import re
 from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD
-from acdh_tei_pyutils.tei import TeiReader
+from acdh_tei_pyutils.tei import TeiReader, ET
 # from PIL import Image
 # import requests
 # from io import BytesIO
@@ -185,22 +185,18 @@ def get_contributors(tei):
     predobj = []
     contributors = tei.any_xpath(".//tei:respStmt")
     for contributor in contributors:
-        preds = []
+        pred = []
         # if contributor.xpath(".//tei:persName/tei:forename/text()", namespaces=nsmap)[0] not in ('Robert', 'Fernando'):
-        if contributor.xpath(".//tei:persName/@role", namespaces=nsmap):
-            preds = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0].split(" ")
-
-        if len(preds) == 0 or preds[0] != "Transcriptor":
+        pred = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0]
+        if pred != "Transcriptor":
             obj = persons[contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0]]
         else:
             obj = "".join(x[0] for x in contributor.xpath(
                 ".//tei:persName/tei:forename/text()", namespaces=nsmap
             )[0].split("-")) + contributor.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0]
-            obj = ACDHI[obj.lower()]
-            preds[0] = "hasContributor"
-        for pred in preds:
-            # pred = pred[5:]
-            predobj.append((ACDH[pred], obj))
+            pred = "Contributor"
+        obj = ACDHI[obj.lower()]
+        predobj.append((ACDH[f"has{pred}"], obj))
     return predobj
 
 
@@ -294,7 +290,7 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False, i
 
 
 # Add constant properties to resource
-def add_constants(subj, rights=OeAW, owner=ACDHCH, depositor=Franziskanerkloster, licence=False,
+def add_constants(subj, rights=OeAW, owner=ACDHCH, depositor=Klugseder, licence=False,
                   creator=[Klugseder]):
     g.add((subj, ACDH["hasRightsHolder"], rights))
     g.add((subj, ACDH["hasOwner"], owner))
@@ -304,7 +300,7 @@ def add_constants(subj, rights=OeAW, owner=ACDHCH, depositor=Franziskanerkloster
     g.add((subj, ACDH["hasDepositor"], depositor))
     if licence:
         g.add((subj, ACDH["hasLicense"], licence))
-    g.add((subj, ACDH["hasLicensor"], rights))
+    g.add((subj, ACDH["hasLicensor"], owner))
 
 
 def add_temporal(resc, start, end):
@@ -348,7 +344,7 @@ for xmlfilepath in files:
     xmlresc = ACDHI[f"ofmgraz/teidocs/{xmlfile}"]
     # creates resource for the XML file
     g.add((xmlresc, RDF.type, ACDH["Resource"]))
-    add_constants(xmlresc, creator=[Sanz, Klugseder], owner=ACDHCH, rights=OeAW, licence=ccbyna)
+    add_constants(xmlresc, creator=[Sanz], owner=ACDHCH, rights=OeAW, licence=ccbyna)
     # Looks for next XML file. They are here attributes of the top structure
     if hasNextItem:
         g.add(
@@ -387,7 +383,7 @@ for xmlfilepath in files:
     coverage = get_coverage(doc)
     [g.add((xmlresc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
     contributors = get_contributors(doc)
-    [g.add((xmlresc, contributor[0], contributor[1])) for contributor in contributors]
+    [g.add((xmlresc, contributor[0], contributor[1])) for contributor in contributors if contributor[0] != "DigitisingAgent"]
     g.add((xmlresc, ACDH["hasExtent"], extent))
     add_temporal(xmlresc, dates[0], dates[1])
     g.add((xmlresc, ACDH["hasUsedSoftware"], Literal("Transkribus")))
@@ -395,6 +391,7 @@ for xmlfilepath in files:
     picarrangement = "Each element is a page or a side of folio"
 
     device = get_used_device(doc)
+    print([dig for dig in contributors])
     digitiser = [dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
 
     # Creates a list of pictures in the file, excluding empty refs
