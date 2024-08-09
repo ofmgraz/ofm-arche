@@ -37,7 +37,7 @@ Andorfer = ACDHI["pandorfer"]
 Schopper = ACDH["dschopper"]
 ccbyna = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-sa-4-0")
 publicdomain = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0")
-
+cc0  = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0")
 categories = {"tei": URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei"),
               "image": URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/image")}
 language = URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")
@@ -428,6 +428,8 @@ for xmlfilepath in files:
         g.add((jpgresc, ACDH["hasRightsInformation"], Literal("Related rights: ÖAW und Franziskanerkloster Graz", lang="en")))
         g.add((jpgresc, ACDH["hasRightsInformation"], Literal("Verwandte Schutzrechte der bearbeiteteten Dateien: ÖAW und Franziskanerkloster Graz", lang="de")))
         g.add((tifresc, ACDH["hasUsedHardware"], device))
+        add_constants(tifresc, licence=publicdomain)
+        add_constants(jpgresc, licence=cc0)
 
         for picresc in (tif, jpg):
             filetype = picresc[2][-3:]
