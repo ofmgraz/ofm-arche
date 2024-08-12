@@ -203,6 +203,24 @@ acdhi:mschmoetten a acdh:Person ;
     acdh:hasFirstName "Moritz"@de ;
     acdh:hasTitle "Moritz Schmoetten"@und .
 
+acdhi:mautern-in-steiermark a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4115047-8> ,
+     <https://sws.geonames.org/2771761>,
+     <https://www.wikidata.org/entity/Q258162> ;
+    acdh:hasCountry "Österreich"@de ,
+        "Austria@en ;
+    acdh:hasTitle "Mautern in Steiermark"@de ,
+        "Mautern in Steiermark"@en .
+
+acdhi:ljubljana a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4073953-3> ,
+        <https://sws.geonames.org/3239318> ,
+        <https://www.wikidata.org/entity/Q437> ;
+    acdh:hasCountry "Slowenien"@de ,
+        "Slovenia"@en ;
+    acdh:hasTitle "Ljubljana"@de ,
+        "Ljubljana"@en .
+
 # Already on ARCHE
 acdhi:pandorfer a acdh:Person ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-9575-9372> ;
@@ -215,3 +233,57 @@ acdhi:dschopper a acdh:Person ;
 acdhi:franziskanerklostergraz a acdh:Organisation ;  
     acdh:hasIdentifier <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasTitle "Franziskanerkloster Graz"@de .
+
+acdhi:sankt-polten a acdh:Place ; # acdhi:
+    acdh:hasIdentifier <https://d-nb.info/gnd/4051622-2> ,
+        <https://sws.geonames.org/2766426> ,
+        <https://www.wikidata.org/entity/Q82500> ;
+    acdh:hasCountry "Österreich"@de ,
+        "Austria@en ;
+    acdh:hasTitle "Sankt Pölten"@de ,
+        "Sankt Pölten"@und .
+
+acdhi:vienna a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4066009-6> ,
+        <https://sws.geonames.org/2761367> ,
+        <https://www.wikidata.org/entity/Q1741> ;
+    acdh:hasCountry "Österreich"@de ,
+        "Austria@en ;
+    acdh:hasTitle "Wien"@de ,
+        "Vienna"@en .
+
+acdhi:salzburg a acdh:Place ; #102
+    acdh:hasIdentifier <https://d-nb.info/gnd/4076982-3> ,
+        <https://sws.geonames.org/2766818> ,
+        <https://www.wikidata.org/entity/Q34713> ;
+    acdh:hasCountry "Österreich"@de ,
+        "Austria@en ;
+    acdh:hasTitle "Salzburg"@de ,
+        "Salzburg"@en .
+
+acdhi:maria-lankowitz a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4400654-8> ,
+        <https://sws.geonames.org/2771922> ,
+        <https://www.wikidata.org/entity/Q699807> ;
+    acdh:hasCountry "Österreich"@de ,
+        "Austria@en ;
+    acdh:hasTitle "Maria Lankowitz"@de ,
+        "Maria Lankowitz"@en.
+
+acdhi:munich a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4127793-4> ,
+        <https://sws.geonames.org/2771922> ,
+        <https://www.wikidata.org/entity/Q699807> ;
+    acdh:hasCountry "Deutschland"@de ,
+        "Germany"@en ;
+    acdh:hasTitle "München"@de ,
+        "Munich"@en .
+
+acdhi:venice a acdh:Place ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/4062501-1> ,
+        <https://sws.geonames.org/2766818> ,
+        <https://www.wikidata.org/entity/Q34713> ;
+    acdh:hasCountry "Italien"@de ,
+        "Italy"@en ;
+    acdh:hasTitle "Venedig"@de ,
+        "Venice"@en .
