@@ -268,10 +268,11 @@ def get_dims(file_path):
 
 def get_coverage(doc):
     locations = doc.any_xpath(
-        './/tei:standOff/tei:listPlace/tei:place/tei:idno[@subtype="GEONAMES"]/text()'
+        './/tei:standOff/tei:listPlace/tei:placeName[@xml:lang="en"]/text()'
     )
+    # 
     # return [places[place] for place in locations]
-    return [URIRef(place) for place in locations]
+    return ['-'.join(x.lower().split()) for x in locations]
 
 
 # This creates subcollections. In this case, for each set of tiffs and of jpgs
