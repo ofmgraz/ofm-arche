@@ -188,7 +188,6 @@ def get_contributors(tei):
         pred = []
         # if contributor.xpath(".//tei:persName/tei:forename/text()", namespaces=nsmap)[0] not in ('Robert', 'Fernando'):
         pred = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0]
-        print(persons)
         if pred != "Transcriptor":
             obj = persons[contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0]]
         else:
@@ -268,11 +267,12 @@ def get_dims(file_path):
 
 def get_coverage(doc):
     locations = doc.any_xpath(
-        './/tei:standOff/tei:listPlace/tei:placeName[@xml:lang="en"]/text()'
+        './/tei:standOff/tei:listPlace/tei:place/tei:placeName[@xml:lang="en"]/text()'
     )
+    print("LOCATIONS: ", locations)
     # 
     # return [places[place] for place in locations]
-    return ['-'.join(x.lower().split()) for x in locations]
+    return [ACDHI[f"place-{'-'.join(x.lower().replace('ö', 'oe').split())}"] for x in locations]
 
 
 # This creates subcollections. In this case, for each set of tiffs and of jpgs
@@ -383,6 +383,7 @@ for xmlfilepath in files:
         )
     )
     coverage = get_coverage(doc)
+    print(coverage)
     [g.add((xmlresc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
     contributors = get_contributors(doc)
     [g.add((xmlresc, contributor[0], contributor[1])) for contributor in contributors if contributor[0] != "DigitisingAgent"]
@@ -393,7 +394,7 @@ for xmlfilepath in files:
     picarrangement = "Each element is a page or a side of folio"
 
     device = get_used_device(doc)
-    print([dig for dig in contributors])
+    print("DIGITISING:", [dig for dig in contributors])
     digitiser = [dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
 
     # Creates a list of pictures in the file, excluding empty refs

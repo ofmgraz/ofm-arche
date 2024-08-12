@@ -21,15 +21,16 @@ acdhi:ofmgraz a acdh:TopCollection ;
         "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ,
         ""@en ;
     acdh:hasSpatialCoverage
-        <https://sws.geonames.org/2761369/> , # Wien
-        <https://sws.geonames.org/2778067/> , #Graz
-        <https://sws.geonames.org/2766429/> , # St. Pölten
-        <https://sws.geonames.org/3196359/> , # Lbjuliana
-        <https://sws.geonames.org/2766824/> , #Salzburg
-        <https://sws.geonames.org/2771922/> , # M LAnkowitz
-        <https://sws.geonames.org/2771761/> , # Mautern
-        <https://sws.geonames.org/2867714/> , # München
-        <https://sws.geonames.org/3164603/> ; # Venedig
+        acdhi:place-graz ,
+        acdhi:place-vienna ,
+        acdhi:place-graz ,
+        acdhi:place-sankt-poelten ,
+        acdhi:place-lbjuliana ,
+        acdhi:place-salzburg ,
+        acdhi:place-maria-lankowitz , 
+        acdhi:place-mautern-in-steiermark ,
+        acdhi:place-munich ,
+        acdhi:place-venice ;
     acdh:hasCreator acdhi:rklugseder ;
     acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024> ,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007> ,
@@ -41,7 +42,7 @@ acdhi:ofmgraz a acdh:TopCollection ;
         acdhi:jhoeller ,
         acdhi:fsanzlazaro ,
         acdhi:dschopper ;
-    acdh:hasDepositor acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:jhoeller ;
     acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo> ;
     acdh:hasCurator acdhi:fsanzlazaro ;
     acdh:hasFunder acdhi:bmkkoeds ;
@@ -79,7 +80,7 @@ acdhi-ofm:derivatives a acdh:Collection ;
     acdh:hasArrangement
         "56 Untersammlungen. Jede Untersammlung stellt ein physisches Volumen dar und enthaltet bearbeitete Versionen der TIFF-Dateien von der Untersammlungen von „Originalbilder“"@de ,
         "56 Subcollections. Each subcollection represents a physical volume and contains derivative versions from the pictures of the Subcollections of 'Master Images' "@en ;
-    acdh:hasDepositor acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:jhoeller ;
     acdh:hasSubject "Choralschriften" ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasCoverageStartDate "1425-01-01";
@@ -99,7 +100,7 @@ acdhi-ofm:masters a acdh:Collection ;
         "56 Untersammlungen. Jede Untersammlung stellt ein physisches Volumen dar und enthaltet TIFF Dateien"@de  ;
     acdh:hasSubject "Choralschriften" ;
     acdh:hasTag "TEXT"@und ;
-    acdh:hasDepositor acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:jhoeller ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasOwner acdhi:acdh ;
     acdh:hasAppliedMethod "Scanning" ;
@@ -117,7 +118,7 @@ acdhi-ofm:teidocs a acdh:Collection ;
         "The collection contains 56 XML-TEI files. Each file represents a physical volume"@en ,
         "Die Sammlung enthaltet 56 XML-TEI-Dateien. Jede Datei stellt ein physisches Volumen dar"@de ;
     acdh:hasSubject "Choralschriften" ;
-    acdh:hasDepositor acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:jhoeller ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasContributor 
         acdhi:pandorfer ,
@@ -203,7 +204,7 @@ acdhi:mschmoetten a acdh:Person ;
     acdh:hasFirstName "Moritz"@de ;
     acdh:hasTitle "Moritz Schmoetten"@und .
 
-acdhi:mautern-in-steiermark a acdh:Place ;
+acdhi:place-mautern-in-steiermark a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4115047-8> ,
      <https://sws.geonames.org/2771761>,
      <https://www.wikidata.org/entity/Q258162> ;
@@ -212,7 +213,7 @@ acdhi:mautern-in-steiermark a acdh:Place ;
     acdh:hasTitle "Mautern in Steiermark"@de ,
         "Mautern in Steiermark"@en .
 
-acdhi:ljubljana a acdh:Place ;
+acdhi:place-ljubljana a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4073953-3> ,
         <https://sws.geonames.org/3239318> ,
         <https://www.wikidata.org/entity/Q437> ;
@@ -234,7 +235,7 @@ acdhi:franziskanerklostergraz a acdh:Organisation ;
     acdh:hasIdentifier <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasTitle "Franziskanerkloster Graz"@de .
 
-acdhi:sankt-polten a acdh:Place ; # acdhi:
+acdhi:place-sankt-poelten a acdh:Place ; 
     acdh:hasIdentifier <https://d-nb.info/gnd/4051622-2> ,
         <https://sws.geonames.org/2766426> ,
         <https://www.wikidata.org/entity/Q82500> ;
@@ -243,7 +244,7 @@ acdhi:sankt-polten a acdh:Place ; # acdhi:
     acdh:hasTitle "Sankt Pölten"@de ,
         "Sankt Pölten"@und .
 
-acdhi:vienna a acdh:Place ;
+acdhi:place-vienna a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4066009-6> ,
         <https://sws.geonames.org/2761367> ,
         <https://www.wikidata.org/entity/Q1741> ;
@@ -252,7 +253,7 @@ acdhi:vienna a acdh:Place ;
     acdh:hasTitle "Wien"@de ,
         "Vienna"@en .
 
-    acdhi:graz a acdh:Place ;
+    acdhi:place-graz a acdh:Place ;
         acdh:hasIdentifier <https://d-nb.info/gnd/4021912-4> ,
             <https://sws.geonames.org/2778058> ,
             <https://www.wikidata.org/entity/Q13298> ;
@@ -261,7 +262,7 @@ acdhi:vienna a acdh:Place ;
         acdh:hasTitle "Graz"@de ,
             "Graz"@en .
 
-acdhi:salzburg a acdh:Place ; #102
+acdhi:place-salzburg a acdh:Place ; #102
     acdh:hasIdentifier <https://d-nb.info/gnd/4076982-3> ,
         <https://sws.geonames.org/2766818> ,
         <https://www.wikidata.org/entity/Q34713> ;
@@ -270,7 +271,7 @@ acdhi:salzburg a acdh:Place ; #102
     acdh:hasTitle "Salzburg"@de ,
         "Salzburg"@en .
 
-acdhi:maria-lankowitz a acdh:Place ;
+acdhi:place-maria-lankowitz a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4400654-8> ,
         <https://sws.geonames.org/2771922> ,
         <https://www.wikidata.org/entity/Q699807> ;
@@ -279,7 +280,7 @@ acdhi:maria-lankowitz a acdh:Place ;
     acdh:hasTitle "Maria Lankowitz"@de ,
         "Maria Lankowitz"@en.
 
-acdhi:munich a acdh:Place ;
+acdhi:place-munich a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4127793-4> ,
         <https://sws.geonames.org/2771922> ,
         <https://www.wikidata.org/entity/Q699807> ;
@@ -288,7 +289,7 @@ acdhi:munich a acdh:Place ;
     acdh:hasTitle "München"@de ,
         "Munich"@en .
 
-acdhi:venice a acdh:Place ;
+acdhi:place-venice a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4062501-1> ,
         <https://sws.geonames.org/2766818> ,
         <https://www.wikidata.org/entity/Q34713> ;
