@@ -208,7 +208,7 @@ acdhi:mautern-in-steiermark a acdh:Place ;
      <https://sws.geonames.org/2771761>,
      <https://www.wikidata.org/entity/Q258162> ;
     acdh:hasCountry "Österreich"@de ,
-        "Austria@en ;
+        "Austria"@en ;
     acdh:hasTitle "Mautern in Steiermark"@de ,
         "Mautern in Steiermark"@en .
 
@@ -239,7 +239,7 @@ acdhi:sankt-polten a acdh:Place ; # acdhi:
         <https://sws.geonames.org/2766426> ,
         <https://www.wikidata.org/entity/Q82500> ;
     acdh:hasCountry "Österreich"@de ,
-        "Austria@en ;
+        "Austria"@en ;
     acdh:hasTitle "Sankt Pölten"@de ,
         "Sankt Pölten"@und .
 
@@ -248,16 +248,25 @@ acdhi:vienna a acdh:Place ;
         <https://sws.geonames.org/2761367> ,
         <https://www.wikidata.org/entity/Q1741> ;
     acdh:hasCountry "Österreich"@de ,
-        "Austria@en ;
+        "Austria"@en ;
     acdh:hasTitle "Wien"@de ,
         "Vienna"@en .
+
+    acdhi:graz a acdh:Place ;
+        acdh:hasIdentifier <https://d-nb.info/gnd/4021912-4> ,
+            <https://sws.geonames.org/2778058> ,
+            <https://www.wikidata.org/entity/Q13298> ;
+        acdh:hasCountry "Österreich"@de ,
+            "Austria"@en ;
+        acdh:hasTitle "Graz"@de ,
+            "Graz"@en .
 
 acdhi:salzburg a acdh:Place ; #102
     acdh:hasIdentifier <https://d-nb.info/gnd/4076982-3> ,
         <https://sws.geonames.org/2766818> ,
         <https://www.wikidata.org/entity/Q34713> ;
     acdh:hasCountry "Österreich"@de ,
-        "Austria@en ;
+        "Austria"@en ;
     acdh:hasTitle "Salzburg"@de ,
         "Salzburg"@en .
 
@@ -266,7 +275,7 @@ acdhi:maria-lankowitz a acdh:Place ;
         <https://sws.geonames.org/2771922> ,
         <https://www.wikidata.org/entity/Q699807> ;
     acdh:hasCountry "Österreich"@de ,
-        "Austria@en ;
+        "Austria"@en ;
     acdh:hasTitle "Maria Lankowitz"@de ,
         "Maria Lankowitz"@en.
 
