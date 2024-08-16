@@ -197,7 +197,6 @@ def get_contributors(tei):
             pred = "Contributor"
             obj = ACDHI[obj.lower()]
         predobj.append((ACDH[f"has{pred}"], obj))
-        print(predobj)
     return predobj
 
 
@@ -270,7 +269,7 @@ def get_dims(file_path):
 def get_coverage(doc):
     locations = doc.any_xpath(
         './/tei:standOff/tei:listPlace/tei:place/tei:placeName[@xml:lang="en"]/text()'
-    )    # 
+    )    #
     # return [places[place] for place in locations]
     return [ACDHI[f"place-{'-'.join(x.lower().replace('ö', 'oe').split())}"] for x in locations]
 
@@ -333,7 +332,7 @@ def process_file_list(filelist):
                 tree[collection][subcollection] = [filename]
     return tree
 
-    
+
 
 files = process_file_list(filelist)
 
@@ -380,7 +379,7 @@ for collection in files:
             print(xmlfile)
             resc = ACDHI[f"ofmgraz/teidocs/{xmlfile}"]
             g.add((resc, RDF.type, ACDH["Resource"]))
-    
+
             basename = xmlfile.split(".")[0]
             doc = TeiReader(f"data/editions/{xmlfile}")
 
@@ -393,7 +392,7 @@ for collection in files:
             dates = get_date(doc)
             extent = get_extent(doc)
             # creates resource for the XML file
-   
+
             add_constants(resc, creator=[Sanz], owner=ACDHCH, rights=OeAW, licence=ccbyna)
             # Looks for next XML file. They are here attributes of the top structure
 
@@ -422,7 +421,7 @@ for collection in files:
             g.add((resc, ACDH["hasUsedSoftware"], Literal("Transkribus")))
 
 
-            
+
             subcollections = [make_subcollection(basename, MASTERS, has_title, picarrangement, has_subtitle, resc)]
             subcollections.append(make_subcollection(basename, DERIVTV, has_title, picarrangement, has_subtitle))
             for sc in subcollections:
@@ -467,7 +466,7 @@ for collection in files:
                 else:
                     g.add((ACDHI[rescpath], ACDH["hasNextItem"], prevresc))
                 prevresc = resc
-                
+
 try:
     g.serialize("ofmgraz.ttl", format="ttl")
 except Exception as e:
