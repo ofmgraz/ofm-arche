@@ -195,8 +195,9 @@ def get_contributors(tei):
                 ".//tei:persName/tei:forename/text()", namespaces=nsmap
             )[0].split("-")) + contributor.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0]
             pred = "Contributor"
-        obj = ACDHI[obj.lower()]
+            obj = ACDHI[obj]
         predobj.append((ACDH[f"has{pred}"], obj))
+        print(predobj)
     return predobj
 
 
@@ -244,6 +245,7 @@ def get_tifs(tei):
     return tifs
 
 
+
 def get_nextitem(first_item, doc):
     if next_item := doc.any_xpath("//@next"):
         if first_item == next_item[0]:
@@ -268,9 +270,7 @@ def get_dims(file_path):
 def get_coverage(doc):
     locations = doc.any_xpath(
         './/tei:standOff/tei:listPlace/tei:place/tei:placeName[@xml:lang="en"]/text()'
-    )
-    print("LOCATIONS: ", locations)
-    # 
+    )    # 
     # return [places[place] for place in locations]
     return [ACDHI[f"place-{'-'.join(x.lower().replace('ö', 'oe').split())}"] for x in locations]
 
@@ -311,6 +311,32 @@ def add_temporal(resc, start, end):
     #dateid = get_temporalcoverid(start)
     #g.add((resc, ACDH["hasTemporalCoverageIdentifier"], dateid))
 
+filelist = "list_files.txt"
+def process_file_list(filelist):
+    tree = {"teidocs": [], "masters": {}, "derivatives": {}}
+    with open(filelist) as f:
+        lines = [line.strip() for line in f]
+    for line in lines:
+        lline = line.split("/")[1:]
+        if len(lline) < 2:
+            continue
+        collection = lline[0]
+        subcollection = lline[1]
+        filename = lline [-1]
+        if lline[0] == "teidocs":
+            tree["teidocs"].append(filename)
+        else:
+            if subcollection in tree[collection]:
+                tree[collection][subcollection].append(filename)
+            else:
+                print
+                tree[collection][subcollection] = [filename]
+    return tree
+
+    
+
+files = process_file_list(filelist)
+
 
 # Load the predefined constants: TopCollection, Collections, Persons, Places, and Organisations
 g = Graph().parse(rdfconstants, format("turtle"))
@@ -323,7 +349,9 @@ places = get_places(g)
 # [g.add(x) for x in get_places("data/indices/listplace.xml")]
 
 count = 0
-files = glob.glob("data/editions/*.xml")
+
+
+#files = glob.glob("data/editions/*.xml")
 
 xmlarrangement = "Each element represents a physical volume"
 
@@ -332,139 +360,114 @@ xmlarrangement = "Each element represents a physical volume"
 
 
 first_item = False
+prevresc = ACDHI['ofmgraz']
 # Loops over the xml files to get the names and the pictures referred in them
-for xmlfilepath in files:
-    xmlfile = os.path.basename(xmlfilepath)
-    print(xmlfile)
-    basename = xmlfile.split(".")[0]
-    doc = TeiReader(xmlfilepath)
-    dates = get_date(doc)
-    extent = get_extent(doc)
-    hasNextItem = get_nextitem(first_item, doc)
-    if not first_item:
-        first_item = get_nextitem(first_item, doc)
-    xmlresc = ACDHI[f"ofmgraz/teidocs/{xmlfile}"]
-    # creates resource for the XML file
-    g.add((xmlresc, RDF.type, ACDH["Resource"]))
-    add_constants(xmlresc, creator=[Sanz], owner=ACDHCH, rights=OeAW, licence=ccbyna)
-    # Looks for next XML file. They are here attributes of the top structure
-    if hasNextItem:
-        g.add(
-            (xmlresc, ACDH["hasNextItem"], ACDHI[f"ofmgraz/teidocs/{hasNextItem}"])
-        )
-    else:
-        g.add((ACDHI["ofmgraz/teidocs"], ACDH["hasNextItem", xmlresc], xmlresc))
-    g.add((xmlresc, ACDH["isPartOf"], ACDHI["ofmgraz/teidocs"]))
-    if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
-        has_title = signature[0].text
-        g.add((xmlresc, ACDH["hasTitle"], Literal(f"{signature[0].text} (XML-TEI)", lang="und")))
-        g.add((xmlresc, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text)))
-    if has_subtitle := doc.any_xpath(".//tei:title[@type='main']/text()"):
-        has_subtitle = has_subtitle[0].strip('"')
-        if has_subtitle != has_title:
-            g.add((xmlresc, ACDH["hasAlternativeTitle"], Literal(has_subtitle, lang="la")))
-        else:
-            subtitle = False
 
-    g.add(
-        (
-            xmlresc,
-            ACDH["hasCategory"],
-            categories["tei"],
-        )
-    )
-    g.add((xmlresc, ACDH["hasFilename"], Literal(f"{basename}.xml")))
-    g.add((xmlresc, ACDH["hasFormat"], Literal("application/xml")))
-    g.add(
-        (
-            xmlresc,
-            ACDH["hasLanguage"],
-            language,
-        )
-    )
-    coverage = get_coverage(doc)
-    print(coverage)
-    [g.add((xmlresc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
-    contributors = get_contributors(doc)
-    [g.add((xmlresc, contributor[0], contributor[1])) for contributor in contributors if contributor[0] != "DigitisingAgent"]
-    g.add((xmlresc, ACDH["hasExtent"], extent))
-    add_temporal(xmlresc, dates[0], dates[1])
-    g.add((xmlresc, ACDH["hasUsedSoftware"], Literal("Transkribus")))
 
-    picarrangement = "Each element is a page or a side of folio"
 
-    device = get_used_device(doc)
-    print("DIGITISING:", [dig for dig in contributors])
-    digitiser = [dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"]]
+digitiser = {}
+picarrangement = "Each element is a page or a side of folio"
 
-    # Creates a list of pictures in the file, excluding empty refs
-    pictures = [picture for picture in get_tifs(doc) if picture[0]]
+    # xmlfile = os.path.basename(xmlfilepath)
 
-    # Make subcollections for each book
-    subcollections = [make_subcollection(basename, MASTERS, has_title, picarrangement, has_subtitle, xmlresc)]
-    subcollections.append(make_subcollection(basename, DERIVTV, has_title, picarrangement, has_subtitle))
-    for subcollection in subcollections:
-        for scover in coverage:
-            g.add((subcollection, ACDH["hasSpatialCoverage"], scover))
-        add_temporal(subcollection, dates[0], dates[1])
-        g.add((subcollection, ACDH["hasArrangement"], Literal(f"The colllection contains {len(pictures)} image files.",
-                                                              lang="en")))
-        g.add((subcollection, ACDH["hasArrangement"], Literal(f"Die Sammlung enthaltet {len(pictures)} Bilddateien.",
-                                                              lang="de")))
 
-    # Loops over the pics in inverted order so we know beforehand which picture is the next
-
-    for idx, picture in enumerate(reversed(pictures)):
-        tiffile = f"{picture[0].strip()}.tif"
-        jpgfile = f"{picture[0].strip()}.jpg"
-        tifresc = ACDHI[f"ofmgraz/masters/{basename}/{tiffile}"]
-        jpgresc = ACDHI[f"ofmgraz/derivatives/{basename}/{jpgfile}"]
-
-        g.add((jpgresc, ACDH["hasCreator"], Klugseder))
-        [g.add((tifresc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser]
-        g.add((tifresc, ACDH["isSourceOf"], jpgresc))
-        g.add((tifresc, ACDH["isSourceOf"], tifresc))
-        g.add((jpgresc, ACDH["hasOaiSet"], URIRef("https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool")))
-        dims = picture[1]
-        tif = (tifresc, subcollections[0], tiffile)
-        jpg = (jpgresc, subcollections[1], jpgfile)
-        g.add((jpgresc, ACDH["hasRightsInformation"], Literal("Related rights: ÖAW und Franziskanerkloster Graz", lang="en")))
-        g.add((jpgresc, ACDH["hasRightsInformation"], Literal("Verwandte Schutzrechte der bearbeiteteten Dateien: ÖAW und Franziskanerkloster Graz", lang="de")))
-        g.add((tifresc, ACDH["hasUsedHardware"], device))
-        add_constants(tifresc, licence=publicdomain)
-        add_constants(jpgresc, licence=cc0)
-
-        for picresc in (tif, jpg):
-            filetype = picresc[2][-3:]
-            if filetype == "jpg":
-                filetype = "JPEG"
-            else:
-                filetype = "TIFF"
-            resc = picresc[0]
+# Loops over the pics in inverted order so we know beforehand which picture is the next
+for collection in files:
+    col = files[collection]
+    if collection in ["teidocs"]:
+        col.reverse()
+        for idx, xmlfile in enumerate(col):
+            print(xmlfile)
+            resc = ACDHI[f"ofmgraz/teidocs/{xmlfile}"]
             g.add((resc, RDF.type, ACDH["Resource"]))
-            add_constants(resc, licence=publicdomain)
-            g.add((resc, ACDH["isPartOf"], URIRef(picresc[1])))
-            g.add((resc, ACDH["hasTitle"], Literal(f"{picture[0]} ({filetype})", lang="und")))
-            g.add((resc, ACDH["hasFilename"], Literal(f"{picresc[2]}")))
-            # The object in the following ones needs to be adapted to meet the actual features
-            g.add(
-                (
-                    resc,
-                    ACDH["hasCategory"],
-                    categories["image"],
-                )
-            )
-            if False:  # picture[1]:
-                dims = picture[1]
-                g.add((resc, ACDH["hasPixelHeight"], Literal(f"{dims[0]}")))
-                g.add((resc, ACDH["hasPixelWidth"], Literal(f"{dims[1]}")))
-        # If we are not in the last picture....
-        if idx > 0:
-            g.add((tifresc, ACDH["hasNextItem"], prevtifresc))
-            g.add((jpgresc, ACDH["hasNextItem"], prevjpgresc))
-        prevtifresc = tifresc
-        prevjpgresc = jpgresc
+    
+            basename = xmlfile.split(".")[0]
+            doc = TeiReader(f"data/editions/{xmlfile}")
 
+            if idx > 0:
+                g.add((resc, ACDH["hasNextItem"], prevresc))
+            else:
+                g.add((ACDHI["ofmgraz/teidocs"], ACDH["hasNextItem"], prevresc))
+            prevresc = resc
+
+            dates = get_date(doc)
+            extent = get_extent(doc)
+            # creates resource for the XML file
+   
+            add_constants(resc, creator=[Sanz], owner=ACDHCH, rights=OeAW, licence=ccbyna)
+            # Looks for next XML file. They are here attributes of the top structure
+
+            g.add((resc, ACDH["isPartOf"], ACDHI["ofmgraz/teidocs"]))
+            if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
+                has_title = signature[0].text
+                g.add((resc, ACDH["hasTitle"], Literal(f"{signature[0].text} (XML-TEI)", lang="und")))
+                g.add((resc, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text)))
+            if has_subtitle := doc.any_xpath(".//tei:title[@type='main']/text()"):
+                has_subtitle = has_subtitle[0].strip('"')
+                if has_subtitle != has_title:
+                    g.add((resc, ACDH["hasAlternativeTitle"], Literal(has_subtitle, lang="la")))
+                else:
+                    subtitle = False
+
+            g.add((resc, ACDH["hasCategory"], categories["tei"]))
+            g.add((resc, ACDH["hasFilename"], Literal(f"{basename}.xml")))
+            g.add((resc, ACDH["hasFormat"], Literal("application/xml")))
+            g.add((resc,ACDH["hasLanguage"], language))
+            coverage = get_coverage(doc)
+            [g.add((resc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
+            contributors = get_contributors(doc)
+            [g.add((resc, contributor[0], contributor[1])) for contributor in contributors if contributor[0] != "DigitisingAgent"]
+            g.add((resc, ACDH["hasExtent"], extent))
+            add_temporal(resc, dates[0], dates[1])
+            g.add((resc, ACDH["hasUsedSoftware"], Literal("Transkribus")))
+
+
+            
+            subcollections = [make_subcollection(basename, MASTERS, has_title, picarrangement, has_subtitle, resc)]
+            subcollections.append(make_subcollection(basename, DERIVTV, has_title, picarrangement, has_subtitle))
+            for sc in subcollections:
+                for scover in coverage:
+                    g.add((sc, ACDH["hasSpatialCoverage"], scover))
+                    add_temporal(sc, dates[0], dates[1])
+            digitiser[basename] = ([(dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"])], get_used_device(doc))
+    else:
+        for subcollection in col:
+            # Make subcollections for each book
+            subcol = col[subcollection]
+            rescpath = f"ofmgraz/{collection}/{subcollection}"
+            jpgpath = f"ofmgraz/derivatives/{subcollection}"
+            tifpath = f"ofmgraz/masters/{subcollection}"
+            teiresc = ACDHI[f"ofmgraz/teidocs/{subcollection}.xml"]
+            g.add((ACDHI[rescpath], ACDH["hasArrangement"], Literal(f"The colllection contains {len(subcol)} image files.", lang="en")))
+            g.add((ACDHI[rescpath], ACDH["hasArrangement"], Literal(f"Die Sammlung enthaltet {len(subcol)} Bilddateien.", lang="de")))
+            subcol.reverse()
+            for idx, image in enumerate(subcol):
+                basename = image.split(".")[0]
+                filetype = image.split(".")[1].upper()
+                jpgresc = ACDHI[f"{jpgpath}/{image}.jpg"]
+                resc = ACDHI[f"{rescpath}/{image}"]
+                g.add((resc, RDF.type, ACDH["Resource"]))
+                g.add((resc, ACDH["isPartOf"], ACDHI[rescpath]))
+                g.add((resc, ACDH["hasTitle"], Literal(f"{basename} ({filetype})", lang="und")))
+                g.add((resc, ACDH["hasFilename"], Literal(image)))
+                if subcollection == "masters":
+                    g.add((resc, ACDH["isSourceOf"], jpgresc))
+                    [g.add((resc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser["subcollection"][0]]
+                    g.add((resc, ACDH["hasUsedHardware"], digitiser["subcollection"][1]))
+                    add_constants(resc, licence=publicdomain)
+                else:
+                    g.add((resc, ACDH["hasCreator"], Klugseder))
+                    g.add((resc, ACDH["hasRightsInformation"], Literal("Related rights: ÖAW und Franziskanerkloster Graz", lang="en")))
+                    g.add((resc, ACDH["hasRightsInformation"], Literal("Verwandte Schutzrechte der bearbeiteteten Dateien: ÖAW und Franziskanerkloster Graz", lang="de")))
+                    add_constants(resc, licence=cc0)
+                g.add((resc, ACDH["hasOaiSet"], URIRef("https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool")))
+                g.add((resc,ACDH["hasCategory"],categories["image"]))
+                if idx > 0:
+                    g.add((resc, ACDH["hasNextItem"], prevresc))
+                else:
+                    g.add((ACDHI[rescpath], ACDH["hasNextItem"], prevresc))
+                prevresc = resc
+                
 try:
     g.serialize("ofmgraz.ttl", format="ttl")
 except Exception as e:
