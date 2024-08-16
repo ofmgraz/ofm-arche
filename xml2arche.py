@@ -195,7 +195,7 @@ def get_contributors(tei):
                 ".//tei:persName/tei:forename/text()", namespaces=nsmap
             )[0].split("-")) + contributor.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0]
             pred = "Contributor"
-            obj = ACDHI[obj]
+            obj = ACDHI[obj.lower()]
         predobj.append((ACDH[f"has{pred}"], obj))
         print(predobj)
     return predobj
