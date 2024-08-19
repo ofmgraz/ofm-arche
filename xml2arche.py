@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-import glob
+# import glob
 import os
 import re
 from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD
-from acdh_tei_pyutils.tei import TeiReader, ET
+from acdh_tei_pyutils.tei import TeiReader
+
 # from PIL import Image
 # import requests
 # from io import BytesIO
@@ -37,9 +38,11 @@ Andorfer = ACDHI["pandorfer"]
 Schopper = ACDH["dschopper"]
 ccbyna = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-sa-4-0")
 publicdomain = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0")
-cc0  = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0")
-categories = {"tei": URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei"),
-              "image": URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/image")}
+cc0 = URIRef("https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0")
+categories = {
+    "tei": URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei"),
+    "image": URIRef("https://vocabs.acdh.oeaw.ac.at/archecategory/image"),
+}
 language = URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")
 
 
@@ -96,7 +99,9 @@ def make_person(person):
         0
     ]
     last_name = person.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0]
-    return output + [(subject, ACDH["hasTitle"], Literal(f"{first_name} {last_name}", lang="und"))]
+    return output + [
+        (subject, ACDH["hasTitle"], Literal(f"{first_name} {last_name}", lang="und"))
+    ]
 
 
 # Takes a tei:place element and returns a tuple of triples to add to the RDF
@@ -136,9 +141,7 @@ def get_persons(rdfconstants):
     }
     """
     for r in g.query(q):
-        persons[
-            str(r["identifier"])
-        ] = r["subject"]
+        persons[str(r["identifier"])] = r["subject"]
     return persons
 
 
@@ -154,9 +157,7 @@ def get_places(tei):
     }
     """
     for r in g.query(q):
-        places[
-            str(r["identifier"])
-        ] = r["subject"]
+        places[str(r["identifier"])] = r["subject"]
     return places
     # Tries first to get the German name
 
@@ -186,17 +187,27 @@ def get_contributors(tei):
     contributors = tei.any_xpath(".//tei:respStmt")
     for contributor in contributors:
         pred = []
-        # if contributor.xpath(".//tei:persName/tei:forename/text()", namespaces=nsmap)[0] not in ('Robert', 'Fernando'):
         pred = contributor.xpath(".//tei:persName/@role", namespaces=nsmap)[0]
         if pred != "Transcriptor":
-            obj = persons[contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0]]
+            obj = persons[
+                contributor.xpath(".//tei:persName/@ref", namespaces=nsmap)[0]
+            ]
         else:
-            obj = "".join(x[0] for x in contributor.xpath(
-                ".//tei:persName/tei:forename/text()", namespaces=nsmap
-            )[0].split("-")) + contributor.xpath(".//tei:persName/tei:surname/text()", namespaces=nsmap)[0]
+            obj = (
+                "".join(
+                    x[0]
+                    for x in contributor.xpath(
+                        ".//tei:persName/tei:forename/text()", namespaces=nsmap
+                    )[0].split("-")
+                )
+                + contributor.xpath(
+                    ".//tei:persName/tei:surname/text()", namespaces=nsmap
+                )[0]
+            )
             pred = "Contributor"
             obj = ACDHI[obj.lower()]
         predobj.append((ACDH[f"has{pred}"], obj))
+    print(predobj)
     return predobj
 
 
@@ -244,7 +255,6 @@ def get_tifs(tei):
     return tifs
 
 
-
 def get_nextitem(first_item, doc):
     if next_item := doc.any_xpath("//@next"):
         if first_item == next_item[0]:
@@ -269,13 +279,18 @@ def get_dims(file_path):
 def get_coverage(doc):
     locations = doc.any_xpath(
         './/tei:standOff/tei:listPlace/tei:place/tei:placeName[@xml:lang="en"]/text()'
-    )    #
+    )  #
     # return [places[place] for place in locations]
-    return [ACDHI[f"place-{'-'.join(x.lower().replace('ö', 'oe').split())}"] for x in locations]
+    return [
+        ACDHI[f"place-{'-'.join(x.lower().replace('ö', 'oe').split())}"]
+        for x in locations
+    ]
 
 
 # This creates subcollections. In this case, for each set of tiffs and of jpgs
-def make_subcollection(name, parent, title, arrangement=False, subtitle=False, issource=False):
+def make_subcollection(
+    name, parent, title, arrangement=False, subtitle=False, issource=False
+):
     subject = URIRef(os.path.join(parent, name))
     g.add((subject, RDF.type, ACDH["Collection"]))
     g.add((subject, ACDH["isPartOf"], URIRef(parent)))
@@ -291,12 +306,18 @@ def make_subcollection(name, parent, title, arrangement=False, subtitle=False, i
 
 
 # Add constant properties to resource
-def add_constants(subj, rights=OeAW, owner=ACDHCH, depositor=Klugseder, licence=False,
-                  creator=[Klugseder]):
+def add_constants(
+    subj,
+    rights=OeAW,
+    owner=ACDHCH,
+    depositor=Klugseder,
+    licence=False,
+    creator=[Klugseder],
+):
     g.add((subj, ACDH["hasRightsHolder"], rights))
     g.add((subj, ACDH["hasOwner"], owner))
     for crt in creator:
-        g.add((subj, ACDH["Creator"], crt))
+        g.add((subj, ACDH["hasCreator"], crt))
     g.add((subj, ACDH["hasMetadataCreator"], Sanz))
     g.add((subj, ACDH["hasDepositor"], depositor))
     if licence:
@@ -307,10 +328,13 @@ def add_constants(subj, rights=OeAW, owner=ACDHCH, depositor=Klugseder, licence=
 def add_temporal(resc, start, end):
     g.add((resc, ACDH["hasCoverageStartDate"], start))
     g.add((resc, ACDH["hasCoverageEndDate"], end))
-    #dateid = get_temporalcoverid(start)
-    #g.add((resc, ACDH["hasTemporalCoverageIdentifier"], dateid))
+    # dateid = get_temporalcoverid(start)
+    # g.add((resc, ACDH["hasTemporalCoverageIdentifier"], dateid))
+
 
 filelist = "list_files.txt"
+
+
 def process_file_list(filelist):
     tree = {"teidocs": [], "masters": {}, "derivatives": {}}
     with open(filelist) as f:
@@ -321,7 +345,7 @@ def process_file_list(filelist):
             continue
         collection = lline[0]
         subcollection = lline[1]
-        filename = lline [-1]
+        filename = lline[-1]
         if lline[0] == "teidocs":
             tree["teidocs"].append(filename)
         else:
@@ -331,7 +355,6 @@ def process_file_list(filelist):
                 print
                 tree[collection][subcollection] = [filename]
     return tree
-
 
 
 files = process_file_list(filelist)
@@ -350,7 +373,7 @@ places = get_places(g)
 count = 0
 
 
-#files = glob.glob("data/editions/*.xml")
+# files = glob.glob("data/editions/*.xml")
 
 xmlarrangement = "Each element represents a physical volume"
 
@@ -359,15 +382,14 @@ xmlarrangement = "Each element represents a physical volume"
 
 
 first_item = False
-prevresc = ACDHI['ofmgraz']
+prevresc = ACDHI["ofmgraz"]
 # Loops over the xml files to get the names and the pictures referred in them
-
 
 
 digitiser = {}
 picarrangement = "Each element is a page or a side of folio"
 
-    # xmlfile = os.path.basename(xmlfilepath)
+# xmlfile = os.path.basename(xmlfilepath)
 
 
 # Loops over the pics in inverted order so we know beforehand which picture is the next
@@ -393,42 +415,77 @@ for collection in files:
             extent = get_extent(doc)
             # creates resource for the XML file
 
-            add_constants(resc, creator=[Sanz], owner=ACDHCH, rights=OeAW, licence=ccbyna)
+            add_constants(
+                resc, creator=[Sanz], owner=ACDHCH, rights=OeAW, licence=ccbyna
+            )
             # Looks for next XML file. They are here attributes of the top structure
 
             g.add((resc, ACDH["isPartOf"], ACDHI["ofmgraz/teidocs"]))
             if signature := doc.any_xpath(".//tei:idno[@type='shelfmark']"):
                 has_title = signature[0].text
-                g.add((resc, ACDH["hasTitle"], Literal(f"{signature[0].text} (XML-TEI)", lang="und")))
-                g.add((resc, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text)))
+                g.add(
+                    (
+                        resc,
+                        ACDH["hasTitle"],
+                        Literal(f"{signature[0].text} (XML-TEI)", lang="und"),
+                    )
+                )
+                g.add(
+                    (resc, ACDH["hasNonLinkedIdentifier"], Literal(signature[0].text))
+                )
             if has_subtitle := doc.any_xpath(".//tei:title[@type='main']/text()"):
                 has_subtitle = has_subtitle[0].strip('"')
                 if has_subtitle != has_title:
-                    g.add((resc, ACDH["hasAlternativeTitle"], Literal(has_subtitle, lang="la")))
+                    g.add(
+                        (
+                            resc,
+                            ACDH["hasAlternativeTitle"],
+                            Literal(has_subtitle, lang="la"),
+                        )
+                    )
                 else:
                     subtitle = False
 
             g.add((resc, ACDH["hasCategory"], categories["tei"]))
             g.add((resc, ACDH["hasFilename"], Literal(f"{basename}.xml")))
             g.add((resc, ACDH["hasFormat"], Literal("application/xml")))
-            g.add((resc,ACDH["hasLanguage"], language))
+            g.add((resc, ACDH["hasLanguage"], language))
             coverage = get_coverage(doc)
             [g.add((resc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
             contributors = get_contributors(doc)
-            [g.add((resc, contributor[0], contributor[1])) for contributor in contributors if contributor[0] != "DigitisingAgent"]
+            [
+                g.add((resc, contributor[0], contributor[1]))
+                for contributor in contributors
+                if contributor[0] != "DigitisingAgent"
+            ]
             g.add((resc, ACDH["hasExtent"], extent))
             add_temporal(resc, dates[0], dates[1])
             g.add((resc, ACDH["hasUsedSoftware"], Literal("Transkribus")))
 
-
-
-            subcollections = [make_subcollection(basename, MASTERS, has_title, picarrangement, has_subtitle, resc)]
-            subcollections.append(make_subcollection(basename, DERIVTV, has_title, picarrangement, has_subtitle))
+            subcollections = [
+                make_subcollection(
+                    basename, MASTERS, has_title, picarrangement, has_subtitle, resc
+                )
+            ]
+            subcollections.append(
+                make_subcollection(
+                    basename, DERIVTV, has_title, picarrangement, has_subtitle
+                )
+            )
             for sc in subcollections:
                 for scover in coverage:
                     g.add((sc, ACDH["hasSpatialCoverage"], scover))
                     add_temporal(sc, dates[0], dates[1])
-            digitiser[basename] = ([(dig[1] for dig in contributors if dig[0] == ACDH["hasDigitisingAgent"])], get_used_device(doc))
+            digitiser[basename] = (
+                [
+                    (
+                        dig[1]
+                        for dig in contributors
+                        if dig[0] == ACDH["hasDigitisingAgent"]
+                    )
+                ],
+                get_used_device(doc),
+            )
     else:
         for subcollection in col:
             # Make subcollections for each book
@@ -437,8 +494,25 @@ for collection in files:
             jpgpath = f"ofmgraz/derivatives/{subcollection}"
             tifpath = f"ofmgraz/masters/{subcollection}"
             teiresc = ACDHI[f"ofmgraz/teidocs/{subcollection}.xml"]
-            g.add((ACDHI[rescpath], ACDH["hasArrangement"], Literal(f"The colllection contains {len(subcol)} image files.", lang="en")))
-            g.add((ACDHI[rescpath], ACDH["hasArrangement"], Literal(f"Die Sammlung enthaltet {len(subcol)} Bilddateien.", lang="de")))
+            g.add(
+                (
+                    ACDHI[rescpath],
+                    ACDH["hasArrangement"],
+                    Literal(
+                        f"The colllection contains {len(subcol)} image files.",
+                        lang="en",
+                    ),
+                )
+            )
+            g.add(
+                (
+                    ACDHI[rescpath],
+                    ACDH["hasArrangement"],
+                    Literal(
+                        f"Die Sammlung enthaltet {len(subcol)} Bilddateien.", lang="de"
+                    ),
+                )
+            )
             subcol.reverse()
             for idx, image in enumerate(subcol):
                 basename = image.split(".")[0]
@@ -447,20 +521,57 @@ for collection in files:
                 resc = ACDHI[f"{rescpath}/{image}"]
                 g.add((resc, RDF.type, ACDH["Resource"]))
                 g.add((resc, ACDH["isPartOf"], ACDHI[rescpath]))
-                g.add((resc, ACDH["hasTitle"], Literal(f"{basename} ({filetype})", lang="und")))
+                g.add(
+                    (
+                        resc,
+                        ACDH["hasTitle"],
+                        Literal(f"{basename} ({filetype})", lang="und"),
+                    )
+                )
                 g.add((resc, ACDH["hasFilename"], Literal(image)))
                 if subcollection == "masters":
                     g.add((resc, ACDH["isSourceOf"], jpgresc))
-                    [g.add((resc, ACDH["hasDigitisingAgent"], dig)) for dig in digitiser["subcollection"][0]]
-                    g.add((resc, ACDH["hasUsedHardware"], digitiser["subcollection"][1]))
+                    [
+                        g.add((resc, ACDH["hasDigitisingAgent"], dig))
+                        for dig in digitiser["subcollection"][0]
+                    ]
+                    g.add(
+                        (resc, ACDH["hasUsedHardware"], digitiser["subcollection"][1])
+                    )
                     add_constants(resc, licence=publicdomain)
                 else:
                     g.add((resc, ACDH["hasCreator"], Klugseder))
-                    g.add((resc, ACDH["hasRightsInformation"], Literal("Related rights: ÖAW und Franziskanerkloster Graz", lang="en")))
-                    g.add((resc, ACDH["hasRightsInformation"], Literal("Verwandte Schutzrechte der bearbeiteteten Dateien: ÖAW und Franziskanerkloster Graz", lang="de")))
+                    g.add(
+                        (
+                            resc,
+                            ACDH["hasRightsInformation"],
+                            Literal(
+                                "Related rights: ÖAW und Franziskanerkloster Graz",
+                                lang="en",
+                            ),
+                        )
+                    )
+                    g.add(
+                        (
+                            resc,
+                            ACDH["hasRightsInformation"],
+                            Literal(
+                                "Verwandte Schutzrechte der bearbeiteteten Dateien: ÖAW und Franziskanerkloster Graz",
+                                lang="de",
+                            ),
+                        )
+                    )
                     add_constants(resc, licence=cc0)
-                g.add((resc, ACDH["hasOaiSet"], URIRef("https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool")))
-                g.add((resc,ACDH["hasCategory"],categories["image"]))
+                g.add(
+                    (
+                        resc,
+                        ACDH["hasOaiSet"],
+                        URIRef(
+                            "https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool"
+                        ),
+                    )
+                )
+                g.add((resc, ACDH["hasCategory"], categories["image"]))
                 if idx > 0:
                     g.add((resc, ACDH["hasNextItem"], prevresc))
                 else:
