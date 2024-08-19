@@ -207,7 +207,6 @@ def get_contributors(tei):
             pred = "Contributor"
             obj = ACDHI[obj.lower()]
         predobj.append((ACDH[f"has{pred}"], obj))
-    print(predobj)
     return predobj
 
 
@@ -404,7 +403,7 @@ for collection in files:
 
             basename = xmlfile.split(".")[0]
             doc = TeiReader(f"data/editions/{xmlfile}")
-
+            [g.add((resc, ACDH["hasPid"], URIRef(xmlpid))) for xmlpid in doc.any_xpath('.//tei:publicationStmt/tei:idno[@type="handle"]')]
             if idx > 0:
                 g.add((resc, ACDH["hasNextItem"], prevresc))
             else:
@@ -464,12 +463,12 @@ for collection in files:
 
             subcollections = [
                 make_subcollection(
-                    basename, MASTERS, has_title, picarrangement, has_subtitle, resc
+                    basename, MASTERS, has_title, False, has_subtitle, resc
                 )
             ]
             subcollections.append(
                 make_subcollection(
-                    basename, DERIVTV, has_title, picarrangement, has_subtitle
+                    basename, DERIVTV, has_title, False, has_subtitle
                 )
             )
             for sc in subcollections:
@@ -521,7 +520,7 @@ for collection in files:
                 resc = ACDHI[f"{rescpath}/{image}"]
                 g.add((resc, RDF.type, ACDH["Resource"]))
                 g.add((resc, ACDH["isPartOf"], ACDHI[rescpath]))
-                g.add((resc, ACDH["hasPID"], Literal("create")))
+                g.add((resc, ACDH["hasPid"], Literal("create")))
                 g.add(
                     (
                         resc,
