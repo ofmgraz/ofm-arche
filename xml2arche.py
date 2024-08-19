@@ -31,7 +31,7 @@ rdfconstants = "arche_seed_files/arche_constants.ttl"
 ##################################################################################################
 Franziskanerkloster = ACDHI["franziskanerklostergraz"]
 OeAW = ACDHI["oeaw"]
-ACDHCH = ACDHI["acdh-ch"]
+ACDHCH = ACDHI["acdh"]
 Sanz = ACDHI["fsanzlazaro"]
 Klugseder = ACDHI["rklugseder"]
 Andorfer = ACDHI["pandorfer"]
@@ -521,6 +521,7 @@ for collection in files:
                 resc = ACDHI[f"{rescpath}/{image}"]
                 g.add((resc, RDF.type, ACDH["Resource"]))
                 g.add((resc, ACDH["isPartOf"], ACDHI[rescpath]))
+                g.add((resc, ACDH["hasPID"], Literal("create")))
                 g.add(
                     (
                         resc,
