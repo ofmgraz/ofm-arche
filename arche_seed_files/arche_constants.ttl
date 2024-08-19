@@ -21,16 +21,16 @@ acdhi:ofmgraz a acdh:TopCollection ;
         "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ,
         ""@en ;
     acdh:hasSpatialCoverage
-        acdhi:place-graz ,
-        acdhi:place-vienna ,
-        acdhi:place-graz ,
-        acdhi:place-sankt-poelten ,
-        acdhi:place-lbjuliana ,
-        acdhi:place-salzburg ,
-        acdhi:place-maria-lankowitz , 
-        acdhi:place-mautern-in-steiermark ,
-        acdhi:place-munich ,
-        acdhi:place-venice ;
+        acdhi-ofm:graz ,
+        acdhi-ofm:vienna ,
+        acdhi-ofm:graz ,
+        acdhi-ofm:sankt-poelten ,
+        acdhi-ofm:lbjuliana ,
+        acdhi-ofm:salzburg ,
+        acdhi-ofm:maria-lankowitz , 
+        acdhi-ofm:mautern-in-steiermark ,
+        acdhi-ofm:munich ,
+        acdhi-ofm:venice ;
     acdh:hasCreator acdhi:rklugseder ;
     acdh:hasRelatedDiscipline <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/604024> ,
         <https://vocabs.acdh.oeaw.ac.at/oefosdisciplines/605007> ,
@@ -204,7 +204,7 @@ acdhi:mschmoetten a acdh:Person ;
     acdh:hasFirstName "Moritz"@de ;
     acdh:hasTitle "Moritz Schmoetten"@und .
 
-acdhi:place-mautern-in-steiermark a acdh:Place ;
+acdhi-ofm:mautern-in-steiermark a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4115047-8> ,
      <https://sws.geonames.org/2771761>,
      <https://www.wikidata.org/entity/Q258162> ;
@@ -213,7 +213,7 @@ acdhi:place-mautern-in-steiermark a acdh:Place ;
     acdh:hasTitle "Mautern in Steiermark"@de ,
         "Mautern in Steiermark"@en .
 
-acdhi:place-ljubljana a acdh:Place ;
+acdhi-ofm:ljubljana a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4073953-3> ,
         <https://sws.geonames.org/3239318> ,
         <https://www.wikidata.org/entity/Q437> ;
@@ -235,7 +235,7 @@ acdhi:franziskanerklostergraz a acdh:Organisation ;
     acdh:hasIdentifier <https://d-nb.info/gnd/16174362-6> ;
     acdh:hasTitle "Franziskanerkloster Graz"@de .
 
-acdhi:place-sankt-poelten a acdh:Place ; 
+acdhi-ofm:sankt-poelten a acdh:Place ; 
     acdh:hasIdentifier <https://d-nb.info/gnd/4051622-2> ,
         <https://sws.geonames.org/2766426> ,
         <https://www.wikidata.org/entity/Q82500> ;
@@ -244,7 +244,7 @@ acdhi:place-sankt-poelten a acdh:Place ;
     acdh:hasTitle "Sankt Pölten"@de ,
         "Sankt Pölten"@und .
 
-acdhi:place-vienna a acdh:Place ;
+acdhi-ofm:vienna a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4066009-6> ,
         <https://sws.geonames.org/2761367> ,
         <https://www.wikidata.org/entity/Q1741> ;
@@ -253,7 +253,7 @@ acdhi:place-vienna a acdh:Place ;
     acdh:hasTitle "Wien"@de ,
         "Vienna"@en .
 
-    acdhi:place-graz a acdh:Place ;
+    acdhi-ofm:graz a acdh:Place ;
         acdh:hasIdentifier <https://d-nb.info/gnd/4021912-4> ,
             <https://sws.geonames.org/2778058> ,
             <https://www.wikidata.org/entity/Q13298> ;
@@ -262,7 +262,7 @@ acdhi:place-vienna a acdh:Place ;
         acdh:hasTitle "Graz"@de ,
             "Graz"@en .
 
-acdhi:place-salzburg a acdh:Place ; #102
+acdhi-ofm:salzburg a acdh:Place ; #102
     acdh:hasIdentifier <https://d-nb.info/gnd/4076982-3> ,
         <https://sws.geonames.org/2766818> ,
         <https://www.wikidata.org/entity/Q34713> ;
@@ -271,7 +271,7 @@ acdhi:place-salzburg a acdh:Place ; #102
     acdh:hasTitle "Salzburg"@de ,
         "Salzburg"@en .
 
-acdhi:place-maria-lankowitz a acdh:Place ;
+acdhi-ofm:maria-lankowitz a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4400654-8> ,
         <https://sws.geonames.org/2771922> ,
         <https://www.wikidata.org/entity/Q699807> ;
@@ -280,7 +280,7 @@ acdhi:place-maria-lankowitz a acdh:Place ;
     acdh:hasTitle "Maria Lankowitz"@de ,
         "Maria Lankowitz"@en.
 
-acdhi:place-munich a acdh:Place ;
+acdhi-ofm:munich a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4127793-4> ,
         <https://sws.geonames.org/2771922> ,
         <https://www.wikidata.org/entity/Q699807> ;
@@ -289,7 +289,7 @@ acdhi:place-munich a acdh:Place ;
     acdh:hasTitle "München"@de ,
         "Munich"@en .
 
-acdhi:place-venice a acdh:Place ;
+acdhi-ofm:venice a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4062501-1> ,
         <https://sws.geonames.org/2766818> ,
         <https://www.wikidata.org/entity/Q34713> ;
