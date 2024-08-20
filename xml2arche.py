@@ -528,7 +528,8 @@ for collection in files:
                 resc = ACDHI[f"{rescpath}/{image}"]
                 g.add((resc, RDF.type, ACDH["Resource"]))
                 g.add((resc, ACDH["isPartOf"], ACDHI[rescpath]))
-                g.add((resc, ACDH["hasPid"], Literal(handles[image])))
+                if image in handles:
+                    g.add((resc, ACDH["hasPid"], Literal(handles[image])))
                 g.add(
                     (
                         resc,
