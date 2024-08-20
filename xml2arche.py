@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # import glob
 import os
+import csv
 import re
 from rdflib import Graph, Namespace, URIRef, RDF, Literal, XSD
 from acdh_tei_pyutils.tei import TeiReader
@@ -22,6 +23,8 @@ DERIVTV = ACDHI["ofmgraz/derivatives"]
 TEIDOCS = ACDHI["ofmgraz/teidocs"]
 
 rdfconstants = "arche_seed_files/arche_constants.ttl"
+
+CSV_FILE = "handles.csv"
 
 
 ##################################################################################################
@@ -45,6 +48,11 @@ categories = {
 }
 language = URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")
 
+handles = {}
+with open(CSV_FILE) as f:
+    reader = csv.DictReader(f, delimiter=',')
+    for row in reader:
+        handles[row["arche_id"]] = row["handle_id"].split("/")[-1]
 
 ##################################################################################################
 # I know an element present in the node wanted (e.g. tei:persName), but it can be in different
@@ -403,7 +411,7 @@ for collection in files:
 
             basename = xmlfile.split(".")[0]
             doc = TeiReader(f"data/editions/{xmlfile}")
-            [g.add((resc, ACDH["hasPid"], URIRef(xmlpid))) for xmlpid in doc.any_xpath('.//tei:publicationStmt/tei:idno[@type="handle"]')]
+            [g.add((resc, ACDH["hasPid"], Literal(xmlpid))) for xmlpid in doc.any_xpath('.//tei:publicationStmt/tei:idno[@type="handle"]/text()')]
             if idx > 0:
                 g.add((resc, ACDH["hasNextItem"], prevresc))
             else:
@@ -520,7 +528,7 @@ for collection in files:
                 resc = ACDHI[f"{rescpath}/{image}"]
                 g.add((resc, RDF.type, ACDH["Resource"]))
                 g.add((resc, ACDH["isPartOf"], ACDHI[rescpath]))
-                g.add((resc, ACDH["hasPid"], Literal("create")))
+                g.add((resc, ACDH["hasPid"], Literal(handles[image])))
                 g.add(
                     (
                         resc,
