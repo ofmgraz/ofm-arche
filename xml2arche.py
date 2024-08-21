@@ -290,7 +290,7 @@ def get_coverage(doc):
     )  #
     # return [places[place] for place in locations]
     return [
-        ACDHI[f"ofmgraz/{'-'.join(x.lower().replace('ö', 'oe').split())}"]
+        ACDHI[f"{'-'.join(x.lower().replace('ö', 'oe').split())}"]
         for x in locations
     ]
 
@@ -318,7 +318,7 @@ def add_constants(
     subj,
     rights=OeAW,
     owner=ACDHCH,
-    depositor=Klugseder,
+    depositor=Franziskanerkloster,
     licence=False,
     creator=[Klugseder],
 ):
@@ -458,7 +458,6 @@ for collection in files:
             g.add((resc, ACDH["hasFormat"], Literal("application/xml")))
             g.add((resc, ACDH["hasLanguage"], language))
             coverage = get_coverage(doc)
-            print(coverage)
             [g.add((resc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
             contributors = get_contributors(doc)
             [
@@ -483,7 +482,7 @@ for collection in files:
             for sc in subcollections:
                 for scover in coverage:
                     g.add((sc, ACDH["hasSpatialCoverage"], scover))
-                    add_temporal(sc, dates[0], dates[1])
+                add_temporal(sc, dates[0], dates[1])
             digitiser[basename] = (
                 [
                     (

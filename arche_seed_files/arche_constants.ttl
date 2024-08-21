@@ -19,10 +19,10 @@ acdhi:ofmgraz a acdh:TopCollection ;
            ACDH-CH repository ARCHE."""@en  ;
     acdh:hasTitle
         "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ,
-        ""@en ;
+        "Choral Manuscripts of the Central Library of the Franciscan Province of Graz"@en ;
     acdh:hasSpatialCoverage
         acdhi-ofm:graz ,
-        acdhi-ofm:vienna ,
+        acdhi:vienna ,
         acdhi-ofm:graz ,
         acdhi-ofm:sankt-poelten ,
         acdhi-ofm:lbjuliana ,
@@ -42,7 +42,7 @@ acdhi:ofmgraz a acdh:TopCollection ;
         acdhi:jhoeller ,
         acdhi:fsanzlazaro ,
         acdhi:dschopper ;
-    acdh:hasDepositor acdhi:jhoeller ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo> ;
     acdh:hasCurator acdhi:fsanzlazaro ;
     acdh:hasFunder acdhi:bmkkoeds ;
@@ -80,7 +80,7 @@ acdhi-ofm:derivatives a acdh:Collection ;
     acdh:hasArrangement
         "56 Untersammlungen. Jede Untersammlung stellt ein physisches Volumen dar und enthaltet bearbeitete Versionen der TIFF-Dateien von der Untersammlungen von „Originalbilder“"@de ,
         "56 Subcollections. Each subcollection represents a physical volume and contains derivative versions from the pictures of the Subcollections of 'Master Images' "@en ;
-    acdh:hasDepositor acdhi:jhoeller ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasSubject "Choralschriften" ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasCoverageStartDate "1425-01-01";
@@ -100,7 +100,7 @@ acdhi-ofm:masters a acdh:Collection ;
         "56 Untersammlungen. Jede Untersammlung stellt ein physisches Volumen dar und enthaltet TIFF Dateien"@de  ;
     acdh:hasSubject "Choralschriften" ;
     acdh:hasTag "TEXT"@und ;
-    acdh:hasDepositor acdhi:jhoeller ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasOwner acdhi:acdh ;
     acdh:hasAppliedMethod "Scanning" ;
@@ -118,7 +118,7 @@ acdhi-ofm:teidocs a acdh:Collection ;
         "The collection contains 56 XML-TEI files. Each file represents a physical volume"@en ,
         "Die Sammlung enthaltet 56 XML-TEI-Dateien. Jede Datei stellt ein physisches Volumen dar"@de ;
     acdh:hasSubject "Choralschriften" ;
-    acdh:hasDepositor acdhi:jhoeller ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasContributor 
         acdhi:pandorfer ,
@@ -244,7 +244,7 @@ acdhi-ofm:sankt-poelten a acdh:Place ;
     acdh:hasTitle "Sankt Pölten"@de ,
         "Sankt Pölten"@und .
 
-acdhi-ofm:vienna a acdh:Place ;
+acdhi:vienna a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4066009-6> ,
         <https://sws.geonames.org/2761367> ,
         <https://www.wikidata.org/entity/Q1741> ;
