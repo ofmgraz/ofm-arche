@@ -6,23 +6,22 @@
 
 acdhi:ofmgraz a acdh:TopCollection ;
     acdh:hasDescription
-        """Ziel dieses Projekts ist die Digitalisierung von 53 spätmittelalterlichen und
-           frühneuzeitlichen Choralhandschriften, Choralorgelbüchern und seltenen Choraldrucken
-           der Zentralbibliothek der Franziskaner in Graz. Die etwa 18.000 angerfertigen Abbildungen
-           werden mit Metadaten angereichert und für die virtuelle Bibliothek Europeana sowie für
-           www.cantusplanus.at online über eine IIIF-Schnittstelle zur Verfügung gestellt. Langzeitarchiviert
-           werden die Daten im ACDH-CH-Repositorium ARCHE."""@de ,
-        """This project aims to digitise 53 late medieval and early modern choral manuscripts, choral organ
-           books and rare choral prints from the Franciscan Central Library in Graz. The approximately
-           18,000 images produced will be enriched with metadata and made available online for the virtual library
-           Europeana and for www.cantusplanus.at via an IIIF interface. The data will be long-term archived in the
-           ACDH-CH repository ARCHE."""@en  ;
+	"""Die Zentralbibliothek des Franziskanerklosters Graz verwahrt zahlreiche Choralquellen vom Beginn des 14. Jahrhunderts weg bis zum 19. Jahrhundert. In der Forschung wurden diese Handschriften und Drucke bislang wenig beachtet. Knapp ein Drittel der 56 Quellen stammt aus dem 14., 15. und 16. Jahrhundert, zwei Drittel sind aus dem 17. und 18. Jahrhundert und bilden somit einen starken, repräsentativen Bestand zur Beschäftigung mit dem heute wenig beachteten Barockchoral.
+
+Zu beachten ist auch das Verhältnis zwischen der italienischen (Druck-) Überlieferung und der österreichischen handschriftlichen Tradition bei den musikalischen Fassungen von Antiphonen und anderen Gesängen für die franziskanischen Eigenfeste vom Ausgang des Mittelalters weg bis ins 18. Jahrhundert.
+
+Die vorhandene lokale Choralüberlieferung des Franziskanerordens stellt trotz einer guten Quellenlage noch weitgehend eine terra incognita dar. Während die österreichische Musikgeschichte in den imperialen und in den klösterlichen Zentren der monastischen Ordensgemeinschaften vor allem in Hinblick auf die Figuralmusik des 18. Jahrhunderts relativ gut bekannt ist, liegt in Bezug auf die liturgisch-musikalische Praxis der weit verbreiteten Mendikanten und ihrer Klientel vieles im Dunkeln. Durch die Erschließung und online-Publikation dieses Quellenkorpus kann dieses Desiderat zumindest teilweise geschlossen werden und weitergehende Forschungen ermöglichen."""@de ,
+	"""The Central Library of the Franciscan Monastery in Graz holds numerous choral sources from the beginning of the 14th century to the 19th century. These manuscripts and prints have received little research attention. Just under a third of the 56 sources date from the 14th, 15th and 16th centuries, two thirds from the 17th and 18th centuries, and thus form a strong, representative collection for the study of the Baroque chorale, which is little known today.
+
+The relationship between the Italian (printed) tradition and the Austrian manuscript tradition in the musical versions of antiphons and other chants for Franciscan feasts from the late Middle Ages to the 18th century should also be noted.
+
+The existing local choral tradition of the Franciscan Order is still largely terra incognita, despite a good source situation. While the history of Austrian music in the imperial and monastic centres of the monastic orders is relatively well known, especially with regard to the figural music of the 18th century, much remains in the dark with regard to the liturgical-musical practice of the widespread mendicants and their clientele. The cataloguing and online publication of this corpus of sources can at least partially fill this gap and enable further research."""@en ;
     acdh:hasTitle
         "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ,
         "Choral Manuscripts of the Central Library of the Franciscan Province of Graz"@en ;
     acdh:hasSpatialCoverage
         acdhi-ofm:graz ,
-        acdhi:vienna ,
+        acdhi-ofm:vienna ,
         acdhi-ofm:graz ,
         acdhi-ofm:sankt-poelten ,
         acdhi-ofm:lbjuliana ,
@@ -75,8 +74,7 @@ acdhi:ofmgraz a acdh:TopCollection ;
     acdh:hasUrl "https://ofmgraz.github.io/ofm-static" .
 
 acdhi-ofm:derivatives a acdh:Collection ;
-    acdh:hasCreator acdhi:rklugseder ,
-        acdhi:jhoeller ; 
+    acdh:hasCreator acdhi:rklugseder ; 
     acdh:hasArrangement
         "56 Untersammlungen. Jede Untersammlung stellt ein physisches Volumen dar und enthaltet bearbeitete Versionen der TIFF-Dateien von der Untersammlungen von „Originalbilder“"@de ,
         "56 Subcollections. Each subcollection represents a physical volume and contains derivative versions from the pictures of the Subcollections of 'Master Images' "@en ;
@@ -93,8 +91,7 @@ acdhi-ofm:derivatives a acdh:Collection ;
     acdh:isPartOf acdhi:ofmgraz .
 
 acdhi-ofm:masters a acdh:Collection ;
-    acdh:hasCreator acdhi:rklugseder ,
-        acdhi:jhoeller ;
+    acdh:hasCreator acdhi:rklugseder ;
     acdh:hasArrangement
         "56 Subcollections. Each subcollection represents a physical volume and contains TIFF files"@en ,
         "56 Untersammlungen. Jede Untersammlung stellt ein physisches Volumen dar und enthaltet TIFF Dateien"@de  ;
@@ -112,8 +109,7 @@ acdhi-ofm:masters a acdh:Collection ;
     acdh:isPartOf acdhi:ofmgraz .
 
 acdhi-ofm:teidocs a acdh:Collection ;
-    acdh:hasCreator acdhi:rklugseder,
-        acdhi:jhoeller ; 
+    acdh:hasCreator acdhi:rklugseder ; 
     acdh:hasArrangement
         "The collection contains 56 XML-TEI files. Each file represents a physical volume"@en ,
         "Die Sammlung enthaltet 56 XML-TEI-Dateien. Jede Datei stellt ein physisches Volumen dar"@de ;
@@ -244,7 +240,7 @@ acdhi-ofm:sankt-poelten a acdh:Place ;
     acdh:hasTitle "Sankt Pölten"@de ,
         "Sankt Pölten"@und .
 
-acdhi:vienna a acdh:Place ;
+acdhi-ofm:vienna a acdh:Place ;
     acdh:hasIdentifier <https://d-nb.info/gnd/4066009-6> ,
         <https://sws.geonames.org/2761367> ,
         <https://www.wikidata.org/entity/Q1741> ;
