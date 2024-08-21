@@ -52,7 +52,8 @@ handles = {}
 with open(CSV_FILE) as f:
     reader = csv.DictReader(f, delimiter=',')
     for row in reader:
-        handles[row["arche_id"]] = row["handle_id"].split("/")[-1]
+        handles[row["arche_id"].split("/")[-1]] = row["handle_id"]
+
 
 ##################################################################################################
 # I know an element present in the node wanted (e.g. tei:persName), but it can be in different
@@ -289,7 +290,7 @@ def get_coverage(doc):
     )  #
     # return [places[place] for place in locations]
     return [
-        ACDHI[f"place-{'-'.join(x.lower().replace('ö', 'oe').split())}"]
+        ACDHI[f"ofmgraz/{'-'.join(x.lower().replace('ö', 'oe').split())}"]
         for x in locations
     ]
 
@@ -359,7 +360,6 @@ def process_file_list(filelist):
             if subcollection in tree[collection]:
                 tree[collection][subcollection].append(filename)
             else:
-                print
                 tree[collection][subcollection] = [filename]
     return tree
 
@@ -458,6 +458,7 @@ for collection in files:
             g.add((resc, ACDH["hasFormat"], Literal("application/xml")))
             g.add((resc, ACDH["hasLanguage"], language))
             coverage = get_coverage(doc)
+            print(coverage)
             [g.add((resc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
             contributors = get_contributors(doc)
             [
