@@ -290,7 +290,7 @@ def get_coverage(doc):
     )  #
     # return [places[place] for place in locations]
     return [
-        ACDHI[f"{'-'.join(x.lower().replace('ö', 'oe').split())}"]
+        ACDHI[f"ofmgraz/{'-'.join(x.lower().replace('ö', 'oe').split())}"]
         for x in locations
     ]
 
@@ -307,7 +307,6 @@ def make_subcollection(
         g.add((subject, ACDH["hasArrangement"], Literal(arrangement, lang="en")))
     if subtitle:
         g.add((subject, ACDH["hasAlternativeTitle"], Literal(subtitle, lang="la")))
-    add_constants(subject)
     if issource:
         g.add((subject, ACDH["isSourceOf"], issource))
     return subject
@@ -316,21 +315,24 @@ def make_subcollection(
 # Add constant properties to resource
 def add_constants(
     subj,
-    rights=OeAW,
-    owner=ACDHCH,
-    depositor=Franziskanerkloster,
+    rights,
+    owner,
+    licensor,
+    creator,
     licence=False,
-    creator=[Klugseder],
 ):
-    g.add((subj, ACDH["hasRightsHolder"], rights))
-    g.add((subj, ACDH["hasOwner"], owner))
+    for r in rights:
+        g.add((subj, ACDH["hasRightsHolder"], r))
+    for o in owner:
+        g.add((subj, ACDH["hasOwner"], o))
+    for l in licensor:
+        g.add((subj, ACDH["hasLicensor"], l))
     for crt in creator:
         g.add((subj, ACDH["hasCreator"], crt))
     g.add((subj, ACDH["hasMetadataCreator"], Sanz))
-    g.add((subj, ACDH["hasDepositor"], depositor))
+    g.add((subj, ACDH["hasDepositor"], Franziskanerkloster))
     if licence:
         g.add((subj, ACDH["hasLicense"], licence))
-    g.add((subj, ACDH["hasLicensor"], owner))
 
 
 def add_temporal(resc, start, end):
@@ -422,9 +424,7 @@ for collection in files:
             extent = get_extent(doc)
             # creates resource for the XML file
 
-            add_constants(
-                resc, creator=[Sanz], owner=ACDHCH, rights=OeAW, licence=ccbyna
-            )
+            add_constants(resc, [OeAW], [ACDHCH], [ACDHCH], [Sanz], ccbyna)
             # Looks for next XML file. They are here attributes of the top structure
 
             g.add((resc, ACDH["isPartOf"], ACDHI["ofmgraz/teidocs"]))
@@ -547,7 +547,7 @@ for collection in files:
                     g.add(
                         (resc, ACDH["hasUsedHardware"], digitiser["subcollection"][1])
                     )
-                    add_constants(resc, licence=publicdomain)
+                    add_constants(resc, [Franziskanerkloster, OeAW], [Franziskanerkloster], [Franziskanerkloster], [Klugseder], publicdomain)
                 else:
                     g.add((resc, ACDH["hasCreator"], Klugseder))
                     g.add(
@@ -570,7 +570,7 @@ for collection in files:
                             ),
                         )
                     )
-                    add_constants(resc, licence=cc0)
+                    add_constants(resc, [Franziskanerkloster, OeAW], [Franziskanerkloster], [Franziskanerkloster], [Klugseder], cc0)
                 g.add(
                     (
                         resc,
