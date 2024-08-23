@@ -27,4 +27,4 @@ It generates a Turtle file for ARCHE metadata ingestion and saves it as `ofgraz.
 
 ## Notes
 * `list_files.txt` contains a list of files with path to include with `topCollection` as root
-* `handles.csv` contains pairs ```arche id,handle id``` previously generated. 
+* `handles.csv` contains pairs ```arche id,handle id``` previously generated. The handles of the TEI files are not included in this list, as they provide already provide it.
