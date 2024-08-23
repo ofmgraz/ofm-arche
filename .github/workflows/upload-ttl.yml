@@ -1,0 +1,23 @@
+name: Upload metadata
+
+on:
+  workflow_dispatch:
+
+jobs:
+  upload_metadata:
+    name: Upload metadata to ARCHE
+    runs-on: ubuntu-latest
+    steps:
+      - name: Perform Checkout
+        uses: actions/checkout@v4
+      - name: ingestion dependencies
+        run: |
+          composer require "acdh-oeaw/arche-ingest:^1"
+      - name: Fetch metadata
+        run: ./fetch_data.sh
+      - name: ingest resources
+        run: |
+          vendor/bin/arche-import-metadata ofmgraz.ttl https://arche-dev.acdh-dev.oeaw.ac.at/api ${{secrets.ARCHE_LOGIN}} ${{secrets.ARCHE_PW}}--retriesOnConflict 25
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Metadata uploaded
