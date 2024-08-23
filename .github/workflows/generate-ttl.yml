@@ -1,7 +1,7 @@
 name: Generate TTL
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   build_pages:
@@ -19,5 +19,5 @@ jobs:
     - name: Generate TTL
       run: ./xml2arche.py
      - uses: stefanzweifel/git-auto-commit-action@v5
-      with:
-        commit_message: Export and Transformation done
+       with:
+         commit_message: Export and Transformation done
