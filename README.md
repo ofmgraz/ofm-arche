@@ -11,3 +11,7 @@ It generates a Turtle file for ARCHE metadata ingestion and saves it as `ofgraz.
 * 
 ### Option B: As a GitHub Action
 * run Action [Generate TTL](https://github.com/ofmgraz/ofm-arche/actions/workflows/generate-ttl.yml)
+
+## Notes
+* `list_files.txt` contains a list of files with path to include with `topCollection` as root
+* `handles.csv` contains pairs ```arche id,handle id``` previously generated. 
