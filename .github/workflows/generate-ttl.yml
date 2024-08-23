@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_pages:
+  Generate_TTL:
     name: Generate a TTL file
     runs-on: ubuntu-latest
     permissioins:
