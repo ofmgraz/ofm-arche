@@ -515,7 +515,7 @@ filelist = "list_files.txt"
 files = process_file_list(filelist)
 
 prevresc = ACDHI["ofmgraz"]
-
+digitiser = {}
 # Iterate through collections
 for collection in files:
     col = files[collection]
@@ -580,7 +580,7 @@ for collection in files:
 
             contributors = get_contributors(doc)
             for contributor in contributors:
-                if contributor[0] != "DigitisingAgent":
+                if contributor[0] != ACDH["hasDigitisingAgent"]:
                     g.add((resc, contributor[0], contributor[1]))
 
             g.add((resc, ACDH["hasExtent"], extent))
@@ -600,8 +600,7 @@ for collection in files:
                     g.add((sc, ACDH["hasSpatialCoverage"], scover))
                 add_temporal(sc, dates[0], dates[1])
 
-            digitiser = {
-                basename: (
+            digitiser[basename] = (
                     [
                         dig[1]
                         for dig in contributors
@@ -609,7 +608,6 @@ for collection in files:
                     ],
                     get_used_device(doc),
                 )
-            }
     else:
         for subcollection in col:
             subcol = col[subcollection]
@@ -658,13 +656,12 @@ for collection in files:
                     )
                 )
                 g.add((resc, ACDH["hasFilename"], Literal(image)))
-
-                if subcollection == "masters":
+                if collection == "masters":
                     g.add((resc, ACDH["isSourceOf"], jpgresc))
-                    for dig in digitiser["subcollection"][0]:
+                    for dig in digitiser[subcollection][0]:
                         g.add((resc, ACDH["hasDigitisingAgent"], dig))
                     g.add(
-                        (resc, ACDH["hasUsedHardware"], digitiser["subcollection"][1])
+                        (resc, ACDH["hasUsedHardware"], digitiser[subcollection][1])
                     )
                     add_constants(
                         resc,
