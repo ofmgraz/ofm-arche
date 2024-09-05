@@ -24,7 +24,7 @@ The existing local choral tradition of the Franciscan Order is still largely ter
         acdhi-ofm:vienna ,
         acdhi-ofm:graz ,
         acdhi-ofm:sankt-poelten ,
-        acdhi-ofm:lbjuliana ,
+        acdhi-ofm:ljuibliana ,
         acdhi-ofm:salzburg ,
         acdhi-ofm:maria-lankowitz , 
         acdhi-ofm:mautern-in-steiermark ,
@@ -50,7 +50,7 @@ The existing local choral tradition of the Franciscan Order is still largely ter
     acdh:hasCoverageStartDate "1425-01-01";
     acdh:hasCoverageEndDate "1779-12-31";
     acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/deu> ;
-    acdh:hasSubject "Choralschriften" ;
+    acdh:hasSubject "Choralschriften"@de ;
     acdh:hasArrangement
         """Die Top collection enthält drei Untersammlungen: „TEI-Dokumente“, „Originalbilder“ und „Bearbeitete Bilder“.
            Die Untersammlung „TEI-Dokumente“ enthält 56 TEI-codierte Dateien, eine Datei für jedes physisches Buch.
@@ -79,8 +79,10 @@ acdhi-ofm:derivatives a acdh:Collection ;
         "56 Untersammlungen. Jede Untersammlung stellt ein physisches Volumen dar und enthaltet bearbeitete Versionen der TIFF-Dateien von der Untersammlungen von „Originalbilder“"@de ,
         "56 Subcollections. Each subcollection represents a physical volume and contains derivative versions from the pictures of the Subcollections of 'Master Images' "@en ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
-    acdh:hasSubject "Choralschriften" ;
+    acdh:hasSubject "Choralschriften"@de ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasRightsHolder acdhi:oeaw;
+    acdh:hasLicensor acdhi:acdh;
     acdh:hasCoverageStartDate "1425-01-01";
     acdh:hasCoverageEndDate "1779-12-31";
     acdh:hasOwner acdhi:acdh ;
@@ -95,7 +97,9 @@ acdhi-ofm:masters a acdh:Collection ;
     acdh:hasArrangement
         "56 Subcollections. Each subcollection represents a physical volume and contains TIFF files"@en ,
         "56 Untersammlungen. Jede Untersammlung stellt ein physisches Volumen dar und enthaltet TIFF Dateien"@de  ;
-    acdh:hasSubject "Choralschriften" ;
+    acdh:hasSubject "Choralschriften"@de ;
+    acdh:hasRightsHolder acdhi:oeaw;
+    acdh:hasLicensor acdhi:acdh;
     acdh:hasTag "TEXT"@und ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
@@ -113,7 +117,9 @@ acdhi-ofm:teidocs a acdh:Collection ;
     acdh:hasArrangement
         "The collection contains 56 XML-TEI files. Each file represents a physical volume"@en ,
         "Die Sammlung enthaltet 56 XML-TEI-Dateien. Jede Datei stellt ein physisches Volumen dar"@de ;
-    acdh:hasSubject "Choralschriften" ;
+    acdh:hasSubject "Choralschriften"@de ;
+        acdh:hasRightsHolder acdhi:oeaw;
+    acdh:hasLicensor acdhi:acdh;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasContributor 
@@ -154,6 +160,7 @@ acdhi:rklugseder a acdh:Person ;
         <http://viaf.org/viaf/5254585> .
 
 acdhi:jhoeller a acdh:Person ;
+    acdh:hasIdentifier acdhi:jhoeller ;
     acdh:hasPersonalTitle "P. Mag., OFM" ;
     acdh:hasLastName "Höller"@de ;
     acdh:hasFirstName "Josef"@de ;
@@ -193,11 +200,13 @@ acdhi:jleitner a acdh:Person ;
 acdhi:alhuber a acdh:Person ;
     acdh:hasLastName "Huber"@de ;
     acdh:hasFirstName "Anna-Lena"@de ;
+    acdh:hasIdentifier acdhi:alhuber ;
     acdh:hasTitle "Anna-Lena Huber"@und .
 
 acdhi:mschmoetten a acdh:Person ;
     acdh:hasLastName "Schmoetten"@de ;
     acdh:hasFirstName "Moritz"@de ;
+    acdh:hasIdentifier acdhi:mschmoetten ;
     acdh:hasTitle "Moritz Schmoetten"@und .
 
 acdhi-ofm:mautern-in-steiermark a acdh:Place ;
