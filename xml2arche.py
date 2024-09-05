@@ -635,6 +635,11 @@ for collection in files:
                 )
             )
 
+            if collection == "masters":
+                lic = publicdomain
+            else:
+                lic = cc0
+
             subcol.reverse()
             for idx, image in enumerate(subcol):
                 basename = image.split(".")[0]
@@ -663,14 +668,6 @@ for collection in files:
                     g.add(
                         (resc, ACDH["hasUsedHardware"], digitiser[subcollection][1])
                     )
-                    add_constants(
-                        resc,
-                        [Franziskanerkloster, OeAW],
-                        [Franziskanerkloster],
-                        [Franziskanerkloster],
-                        [Klugseder],
-                        publicdomain,
-                    )
                 else:
                     g.add((resc, ACDH["hasCreator"], Klugseder))
                     g.add(
@@ -693,13 +690,13 @@ for collection in files:
                             ),
                         )
                     )
-                    add_constants(
-                        resc,
-                        [Franziskanerkloster, OeAW],
-                        [Franziskanerkloster],
-                        [Franziskanerkloster],
-                        [Klugseder],
-                        cc0,
+                add_constants(
+                    resc,
+                    [Franziskanerkloster, OeAW],
+                    [Franziskanerkloster],
+                    [Franziskanerkloster],
+                    [Klugseder],
+                    lic,
                     )
 
                 g.add(
