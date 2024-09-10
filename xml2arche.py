@@ -529,7 +529,7 @@ for collection in files:
             basename = xmlfile.split(".")[0]
             doc = TeiReader(f"data/editions/{xmlfile}")
             [
-                g.add((resc, ACDH["hasPid"], Literal(xmlpid)))
+                g.add((resc, ACDH["hasIdentifier"], Literal(xmlpid)))
                 for xmlpid in doc.any_xpath(
                     './/tei:publicationStmt/tei:idno[@type="handle"]/text()'
                 )
@@ -637,27 +637,38 @@ for collection in files:
 
             if collection == "masters":
                 lic = publicdomain
+                tit = "master"
             else:
                 lic = cc0
+                tit = "derivative"
+            add_constants(
+                    ACDHI[rescpath],
+                    [Franziskanerkloster, OeAW],
+                    [Franziskanerkloster],
+                    [Franziskanerkloster],
+                    [Klugseder],
+                    lic,
+                    )
 
             subcol.reverse()
+            g.add((ACDHI[rescpath], ACDH["hasNextItem"], ACDHI[f"{rescpath}/{subcol[-1]}"]))
             for idx, image in enumerate(subcol):
                 basename = image.split(".")[0]
                 filetype = image.split(".")[1].upper()
-                jpgresc = ACDHI[f"{jpgpath}/{image}.jpg"]
+                jpgresc = ACDHI[f"{jpgpath}/{image}"]
                 resc = ACDHI[f"{rescpath}/{image}"]
 
                 g.add((resc, RDF.type, ACDH["Resource"]))
                 g.add((resc, ACDH["isPartOf"], ACDHI[rescpath]))
 
                 if image in handles:
-                    g.add((resc, ACDH["hasPid"], Literal(handles[image])))
+                    g.add((resc, ACDH["hasIdentifier"], Literal(handles[image])))
 
                 g.add(
                     (
                         resc,
                         ACDH["hasTitle"],
-                        Literal(f"{basename} ({filetype})", lang="und"),
+                        Literal(f"{basename} ({tit})", lang="und"),
                     )
                 )
                 g.add((resc, ACDH["hasFilename"], Literal(image)))
@@ -712,8 +723,6 @@ for collection in files:
 
                 if idx > 0:
                     g.add((resc, ACDH["hasNextItem"], prevresc))
-                else:
-                    g.add((ACDHI[rescpath], ACDH["hasNextItem"], prevresc))
 
                 prevresc = resc
 
