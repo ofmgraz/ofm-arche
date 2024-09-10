@@ -44,7 +44,7 @@ handles = {}
 with open(CSV_FILE) as f:
     reader = csv.DictReader(f, delimiter=",")
     for row in reader:
-        handles[row["arche_id"].split("/")[-1]] = row["handle_id"]
+        handles[row["arche_id"]] = row["handle_id"]
 
 
 def get_parent_node(feat, file_path):
@@ -528,13 +528,11 @@ for collection in files:
 
             basename = xmlfile.split(".")[0]
             doc = TeiReader(f"data/editions/{xmlfile}")
-            [
-                g.add((resc, ACDH["hasIdentifier"], Literal(xmlpid)))
-                for xmlpid in doc.any_xpath(
-                    './/tei:publicationStmt/tei:idno[@type="handle"]/text()'
-                )
-            ]
-
+            for xmlpid in doc.any_xpath(
+                './/tei:publicationStmt/tei:idno[@type="handle"]/text()'
+            ):
+                g.add((resc, ACDH["hasIdentifier"], URIRef(xmlpid)))
+                g.add((resc, ACDH["hasPid"], Literal(xmlpid)))
             if idx > 0:
                 g.add((resc, ACDH["hasNextItem"], prevresc))
             else:
@@ -601,13 +599,13 @@ for collection in files:
                 add_temporal(sc, dates[0], dates[1])
 
             digitiser[basename] = (
-                    [
-                        dig[1]
-                        for dig in contributors
-                        if dig[0] == ACDH["hasDigitisingAgent"]
-                    ],
-                    get_used_device(doc),
-                )
+                [
+                    dig[1]
+                    for dig in contributors
+                    if dig[0] == ACDH["hasDigitisingAgent"]
+                ],
+                get_used_device(doc),
+            )
     else:
         for subcollection in col:
             subcol = col[subcollection]
@@ -642,16 +640,22 @@ for collection in files:
                 lic = cc0
                 tit = "derivative"
             add_constants(
-                    ACDHI[rescpath],
-                    [Franziskanerkloster, OeAW],
-                    [Franziskanerkloster],
-                    [Franziskanerkloster],
-                    [Klugseder],
-                    lic,
-                    )
+                ACDHI[rescpath],
+                [Franziskanerkloster, OeAW],
+                [Franziskanerkloster],
+                [Franziskanerkloster],
+                [Klugseder],
+                lic,
+            )
 
             subcol.reverse()
-            g.add((ACDHI[rescpath], ACDH["hasNextItem"], ACDHI[f"{rescpath}/{subcol[-1]}"]))
+            g.add(
+                (
+                    ACDHI[rescpath],
+                    ACDH["hasNextItem"],
+                    ACDHI[f"{rescpath}/{subcol[-1]}"],
+                )
+            )
             for idx, image in enumerate(subcol):
                 basename = image.split(".")[0]
                 filetype = image.split(".")[1].upper()
@@ -660,10 +664,11 @@ for collection in files:
 
                 g.add((resc, RDF.type, ACDH["Resource"]))
                 g.add((resc, ACDH["isPartOf"], ACDHI[rescpath]))
+                archeid = f"https://id.acdh.oeaw.ac.at/{rescpath}/{image}"
 
-                if image in handles:
-                    g.add((resc, ACDH["hasIdentifier"], Literal(handles[image])))
-
+                if archeid in handles:
+                    g.add((resc, ACDH["hasIdentifier"], URIRef(handles[archeid])))
+                    g.add((resc, ACDH["hasPid"], Literal(handles[archeid])))
                 g.add(
                     (
                         resc,
@@ -676,9 +681,7 @@ for collection in files:
                     g.add((resc, ACDH["isSourceOf"], jpgresc))
                     for dig in digitiser[subcollection][0]:
                         g.add((resc, ACDH["hasDigitisingAgent"], dig))
-                    g.add(
-                        (resc, ACDH["hasUsedHardware"], digitiser[subcollection][1])
-                    )
+                    g.add((resc, ACDH["hasUsedHardware"], digitiser[subcollection][1]))
                 else:
                     g.add((resc, ACDH["hasCreator"], Klugseder))
                     g.add(
@@ -708,7 +711,7 @@ for collection in files:
                     [Franziskanerkloster],
                     [Klugseder],
                     lic,
-                    )
+                )
 
                 g.add(
                     (
