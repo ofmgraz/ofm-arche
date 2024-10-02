@@ -53,7 +53,7 @@
         acdhi:oeaw ;
     acdh:hasRightsInformation "Verwandte Schutzrechte der bearbeiteteten Dateien: ÖAW und Franziskanerkloster Graz"@de,
         "Related rights: ÖAW und Franziskanerkloster Graz"@en ;
-    acdh:hasTitle "Title Image von Choralhandschriften OFM Graz'"@de,
-   	"Title Image of Choral Manuscripts OFM Graz"@en ;
+    acdh:hasTitle "Titelbild von „Choralhandschriften OFM Graz“"@de,
+   	"Title image of 'Choral Manuscripts OFM Graz'"@en ;
     acdh:isTitleImageOf acdhi:ofmgraz ;
     acdh:isPartOf acdhi:ofmgraz .

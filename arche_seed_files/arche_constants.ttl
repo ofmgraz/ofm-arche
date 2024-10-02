@@ -45,15 +45,16 @@ The existing local choral tradition of the Franciscan Order is still largely ter
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:hasLicensor acdhi:acdh;
     acdh:hasCurator acdhi:fsanzlazaro ;
-    acdh:hasFunder acdhi:bmkkoeds ;
+    acdh:hasFunder acdhi:bmkkoeds ,
+        acdhi:europeanunion ; 
     acdh:hasOwner acdhi:acdh ;
     acdh:hasContact acdhi:rklugseder ;
     acdh:hasCoverageStartDate "1425-01-01";
     acdh:hasCoverageEndDate "1779-12-31";
     acdh:hasSubmissionDate "2024-08-08" ;
-    acdh:hasLifeCycleStatus <https://vocabs.acdh.oeaw.ac.at/archelifecyclestatus/completed>;
-    acdh:hasCompleteness "Completed"@de ,
-                         "Abgeschlossen"@en ;
+    acdh:hasLifeCycleStatus <https://vocabs.acdh.oeaw.ac.at/archelifecyclestatus/active>;
+    acdh:hasCompleteness "Image collections are completed. XML-TEI transcriptions are in progress"@de ,
+                         "Bildersammlungen sind abgeschlossen. XML-TEI-Transkriptionen sind in Arbeit."@en ;
     acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/lat> ;
     acdh:hasSubject "Choralbücher"@de ,
 	"Chant books"@en;
@@ -85,6 +86,17 @@ acdhi-ofm:derivatives a acdh:Collection ;
         "56 Untersammlungen. Jede Untersammlung stellt ein physisches Volumen dar und enthaltet bearbeitete Versionen der TIFF-Dateien von der Untersammlungen von „Originalbilder“"@de ,
         "56 Subcollections. Each subcollection represents a physical volume and contains derivative versions from the pictures of the Subcollections of 'Master Images' "@en ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasDescription
+	"""Die Zentralbibliothek des Franziskanerklosters Graz verwahrt zahlreiche Choralquellen vom Beginn des 14. Jahrhunderts weg bis zum 19. Jahrhundert. In der Forschung wurden diese Handschriften und Drucke bislang wenig beachtet. Knapp ein Drittel der 56 Quellen stammt aus dem 14., 15. und 16. Jahrhundert, zwei Drittel sind aus dem 17. und 18. Jahrhundert und bilden somit einen starken, repräsentativen Bestand zur Beschäftigung mit dem heute wenig beachteten Barockchoral.
+
+Zu beachten ist auch das Verhältnis zwischen der italienischen (Druck-) Überlieferung und der österreichischen handschriftlichen Tradition bei den musikalischen Fassungen von Antiphonen und anderen Gesängen für die franziskanischen Eigenfeste vom Ausgang des Mittelalters weg bis ins 18. Jahrhundert.
+
+Die vorhandene lokale Choralüberlieferung des Franziskanerordens stellt trotz einer guten Quellenlage noch weitgehend eine terra incognita dar. Während die österreichische Musikgeschichte in den imperialen und in den klösterlichen Zentren der monastischen Ordensgemeinschaften vor allem in Hinblick auf die Figuralmusik des 18. Jahrhunderts relativ gut bekannt ist, liegt in Bezug auf die liturgisch-musikalische Praxis der weit verbreiteten Mendikanten und ihrer Klientel vieles im Dunkeln. Durch die Erschließung und online-Publikation dieses Quellenkorpus kann dieses Desiderat zumindest teilweise geschlossen und weitergehende Forschungen ermöglichen werden."""@de ,
+"""The Central Library of the Franciscan Monastery in Graz holds numerous choral sources from the beginning of the 14th century to the 19th century. These manuscripts and prints have received little research attention. Just under a third of the 56 sources date from the 14th, 15th and 16th centuries, two thirds from the 17th and 18th centuries, and thus form a strong, representative collection for the study of the Baroque chorale, which is little known today.
+
+The relationship between the Italian (printed) tradition and the Austrian manuscript tradition in the musical versions of antiphons and other chants for Franciscan feasts from the late Middle Ages to the 18th century should also be noted.
+
+The existing local choral tradition of the Franciscan Order is still largely terra incognita, despite a good source situation. While the history of Austrian music in the imperial and monastic centres of the monastic orders is relatively well known, especially with regard to the figural music of the 18th century, much remains in the dark with regard to the liturgical-musical practice of the widespread mendicants and their clientele. The cataloguing and online publication of this corpus of sources can at least partially fill this gap and enable further research."""@en ;
     acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo> ;
     acdh:hasLifeCycleStatus <https://vocabs.acdh.oeaw.ac.at/archelifecyclestatus/completed>;
     acdh:hasCompleteness "Completed"@de ,
@@ -92,6 +104,8 @@ acdhi-ofm:derivatives a acdh:Collection ;
     acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/lat> ;
     acdh:hasSubject "Choralbücher"@de ,
                     "Chant books"@en ;
+    acdh:hasFunder acdhi:bmkkoeds ,
+        acdhi:europeanunion ; 
     acdh:hasSpatialCoverage
         acdhi:graz ,
         acdhi:vienna ,
@@ -125,7 +139,12 @@ acdhi-ofm:masters a acdh:Collection ;
         "56 Untersammlungen. Jede Untersammlung stellt ein physisches Volumen dar und enthaltet TIFF Dateien"@de  ;
     acdh:hasSubject "Choralbücher"@de ,
                     "Chant books"@en ;
+    acdh:hasLifeCycleStatus <https://vocabs.acdh.oeaw.ac.at/archelifecyclestatus/completed>;
+    acdh:hasCompleteness "Completed"@de ,
+        "Abgeschlossen"@en ;
     acdh:hasRightsHolder acdhi:oeaw ;
+    acdh:hasFunder acdhi:bmkkoeds ,
+        acdhi:europeanunion ; 
     acdh:hasLicensor acdhi:acdh;
     acdh:hasTag "TEXT"@und ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
@@ -148,6 +167,11 @@ acdhi-ofm:teidocs a acdh:Collection ;
     acdh:hasSubject "Choralbücher"@de ,
                     "Chant books"@en ;
         acdh:hasRightsHolder acdhi:oeaw;
+    acdh:hasFunder acdhi:bmkkoeds ,
+        acdhi:europeanunion ; 
+    acdh:hasLifeCycleStatus <https://vocabs.acdh.oeaw.ac.at/archelifecyclestatus/active>;
+    acdh:hasCompleteness "In progress"@de ,
+        "In Arbeit"@en ;
     acdh:hasLicensor acdhi:acdh;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
@@ -162,6 +186,95 @@ acdhi-ofm:teidocs a acdh:Collection ;
     acdh:hasTitle "XML-TEI Documents"@en ,
         "XML-TEI-Dokumente"@de ;
     acdh:isPartOf acdhi:ofmgraz .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_23> a acdh:Collection ;
+    acdh:hasArrangement "Die Sammlung enthaltet 41 Bilddateien."@de,
+        "The collection contains 41 image files."@en ;
+    acdh:hasCoverageEndDate "1699-12-31"^^xsd:date ;
+    acdh:hasCoverageStartDate "1600-01-01"^^xsd:date ;
+    acdh:hasCreator acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasTitle "Dum appropinquaret Dominus (Masters images)"@und ;
+    acdh:isPartOf acdhi-ofm:masters  .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_23> a acdh:Collection ;
+    acdh:hasArrangement "Die Sammlung enthaltet 39 Bilddateien."@de,
+        "The collection contains 39 image files."@en ;
+    acdh:hasCoverageEndDate "1699-12-31"^^xsd:date ;
+    acdh:hasCoverageStartDate "1600-01-01"^^xsd:date ;
+    acdh:hasCreator acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasTitle "Dum appropinquaret Dominus (Derivative images)"@und ;
+    acdh:isPartOf acdhi-ofm:derivatives .
+
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_23/A-Gf_A67_23-001r.tif> a acdh:Resource ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasCreator acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasFilename "A-Gf_A67_23-001r.tif" ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasTitle "A-Gf_A67_23-001r (master)"@und ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_23> .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_23/A-Gf_A67_23-001r.tif> a acdh:Resource ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasCreator acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasFilename "A-Gf_A67_23-001r.tif" ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasRightsInformation "Verwandte Schutzrechte der bearbeiteteten Dateien: ÖAW und Franziskanerkloster Graz"@de,
+        "Related rights: ÖAW und Franziskanerkloster Graz"@en ;
+    acdh:hasTitle "A-Gf_A67_23-001r (derivative)"@und ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_23> .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/teidocs/A67_23.xml> a acdh:Resource ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei> ;
+    acdh:hasContributor acdhi:dschopper,
+        acdhi:mschmoetten,
+        acdhi:pandorfer,
+        acdhi:rklugseder ;
+    acdh:hasCoverageEndDate "1699-12-31"^^xsd:date ;
+    acdh:hasCoverageStartDate "1600-01-01"^^xsd:date ;
+    acdh:hasCreator acdhi:fsanzlazaro ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasExtent "220x160 mm; 17 Folia"@de ;
+    acdh:hasFilename "A67_23.xml" ;
+    acdh:hasFormat "application/xml" ;
+    acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0012-2263-6> ;
+    acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/lat> ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-sa-4-0> ;
+    acdh:hasLicensor acdhi:acdh ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasNonLinkedIdentifier "A 67/23" ;
+    acdh:hasOwner acdhi:acdh ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-0012-2263-6" ;
+    acdh:hasRightsHolder acdhi:oeaw ;
+    acdh:hasTitle "Dum appropinquaret Dominus (XML-TEI)"@und ;
+    acdh:hasUsedSoftware "Transkribus" ;
+    acdh:isPartOf acdhi-ofm:teidocs .
 
 acdhi:bmkkoeds a acdh:Organisation ;
     acdh:hasIdentifier <https://d-nb.info/gnd/1216831270> ;
@@ -332,3 +445,9 @@ acdhi:munich a acdh:Place ;
 #        "Italy"@en ;
 #    acdh:hasTitle "Venedig"@de ,
 #         	"Venice"@en .
+
+acdhi:europeanunion a acdh:Organisation ;
+    acdh:hasIdentifier <https://d-nb.info/gnd/5098525-5> ,
+                        <https://www.wikidata.org/wiki/Q458> ;
+    acdh:hasTitle "Europäische Union"@de ,
+       "European Union"@en .

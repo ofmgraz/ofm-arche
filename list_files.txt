@@ -25421,7 +25421,7 @@
 ./masters/A70_23/A-Gf_A70_23-019r.tif
 ./masters/A70_23/A-Gf_A70_23-020r.tif
 ./masters/A70_23/A-Gf_A70_23-022r.tif
-./masters/A70_23/A-Gf_A70_23-023r.tif.filepart
+./masters/A70_23/A-Gf_A70_23-023r.tif
 ./masters/A70_23/A-Gf_A70_23-024r.tif
 ./masters/A70_23/A-Gf_A70_23-025r.tif
 ./masters/A70_23/A-Gf_A70_23-026r.tif
