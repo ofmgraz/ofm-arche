@@ -420,16 +420,23 @@ def make_subcollection(
     """
     subject = URIRef(os.path.join(parent, name))
     g.add((subject, RDF.type, ACDH["Collection"]))
+    if parent.endswith("derivatives"):
+        colle = "Derivative images"
+        colld = "Bearbeitete Bilder"
+        g.add((subject, ACDH["hasTag"], Literal("TEXT", lang="und")))
+    else:
+        colle = "Master images"
+        colld = "Originalbilder"
     g.add((subject, ACDH["isPartOf"], URIRef(parent)))
-    g.add((subject, ACDH["hasTitle"], Literal(title, lang="de")))
+    g.add((subject, ACDH["hasTitle"], Literal(f"{title} ({colld})", lang="de")))
+    g.add((subject, ACDH["hasTitle"], Literal(f"{title} ({colle})", lang="en")))
 
     if arrangement:
         g.add((subject, ACDH["hasArrangement"], Literal(arrangement, lang="en")))
-    if subtitle:
-        g.add((subject, ACDH["hasAlternativeTitle"], Literal(subtitle, lang="la")))
+    # if subtitle:
+    #    g.add((subject, ACDH["hasAlternativeTitle"], Literal(subtitle, lang="la")))
     if issource:
         g.add((subject, ACDH["isSourceOf"], issource))
-
     return subject
 
 
@@ -544,29 +551,14 @@ for collection in files:
             add_constants(resc, [OeAW], [ACDHCH], [ACDHCH], [Sanz], ccbyna)
             g.add((resc, ACDH["isPartOf"], ACDHI["ofmgraz/teidocs"]))
 
-            signature = doc.any_xpath(".//tei:idno[@type='shelfmark']")
-            has_title = signature[0].text if signature else None
-            if has_title:
-                g.add(
-                    (
-                        resc,
-                        ACDH["hasTitle"],
-                        Literal(f"{has_title} (XML-TEI)", lang="und"),
-                    )
-                )
-                g.add((resc, ACDH["hasNonLinkedIdentifier"], Literal(has_title)))
-
-            has_subtitle = doc.any_xpath(".//tei:title[@type='main']/text()")
-            if has_subtitle:
-                has_subtitle = has_subtitle[0].strip('"')
-                if has_subtitle != has_title:
-                    g.add(
-                        (
-                            resc,
-                            ACDH["hasAlternativeTitle"],
-                            Literal(has_subtitle, lang="la"),
-                        )
-                    )
+            has_title = doc.any_xpath(".//tei:title[@type='main']/text()")[0].strip()
+            has_subtitle = doc.any_xpath(".//tei:title[@type='sub']")
+            signature = doc.any_xpath(".//tei:title[@type='desc']/text()")[0].strip()
+            g.add((resc, ACDH["hasTitle"], Literal(f"{has_title} (XML-TEI)", lang="und")))
+            g.add((resc, ACDH["hasNonLinkedIdentifier"], Literal(signature)))
+            if has_subtitle := doc.any_xpath(".//tei:title[@type='sub']/text()"):
+                has_subtitle = has_subtitle[0].strip()
+                g.add((resc, ACDH["hasAlternativeTitle"], Literal(has_subtitle, lang="la")))
 
             g.add((resc, ACDH["hasCategory"], categories["tei"]))
             g.add((resc, ACDH["hasFilename"], Literal(f"{basename}.xml")))
@@ -684,6 +676,7 @@ for collection in files:
                     g.add((resc, ACDH["hasUsedHardware"], digitiser[subcollection][1]))
                 else:
                     g.add((resc, ACDH["hasCreator"], Klugseder))
+                    g.add((resc, ACDH["hasTag"], Literal("TEXT", lang="und")))
                     g.add(
                         (
                             resc,
@@ -713,15 +706,15 @@ for collection in files:
                     lic,
                 )
 
-                g.add(
-                    (
-                        resc,
-                        ACDH["hasOaiSet"],
-                        URIRef(
-                            "https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool"
-                        ),
-                    )
-                )
+                #g.add(
+                #    (
+                #        resc,
+                #        ACDH["hasOaiSet"],
+                #        URIRef(
+                #            "https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool"
+                #        ),
+                #    )
+                #)
                 g.add((resc, ACDH["hasCategory"], categories["image"]))
 
                 if idx > 0:
