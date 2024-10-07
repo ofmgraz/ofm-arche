@@ -21913,7 +21913,9 @@
 ./masters/A67_18/A-Gf_A67_18-196r.tif
 ./masters/A67_18/A-Gf_A67_18-BR.tif
 ./masters/A67_18/A-Gf_A67_18-IIIr.tif
+./masters/A67_18/A-Gf_A67_18-II+r.tif
 ./masters/A67_18/A-Gf_A67_18-IIr.tif
+./masters/A67_18/A-Gf_A67_18-I+r.tif
 ./masters/A67_18/A-Gf_A67_18-Ir.tif
 ./masters/A67_18/A-Gf_A67_18-RDS.tif
 ./masters/A67_18/A-Gf_A67_18-VD.tif
@@ -22116,7 +22118,9 @@
 ./masters/A67_18/A-Gf_A67_18-196v.tif
 ./masters/A67_18/A-Gf_A67_18-HD.tif
 ./masters/A67_18/A-Gf_A67_18-IIIv.tif
+./masters/A67_18/A-Gf_A67_18-II+v.tif
 ./masters/A67_18/A-Gf_A67_18-IIv.tif
+./masters/A67_18/A-Gf_A67_18-I+v.tif
 ./masters/A67_18/A-Gf_A67_18-Iv.tif
 ./masters/A67_18/A-Gf_A67_18-VDS.tif
 ./masters/A67_18/A-Gf_A67_18-FKv.tif
