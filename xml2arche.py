@@ -430,6 +430,7 @@ def make_subcollection(
     g.add((subject, ACDH["isPartOf"], URIRef(parent)))
     g.add((subject, ACDH["hasTitle"], Literal(f"{title} ({colld})", lang="de")))
     g.add((subject, ACDH["hasTitle"], Literal(f"{title} ({colle})", lang="en")))
+    g.add((subject, ACDH["hasAlternativeTitle"], Literal(title, lang="la")))
 
     if arrangement:
         g.add((subject, ACDH["hasArrangement"], Literal(arrangement, lang="en")))
@@ -673,30 +674,31 @@ for collection in files:
                     g.add((resc, ACDH["isSourceOf"], jpgresc))
                     for dig in digitiser[subcollection][0]:
                         g.add((resc, ACDH["hasDigitisingAgent"], dig))
+                        g.add((ACDHI[rescpath], ACDH["hasDigitisingAgent"], dig))
                     g.add((resc, ACDH["hasUsedHardware"], digitiser[subcollection][1]))
                 else:
                     g.add((resc, ACDH["hasCreator"], Klugseder))
                     g.add((resc, ACDH["hasTag"], Literal("TEXT", lang="und")))
-                    g.add(
-                        (
-                            resc,
-                            ACDH["hasRightsInformation"],
-                            Literal(
-                                "Related rights: ÖAW und Franziskanerkloster Graz",
-                                lang="en",
-                            ),
-                        )
-                    )
-                    g.add(
-                        (
-                            resc,
-                            ACDH["hasRightsInformation"],
-                            Literal(
-                                "Verwandte Schutzrechte der bearbeiteteten Dateien: ÖAW und Franziskanerkloster Graz",
-                                lang="de",
-                            ),
-                        )
-                    )
+                    #g.add(
+                    #    (
+                    #        resc,
+                    #        ACDH["hasRightsInformation"],
+                    #        Literal(
+                    #            "Related rights: Austrian Academy of Sciences and Franziskanerkloster Graz",
+                    #            lang="en",
+                    #        ),
+                    #    )
+                    #)
+                    #g.add(
+                    #    (
+                    #        resc,
+                    #        ACDH["hasRightsInformation"],
+                    #        Literal(
+                    #            "Verwandte Schutzrechte der bearbeiteteten Dateien: ÖAW und Franziskanerkloster Graz",
+                    #            lang="de",
+                    #        ),
+                    #    )
+                    #)
                 add_constants(
                     resc,
                     [Franziskanerkloster, OeAW],
