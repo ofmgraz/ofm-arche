@@ -1,0 +1,2 @@
+@prefix acdh: <https://vocabs.acdh.oeaw.ac.at/schema#> .
+<https://id.acdh.oeaw.ac.at/ofmgraz/ofmgraz-titelbild.png> acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0013-32E9-C> .

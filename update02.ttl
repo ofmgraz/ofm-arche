@@ -1,0 +1,167 @@
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_39> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_28> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_23> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_23> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_40> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_76> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A70_23> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_26> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_75> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_74> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_25> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A70_45> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A70_41> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_22> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_70> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_62> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_30> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_18> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_29> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_19> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_63> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_40a> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_61> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_24> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_27> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_22> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_44> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_21> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_20> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_20> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A64_42> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:rklugseder .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A64_37> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:rklugseder .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_27> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A64_38> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:rklugseder .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_42> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_58> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A64_34> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:rklugseder .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_19> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_41> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_43> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_17> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A64_43> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:rklugseder .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_64> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_68> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A64_41> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:rklugseder .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_45> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A64_40> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:rklugseder .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A64_39> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:rklugseder .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A63_51> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:rklugseder .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_65> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_67> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_66> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:rklugseder .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_69> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:jleitner .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_44> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:rklugseder .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/S1_72> a acdh:Collection ;
+    acdh:hasDigitisingAgent acdhi:rklugseder ;

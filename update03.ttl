@@ -1,0 +1,181 @@
+    acdh:hasFilename "A-Gf_A67_18-HD.tif" ;
+    acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0012-38DE-4> ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasNextItem <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-IIIv.tif> ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-0012-38DE-4" ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasTitle "A-Gf_A67_18-HD (master)"@und ;
+    acdh:hasUsedHardware "Traveller" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18> ;
+    acdh:isSourceOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_18/A-Gf_A67_18-HD.tif> .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-I+r.tif> a acdh:Resource ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasCreator acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasDigitisingAgent acdhi:jleitner ;
+    acdh:hasFilename "A-Gf_A67_18-I+r.tif" ;
+    acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0012-38E5-B> ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasNextItem <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-Ir.tif> ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-0012-38E5-B" ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasTitle "A-Gf_A67_18-I+r (master)"@und ;
+    acdh:hasUsedHardware "Traveller" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18> ;
+    acdh:isSourceOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_18/A-Gf_A67_18-I+r.tif> .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-I+v.tif> a acdh:Resource ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasCreator acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasDigitisingAgent acdhi:jleitner ;
+    acdh:hasFilename "A-Gf_A67_18-I+v.tif" ;
+    acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0012-38E7-9> ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasNextItem <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-Iv.tif> ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-0012-38E7-9" ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasTitle "A-Gf_A67_18-I+v (master)"@und ;
+    acdh:hasUsedHardware "Traveller" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18> ;
+    acdh:isSourceOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_18/A-Gf_A67_18-I+v.tif> .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-II+r.tif> a acdh:Resource ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasCreator acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasDigitisingAgent acdhi:jleitner ;
+    acdh:hasFilename "A-Gf_A67_18-II+r.tif" ;
+    acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0012-38E1-F> ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasNextItem <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-IIr.tif> ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-0012-38E1-F" ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasTitle "A-Gf_A67_18-II+r (master)"@und ;
+    acdh:hasUsedHardware "Traveller" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18> ;
+    acdh:isSourceOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_18/A-Gf_A67_18-II+r.tif> .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-II+v.tif> a acdh:Resource ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasCreator acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasDigitisingAgent acdhi:jleitner ;
+    acdh:hasFilename "A-Gf_A67_18-II+v.tif" ;
+    acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0012-38E3-D> ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasNextItem <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-IIv.tif> ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-0012-38E3-D" ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasTitle "A-Gf_A67_18-II+v (master)"@und ;
+    acdh:hasUsedHardware "Traveller" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18> ;
+    acdh:isSourceOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_18/A-Gf_A67_18-II+v.tif> .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-IIIr.tif> a acdh:Resource ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasCreator acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasDigitisingAgent acdhi:jleitner ;
+    acdh:hasFilename "A-Gf_A67_18-IIIr.tif" ;
+    acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0012-38DF-3> ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasNextItem <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-II+r.tif> ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-0012-38DF-3" ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasTitle "A-Gf_A67_18-IIIr (master)"@und ;
+    acdh:hasUsedHardware "Traveller" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18> ;
+    acdh:isSourceOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_18/A-Gf_A67_18-IIIr.tif> .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-IIIv.tif> a acdh:Resource ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasCreator acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasDigitisingAgent acdhi:jleitner ;
+    acdh:hasFilename "A-Gf_A67_18-IIIv.tif" ;
+    acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0012-38E0-0> ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasNextItem <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-II+v.tif> ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-0012-38E0-0" ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasTitle "A-Gf_A67_18-IIIv (master)"@und ;
+    acdh:hasUsedHardware "Traveller" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18> ;
+    acdh:isSourceOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_18/A-Gf_A67_18-IIIv.tif> .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-IIr.tif> a acdh:Resource ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasCreator acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasDigitisingAgent acdhi:jleitner ;
+    acdh:hasFilename "A-Gf_A67_18-IIr.tif" ;
+    acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0012-38E2-E> ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasNextItem <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-I+r.tif> ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-0012-38E2-E" ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasTitle "A-Gf_A67_18-IIr (master)"@und ;
+    acdh:hasUsedHardware "Traveller" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18> ;
+    acdh:isSourceOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_18/A-Gf_A67_18-IIr.tif> .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-IIv.tif> a acdh:Resource ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasCreator acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasDigitisingAgent acdhi:jleitner ;
+    acdh:hasFilename "A-Gf_A67_18-IIv.tif" ;
+    acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0012-38E4-C> ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
+    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasNextItem <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-I+v.tif> ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasPid "https://hdl.handle.net/21.11115/0000-0012-38E4-C" ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasTitle "A-Gf_A67_18-IIv (master)"@und ;
+    acdh:hasUsedHardware "Traveller" ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18> ;
+    acdh:isSourceOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_18/A-Gf_A67_18-IIv.tif> .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_18/A-Gf_A67_18-Ir.tif> a acdh:Resource ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasCreator acdhi:rklugseder ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasDigitisingAgent acdhi:jleitner ;
+    acdh:hasFilename "A-Gf_A67_18-Ir.tif" ;
