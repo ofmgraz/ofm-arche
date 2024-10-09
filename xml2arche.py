@@ -341,7 +341,7 @@ def get_extent(tei):
         pagination = "Folia" if pagination == "leaf" else "Seiten"
         measures.append(f"{extent[0]} {pagination}")
 
-    return Literal("; ".join(measures), lang="de")
+    return "; ".join(measures)
 
 
 def get_tifs(tei):
@@ -431,6 +431,9 @@ def make_subcollection(
     g.add((subject, ACDH["hasTitle"], Literal(f"{title} ({colld})", lang="de")))
     g.add((subject, ACDH["hasTitle"], Literal(f"{title} ({colle})", lang="en")))
     g.add((subject, ACDH["hasAlternativeTitle"], Literal(title, lang="la")))
+    g.add((subject, ACDH["hasSubject"], Literal("chant books", lang="en")))
+    g.add((subject, ACDH["hasSubject"], Literal("Choralbücher", lang="de")))
+    g.add((subject, ACDH["hasLanguage"], URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")))
 
     if arrangement:
         g.add((subject, ACDH["hasArrangement"], Literal(arrangement, lang="en")))
@@ -544,7 +547,7 @@ for collection in files:
             if idx > 0:
                 g.add((resc, ACDH["hasNextItem"], prevresc))
             else:
-                g.add((ACDHI["ofmgraz/teidocs"], ACDH["hasNextItem"], prevresc))
+                g.add((ACDHI["ofmgraz/teidocs"], ACDH["hasNextItem"], resc))
             prevresc = resc
 
             dates = get_date(doc)
@@ -574,10 +577,10 @@ for collection in files:
                 if contributor[0] != ACDH["hasDigitisingAgent"]:
                     g.add((resc, contributor[0], contributor[1]))
 
-            g.add((resc, ACDH["hasExtent"], extent))
+            g.add((resc, ACDH["hasExtent"], Literal(extent, lang="de")))
+            g.add((resc, ACDH["hasExtent"], Literal(extent.replace('Folia', 'folia').replace('Seiten', 'pages'), lang="en")))
             add_temporal(resc, dates[0], dates[1])
             g.add((resc, ACDH["hasUsedSoftware"], Literal("Transkribus")))
-
             subcollections = [
                 make_subcollection(
                     basename, MASTERS, has_title, False, has_subtitle, resc
@@ -616,6 +619,10 @@ for collection in files:
                     ),
                 )
             )
+            g.add((ACDHI[rescpath], ACDH["hasNonLinkedIdentifier"], Literal(signature)))
+            g.add((ACDHI[rescpath], ACDH["hasExtent"], Literal(extent, lang="de")))
+            g.add((ACDHI[rescpath], ACDH["hasExtent"], Literal(extent.replace('Folia', 'folia').replace('Seiten', 'pages'), lang="en")))
+
             g.add(
                 (
                     ACDHI[rescpath],
@@ -676,6 +683,8 @@ for collection in files:
                         g.add((resc, ACDH["hasDigitisingAgent"], dig))
                         g.add((ACDHI[rescpath], ACDH["hasDigitisingAgent"], dig))
                     g.add((resc, ACDH["hasUsedHardware"], digitiser[subcollection][1]))
+                    g.add((resc, ACDH["hasAppliedMethod"], Literal("scanen", lang="de")))
+                    g.add((resc, ACDH["hasAppliedMethod"], Literal("Scanning", lang="en")))
                 else:
                     g.add((resc, ACDH["hasCreator"], Klugseder))
                     g.add((resc, ACDH["hasTag"], Literal("TEXT", lang="und")))
