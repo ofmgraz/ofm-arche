@@ -688,7 +688,7 @@ for collection in files:
                 else:
                     g.add((resc, ACDH["hasCreator"], Klugseder))
                     g.add((resc, ACDH["hasTag"], Literal("TEXT", lang="und")))
-                    g.add((resc, ACDH["hasOaiSet"], URIRef("https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo")
+                    g.add((resc, ACDH["hasOaiSet"], URIRef("https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool")
                     #g.add(
                     #    (
                     #        resc,
