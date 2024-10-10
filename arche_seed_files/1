@@ -338,6 +338,7 @@ acdhi-ofm:teidocs a acdh:Collection ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasNextItem <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22/A-Gf_S1_22-001v.tif> ;
     acdh:hasNonLinkedIdentifier "A 63/51" ;
     acdh:hasOwner acdhi:franziskanerklostergraz ;
     acdh:hasRightsHolder acdhi:franziskanerklostergraz,

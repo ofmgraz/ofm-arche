@@ -7,8 +7,9 @@
 <https://id.acdh.oeaw.ac.at/ofmgraz/schema.rng> a acdh:Resource ;
     acdh:hasTitle "TEI/XML Schema RNG for the 'Choral Manuscripts of the Central Library of the Franciscan Province of Graz' Editions"@en ,
 	"TEI/XML Schema RNG für die Editionen von »Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz«"@de ;
-    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei> ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/model> ;
     acdh:hasCreator acdhi:fsanzlazaro ;
+    acdh:hasVersion "1.0.0" ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasFilename "schema.rng" ;
     acdh:hasFormat "application/xml" ;
@@ -23,9 +24,10 @@
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/schema.odd> a acdh:Resource ;
     acdh:hasTitle "TEI/XML Schema RNG for the 'Choral Manuscripts of the Central Library of the Franciscan Province of Graz' Editions"@en ,
-	"TEI/XML Schema RNG für die Editionen von »Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz«"@de ;
-    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei> ;
+	"TEI/XML Schema ODD für die Editionen von »Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz«"@de ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/model> ;
     acdh:hasCreator acdhi:fsanzlazaro ;
+    acdh:hasVersion "1.0.0" ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasFilename "schema.odd" ;
     acdh:hasFormat "text/xml" ;
@@ -38,22 +40,32 @@
     acdh:hasRightsHolder acdhi:oeaw ;
     acdh:isPartOf acdhi-ofm:teidocs .
 
-<https://id.acdh.oeaw.ac.at/ofmgraz/ofmgraz-titelbild.png> a acdh:Resource ;
+acdhi-ofm:teidocs acdh:hasArrangement
+    acdh:hasArrangement "Die Sammlung enthaltet 56 XML-TEI-Dateien, 1 RelaxNG Schema und 1 ODD . Jede Datei stellt ein physisches Volumen dar."@de,
+        "The collection contains 56 XML-TEI files, 1 RelaxNG schema and 1 ODD schema. Each file represents a physical volume."@en .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/ofmgraz-title-image.png> a acdh:Resource ;
     acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
-    acdh:hasCreator acdhi:fsanzlazaro ;
+    acdh:hasCreator acdhi:fsanzlazaro ,
+        acdhi:rklugseder ;   
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasFormat "img/png" ;
-    acdh:hasFilename "omfgraz-titelbild.png" ;
+    acdh:hasFilename "omfgraz-title-image.png" ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
-    acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool> ;
     acdh:hasOwner acdhi:franziskanerklostergraz ;
     acdh:hasRightsHolder acdhi:franziskanerklostergraz,
         acdhi:oeaw ;
-    acdh:hasRightsInformation "Verwandte Schutzrechte der bearbeiteteten Dateien: ÖAW und Franziskanerkloster Graz"@de,
-        "Related rights: ÖAW und Franziskanerkloster Graz"@en ;
-    acdh:hasTitle "Titelbild von „Choralhandschriften OFM Graz“"@de,
-   	"Title image of 'Choral Manuscripts OFM Graz'"@en ;
-    acdh:isTitleImageOf acdhi:ofmgraz ;
+    acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0013-32E9-C> ;
+    acdh:hasTitle "Title Image von „Choralhandschriften OFM Graz“"@de,
+   	"Title Image of 'Choral Manuscripts OFM Graz'"@en ;
+    acdh:isTitleImageOf acdhi:ofmgraz ,
+        acdhi-ofm:derivatives ,
+        acdhi-ofm:teidocs,
+        acdhi-ofm:masters ;
     acdh:isPartOf acdhi:ofmgraz .
+
+acdhi-ofm:derivatives acdh:hasArrangement
+        "56 Untersammlungen und 1 Tiltelbild der Sammlung. Jede Untersammlung stellt ein physisches Volumen dar und enthaltet bearbeitete Versionen der TIFF-Dateien von der Untersammlungen von „Originalbilder“."@de ,
+        "56 subcollections and 1 title image for the collection. Each subcollection represents a physical volume and contains derivative versions from the pictures of the subcollections of 'Master Images'."@en .
