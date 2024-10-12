@@ -522,7 +522,7 @@ persons = get_persons(g)
 places = get_places(g)
 
 # Process file list
-filelist = "list_files.txt"
+filelist = "liste_amended"
 files = process_file_list(filelist)
 
 prevresc = ACDHI["ofmgraz"]
@@ -639,6 +639,7 @@ for collection in files:
             else:
                 lic = cc0
                 tit = "derivative"
+                g.add((ACDHI[rescpath], ACDH["hasOaiSet"], URIRef("https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool")))
             add_constants(
                 ACDHI[rescpath],
                 [Franziskanerkloster, OeAW],
@@ -669,6 +670,8 @@ for collection in files:
                 if archeid in handles:
                     g.add((resc, ACDH["hasIdentifier"], URIRef(handles[archeid])))
                     g.add((resc, ACDH["hasPid"], Literal(handles[archeid])))
+                else:
+                    print(archeid)
                 g.add(
                     (
                         resc,
@@ -688,8 +691,7 @@ for collection in files:
                 else:
                     g.add((resc, ACDH["hasCreator"], Klugseder))
                     g.add((resc, ACDH["hasTag"], Literal("TEXT", lang="und")))
-                    g.add((resc, ACDH["hasOaiSet"], URIRef("https://vocabs.acdh.oeaw.ac.at/archeoaisets/kulturpool")
-                    #g.add(
+                                #g.add(
                     #    (
                     #        resc,
                     #        ACDH["hasRightsInformation"],
