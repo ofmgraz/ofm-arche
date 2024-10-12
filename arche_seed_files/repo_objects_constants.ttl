@@ -45,7 +45,7 @@ acdhi:fsanzlazaro a acdh:Person ;
         <http://viaf.org/viaf/2085169084888890310003> ;
     acdh:hasLastName "Sanz-Lázaro"@es ,
         "Sanz-Lázaro"@und ;
-    acdh:hasFirstName "Fernando"@es ,
+    acdh:hasFirstName "Fernando"@und ,
         "Fernando"@und ;
     acdh:hasAddressLine1 "Bäckerstraße 13" ;
     acdh:hasAddressLine2 "c/o ACDH-CH" ;
@@ -62,20 +62,20 @@ acdhi:fsanzlazaro a acdh:Person ;
     acdh:hasTitle "Fernando Sanz-Lázaro"@und .
 
 acdhi:jleitner a acdh:Person ;
-    acdh:hasLastName "Leitner"@de ;
-    acdh:hasFirstName "Jakob"@de ;
+    acdh:hasLastName "Leitner"@und ;
+    acdh:hasFirstName "Jakob"@und ;
     acdh:hasIdentifier <https://orcid.org/0000-0001-6195-2935> ;
     acdh:hasTitle "Jakob Leitner"@und .
 
 acdhi:alhuber a acdh:Person ;
-    acdh:hasLastName "Huber"@de ;
-    acdh:hasFirstName "Anna-Lena"@de ;
+    acdh:hasLastName "Huber"@und ;
+    acdh:hasFirstName "Anna-Lena"@und ;
     acdh:hasIdentifier acdhi:alhuber ;
     acdh:hasTitle "Anna-Lena Huber"@und .
 
 acdhi:mschmoetten a acdh:Person ;
-    acdh:hasLastName "Schmoetten"@de ;
-    acdh:hasFirstName "Moritz"@de ;
+    acdh:hasLastName "Schmoetten"@und ;
+    acdh:hasFirstName "Moritz"@und ;
     acdh:hasIdentifier acdhi:mschmoetten ;
     acdh:hasTitle "Moritz Schmoetten"@und .
 
@@ -97,14 +97,6 @@ acdhi:ljubljana a acdh:Place ;
     acdh:hasTitle "Ljubljana"@de ,
         "Ljubljana"@en .
 
-# Already on ARCHE
-acdhi:pandorfer a acdh:Person ;
-    acdh:hasIdentifier <https://orcid.org/0000-0002-9575-9372> ;
-    acdh:hasTitle "Peter Andorfer"@und .
-
-acdhi:dschopper a acdh:Person ;
-    acdh:hasIdentifier <https://orcid.org/0000-0003-2436-0361> ;
-    acdh:hasTitle "Daniel Schopper"@und .
 
 acdhi:franziskanerklostergraz a acdh:Organisation ;  
     acdh:hasIdentifier <https://d-nb.info/gnd/16174362-6> ;
