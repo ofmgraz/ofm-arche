@@ -46,11 +46,12 @@
     acdh:hasFormat "img/png" ;
     acdh:hasFilename "omfgraz-title-image.png" ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
-    acdh:hasLicensor acdhi:franziskanerklostergraz ;
+    acdh:hasLicensor acdhi:acdh ,
+        acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasOwner acdhi:franziskanerklostergraz ;
-    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
-        acdhi:oeaw ;
+    acdh:hasRightsHolder acdhi:oeaw ,
+        acdhi:franziskanerklostergraz ;
     acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0013-32E9-C> ;
     acdh:hasTitle "Title Image von „Choralhandschriften OFM Graz“"@de,
    	"Title Image of 'Choral Manuscripts OFM Graz'"@en ;
