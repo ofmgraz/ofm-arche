@@ -45,7 +45,7 @@ acdhi:fsanzlazaro a acdh:Person ;
         <https://d-nb.info/gnd/1297553608> ,
         <http://viaf.org/viaf/2085169084888890310003> ;
     acdh:hasLastName "Sanz-Lázaro"@und ;
-    acdh:hasFirstName "Fernando"@und ,
+    acdh:hasFirstName "Fernando"@und ;
     acdh:hasAddressLine1 "Bäckerstraße 13" ;
     acdh:hasAddressLine2 "c/o ACDH-CH" ;
     acdh:hasPostcode "1100" ;
@@ -165,6 +165,8 @@ acdhi:munich a acdh:Place ;
 #         	"Venice"@en .
 
 acdhi:pandorfer a acdh:Person ;
+    acdh:hasLastName "Andorfer"@und ;
+    acdh:hasFirstName "Peter"@und ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-9575-9372> ;
     acdh:hasTitle "Peter Andorfer"@und .
 
