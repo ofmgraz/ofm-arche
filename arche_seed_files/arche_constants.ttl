@@ -284,7 +284,7 @@ acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasOwner acdhi:franziskanerklostergraz ;
 acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_23> ;
  acdh:hasDepositor acdhi:franziskanerklostergraz ;  
-   acdh:hasTitle "Placeholder"@und .
+   acdh:hasTitle "A-Gf_S1_22-a001r (derivative)"@und .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22/A-Gf_S1_22-BR.tif> a acdh:Resource ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
@@ -298,7 +298,7 @@ acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasOwner acdhi:franziskanerklostergraz ;
  acdh:hasDepositor acdhi:franziskanerklostergraz ;  
 	acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
-	acdh:hasTitle "Placeholder"@und .
+	acdh:hasTitle "A-Gf_S1_22-BR (derivative)"@und .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22/A-Gf_S1_22-HDS.tif> a acdh:Resource ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
@@ -312,7 +312,7 @@ acdh:hasDepositor acdhi:franziskanerklostergraz ;
  acdh:hasDepositor acdhi:franziskanerklostergraz ; 
 acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22> ;
 	acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
-	acdh:hasTitle "Placeholder"@und .
+	acdh:hasTitle "A-Gf_S1_22-HDS (derivative)"@und .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22/A-Gf_S1_22-VD.tif> a acdh:Resource ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
@@ -326,7 +326,7 @@ acdh:hasDepositor acdhi:franziskanerklostergraz ;
  acdh:hasDepositor acdhi:franziskanerklostergraz ;  
 acdh:hasMetadataCreator acdhi:fsanzlazaro ; 
 	acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
-	acdh:hasTitle "Placeholder"@und .
+	acdh:hasTitle "A-Gf_S1_22-VD (derivative)"@und .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_23/A-Gf_A67_23-001r.tif> a acdh:Resource ;
     acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
@@ -364,6 +364,6 @@ acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasOwner acdhi:acdh ;
     acdh:hasPid "https://hdl.handle.net/21.11115/0000-0012-2263-6" ;
     acdh:hasRightsHolder acdhi:oeaw ;
-    acdh:hasTitle "Dum appropinquaret Dominus (XML-TEI)"@und ;
+    acdh:hasTitle  "Dum appropinquaret Dominus (XML-TEI)"@und ;
     acdh:hasUsedSoftware "Transkribus" ;
     acdh:isPartOf acdhi-ofm:teidocs .
