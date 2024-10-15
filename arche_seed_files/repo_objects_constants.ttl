@@ -6,12 +6,13 @@
 
 acdhi:bmkkoeds a acdh:Organisation ;
     acdh:hasIdentifier <https://d-nb.info/gnd/1216831270> ;
-    acdh:hasTitle "Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport"@de .
+    acdh:hasTitle "Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport"@de ,
+        "Austrian Ministry for Art, Culture, Public Service and Sport"@en .
 
 acdhi:rklugseder a acdh:Person ;
     acdh:hasPersonalTitle "PD Dr.habil." ;
-    acdh:hasLastName "Klugseder"@de ;
-    acdh:hasFirstName "Robert"@de ;
+    acdh:hasLastName "Klugseder"@und ;
+    acdh:hasFirstName "Robert"@und ;
     acdh:hasTitle "Robert Klugseder"@und ;
     acdh:hasAddressLine1 "Bäckerstraße 13" ;
     acdh:hasAddressLine2 "c/o ACDH-CH" ;
@@ -32,8 +33,8 @@ acdhi:rklugseder a acdh:Person ;
 acdhi:jhoeller a acdh:Person ;
     acdh:hasIdentifier acdhi:jhoeller ;
     acdh:hasPersonalTitle "P. Mag., OFM" ;
-    acdh:hasLastName "Höller"@de ;
-    acdh:hasFirstName "Josef"@de ;
+    acdh:hasLastName "Höller"@und ;
+    acdh:hasFirstName "Josef"@und ;
     acdh:hasEmail "josef.hoeller@graz-seckau.at" ;
     acdh:isMemberOf  acdhi:franziskanerklostergraz ;
     acdh:hasTitle "Josef Höller"@und .
@@ -43,10 +44,8 @@ acdhi:fsanzlazaro a acdh:Person ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-8815-6741> ,
         <https://d-nb.info/gnd/1297553608> ,
         <http://viaf.org/viaf/2085169084888890310003> ;
-    acdh:hasLastName "Sanz-Lázaro"@es ,
-        "Sanz-Lázaro"@und ;
+    acdh:hasLastName "Sanz-Lázaro"@und ;
     acdh:hasFirstName "Fernando"@und ,
-        "Fernando"@und ;
     acdh:hasAddressLine1 "Bäckerstraße 13" ;
     acdh:hasAddressLine2 "c/o ACDH-CH" ;
     acdh:hasPostcode "1100" ;
@@ -96,7 +95,6 @@ acdhi:ljubljana a acdh:Place ;
         "Slovenia"@en ;
     acdh:hasTitle "Ljubljana"@de ,
         "Ljubljana"@en .
-
 
 acdhi:franziskanerklostergraz a acdh:Organisation ;  
     acdh:hasIdentifier <https://d-nb.info/gnd/16174362-6> ;
@@ -165,6 +163,11 @@ acdhi:munich a acdh:Place ;
 #        "Italy"@en ;
 #    acdh:hasTitle "Venedig"@de ,
 #         	"Venice"@en .
+
+acdhi:pandorfer a acdh:Person ;
+    acdh:hasIdentifier <https://orcid.org/0000-0002-9575-9372> ;
+    acdh:hasTitle "Peter Andorfer"@und .
+
 
 acdhi:europeanunion a acdh:Organisation ;
     acdh:hasIdentifier <https://d-nb.info/gnd/5098525-5> ,
