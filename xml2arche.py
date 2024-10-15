@@ -22,6 +22,7 @@ DERIVTV = ACDHI["ofmgraz/derivatives"]
 TEIDOCS = ACDHI["ofmgraz/teidocs"]
 
 rdfconstants = "arche_seed_files/arche_constants.ttl"
+repositoryconstants = "arche_seed_files/repo_objects_constants.ttl"
 CSV_FILE = "handles.csv"
 
 # Configuration Variables
@@ -268,7 +269,6 @@ def get_contributors(tei):
             if role != "Transcriptor"
             else None
         )
-
         if obj:
             obj = persons.get(obj)
         else:
@@ -518,7 +518,8 @@ def process_file_list(filelist):
 
 # Load RDF graph and persons/places dictionaries
 g = Graph().parse(rdfconstants, format="turtle")
-persons = get_persons(g)
+p = Graph().parse(repositoryconstants, format="turtle")
+persons = get_persons(p)
 places = get_places(g)
 
 # Process file list
@@ -528,15 +529,17 @@ files = process_file_list(filelist)
 prevresc = ACDHI["ofmgraz"]
 digitiser = {}
 # Iterate through collections
+given = []
 for collection in files:
     col = files[collection]
     if collection == "teidocs":
         col.reverse()
         for idx, xmlfile in enumerate(col):
+            if not xmlfile.endswith("xml"):
+                continue
             print(xmlfile)
             resc = ACDHI[f"ofmgraz/teidocs/{xmlfile}"]
             g.add((resc, RDF.type, ACDH["Resource"]))
-
             basename = xmlfile.split(".")[0]
             doc = TeiReader(f"data/editions/{xmlfile}")
             for xmlpid in doc.any_xpath(
@@ -604,6 +607,8 @@ for collection in files:
             )
     else:
         for subcollection in col:
+            if subcollection.endswith("png"):
+                continue
             subcol = col[subcollection]
             rescpath = f"ofmgraz/{collection}/{subcollection}"
             jpgpath = f"ofmgraz/derivatives/{subcollection}"
@@ -644,8 +649,8 @@ for collection in files:
                 ACDHI[rescpath],
                 [Franziskanerkloster, OeAW],
                 [Franziskanerkloster],
-                [Franziskanerkloster],
-                [Klugseder],
+                [ACDHCH, Franziskanerkloster],
+                [],
                 lic,
             )
 
@@ -670,8 +675,12 @@ for collection in files:
                 if archeid in handles:
                     g.add((resc, ACDH["hasIdentifier"], URIRef(handles[archeid])))
                     g.add((resc, ACDH["hasPid"], Literal(handles[archeid])))
+                    if handles[archeid] in given:
+                        print(f"{archeid}: {handles[archeid]}")
+                    else:
+                        given.append(handles[archeid])
                 else:
-                    print(archeid)
+                    print(f"{rescpath}/{image}: {archeid}")
                 g.add(
                     (
                         resc,
@@ -689,7 +698,6 @@ for collection in files:
                     g.add((resc, ACDH["hasAppliedMethod"], Literal("scanen", lang="de")))
                     g.add((resc, ACDH["hasAppliedMethod"], Literal("Scanning", lang="en")))
                 else:
-                    g.add((resc, ACDH["hasCreator"], Klugseder))
                     g.add((resc, ACDH["hasTag"], Literal("TEXT", lang="und")))
                                 #g.add(
                     #    (
@@ -715,8 +723,8 @@ for collection in files:
                     resc,
                     [Franziskanerkloster, OeAW],
                     [Franziskanerkloster],
-                    [Franziskanerkloster],
-                    [Klugseder],
+                    [ACDHCH, Franziskanerkloster],
+                    [],
                     lic,
                 )
 
