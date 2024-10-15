@@ -170,6 +170,11 @@ acdhi:pandorfer a acdh:Person ;
     acdh:hasIdentifier <https://orcid.org/0000-0002-9575-9372> ;
     acdh:hasTitle "Peter Andorfer"@und .
 
+acdhi:dschopper a acdh:Person ;
+    acdh:hasLastName "Schopper"@und ;
+    acdh:hasFirstName "Daniel"@und ;
+    acdh:hasIdentifier <https://orcid.org/0000-0003-2436-0361> ;
+    acdh:hasTitle "Daniel Schopper"@und .
 
 acdhi:europeanunion a acdh:Organisation ;
     acdh:hasIdentifier <https://d-nb.info/gnd/5098525-5> ,
