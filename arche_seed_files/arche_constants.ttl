@@ -32,8 +32,7 @@ acdhi:ofmgraz a acdh:TopCollection ;
     acdh:hasPrincipalInvestigator acdhi:rklugseder ; 
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasContributor acdhi:pandorfer ,
-        acdhi:rklugseder ,
-    acdhi:jhoeller ,
+        acdhi:jhoeller ,
         acdhi:fsanzlazaro ,
         acdhi:dschopper ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
