@@ -39,7 +39,7 @@ acdhi:ofmgraz a acdh:TopCollection ;
     acdh:hasRightsHolder acdhi:oeaw ,
         acdhi:franziskanerklostergraz ;
     acdh:hasLicensor acdhi:acdh ,
-        acdh:franziskanerklostergraz ;
+        acdhi:franziskanerklostergraz ;
     acdh:hasCurator acdhi:fsanzlazaro ;
     acdh:hasFunder acdhi:bmkkoeds ,
         acdhi:europeanunion ; 
@@ -201,169 +201,65 @@ acdhi-ofm:teidocs a acdh:Collection ;
         "XML-TEI-Dokumente"@de ;
     acdh:isPartOf acdhi:ofmgraz .
 
-<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_23> a acdh:Collection ;
-    acdh:hasArrangement "Die Sammlung enthaltet 41 Bilddateien."@de,
-        "The collection contains 41 image files."@en ;
-    acdh:hasCoverageEndDate "1699-12-31"^^xsd:date ;
-    acdh:hasCoverageStartDate "1600-01-01"^^xsd:date ;
-    acdh:hasDepositor acdhi:franziskanerklostergraz ;
-    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
-    acdh:hasLicensor acdhi:acdh,
-        acdhi:franziskanerklostergraz ;
-    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
-    acdh:hasOwner acdhi:franziskanerklostergraz ;
-    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
-        acdhi:oeaw ;
-    acdh:hasTitle "Dum appropinquaret Dominus (Masters images)"@und ;
-    acdh:isPartOf acdhi-ofm:masters  .
-
-<https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_23> a acdh:Collection ;
-    acdh:hasArrangement "Die Sammlung enthaltet 39 Bilddateien."@de,
-        "The collection contains 39 image files."@en ;
-    acdh:hasCoverageEndDate "1699-12-31"^^xsd:date ;
-    acdh:hasCoverageStartDate "1600-01-01"^^xsd:date ;
-    acdh:hasDepositor acdhi:franziskanerklostergraz ;
-    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
-    acdh:hasLicensor acdhi:acdh,
-        acdhi:franziskanerklostergraz ;
-    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
-    acdh:hasOwner acdhi:franziskanerklostergraz ;
-    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
-        acdhi:oeaw ;
-    acdh:hasTitle "Dum appropinquaret Dominus (Derivative images)"@und ;
-    acdh:isPartOf acdhi-ofm:derivatives .
-
-<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_23/A-Gf_A67_23-001r.tif> a acdh:Resource ;
+<https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/ofmgraz-title-image.png> a acdh:Resource ;
     acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
-    acdh:hasFilename "A-Gf_A67_23-001r.tif" ;
-    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
-    acdh:hasLicensor acdhi:acdh ,
-        acdhi:franziskanerklostergraz ;
-    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
-    acdh:hasOwner acdhi:franziskanerklostergraz ;
-    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
-        acdhi:oeaw ;
-    acdh:hasTitle "A-Gf_A67_23-001r (master)"@und ;
-    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A67_23> .
-
-<https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22> a acdh:Collection ;
-    acdh:hasAlternativeTitle "Iube Domine benedicere"@la ;
-    acdh:hasArrangement "Die Sammlung enthaltet 127 Bilddateien."@de,
-        "The collection contains 127 image files."@en ;
-    acdh:hasCoverageEndDate "1685-12-31"^^xsd:date ;
-    acdh:hasCoverageStartDate "1685-01-01"^^xsd:date ;
-    acdh:hasDepositor acdhi:franziskanerklostergraz ;
-    acdh:hasExtent "535x370 mm; 272 Folia"@de,
-        "535x370 mm; 272 folia"@en ;
-    acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/lat> ;
+    acdh:hasFormat "img/png" ;
+    acdh:hasFilename "omfgraz-title-image.png" ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
     acdh:hasLicensor acdhi:acdh ,
         acdhi:franziskanerklostergraz ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
-    acdh:hasNonLinkedIdentifier "A 63/51" ;
     acdh:hasOwner acdhi:franziskanerklostergraz ;
-    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
-        acdhi:oeaw ;
-    acdh:hasSpatialCoverage acdhi-ofm:maria-lankowitz ;
-    acdh:hasSubject "Choralbücher"@de,
-        "chant books"@en ;
-    acdh:hasTag "TEXT"@und ;
-    acdh:hasTitle "Iube Domine benedicere (Bearbeitete Bilder)"@de,
-        "Iube Domine benedicere (Derivative images)"@en ;
+    acdh:hasRightsHolder acdhi:oeaw ,
+        acdhi:franziskanerklostergraz ;
+    acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0013-32E9-C> ;
+    acdh:hasTitle "Title Image von „Choralhandschriften OFM Graz“"@de,
+   	"Title Image of 'Choral Manuscripts OFM Graz'"@en ;
+    acdh:isTitleImageOf acdhi:ofmgraz ,
+        acdhi-ofm:derivatives ,
+        acdhi-ofm:teidocs,
+        acdhi-ofm:masters ;
     acdh:isPartOf acdhi-ofm:derivatives .
 
-<https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22/A-Gf_S1_22-a001r.tif> a acdh:Resource ;
-	acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
-    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
-    acdh:hasLicensor acdhi:acdh ,
-        acdhi:franziskanerklostergraz ;
- acdh:hasRightsHolder acdhi:franziskanerklostergraz,
-        acdhi:oeaw ;
-acdh:hasMetadataCreator acdhi:fsanzlazaro ; 
-    acdh:hasOwner acdhi:franziskanerklostergraz ;
-acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_23> ;
- acdh:hasDepositor acdhi:franziskanerklostergraz ;  
-   acdh:hasTitle "A-Gf_S1_22-a001r (derivative)"@und .
 
-<https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22/A-Gf_S1_22-BR.tif> a acdh:Resource ;
-    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
-    acdh:hasLicensor acdhi:acdh ,
-        acdhi:franziskanerklostergraz ;
- acdh:hasRightsHolder acdhi:franziskanerklostergraz,
-        acdhi:oeaw ;
-acdh:hasMetadataCreator acdhi:fsanzlazaro ; 
-acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_23> ;
-acdh:hasDepositor acdhi:franziskanerklostergraz ;          
-    acdh:hasOwner acdhi:franziskanerklostergraz ;
- acdh:hasDepositor acdhi:franziskanerklostergraz ;  
-	acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
-	acdh:hasTitle "A-Gf_S1_22-BR (derivative)"@und .
-
-<https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22/A-Gf_S1_22-HDS.tif> a acdh:Resource ;
-    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
-    acdh:hasLicensor acdhi:acdh ,
-        acdhi:franziskanerklostergraz ;
- acdh:hasRightsHolder acdhi:franziskanerklostergraz,
-        acdhi:oeaw ;
-acdh:hasMetadataCreator acdhi:fsanzlazaro ; 
-acdh:hasDepositor acdhi:franziskanerklostergraz ;          
-    acdh:hasOwner acdhi:franziskanerklostergraz ;
- acdh:hasDepositor acdhi:franziskanerklostergraz ; 
-acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22> ;
-	acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
-	acdh:hasTitle "A-Gf_S1_22-HDS (derivative)"@und .
-
-<https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22/A-Gf_S1_22-VD.tif> a acdh:Resource ;
-    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
-    acdh:hasLicensor acdhi:acdh ,
-        acdhi:franziskanerklostergraz ;
- acdh:hasRightsHolder acdhi:franziskanerklostergraz,
-        acdhi:oeaw ;
-acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22> ;
-acdh:hasDepositor acdhi:franziskanerklostergraz ;          
-    acdh:hasOwner acdhi:franziskanerklostergraz ;
- acdh:hasDepositor acdhi:franziskanerklostergraz ;  
-acdh:hasMetadataCreator acdhi:fsanzlazaro ; 
-	acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
-	acdh:hasTitle "A-Gf_S1_22-VD (derivative)"@und .
-
-<https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_23/A-Gf_A67_23-001r.tif> a acdh:Resource ;
-    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
-    acdh:hasDepositor acdhi:franziskanerklostergraz ;
-    acdh:hasFilename "A-Gf_A67_23-001r.tif" ;
-    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
-    acdh:hasLicensor acdhi:acdh ,
-        acdhi:franziskanerklostergraz ;
-    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
-    acdh:hasOwner acdhi:franziskanerklostergraz ;
-    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
-        acdhi:oeaw ;
-    acdh:hasTitle "A-Gf_A67_23-001r (derivative)"@und ;
-    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_23> .
-
-<https://id.acdh.oeaw.ac.at/ofmgraz/teidocs/A67_23.xml> a acdh:Resource ;
+<https://id.acdh.oeaw.ac.at/ofmgraz/teidocs/A63_51.xml> a acdh:Resource ;
     acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/text/tei> ;
-    acdh:hasContributor acdhi:dschopper,
-        acdhi:mschmoetten,
-        acdhi:pandorfer,
-        acdhi:rklugseder ;
-    acdh:hasCoverageEndDate "1699-12-31"^^xsd:date ;
-    acdh:hasCoverageStartDate "1600-01-01"^^xsd:date ;
-    acdh:hasCreator acdhi:fsanzlazaro ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
-    acdh:hasExtent "220x160 mm; 17 Folia"@de ;
-    acdh:hasFilename "A67_23.xml" ;
     acdh:hasFormat "application/xml" ;
-    acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0012-2263-6> ;
-    acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/lat> ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-sa-4-0> ;
     acdh:hasLicensor acdhi:acdh ;
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
-    acdh:hasNonLinkedIdentifier "A 67/23" ;
     acdh:hasOwner acdhi:acdh ;
-    acdh:hasPid "https://hdl.handle.net/21.11115/0000-0012-2263-6" ;
     acdh:hasRightsHolder acdhi:oeaw ;
-    acdh:hasTitle  "Dum appropinquaret Dominus (XML-TEI)"@und ;
-    acdh:hasUsedSoftware "Transkribus" ;
+    acdh:hasTitle "Asperges me Domine (XML-TEI)"@und ;
     acdh:isPartOf acdhi-ofm:teidocs .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A63_51> a acdh:Collection ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
+    acdh:hasLicensor acdhi:acdh,
+        acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasNextItem <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A63_51/A-Gf_A63_51-001r.tif> ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasTitle "Asperges me Domine (Originalbilder)"@de,
+        "Asperges me Domine (Master images)"@en ;
+    acdh:isPartOf acdhi-ofm:masters .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/masters/A63_51/A-Gf_A63_51-001r.tif> a acdh:Resource ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/publicdomain-1-0> ;
+    acdh:hasLicensor acdhi:acdh,
+        acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+        acdhi:oeaw ;
+    acdh:hasTitle "A-Gf_A63_51-001r (master)"@und ;
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/masters/A63_51> .
+
+

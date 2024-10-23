@@ -523,7 +523,7 @@ persons = get_persons(p)
 places = get_places(g)
 
 # Process file list
-filelist = "liste_amended"
+filelist = "list_files.txt"
 files = process_file_list(filelist)
 
 prevresc = ACDHI["ofmgraz"]
@@ -547,10 +547,8 @@ for collection in files:
             ):
                 g.add((resc, ACDH["hasIdentifier"], URIRef(xmlpid)))
                 g.add((resc, ACDH["hasPid"], Literal(xmlpid)))
-            if idx > 0:
-                g.add((resc, ACDH["hasNextItem"], prevresc))
-            else:
-                g.add((ACDHI["ofmgraz/teidocs"], ACDH["hasNextItem"], resc))
+            #if idx == len(col) - 1:
+            #    g.add((ACDHI["ofmgraz/teidocs"], ACDH["hasNextItem"], resc))
             prevresc = resc
 
             dates = get_date(doc)
@@ -571,6 +569,9 @@ for collection in files:
             g.add((resc, ACDH["hasFilename"], Literal(f"{basename}.xml")))
             g.add((resc, ACDH["hasFormat"], Literal("application/xml")))
             g.add((resc, ACDH["hasLanguage"], language))
+            g.add((resc, ACDH["hasSchema"], Literal("ofmgraz/teidocs/schema.rng")))
+            g.add((resc, ACDH["hasSubject"], Literal("chant books", lang="en")))
+            g.add((resc, ACDH["hasSubject"], Literal("Choralbücher", lang="de")))
 
             coverage = get_coverage(doc)
             [g.add((resc, ACDH["hasSpatialCoverage"], scover)) for scover in coverage]
@@ -662,6 +663,13 @@ for collection in files:
                     ACDHI[f"{rescpath}/{subcol[-1]}"],
                 )
             )
+            for dig in digitiser[subcollection][0]:
+                g.add((ACDHI[rescpath], ACDH["hasDigitisingAgent"], dig))
+                # if collection == "derivatives":                            ############################################################
+                #    print(f"<{rescpath}> acdh:hasDigitisingAgent <{dig}> ;")
+            g.add((ACDHI[rescpath], ACDH["hasUsedHardware"], digitiser[subcollection][1]))
+            #if collection == "derivatives":                               ################################################################
+            #    print(f'\tacdh:hasUsedHardware "{digitiser[subcollection][1]}" .')
             for idx, image in enumerate(subcol):
                 basename = image.split(".")[0]
                 filetype = image.split(".")[1].upper()
@@ -689,12 +697,15 @@ for collection in files:
                     )
                 )
                 g.add((resc, ACDH["hasFilename"], Literal(image)))
+                for dig in digitiser[subcollection][0]:
+                    g.add((resc, ACDH["hasDigitisingAgent"], dig))
+                    #if collection == "derivatives":                           ###########################################
+                    #    print(f"<{resc}> acdh:hasDigitisingAgent <{dig}> ;")
+                g.add((resc, ACDH["hasUsedHardware"], digitiser[subcollection][1]))
+                #if collection == "derivatives":                               ###########################################
+                #    print(f'\tacdh:hasUsedHardware "{digitiser[subcollection][1]}" .')
                 if collection == "masters":
                     g.add((resc, ACDH["isSourceOf"], jpgresc))
-                    for dig in digitiser[subcollection][0]:
-                        g.add((resc, ACDH["hasDigitisingAgent"], dig))
-                        g.add((ACDHI[rescpath], ACDH["hasDigitisingAgent"], dig))
-                    g.add((resc, ACDH["hasUsedHardware"], digitiser[subcollection][1]))
                     g.add((resc, ACDH["hasAppliedMethod"], Literal("scanen", lang="de")))
                     g.add((resc, ACDH["hasAppliedMethod"], Literal("Scanning", lang="en")))
                 else:
