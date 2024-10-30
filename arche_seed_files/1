@@ -6,37 +6,12 @@
 
 acdhi:ofmgraz a acdh:TopCollection ;
     acdh:hasDescription
-        """Die Zentralbibliothek des Franziskanerklosters Graz verwahrt zahlreiche
-        Choralquellen vom Beginn des 14. Jahrhunderts weg bis zum 19. Jahrhundert.
-        In der Forschung wurden diese Handschriften und Drucke bislang wenig beachtet.
-        Knapp ein Drittel der 56 Quellen stammt aus dem 14., 15. und 16. Jahrhundert,
-        zwei Drittel sind aus dem 17. und 18. Jahrhundert und bilden somit einen starken,
-        repräsentativen Bestand zur Beschäftigung mit dem heute wenig beachteten Barockchoral.
-        Zu beachten ist auch das Verhältnis zwischen der italienischen (Druck-) Überlieferung
-        und der österreichischen handschriftlichen Tradition bei den musikalischen Fassungen
-        von Antiphonen und anderen Gesängen für die franziskanischen Eigenfeste vom Ausgang des
-        Mittelalters weg bis ins 18. Jahrhundert. Die vorhandene lokale Choralüberlieferung des
-        Franziskanerordens stellt trotz einer guten Quellenlage noch weitgehend eine terra
-        incognita dar. Während die österreichische Musikgeschichte in den imperialen und in den
-        klösterlichen Zentren der monastischen Ordensgemeinschaften vor allem in Hinblick auf die
-        Figuralmusik des 18. Jahrhunderts relativ gut bekannt ist, liegt in Bezug auf die
-        liturgisch-musikalische Praxis der weit verbreiteten Mendikanten und ihrer Klientel vieles
-        im Dunkeln. Die Erschließung und Online-Publikation dieses Quellenkorpus schließt dieses
-        Desiderat zumindest teilweise und ermöglicht weiterführende Forschungen."""@de ,
-        """The Central Library of the Franciscan Monastery in Graz holds numerous choral sources
-        from the beginning of the 14th century to the 19th century. These manuscripts and prints
-        have received little research attention. Just under a third of the 56 sources date from the
-        14th, 15th and 16th centuries, two thirds from the 17th and 18th centuries, and thus form a
-        strong, representative collection for the study of the Baroque chorale, which is little known today.
-        The relationship between the Italian (printed) tradition and the Austrian manuscript tradition in
-        the musical versions of antiphons and other chants for Franciscan feasts from the late Middle Ages
-        to the 18th century should also be noted.
-        The existing local choral tradition of the Franciscan Order is still largely terra incognita,
-        despite a good source situation. While the history of Austrian music in the imperial and monastic
-        centres of the monastic orders is relatively well known, especially with regard to the figural
-        music of the 18th century, much remains in the dark with regard to the liturgical-musical practice
-        of the widespread mendicants and their clientele. The cataloguing and online publication of this
-        corpus of sources can at least partially fill this gap and enable further research."""@en ;
+        """Die Zentralbibliothek des Franziskanerklosters Graz verwahrt zahlreiche Choralquellen vom Beginn des 14. Jahrhunderts weg bis zum 19. Jahrhundert. In der Forschung wurden diese Handschriften und Drucke bislang wenig beachtet. Knapp ein Drittel der 56 Quellen stammt aus dem 14., 15. und 16. Jahrhundert, zwei Drittel sind aus dem 17. und 18. Jahrhundert und bilden somit einen starken, repräsentativen Bestand zur Beschäftigung mit dem heute wenig beachteten Barockchoral. Zu beachten ist auch das Verhältnis zwischen der italienischen (Druck-) Überlieferung und der österreichischen handschriftlichen Tradition bei den musikalischen Fassungen von Antiphonen und anderen Gesängen für die franziskanischen Eigenfeste vom Ausgang des Mittelalters weg bis ins 18. Jahrhundert.
+        Die vorhandene lokale Choralüberlieferung des Franziskanerordens stellt trotz einer guten Quellenlage noch weitgehend eine terra incognita dar. Während die österreichische Musikgeschichte in den imperialen und in den klösterlichen Zentren der monastischen Ordensgemeinschaften vor allem in Hinblick auf die Figuralmusik des 18. Jahrhunderts relativ gut bekannt ist, liegt in Bezug auf die liturgisch-musikalische Praxis der weit verbreiteten Mendikanten und ihrer Klientel vieles im Dunkeln. Die Erschließung und Online-Publikation dieses Quellenkorpus schließt dieses Desiderat zumindest teilweise und ermöglicht weiterführende Forschungen.
+        Die Finanzierung des Projekts erfolgte durch die Fonds NextGenerationEU der Europäischen Union sowie durch das Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport."""@de,
+        """The Central Library of the Franciscan Monastery in Graz holds numerous choral sources from the beginning of the 14th century to the 19th century. These manuscripts and prints have received little research attention. Just under a third of the 56 sources date from the 14th, 15th and 16th centuries, two thirds from the 17th and 18th centuries, and thus form a strong, representative collection for the study of the Baroque chorale, which is little known today. The relationship between the Italian (printed) tradition and the Austrian manuscript tradition in the musical versions of antiphons and other chants for Franciscan feasts from the late Middle Ages to the 18th century should also be noted.
+        The existing local choral tradition of the Franciscan Order is still largely terra incognita, despite a good source situation. While the history of Austrian music in the imperial and monastic centres of the monastic orders is relatively well known, especially with regard to the figural music of the 18th century, much remains in the dark with regard to the liturgical-musical practice of the widespread mendicants and their clientele. The cataloguing and online publication of this corpus of sources can at least partially fill this gap and enable further research.
+        The project was funded by the European Union's NextGenerationEU fund and the Austrian Federal Ministry of Art, Culture, Public Service and Sport."""@en .
     acdh:hasTitle
         "Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz"@de ,
         "Choral Manuscripts of the Central Library of the Franciscan Province of Graz"@en ;
@@ -108,29 +83,19 @@ acdhi-ofm:derivatives a acdh:Collection ;
         "56 subcollections. Each subcollection represents a physical volume and contains derivative versions from the pictures of the subcollections of 'Master Images'."@en ;
     acdh:hasDepositor acdhi:franziskanerklostergraz ;
     acdh:hasDescription
-        """Die Zentralbibliothek des Franziskanerklosters Graz verwahrt zahlreiche Choralquellen vom Beginn des 14. Jahrhunderts weg bis zum 19. Jahrhundert. In der Forschung wurden diese Handschriften und Drucke bislang wenig beachtet. Knapp ein Drittel der 56 Quellen stammt aus dem 14., 15. und 16. Jahrhundert, zwei Drittel sind aus dem 17. und 18. Jahrhundert und bilden somit einen starken, repräsentativen Bestand zur Beschäftigung mit dem heute wenig beachteten Barockchoral.
-
-        Zu beachten ist auch das Verhältnis zwischen der italienischen (Druck-) Überlieferung und der österreichischen handschriftlichen Tradition bei den musikalischen Fassungen von Antiphonen und anderen Gesängen für die franziskanischen Eigenfeste vom Ausgang des Mittelalters weg bis ins 18. Jahrhundert.
-
-        Die vorhandene lokale Choralüberlieferung des Franziskanerordens stellt trotz einer guten Quellenlage noch weitgehend eine terra incognita dar. Während die österreichische Musikgeschichte in den imperialen und in den klösterlichen Zentren der monastischen Ordensgemeinschaften vor allem in Hinblick auf die Figuralmusik des 18. Jahrhunderts relativ gut bekannt ist, liegt in Bezug auf die liturgisch-musikalische Praxis der weit verbreiteten Mendikanten und ihrer Klientel vieles im Dunkeln. Die Erschließung und Online-Publikation dieses Quellenkorpus schließt dieses Desiderat zumindest teilweise und ermöglicht weiterführende Forschungen.."""@de ,
-        """The Central Library of the Franciscan Monastery in Graz holds numerous choral sources from the beginning of the 14th century to the 19th century. These manuscripts and prints have received little research attention. Just under a third of the 56 sources date from the 14th, 15th and 16th centuries, two thirds from the 17th and 18th centuries, and thus form a strong, representative collection for the study of the Baroque chorale, which is little known today.
-
-        The relationship between the Italian (printed) tradition and the Austrian manuscript tradition in the musical versions of antiphons and other chants for Franciscan feasts from the late Middle Ages to the 18th century should also be noted.
-
-        The existing local choral tradition of the Franciscan Order is still largely terra incognita, despite a good source situation. While the history of Austrian music in the imperial and monastic centres of the monastic orders is relatively well known, especially with regard to the figural music of the 18th century, much remains in the dark with regard to the liturgical-musical practice of the widespread mendicants and their clientele. The cataloguing and online publication of this corpus of sources can at least partially fill this gap and enable further research."""@en ;
-        acdh:hasNamingScheme
+        """Die Zentralbibliothek des Franziskanerklosters Graz verwahrt zahlreiche Choralquellen vom Beginn des 14. Jahrhunderts weg bis zum 19. Jahrhundert. In der Forschung wurden diese Handschriften und Drucke bislang wenig beachtet. Knapp ein Drittel der 56 Quellen stammt aus dem 14., 15. und 16. Jahrhundert, zwei Drittel sind aus dem 17. und 18. Jahrhundert und bilden somit einen starken, repräsentativen Bestand zur Beschäftigung mit dem heute wenig beachteten Barockchoral. Zu beachten ist auch das Verhältnis zwischen der italienischen (Druck-) Überlieferung und der österreichischen handschriftlichen Tradition bei den musikalischen Fassungen von Antiphonen und anderen Gesängen für die franziskanischen Eigenfeste vom Ausgang des Mittelalters weg bis ins 18. Jahrhundert.
+        Die vorhandene lokale Choralüberlieferung des Franziskanerordens stellt trotz einer guten Quellenlage noch weitgehend eine terra incognita dar. Während die österreichische Musikgeschichte in den imperialen und in den klösterlichen Zentren der monastischen Ordensgemeinschaften vor allem in Hinblick auf die Figuralmusik des 18. Jahrhunderts relativ gut bekannt ist, liegt in Bezug auf die liturgisch-musikalische Praxis der weit verbreiteten Mendikanten und ihrer Klientel vieles im Dunkeln. Die Erschließung und Online-Publikation dieses Quellenkorpus schließt dieses Desiderat zumindest teilweise und ermöglicht weiterführende Forschungen.
+        Die Finanzierung des Projekts erfolgte durch die Fonds NextGenerationEU der Europäischen Union sowie durch das Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport."""@de,
+        """The Central Library of the Franciscan Monastery in Graz holds numerous choral sources from the beginning of the 14th century to the 19th century. These manuscripts and prints have received little research attention. Just under a third of the 56 sources date from the 14th, 15th and 16th centuries, two thirds from the 17th and 18th centuries, and thus form a strong, representative collection for the study of the Baroque chorale, which is little known today. The relationship between the Italian (printed) tradition and the Austrian manuscript tradition in the musical versions of antiphons and other chants for Franciscan feasts from the late Middle Ages to the 18th century should also be noted.
+        The existing local choral tradition of the Franciscan Order is still largely terra incognita, despite a good source situation. While the history of Austrian music in the imperial and monastic centres of the monastic orders is relatively well known, especially with regard to the figural music of the 18th century, much remains in the dark with regard to the liturgical-musical practice of the widespread mendicants and their clientele. The cataloguing and online publication of this corpus of sources can at least partially fill this gap and enable further research.
+        The project was funded by the European Union's NextGenerationEU fund and the Austrian Federal Ministry of Art, Culture, Public Service and Sport."""@en .
+    acdh:hasNamingScheme
         """Die Ressourcen sind nach der Signatur des physischen Objekts benannt, z.B. „A64_41“ für die Sammlung, die die Bilder der Seiten des physischen Objekts mit Signatur A64_41 enthält.
-
         Der Name der beinhaltenen Ressource wird durch die Paginierung ergänzt. Zum Beispiel ist „A-Gf_64_41-003r.tif“ ein Bild von Folio 3 recto des Manuskripts mit der Signatur A 64/41.
-
         Im Gegensatz zu den Dateinamen beschreiben die Titel der Sammlungen deren Inhalt."""@de ,
-        
         """The resources are named after the shelfmark of the corresponding physical object. Each subcollection is named after the shelfmark of the physical object, e.g. 'A64_41' for the collection containing the images of the pages of the physical object with shelfmark A64_41.
-
         The name of the contained resource is supplemented by the pagination. For example, 'A-Gf_64_41-003r.tif' is an image of folio 3 recto of the manuscript with the shelfmark A 64/41.
-
         In contrast to the file names, the titles of the collections describe their content."""@en ;
-
     acdh:hasOaiSet <https://vocabs.acdh.oeaw.ac.at/archeoaisets/clarin-vlo> ;
     acdh:hasLifeCycleStatus <https://vocabs.acdh.oeaw.ac.at/archelifecyclestatus/completed>;
     acdh:hasLanguage <https://vocabs.acdh.oeaw.ac.at/iso6393/lat> ;
@@ -168,38 +133,13 @@ acdhi-ofm:derivatives a acdh:Collection ;
 acdhi-ofm:masters a acdh:Collection ;
         acdh:hasCreator acdhi:rklugseder ;
     acdh:hasDescription
-        """Die Zentralbibliothek des Franziskanerklosters Graz verwahrt zahlreiche
-        Choralquellen vom Beginn des 14. Jahrhunderts weg bis zum 19. Jahrhundert.
-        In der Forschung wurden diese Handschriften und Drucke bislang wenig beachtet.
-        Knapp ein Drittel der 56 Quellen stammt aus dem 14., 15. und 16. Jahrhundert,
-        zwei Drittel sind aus dem 17. und 18. Jahrhundert und bilden somit einen starken,
-        repräsentativen Bestand zur Beschäftigung mit dem heute wenig beachteten Barockchoral.
-        Zu beachten ist auch das Verhältnis zwischen der italienischen (Druck-) Überlieferung
-        und der österreichischen handschriftlichen Tradition bei den musikalischen Fassungen
-        von Antiphonen und anderen Gesängen für die franziskanischen Eigenfeste vom Ausgang des
-        Mittelalters weg bis ins 18. Jahrhundert. Die vorhandene lokale Choralüberlieferung des
-        Franziskanerordens stellt trotz einer guten Quellenlage noch weitgehend eine terra
-        incognita dar. Während die österreichische Musikgeschichte in den imperialen und in den
-        klösterlichen Zentren der monastischen Ordensgemeinschaften vor allem in Hinblick auf die
-        Figuralmusik des 18. Jahrhunderts relativ gut bekannt ist, liegt in Bezug auf die
-        liturgisch-musikalische Praxis der weit verbreiteten Mendikanten und ihrer Klientel vieles
-        im Dunkeln. Die Erschließung und Online-Publikation dieses Quellenkorpus schließt dieses
-        Desiderat zumindest teilweise und ermöglicht weiterführende Forschungen."""@de ,
-        """The Central Library of the Franciscan Monastery in Graz holds numerous choral sources
-        from the beginning of the 14th century to the 19th century. These manuscripts and prints
-        have received little research attention. Just under a third of the 56 sources date from the
-        14th, 15th and 16th centuries, two thirds from the 17th and 18th centuries, and thus form a
-        strong, representative collection for the study of the Baroque chorale, which is little known today.
-        The relationship between the Italian (printed) tradition and the Austrian manuscript tradition in
-        the musical versions of antiphons and other chants for Franciscan feasts from the late Middle Ages
-        to the 18th century should also be noted.
-        The existing local choral tradition of the Franciscan Order is still largely terra incognita,
-        despite a good source situation. While the history of Austrian music in the imperial and monastic
-        centres of the monastic orders is relatively well known, especially with regard to the figural
-        music of the 18th century, much remains in the dark with regard to the liturgical-musical practice
-        of the widespread mendicants and their clientele. The cataloguing and online publication of this
-        corpus of sources can at least partially fill this gap and enable further research."""@en ;
-        acdh:hasNamingScheme
+        """Die Zentralbibliothek des Franziskanerklosters Graz verwahrt zahlreiche Choralquellen vom Beginn des 14. Jahrhunderts weg bis zum 19. Jahrhundert. In der Forschung wurden diese Handschriften und Drucke bislang wenig beachtet. Knapp ein Drittel der 56 Quellen stammt aus dem 14., 15. und 16. Jahrhundert, zwei Drittel sind aus dem 17. und 18. Jahrhundert und bilden somit einen starken, repräsentativen Bestand zur Beschäftigung mit dem heute wenig beachteten Barockchoral. Zu beachten ist auch das Verhältnis zwischen der italienischen (Druck-) Überlieferung und der österreichischen handschriftlichen Tradition bei den musikalischen Fassungen von Antiphonen und anderen Gesängen für die franziskanischen Eigenfeste vom Ausgang des Mittelalters weg bis ins 18. Jahrhundert.
+        Die vorhandene lokale Choralüberlieferung des Franziskanerordens stellt trotz einer guten Quellenlage noch weitgehend eine terra incognita dar. Während die österreichische Musikgeschichte in den imperialen und in den klösterlichen Zentren der monastischen Ordensgemeinschaften vor allem in Hinblick auf die Figuralmusik des 18. Jahrhunderts relativ gut bekannt ist, liegt in Bezug auf die liturgisch-musikalische Praxis der weit verbreiteten Mendikanten und ihrer Klientel vieles im Dunkeln. Die Erschließung und Online-Publikation dieses Quellenkorpus schließt dieses Desiderat zumindest teilweise und ermöglicht weiterführende Forschungen.
+        Die Finanzierung des Projekts erfolgte durch die Fonds NextGenerationEU der Europäischen Union sowie durch das Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport."""@de,
+        """The Central Library of the Franciscan Monastery in Graz holds numerous choral sources from the beginning of the 14th century to the 19th century. These manuscripts and prints have received little research attention. Just under a third of the 56 sources date from the 14th, 15th and 16th centuries, two thirds from the 17th and 18th centuries, and thus form a strong, representative collection for the study of the Baroque chorale, which is little known today. The relationship between the Italian (printed) tradition and the Austrian manuscript tradition in the musical versions of antiphons and other chants for Franciscan feasts from the late Middle Ages to the 18th century should also be noted.
+        The existing local choral tradition of the Franciscan Order is still largely terra incognita, despite a good source situation. While the history of Austrian music in the imperial and monastic centres of the monastic orders is relatively well known, especially with regard to the figural music of the 18th century, much remains in the dark with regard to the liturgical-musical practice of the widespread mendicants and their clientele. The cataloguing and online publication of this corpus of sources can at least partially fill this gap and enable further research.
+        The project was funded by the European Union's NextGenerationEU fund and the Austrian Federal Ministry of Art, Culture, Public Service and Sport."""@en .
+    acdh:hasNamingScheme
         """Die Ressourcen sind nach der Signatur des physischen Objekts benannt, z.B. „A64_41“ für die Sammlung, die die Bilder der Seiten des physischen Objekts mit Signatur A64_41 enthält.
         Der Name der beinhaltenen Ressource wird durch die Paginierung ergänzt. Zum Beispiel ist „A-Gf_64_41-003r.tif“ ein Bild von Folio 3 recto des Manuskripts mit der Signatur A 64/41.
         Im Gegensatz zu den Dateinamen beschreiben die Titel der Sammlungen deren Inhalt."""@de ,
@@ -247,18 +187,12 @@ acdhi-ofm:teidocs a acdh:Collection ;
     acdh:hasFunder acdhi:bmkkoeds ,
         acdhi:europeanunion ; 
     acdh:hasDescription
-        """Die Zentralbibliothek des Franziskanerklosters Graz verwahrt zahlreiche Choralquellen vom Beginn des 14. Jahrhunderts weg bis zum 19. Jahrhundert. In der Forschung wurden diese Handschriften und Drucke bislang wenig beachtet. Knapp ein Drittel der 56 Quellen stammt aus dem 14., 15. und 16. Jahrhundert, zwei Drittel sind aus dem 17. und 18. Jahrhundert und bilden somit einen starken, repräsentativen Bestand zur Beschäftigung mit dem heute wenig beachteten Barockchoral.
-        
-        Zu beachten ist auch das Verhältnis zwischen der italienischen (Druck-) Überlieferung und der österreichischen handschriftlichen Tradition bei den musikalischen Fassungen von Antiphonen und anderen Gesängen für die franziskanischen Eigenfeste vom Ausgang des Mittelalters weg bis ins 18. Jahrhundert.
-
-        Die vorhandene lokale Choralüberlieferung des Franziskanerordens stellt trotz einer guten Quellenlage noch weitgehend eine terra incognita dar. Während die österreichische Musikgeschichte in den imperialen und in den klösterlichen Zentren der monastischen Ordensgemeinschaften vor allem in Hinblick auf die Figuralmusik des 18. Jahrhunderts relativ gut bekannt ist, liegt in Bezug auf die liturgisch-musikalische Praxis der weit verbreiteten Mendikanten und ihrer Klientel vieles im Dunkeln. Die Erschließung und Online-Publikation dieses Quellenkorpus schließt dieses Desiderat zumindest teilweise und ermöglicht weiterführende Forschungen."""@de ,
-        
-        """The Central Library of the Franciscan Monastery in Graz holds numerous choral sources from the beginning of the 14th century to the 19th century. These manuscripts and prints have received little research attention. Just under a third of the 56 sources date from the 14th, 15th and 16th centuries, two thirds from the 17th and 18th centuries, and thus form a strong, representative collection for the study of the Baroque chorale, which is little known today.
-
-        The relationship between the Italian (printed) tradition and the Austrian manuscript tradition in the musical versions of antiphons and other chants for Franciscan feasts from the late Middle Ages to the 18th century should also be noted.
-
-        The existing local choral tradition of the Franciscan Order is still largely terra incognita, despite a good source situation. While the history of Austrian music in the imperial and monastic centres of the monastic orders is relatively well known, especially with regard to the figural music of the 18th century, much remains in the dark with regard to the liturgical-musical practice of the widespread mendicants and their clientele. The cataloguing and online publication of this corpus of sources can at least partially fill this gap and enable further research."""@en ;
-
+        """Die Zentralbibliothek des Franziskanerklosters Graz verwahrt zahlreiche Choralquellen vom Beginn des 14. Jahrhunderts weg bis zum 19. Jahrhundert. In der Forschung wurden diese Handschriften und Drucke bislang wenig beachtet. Knapp ein Drittel der 56 Quellen stammt aus dem 14., 15. und 16. Jahrhundert, zwei Drittel sind aus dem 17. und 18. Jahrhundert und bilden somit einen starken, repräsentativen Bestand zur Beschäftigung mit dem heute wenig beachteten Barockchoral. Zu beachten ist auch das Verhältnis zwischen der italienischen (Druck-) Überlieferung und der österreichischen handschriftlichen Tradition bei den musikalischen Fassungen von Antiphonen und anderen Gesängen für die franziskanischen Eigenfeste vom Ausgang des Mittelalters weg bis ins 18. Jahrhundert.
+        Die vorhandene lokale Choralüberlieferung des Franziskanerordens stellt trotz einer guten Quellenlage noch weitgehend eine terra incognita dar. Während die österreichische Musikgeschichte in den imperialen und in den klösterlichen Zentren der monastischen Ordensgemeinschaften vor allem in Hinblick auf die Figuralmusik des 18. Jahrhunderts relativ gut bekannt ist, liegt in Bezug auf die liturgisch-musikalische Praxis der weit verbreiteten Mendikanten und ihrer Klientel vieles im Dunkeln. Die Erschließung und Online-Publikation dieses Quellenkorpus schließt dieses Desiderat zumindest teilweise und ermöglicht weiterführende Forschungen.
+        Die Finanzierung des Projekts erfolgte durch die Fonds NextGenerationEU der Europäischen Union sowie durch das Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport."""@de,
+        """The Central Library of the Franciscan Monastery in Graz holds numerous choral sources from the beginning of the 14th century to the 19th century. These manuscripts and prints have received little research attention. Just under a third of the 56 sources date from the 14th, 15th and 16th centuries, two thirds from the 17th and 18th centuries, and thus form a strong, representative collection for the study of the Baroque chorale, which is little known today. The relationship between the Italian (printed) tradition and the Austrian manuscript tradition in the musical versions of antiphons and other chants for Franciscan feasts from the late Middle Ages to the 18th century should also be noted.
+        The existing local choral tradition of the Franciscan Order is still largely terra incognita, despite a good source situation. While the history of Austrian music in the imperial and monastic centres of the monastic orders is relatively well known, especially with regard to the figural music of the 18th century, much remains in the dark with regard to the liturgical-musical practice of the widespread mendicants and their clientele. The cataloguing and online publication of this corpus of sources can at least partially fill this gap and enable further research.
+        The project was funded by the European Union's NextGenerationEU fund and the Austrian Federal Ministry of Art, Culture, Public Service and Sport."""@en .
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-sa-4-0> ;
     acdh:hasLicensor acdhi:acdh ;
     acdh:hasLifeCycleStatus <https://vocabs.acdh.oeaw.ac.at/archelifecyclestatus/active>;
@@ -396,16 +330,16 @@ acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22> ;
 <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22/A-Gf_S1_22-VD.tif> a acdh:Resource ;
     acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
     acdh:hasLicensor acdhi:franziskanerklostergraz ;
-	acdh:hasCreator acdhi:rklugseder ;
- acdh:hasRightsHolder acdhi:franziskanerklostergraz,
+    acdh:hasCreator acdhi:rklugseder ;
+    acdh:hasRightsHolder acdhi:franziskanerklostergraz,
         acdhi:oeaw ;
-acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22> ;
-acdh:hasDepositor acdhi:franziskanerklostergraz ;          
+    acdh:isPartOf <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/S1_22> ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;          
     acdh:hasOwner acdhi:franziskanerklostergraz ;
- acdh:hasDepositor acdhi:franziskanerklostergraz ;  
-acdh:hasMetadataCreator acdhi:fsanzlazaro ; 
-	acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
-	acdh:hasTitle "Placeholder"@und .
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;  
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ; 
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasTitle "Placeholder"@und .
 
 <https://id.acdh.oeaw.ac.at/ofmgraz/derivatives/A67_23/A-Gf_A67_23-001r.tif> a acdh:Resource ;
     acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
@@ -448,179 +382,3 @@ acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasTitle "Dum appropinquaret Dominus (XML-TEI)"@und ;
     acdh:hasUsedSoftware "Transkribus" ;
     acdh:isPartOf acdhi-ofm:teidocs .
-
-acdhi:bmkkoeds a acdh:Organisation ;
-    acdh:hasIdentifier <https://d-nb.info/gnd/1216831270> ;
-    acdh:hasTitle "Bundesministerium für Kunst, Kultur, öffentlichen Dienst und Sport"@de .
-
-acdhi:rklugseder a acdh:Person ;
-    acdh:hasPersonalTitle "PD Dr.habil." ;
-    acdh:hasLastName "Klugseder"@de ;
-    acdh:hasFirstName "Robert"@de ;
-    acdh:hasTitle "Robert Klugseder"@und ;
-    acdh:hasAddressLine1 "Bäckerstraße 13" ;
-    acdh:hasAddressLine2 "c/o ACDH-CH" ;
-    acdh:hasPostcode "1100" ;
-    acdh:hasEmail "robert.klugseder@oeaw.ac.at" ;
-    acdh:hasCity
-        "Vienna"@en ,
-        "Wien"@de ;
-    acdh:hasRegion
-        "Vienna"@en ,
-        "Wien"@de ;
-    acdh:hasUrl "https://www.oeaw.ac.at/acdh/team/current-team/robert-klugseder" ;
-    acdh:isMemberOf acdhi:acdh-oeaw ;
-    acdh:hasIdentifier <https://orcid.org/0000-0002-0484-832X> ,
-        <https://d-nb.info/gnd/134072170> ,
-        <http://viaf.org/viaf/5254585> .
-
-acdhi:jhoeller a acdh:Person ;
-    acdh:hasIdentifier acdhi:jhoeller ;
-    acdh:hasPersonalTitle "P. Mag., OFM" ;
-    acdh:hasLastName "Höller"@de ;
-    acdh:hasFirstName "Josef"@de ;
-    acdh:hasEmail "josef.hoeller@graz-seckau.at" ;
-    acdh:isMemberOf  acdhi:franziskanerklostergraz ;
-    acdh:hasTitle "Josef Höller"@und .
-
-acdhi:fsanzlazaro a acdh:Person ;
-    acdh:hasPersonalTitle "Lic. Mag. Dr." ;
-    acdh:hasIdentifier <https://orcid.org/0000-0002-8815-6741> ,
-        <https://d-nb.info/gnd/1297553608> ,
-        <http://viaf.org/viaf/2085169084888890310003> ;
-    acdh:hasLastName "Sanz-Lázaro"@es ,
-        "Sanz-Lázaro"@und ;
-    acdh:hasFirstName "Fernando"@es ,
-        "Fernando"@und ;
-    acdh:hasAddressLine1 "Bäckerstraße 13" ;
-    acdh:hasAddressLine2 "c/o ACDH-CH" ;
-    acdh:hasPostcode "1100" ;
-    acdh:hasEmail "fernando.sanz-lazaro@oeaw.ac.at" ;
-    acdh:hasCity
-        "Vienna"@en ,
-        "Wien"@de ;
-    acdh:hasRegion
-        "Vienna"@en ,
-        "Wien"@de ;
-    acdh:hasUrl "https://www.oeaw.ac.at/acdh/team/current-team/fernando-sanz-lazaro" ;
-    acdh:isMemberOf acdhi:acdh-oeaw ;
-    acdh:hasTitle "Fernando Sanz-Lázaro"@und .
-
-acdhi:jleitner a acdh:Person ;
-    acdh:hasLastName "Leitner"@de ;
-    acdh:hasFirstName "Jakob"@de ;
-    acdh:hasIdentifier <https://orcid.org/0000-0001-6195-2935> ;
-    acdh:hasTitle "Jakob Leitner"@und .
-
-acdhi:alhuber a acdh:Person ;
-    acdh:hasLastName "Huber"@de ;
-    acdh:hasFirstName "Anna-Lena"@de ;
-    acdh:hasIdentifier acdhi:alhuber ;
-    acdh:hasTitle "Anna-Lena Huber"@und .
-
-acdhi:mschmoetten a acdh:Person ;
-    acdh:hasLastName "Schmoetten"@de ;
-    acdh:hasFirstName "Moritz"@de ;
-    acdh:hasIdentifier acdhi:mschmoetten ;
-    acdh:hasTitle "Moritz Schmoetten"@und .
-
-acdhi:mautern-in-steiermark a acdh:Place ;
-    acdh:hasIdentifier <https://d-nb.info/gnd/4115047-8> ,
-     <https://sws.geonames.org/2771761>,
-     <https://www.wikidata.org/entity/Q258162> ;
-    acdh:hasCountry "Österreich"@de ,
-        "Austria"@en ;
-    acdh:hasTitle "Mautern in Steiermark"@de ,
-        "Mautern in Steiermark"@en .
-
-acdhi:ljubljana a acdh:Place ;
-    acdh:hasIdentifier <https://d-nb.info/gnd/4073953-3> ,
-        <https://sws.geonames.org/3239318> ,
-        <https://www.wikidata.org/entity/Q437> ;
-    acdh:hasCountry "Slowenien"@de ,
-        "Slovenia"@en ;
-    acdh:hasTitle "Ljubljana"@de ,
-        "Ljubljana"@en .
-
-# Already on ARCHE
-acdhi:pandorfer a acdh:Person ;
-    acdh:hasIdentifier <https://orcid.org/0000-0002-9575-9372> ;
-    acdh:hasTitle "Peter Andorfer"@und .
-
-acdhi:dschopper a acdh:Person ;
-    acdh:hasIdentifier <https://orcid.org/0000-0003-2436-0361> ;
-    acdh:hasTitle "Daniel Schopper"@und .
-
-acdhi:franziskanerklostergraz a acdh:Organisation ;  
-    acdh:hasIdentifier <https://d-nb.info/gnd/16174362-6> ;
-    acdh:hasTitle "Franziskanerkloster Graz"@de .
-
-acdhi:sankt-poelten a acdh:Place ; 
-    acdh:hasIdentifier <https://d-nb.info/gnd/4051622-2> ,
-        <https://sws.geonames.org/2766426> ,
-        <https://www.wikidata.org/entity/Q82500> ;
-    acdh:hasCountry "Österreich"@de ,
-        "Austria"@en ;
-    acdh:hasTitle "Sankt Pölten"@de ,
-        "Sankt Pölten"@und .
-
-acdhi:vienna a acdh:Place ;
-    acdh:hasIdentifier <https://d-nb.info/gnd/4066009-6> ,
-        <https://sws.geonames.org/2761367> ,
-        <https://www.wikidata.org/entity/Q1741> ;
-    acdh:hasCountry "Österreich"@de ,
-        "Austria"@en ;
-    acdh:hasTitle "Wien"@de ,
-        "Vienna"@en .
-
-acdhi:graz a acdh:Place ;
-        acdh:hasIdentifier <https://d-nb.info/gnd/4021912-4> ,
-            <https://sws.geonames.org/2778058> ,
-            <https://www.wikidata.org/entity/Q13298> ;
-        acdh:hasCountry "Österreich"@de ,
-            "Austria"@en ;
-        acdh:hasTitle "Graz"@de ,
-            "Graz"@en .
-
-acdhi:salzburg a acdh:Place ; #102
-    acdh:hasIdentifier  # <https://sws.geonames.org/2766818> ,
-        <https://d-nb.info/gnd/4076982-3> ,
-        <https://www.wikidata.org/entity/Q34713> ;
-    acdh:hasCountry "Österreich"@de ,
-        "Austria"@en ;
-    acdh:hasTitle "Salzburg"@de ,
-        "Salzburg"@en .
-
-acdhi:maria-lankowitz a acdh:Place ;
-    acdh:hasIdentifier <https://d-nb.info/gnd/4400654-8> ,
-        # <https://www.wikidata.org/entity/Q699807> ,
-        <https://sws.geonames.org/2771922> ;
-    acdh:hasCountry "Österreich"@de ,
-        "Austria"@en ;
-    acdh:hasTitle "Maria Lankowitz"@de ,
-        "Maria Lankowitz"@en.
-
-acdhi:munich a acdh:Place ;
-    acdh:hasIdentifier  # <https://www.geonames.org/2867714> ,
-        <https://d-nb.info/gnd/4127793-4> ,
-        <https://www.wikidata.org/entity/Q1726> ;
-    acdh:hasCountry "Deutschland"@de ,
-        "Germany"@en ;
-    acdh:hasTitle "München"@de ,
-        "Munich"@en .
-
-#acdhi:place-venice a acdh:Place ;
-#    acdh:hasIdentifier
-#	<https://sws.geonames.org/3164603> ,
-#	<https://d-nb.info/gnd/4062501-1> ,
-#	<https://www.wikidata.org/entity/Q641> ;
-#   acdh:hasCountry "Italien"@de ,
-#        "Italy"@en ;
-#    acdh:hasTitle "Venedig"@de ,
-#         	"Venice"@en .
-
-acdhi:europeanunion a acdh:Organisation ;
-    acdh:hasIdentifier <https://d-nb.info/gnd/5098525-5> ,
-                        <https://www.wikidata.org/wiki/Q458> ;
-    acdh:hasTitle "Europäische Union"@de ,
-       "European Union"@en .
