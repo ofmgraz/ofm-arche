@@ -402,7 +402,7 @@ def get_coverage(doc):
 
 
 def make_subcollection(
-    name, parent, title, arrangement=False, subtitle=False, issource=False
+    name, parent, title, shelfmark, arrangement=False, subtitle=False, issource=False
 ):
     """
     Creates a subcollection in the RDF graph.
@@ -428,13 +428,13 @@ def make_subcollection(
         colle = "Master images"
         colld = "Originalbilder"
     g.add((subject, ACDH["isPartOf"], URIRef(parent)))
-    g.add((subject, ACDH["hasTitle"], Literal(f"{title} ({colld})", lang="de")))
-    g.add((subject, ACDH["hasTitle"], Literal(f"{title} ({colle})", lang="en")))
-    g.add((subject, ACDH["hasAlternativeTitle"], Literal(title, lang="la")))
+    g.add((subject, ACDH["hasTitle"], Literal(f"{shelfmark}: {title} ({colld})", lang="de")))
+    g.add((subject, ACDH["hasTitle"], Literal(f"{shelfmark}: {title} ({colle})", lang="en")))
+    g.add((subject, ACDH["hasAlternativeTitle"], Literal(f"{shelfmark}: {title}", lang="la")))
     g.add((subject, ACDH["hasSubject"], Literal("chant books", lang="en")))
     g.add((subject, ACDH["hasSubject"], Literal("Choralbücher", lang="de")))
     g.add((subject, ACDH["hasLanguage"], URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")))
-
+    print(f'<{os.path.join(parent, name)}> acdh:hasTitle "{shelfmark}: {title} ({colle})"@en , "{shelfmark}: {title} ({colld})"@de ; acdh:hasAlternativeTitle "{shelfmark}: {title}"@la .')
     if arrangement:
         g.add((subject, ACDH["hasArrangement"], Literal(arrangement, lang="en")))
     # if subtitle:
@@ -587,11 +587,11 @@ for collection in files:
             g.add((resc, ACDH["hasUsedSoftware"], Literal("Transkribus")))
             subcollections = [
                 make_subcollection(
-                    basename, MASTERS, has_title, False, has_subtitle, resc
+                    basename, MASTERS, has_title, signature, False, has_subtitle, resc
                 )
             ]
             subcollections.append(
-                make_subcollection(basename, DERIVTV, has_title, False, has_subtitle)
+                make_subcollection(basename, DERIVTV, has_title, signature, False, has_subtitle)
             )
             for sc in subcollections:
                 for scover in coverage:
@@ -754,7 +754,6 @@ for collection in files:
                     g.add((resc, ACDH["hasNextItem"], prevresc))
 
                 prevresc = resc
-
 # Serialize the RDF graph to a Turtle file
 try:
     g.serialize("ofmgraz.ttl", format="ttl")
