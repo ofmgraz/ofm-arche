@@ -4,7 +4,23 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix acdhi-ofm: <https://id.acdh.oeaw.ac.at/ofmgraz/> .
 
-<https://id.acdh.oeaw.ac.at/ofmgraz/teidoc/schema.rng> a acdh:Resource ;
+<https://id.acdh.oeaw.ac.at/ofmgraz/meta> a acdh:Collection;
+    acdh:hasTitle "Ergänzende Materialien"@de ,
+        "Additional resources"@en ;
+    acdh:hasDescription "TEI/XML Schema und Titlelbild"@de ,
+	"TEI/XML schemas anfd title image"@en ;
+     acdh:hasArrangement
+        "Die Untersammlung „Ergänzende Materialien“ enthält eine XML-Schema und eine Bilddatei."@de ,
+        "The subcollection 'Additional resources' contains an XML schema and  a picture file."@en ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc-by-sa-4-0> ;
+    acdh:hasLicensor acdhi:acdh ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasOwner acdhi:acdh ;
+    acdh:hasRightsHolder acdhi:oeaw ;
+    acdh:isPartOf acdhi:ofmgraz .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/meta/schema.rng> a acdh:Resource ;
     acdh:hasTitle "Schema RelaxNG for the XML-TEI editions 'Choral Manuscripts of the Central Library of the Franciscan Province of Graz'."@en ,
 	"Schema RelaxNG für die XML-TEI-Editionen von »Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz«"@de ;
     acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/model> ;
@@ -20,9 +36,9 @@
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasOwner acdhi:acdh ;
     acdh:hasRightsHolder acdhi:oeaw ;
-    acdh:isPartOf acdhi-ofm:teidocs .
+    acdh:isPartOf acdhi-ofm:meta .
 
-<https://id.acdh.oeaw.ac.at/ofmgraz/teidoc/schema.odd> a acdh:Resource ;
+<https://id.acdh.oeaw.ac.at/ofmgraz/meta/schema.odd> a acdh:Resource ;
     acdh:hasTitle "Schema ODD for the XML-TEI editions of 'Choral Manuscripts of the Central Library of the Franciscan Province of Graz'."@en ,
 	"Schema ODD für die XML-TEI-Editionen von »Choralhandschriften der Zentralbibliothek der Wiener Franziskanerprovinz Graz.«"@de ;
     acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/model> ;
@@ -38,4 +54,25 @@
     acdh:hasMetadataCreator acdhi:fsanzlazaro ;
     acdh:hasOwner acdhi:acdh ;
     acdh:hasRightsHolder acdhi:oeaw ;
-    acdh:isPartOf acdhi-ofm:teidocs .
+    acdh:isPartOf acdhi-ofm:meta .
+
+<https://id.acdh.oeaw.ac.at/ofmgraz/meta/ofmgraz-title-image.png> a acdh:Resource ;
+    acdh:hasCategory <https://vocabs.acdh.oeaw.ac.at/archecategory/image> ;
+    acdh:hasDepositor acdhi:franziskanerklostergraz ;
+    acdh:hasFormat "img/png" ;
+    acdh:hasFilename "omfgraz-title-image.png" ;
+    acdh:hasLicense <https://vocabs.acdh.oeaw.ac.at/archelicenses/cc0-1-0> ;
+    acdh:hasLicensor acdhi:acdh ,
+        acdhi:franziskanerklostergraz ;
+    acdh:hasMetadataCreator acdhi:fsanzlazaro ;
+    acdh:hasOwner acdhi:franziskanerklostergraz ;
+    acdh:hasRightsHolder acdhi:oeaw ,
+        acdhi:franziskanerklostergraz ;
+    acdh:hasIdentifier <https://hdl.handle.net/21.11115/0000-0013-32E9-C> ;
+    acdh:hasTitle "Title Image von „Choralhandschriften OFM Graz“"@de,
+   	"Title Image of 'Chant Manuscripts OFM Graz'"@en ;
+    acdh:isTitleImageOf acdhi:ofmgraz ,
+        acdhi-ofm:derivatives ,
+        acdhi-ofm:teidocs,
+        acdhi-ofm:masters ;
+    acdh:isPartOf acdhi-ofm:meta .
