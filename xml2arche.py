@@ -434,7 +434,6 @@ def make_subcollection(
     g.add((subject, ACDH["hasSubject"], Literal("chant books", lang="en")))
     g.add((subject, ACDH["hasSubject"], Literal("Choralbücher", lang="de")))
     g.add((subject, ACDH["hasLanguage"], URIRef("https://vocabs.acdh.oeaw.ac.at/iso6393/lat")))
-    print(f'<{os.path.join(parent, name)}> acdh:hasTitle "{shelfmark}: {title} ({colle})"@en , "{shelfmark}: {title} ({colld})"@de ; acdh:hasAlternativeTitle "{shelfmark}: {title}"@la .')
     if arrangement:
         g.add((subject, ACDH["hasArrangement"], Literal(arrangement, lang="en")))
     # if subtitle:
@@ -537,7 +536,7 @@ for collection in files:
         for idx, xmlfile in enumerate(col):
             if not xmlfile.endswith("xml"):
                 continue
-            print(xmlfile)
+            #print(xmlfile)
             resc = ACDHI[f"ofmgraz/teidocs/{xmlfile}"]
             g.add((resc, RDF.type, ACDH["Resource"]))
             basename = xmlfile.split(".")[0]
@@ -559,7 +558,8 @@ for collection in files:
             has_title = doc.any_xpath(".//tei:title[@type='main']/text()")[0].strip()
             has_subtitle = doc.any_xpath(".//tei:title[@type='sub']")
             signature = doc.any_xpath(".//tei:title[@type='desc']/text()")[0].strip()
-            g.add((resc, ACDH["hasTitle"], Literal(f"{has_title} (XML-TEI)", lang="und")))
+            g.add((resc, ACDH["hasTitle"], Literal(f"{signature}: {has_title} (XML-TEI)", lang="und")))
+            print(f'<https://id.acdh.oeaw.ac.at/ofmgraz/teidocs/{xmlfile}> acdh:hasTitle "{signature}: {has_title} (XML-TEI)"@und ; acdh:hasSchema "https://id.acdh.oeaw.ac.at/ofmgraz/meta/schema.rng" .')
             g.add((resc, ACDH["hasNonLinkedIdentifier"], Literal(signature)))
             if has_subtitle := doc.any_xpath(".//tei:title[@type='sub']/text()"):
                 has_subtitle = has_subtitle[0].strip()
@@ -569,7 +569,7 @@ for collection in files:
             g.add((resc, ACDH["hasFilename"], Literal(f"{basename}.xml")))
             g.add((resc, ACDH["hasFormat"], Literal("application/xml")))
             g.add((resc, ACDH["hasLanguage"], language))
-            g.add((resc, ACDH["hasSchema"], Literal("ofmgraz/teidocs/schema.rng")))
+            g.add((resc, ACDH["hasSchema"], Literal("https://id.acdh.oeaw.ac.at/ofmgraz/meta/schema.rng")))
             g.add((resc, ACDH["hasSubject"], Literal("chant books", lang="en")))
             g.add((resc, ACDH["hasSubject"], Literal("Choralbücher", lang="de")))
 
